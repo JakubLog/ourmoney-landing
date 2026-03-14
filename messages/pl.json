@@ -1,0 +1,202 @@
+{
+  "Common": {
+    "startFree": "Zacznij bezpłatnie",
+    "learnMore": "Dowiedz się więcej",
+    "readMore": "Czytaj więcej",
+    "backToHome": "Wróć na stronę główną",
+    "appUrl": "https://app.ourmoney.pl/"
+  },
+  "Navigation": {
+    "home": "Strona główna",
+    "about": "O nas",
+    "blog": "Blog",
+    "contact": "Kontakt",
+    "privacy": "Polityka Prywatności",
+    "terms": "Regulamin"
+  },
+  "Footer": {
+    "email": "kontakt@ourmoney.pl",
+    "instagram": "https://www.instagram.com/ourmoneypl/",
+    "copyright": "© 2026 OurMoney. Wszelkie prawa zastrzeżone."
+  },
+  "CTABanner": {
+    "text": "Sprawdź, jak proste mogą być wspólne finanse. Zacznijcie budować sprawiedliwą relację już dziś.",
+    "button": "Zacznij bezpłatnie"
+  },
+  "HomePage": {
+    "meta": {
+      "title": "OurMoney — Wspólny budżet dla par",
+      "description": "Pierwsza aplikacja finansowa stworzona specjalnie dla par. Sprawiedliwy podział wydatków, wspólne cele, zachowanie prywatności tam, gdzie tego chcesz."
+    },
+    "hero": {
+      "headline": "Czy pieniądze są źródłem TABU w Waszym związku?",
+      "subheadline": "Pierwsza aplikacja finansowa stworzona specjalnie dla par. Sprawiedliwy podział wydatków, wspólne cele, zachowanie prywatności.",
+      "cta": "Zacznij bezpłatnie"
+    },
+    "painPoints": {
+      "title": "Czy te wyzwania brzmią znajomo?",
+      "items": [
+        "Kto powinien płacić za co?",
+        "Jak uniknąć kłótni o pieniądze?",
+        "Jak planować wspólną przyszłość bez stresu?"
+      ]
+    },
+    "features": {
+      "title": "Jak OurMoney rozwiązuje Wasze problemy",
+      "items": [
+        {
+          "title": "Inteligentny podział wydatków",
+          "description": "Automatycznie dzieli wspólne wydatki proporcjonalnie do Waszych dochodów. Sprawiedliwie i bez obliczeń. Jeden klik i wiadomo, kto ile wpłaca."
+        },
+        {
+          "title": "Wspólne cele finansowe",
+          "description": "Razem odkładajcie na wymarzone wakacje, remont czy wkład własny. Śledźcie postęp i świętujcie każdy krok."
+        },
+        {
+          "title": "Moje-Twoje-Nasze wydatki",
+          "description": "Każde z Was ma swoją prywatną przestrzeń i wspólną. Pełna transparentność tam, gdzie chcecie — prywatność tam, gdzie potrzebujecie."
+        }
+      ]
+    },
+    "brandPromise": {
+      "title": "Jesteśmy po stronie związku",
+      "description": "Sprawdź, jak proste mogą być wspólne finanse. Zacznijcie budować sprawiedliwą relację już dziś!",
+      "cta": "Zacznij bezpłatnie"
+    },
+    "testimonials": {
+      "title": "Osoby, które wzięły finanse w swoje ręce",
+      "items": [
+        {
+          "name": "Aga",
+          "rating": 5,
+          "quote": "OurMoney to aplikacja, dzięki której dogadanie się co do wspólnych finansów może okazać się łatwiejsze niż ustalenie, kto wyprowadza na spacer psa w sobotę rano. Polecam i czekam na aplikację do dogadywania się w sprawie psa ;)"
+        },
+        {
+          "name": "Daniel",
+          "rating": 5,
+          "quote": "OurMoney to proste i przejrzyste narzędzie dla par, które chcą skutecznie kontrolować wspólne wydatki oraz planować przyszłe inwestycje. Polecam każdemu, kto ceni uporządkowane i transparentne zarządzanie finansami."
+        },
+        {
+          "name": "Klaudia",
+          "rating": 5,
+          "quote": "OurMoney to dosłownie - nasze wydatki w jednym miejscu. Prosta w obsłudze, klarowna w śledzeniu zakupów i z gigantycznym potencjałem na tracking coraz to nowszych aspektów związanych z finansami. Przyda się każdemu, kto chciałby zacząć lepiej monitorować swoje cashflow."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Często zadawane pytania",
+      "items": [
+        {
+          "question": "Czy oboje musimy mieć aplikację?",
+          "answer": "Tak! OurMoney działa najlepiej, gdy oboje korzystacie z aplikacji i synchronizujecie dane. To gwarantuje pełną transparentność i sprawiedliwy podział wydatków."
+        },
+        {
+          "question": "Czy aplikacja jest darmowa?",
+          "answer": "Na ten moment tak. W przyszłości planujemy wprowadzić opłatę miesięczną."
+        },
+        {
+          "question": "Jak działa podział wydatków?",
+          "answer": "Możecie wybrać jedną z czterech opcji. Podział 50/50 lub proporcjonalny do dochodów (np. 60/40, jeśli jedno z Was zarabia więcej). OurMoney automatycznie kalkuluje, kto ile powinien wpłacić na wspólne rachunki. Możecie też śledzić wydatki bez określania podziału albo korzystać z odgórnie ustalonego budżetu."
+        },
+        {
+          "question": "Czy aplikacja działa na iOS i Android?",
+          "answer": "OurMoney to Progressive Web App (PWA) - działa na każdym urządzeniu przez przeglądarkę. Możecie dodać ją do ekranu głównego jak zwykłą aplikację. Jedno konto, wszędzie dostęp!"
+        },
+        {
+          "question": "Czy nasze dane będą bezpieczne?",
+          "answer": "Prywatność i bezpieczeństwo to nasz priorytet. Stosujemy najwyższe standardy ochrony danych."
+        }
+      ]
+    }
+  },
+  "AboutPage": {
+    "meta": {
+      "title": "O nas | OurMoney",
+      "description": "Poznaj zespół stojący za OurMoney — aplikacją, która pomaga parom zarządzać wspólnymi finansami bez kłótni."
+    },
+    "hero": {
+      "headline": "Budujemy mosty tam, gdzie pieniądze stawiają mury",
+      "description": "Wierzymy, że finanse w związku nie muszą być powodem do kłótni. Stworzyliśmy OurMoney, aby zamienić \"niewypowiedziane frustracje\" w sprawiedliwe partnerstwo."
+    },
+    "mission": {
+      "title": "Dlaczego tworzymy OurMoney?",
+      "description": "W OurMoney nie zajmujemy się tylko \"zarządzaniem wydatkami\". Naszym celem jest stworzenie świata, w którym pieniądze przestają być źródłem konfliktów, a stają się narzędziem do budowania wspólnej przyszłości i realizacji marzeń.",
+      "story": "Oboje mamy osobne związki, ale łączy nas wspólny problem – finanse w parze to wyzwanie. Nie chodzi o brak pieniędzy. Chodzi o brak narzędzia, które by naprawdę rozumiało, jak działają finanse we dwoje. Dlatego postanowiliśmy stworzyć OurMoney – rozwiązanie, którego sami szukaliśmy i nie mogliśmy znaleźć."
+    },
+    "team": {
+      "title": "Poznaj zespół",
+      "members": [
+        {
+          "name": "Jakub M. Fedoszczak",
+          "role": "Co-Founder & Tech Lead",
+          "bio": "Programista z pasją do rozwiązywania problemów. W związku odkrył, że finanse we dwoje to temat, który wymaga lepszych narzędzi."
+        },
+        {
+          "name": "Magdalena Nestorowicz",
+          "role": "Co-Founder & AI Product Designer",
+          "bio": "Projektantka Interfejsów. Wie, że rozmowa o pieniądzach w związku nie musi być trudna – potrzeba tylko odpowiedniego podejścia."
+        }
+      ]
+    }
+  },
+  "ContactPage": {
+    "meta": {
+      "title": "Kontakt | OurMoney",
+      "description": "Skontaktuj się z zespołem OurMoney. Jesteśmy tu, żeby pomóc."
+    },
+    "hero": {
+      "headline": "Skontaktuj się z nami",
+      "description": "Masz pytania? Napisz do nas — odpowiemy tak szybko, jak to możliwe."
+    },
+    "email": {
+      "label": "Email",
+      "value": "kontakt@ourmoney.pl"
+    },
+    "instagram": {
+      "label": "Instagram",
+      "value": "@ourmoneypl"
+    },
+    "form": {
+      "namePlaceholder": "Imię i nazwisko",
+      "emailPlaceholder": "Adres e-mail",
+      "messagePlaceholder": "Twoja wiadomość...",
+      "submit": "Wyślij wiadomość",
+      "success": "Wiadomość wysłana! Odpiszemy wkrótce.",
+      "note": "Odpowiadamy zazwyczaj w ciągu 24 godzin."
+    }
+  },
+  "BlogPage": {
+    "meta": {
+      "title": "Blog | OurMoney",
+      "description": "Artykuły o finansach osobistych, zarządzaniu budżetem w parze i mądrym planowaniu przyszłości."
+    },
+    "badge": "Co nowego!",
+    "title": "Blog, aktualności i artykuły",
+    "description": "Odkryj, jak nasze narzędzia pomagają zarządzać pieniędzmi prościej, szybciej i mądrzej.",
+    "readingTime": "{minutes} min czytania",
+    "empty": "Wkrótce pojawią się pierwsze artykuły. Zaglądaj regularnie!"
+  },
+  "NotFoundPage": {
+    "meta": {
+      "title": "404 — Nie znaleziono strony | OurMoney",
+      "description": "Strona, której szukasz, nie istnieje."
+    },
+    "headline": "Ups, coś poszło nie tak!",
+    "description": "Link może być nieaktywny lub strona została usunięta.",
+    "backHome": "Wróć na stronę główną"
+  },
+  "PrivacyPage": {
+    "meta": {
+      "title": "Polityka Prywatności | OurMoney",
+      "description": "Polityka prywatności aplikacji OurMoney — jak zbieramy i chronimy Twoje dane."
+    },
+    "title": "Polityka Prywatności"
+  },
+  "TermsPage": {
+    "meta": {
+      "title": "Regulamin | OurMoney",
+      "description": "Regulamin korzystania z aplikacji OurMoney."
+    },
+    "title": "Regulamin"
+  }
+}

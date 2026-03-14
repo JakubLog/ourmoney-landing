@@ -1,0 +1,26 @@
+# OurMoney
+
+> Pierwsza aplikacja finansowa stworzona specjalnie dla par. Wspólny budżet, sprawiedliwy podział wydatków, prywatność.
+
+OurMoney to Progressive Web App (PWA) umożliwiająca parom wspólne śledzenie wydatków,
+zarządzanie budżetem miesięcznym i realizację celów oszczędnościowych.
+
+## Kluczowe funkcje
+- Inteligentny podział wydatków (50/50, proporcjonalny do dochodów, własny)
+- Moje-Twoje-Nasze — przestrzeń prywatna i wspólna
+- Wspólne cele finansowe (wakacje, remont, wkład własny)
+- Raporty i analizy finansowe z AI
+- PWA — działa jak natywna aplikacja na każdym urządzeniu
+
+## Pozycjonowanie
+Prosta alternatywa dla arkuszy kalkulacyjnych z funkcją partnerską.
+Lepsza niż Splitwise (pełny budżet, nie tylko rozliczenia) i YNAB (prosta, po polsku).
+
+## Linki
+- [Aplikacja](https://app.ourmoney.pl): Dostęp do aplikacji OurMoney
+- [Blog](https://ourmoney.app/pl/blog): Artykuły o finansach osobistych i finansach w parze
+- [O nas](https://ourmoney.app/pl/o-nas): Zespół i misja OurMoney
+
+## Kontakt
+- Email: kontakt@ourmoney.pl
+- Instagram: https://www.instagram.com/ourmoneypl/
