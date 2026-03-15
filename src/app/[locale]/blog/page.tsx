@@ -3,8 +3,28 @@ import { getTranslations } from 'next-intl/server';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { CTABanner } from '@/components/sections/CTABanner';
+import { BlogPostCard, FeaturedPostCard } from '@/components/blog/BlogPostCard';
+import { client, fetchOptions } from '@/sanity/lib/client';
+import { POSTS_QUERY } from '@/sanity/lib/queries';
 
 type Props = { params: Promise<{ locale: string }> };
+
+function estimateReadingTime(text: string) {
+  const words = text.trim().split(/\s+/).length;
+  return Math.max(1, Math.ceil(words / 200));
+}
+
+type Post = {
+  _id: string;
+  title: string;
+  slug: string;
+  publishedAt: string;
+  excerpt: string;
+  mainImageUrl?: string;
+  mainImageAlt?: string;
+  authorName?: string;
+  category?: { title: string; slug: string };
+};
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -26,45 +46,88 @@ export default async function BlogPage({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'BlogPage' });
 
-  // TODO: fetch posts from Sanity once credentials are set up
-  // const posts = await client.fetch(POSTS_QUERY, { language: locale }, { next: { revalidate: 3600, tags: ['blog'] } });
-  const posts: unknown[] = [];
+  const posts = await client.fetch<Post[]>(
+    POSTS_QUERY,
+    { language: locale },
+    fetchOptions,
+  );
+
+  const [featured, ...rest] = posts;
 
   return (
     <>
       <Header />
       <main>
         {/* Hero */}
-        <section className="bg-[#141414] pt-36 pb-24 px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <span className="inline-block bg-[#bbff00] text-black text-xs font-semibold px-4 py-1.5 rounded-full mb-6">
+        <section className="bg-[#141414] pt-36 pb-16 px-6">
+          <div className="max-w-5xl mx-auto">
+            <span className="inline-block bg-[#bbff00] text-black text-xs font-semibold px-4 py-1.5 rounded-full mb-8">
               {t('badge')}
             </span>
-            <h1 className="font-display text-4xl md:text-6xl text-white leading-tight mb-6">
+            <h1 className="font-display text-5xl md:text-7xl text-white leading-[1.05] tracking-tight max-w-3xl">
               {t('title')}
             </h1>
-            <p className="text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base text-white/50 max-w-xl mt-6 leading-relaxed">
               {t('description')}
             </p>
           </div>
         </section>
 
-        {/* Posts grid */}
-        <section className="bg-white py-24 px-6">
+        {/* Posts */}
+        <section className="bg-[#141414] pb-32 px-6">
           <div className="max-w-5xl mx-auto">
             {posts.length === 0 ? (
-              <div className="text-center py-24">
-                <p className="text-[#141414]/50 text-lg">{t('empty')}</p>
+              <div className="text-center py-40 border-t border-white/8">
+                <p className="font-display text-6xl md:text-8xl text-white/5 mb-6 select-none">
+                  Blog
+                </p>
+                <p className="text-white/30 text-base">{t('empty')}</p>
               </div>
             ) : (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {/* Posts will be rendered here once Sanity is connected */}
+              <div className="space-y-8">
+                {/* Divider */}
+                <div className="border-t border-white/8 pt-8" />
+
+                {/* Featured post */}
+                <FeaturedPostCard
+                  slug={featured.slug}
+                  title={featured.title}
+                  excerpt={featured.excerpt}
+                  publishedAt={featured.publishedAt}
+                  mainImageUrl={featured.mainImageUrl}
+                  mainImageAlt={featured.mainImageAlt}
+                  author={featured.authorName}
+                  locale={locale}
+                  readingTimeLabel={t('readingTime', { minutes: estimateReadingTime(featured.excerpt) })}
+                  featuredLabel={t('featured')}
+                  readMoreLabel={t('readMore')}
+                />
+
+                {/* Grid — remaining posts */}
+                {rest.length > 0 && (
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 pt-4">
+                    {rest.map((post) => (
+                      <BlogPostCard
+                        key={post._id}
+                        slug={post.slug}
+                        title={post.title}
+                        excerpt={post.excerpt}
+                        publishedAt={post.publishedAt}
+                        mainImageUrl={post.mainImageUrl}
+                        mainImageAlt={post.mainImageAlt}
+                        author={post.authorName}
+                        locale={locale}
+                        readingTimeLabel={t('readingTime', { minutes: estimateReadingTime(post.excerpt) })}
+                      />
+                    ))}
+                  </div>
+                )}
               </div>
             )}
           </div>
         </section>
 
-        <CTABanner />
+        <CTABanner locale={locale} />
       </main>
       <Footer />
     </>
