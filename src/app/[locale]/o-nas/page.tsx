@@ -86,7 +86,7 @@ export default async function AboutPage({ params }: Props) {
           </div>
         </section>
 
-        <CTABanner />
+        <CTABanner locale={locale} />
       </main>
       <Footer />
     </>

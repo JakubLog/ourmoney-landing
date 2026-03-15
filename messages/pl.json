@@ -29,20 +29,33 @@
       "description": "Pierwsza aplikacja finansowa stworzona specjalnie dla par. Sprawiedliwy podział wydatków, wspólne cele, zachowanie prywatności tam, gdzie tego chcesz."
     },
     "hero": {
-      "headline": "Czy pieniądze są źródłem TABU w Waszym związku?",
+      "headlinePre": "Czy pieniądze są źródłem",
+      "headlinePost": "w Waszym związku?",
+      "headlineWords": "TABU,STRESU,KONFLIKTÓW,PROBLEMÓW,NAPIĘCIA",
       "subheadline": "Pierwsza aplikacja finansowa stworzona specjalnie dla par. Sprawiedliwy podział wydatków, wspólne cele, zachowanie prywatności.",
       "cta": "Zacznij bezpłatnie"
     },
     "painPoints": {
       "title": "Czy te wyzwania brzmią znajomo?",
+      "subtitle": "Wasze wyzwania finansowe jako pary",
       "items": [
-        "Kto powinien płacić za co?",
-        "Jak uniknąć kłótni o pieniądze?",
-        "Jak planować wspólną przyszłość bez stresu?"
+        {
+          "title": "Kto powinien płacić za co?",
+          "description": "I jak sprawiedliwie podzielić wydatki, gdy zarabiacie różnie? Ciągłe kalkulacje i napięcia przy każdym rachunku."
+        },
+        {
+          "title": "Jak uniknąć kłótni o pieniądze?",
+          "description": "Pieniądze to jeden z najczęstszych powodów konfliktów w związkach. Brak transparentności prowadzi do nieufności."
+        },
+        {
+          "title": "Jak planować wspólną przyszłość bez stresu?",
+          "description": "Mieszkanie, ślub, dzieci, jak finansowo przygotować się na kolejne kroki?"
+        }
       ]
     },
     "features": {
       "title": "Jak OurMoney rozwiązuje Wasze problemy",
+      "subtitle": "Nie kolejny arkusz Excel. Inteligentne narzędzie stworzone specjalnie dla par, które chcą razem budować przyszłość.",
       "items": [
         {
           "title": "Inteligentny podział wydatków",
@@ -50,7 +63,7 @@
         },
         {
           "title": "Wspólne cele finansowe",
-          "description": "Razem odkładajcie na wymarzone wakacje, remont czy wkład własny. Śledźcie postęp i świętujcie każdy krok."
+          "description": "Razem odkładajcie na wymarzone wakacje, remont czy wkład własny. Śledźcie postęp i świętujcie każdy krok do celu."
         },
         {
           "title": "Moje-Twoje-Nasze wydatki",
@@ -84,7 +97,7 @@
       ]
     },
     "faq": {
-      "title": "Często zadawane pytania",
+      "title": "FAQ",
       "items": [
         {
           "question": "Czy oboje musimy mieć aplikację?",
@@ -142,7 +155,7 @@
   "ContactPage": {
     "meta": {
       "title": "Kontakt | OurMoney",
-      "description": "Skontaktuj się z zespołem OurMoney. Jesteśmy tu, żeby pomóc."
+      "description": "Skontaktuj się z zespołem OurMoney."
     },
     "hero": {
       "headline": "Skontaktuj się z nami",
@@ -157,11 +170,6 @@
       "value": "@ourmoneypl"
     },
     "form": {
-      "namePlaceholder": "Imię i nazwisko",
-      "emailPlaceholder": "Adres e-mail",
-      "messagePlaceholder": "Twoja wiadomość...",
-      "submit": "Wyślij wiadomość",
-      "success": "Wiadomość wysłana! Odpiszemy wkrótce.",
       "note": "Odpowiadamy zazwyczaj w ciągu 24 godzin."
     }
   },
@@ -174,7 +182,27 @@
     "title": "Blog, aktualności i artykuły",
     "description": "Odkryj, jak nasze narzędzia pomagają zarządzać pieniędzmi prościej, szybciej i mądrzej.",
     "readingTime": "{minutes} min czytania",
-    "empty": "Wkrótce pojawią się pierwsze artykuły. Zaglądaj regularnie!"
+    "featured": "Wyróżniony",
+    "readMore": "Czytaj artykuł",
+    "empty": "Wkrótce pojawią się pierwsze artykuły. Zaglądaj regularnie!",
+    "tldr": "W skrócie",
+    "keyTakeaways": "Kluczowe wnioski",
+    "articleFaqTitle": "Najczęściej zadawane pytania",
+    "switchLanguage": "Zmień język",
+    "langLabel": {
+      "pl": "Polski",
+      "en": "English"
+    },
+    "backToBlog": "Wróć do bloga",
+    "authorSection": "O autorze",
+    "shareArticle": "Kopiuj link",
+    "linkCopied": "Skopiowano!",
+    "relatedPosts": "Podobne artykuły",
+    "inArticleCta": {
+      "headline": "Zarządzaj finansami razem z partnerem",
+      "subtext": "OurMoney to pierwsza aplikacja finansowa stworzona specjalnie dla par. Sprawiedliwy podział wydatków, wspólne cele, pełna prywatność.",
+      "button": "Wypróbuj za darmo"
+    }
   },
   "NotFoundPage": {
     "meta": {
@@ -188,7 +216,7 @@
   "PrivacyPage": {
     "meta": {
       "title": "Polityka Prywatności | OurMoney",
-      "description": "Polityka prywatności aplikacji OurMoney — jak zbieramy i chronimy Twoje dane."
+      "description": "Polityka prywatności aplikacji OurMoney."
     },
     "title": "Polityka Prywatności"
   },

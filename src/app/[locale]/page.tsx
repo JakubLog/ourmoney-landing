@@ -53,11 +53,11 @@ export default async function HomePage({ params }: Props) {
       <main>
         <HeroSection locale={locale} />
         <PainPointsSection locale={locale} />
-        <FeaturesSection locale={locale} />
+        <FeaturesSection />
         <BrandPromiseSection locale={locale} />
         <TestimonialsSection locale={locale} />
         <FAQSection />
-        <CTABanner />
+        <CTABanner locale={locale} />
       </main>
       <Footer />
     </>

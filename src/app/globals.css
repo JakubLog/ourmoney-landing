@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
   --color-accent: #bbff00;
@@ -12,12 +13,63 @@
   --font-body: "Inter Tight", "Inter", sans-serif;
 }
 
+/* Article prose overrides */
+.article-prose {
+  & pre {
+    background: #141414;
+    color: #f0f0f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    overflow-x: auto;
+    font-size: 0.875rem;
+    line-height: 1.7;
+    margin: 2rem 0;
+  }
+
+  & pre code {
+    background: none;
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+  }
+
+  & hr {
+    border-color: rgba(20, 20, 20, 0.08);
+    margin: 3rem 0;
+  }
+
+  & table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    margin: 2rem 0;
+  }
+
+  & th {
+    text-align: left;
+    font-weight: 600;
+    color: #141414;
+    padding: 0.75rem 1rem;
+    border-bottom: 2px solid #bbff00;
+  }
+
+  & td {
+    padding: 0.75rem 1rem;
+    color: rgba(20, 20, 20, 0.7);
+    border-bottom: 1px solid rgba(20, 20, 20, 0.08);
+  }
+
+  & tr:last-child td {
+    border-bottom: none;
+  }
+}
+
 * {
   box-sizing: border-box;
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth !important;
 }
 
 body {
@@ -26,3 +78,4 @@ body {
   color: #141414;
   -webkit-font-smoothing: antialiased;
 }
+

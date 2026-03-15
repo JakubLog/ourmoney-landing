@@ -92,7 +92,7 @@ export default async function ContactPage({ params }: Props) {
           </div>
         </section>
 
-        <CTABanner />
+        <CTABanner locale={locale} />
       </main>
       <Footer />
     </>

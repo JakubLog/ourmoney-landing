@@ -3,6 +3,9 @@ import { structureTool } from 'sanity/structure';
 import { visionTool } from '@sanity/vision';
 import { blogPost } from './src/sanity/schemas/blogPost';
 import { faqItem } from './src/sanity/schemas/faqItem';
+import { testimonial } from './src/sanity/schemas/testimonial';
+import { author } from './src/sanity/schemas/author';
+import { category } from './src/sanity/schemas/category';
 
 export default defineConfig({
   name: 'ourmoney-landing',
@@ -11,6 +14,6 @@ export default defineConfig({
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? 'production',
   plugins: [structureTool(), visionTool()],
   schema: {
-    types: [blogPost, faqItem],
+    types: [blogPost, author, category, faqItem, testimonial],
   },
 });

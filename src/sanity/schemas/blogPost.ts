@@ -72,7 +72,53 @@ export const blogPost = defineType({
     defineField({
       name: 'author',
       title: 'Autor',
-      type: 'string',
+      type: 'reference',
+      to: [{ type: 'author' }],
+    }),
+    defineField({
+      name: 'category',
+      title: 'Kategoria',
+      type: 'reference',
+      to: [{ type: 'category' }],
+    }),
+    defineField({
+      name: 'relatedFaq',
+      title: 'Powiązane FAQ',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'faqItem' }] }],
+    }),
+    defineField({
+      name: 'cta',
+      title: 'CTA (Call to Action)',
+      description: 'Wyróżniony baner — pojawi się w połowie i na końcu artykułu.',
+      type: 'object',
+      fields: [
+        defineField({ name: 'heading', type: 'string', title: 'Nagłówek' }),
+        defineField({ name: 'text', type: 'text', rows: 2, title: 'Tekst' }),
+        defineField({ name: 'buttonLabel', type: 'string', title: 'Tekst przycisku' }),
+        defineField({ name: 'buttonUrl', type: 'url', title: 'URL przycisku' }),
+      ],
+    }),
+    defineField({
+      name: 'aiSeo',
+      title: 'AI SEO',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'aiSummary',
+          title: 'AI Summary (TL;DR)',
+          type: 'text',
+          rows: 4,
+          description: 'Streszczenie artykułu dla AI crawlerów (ChatGPT, Perplexity, Google SGE). Max 300 znaków.',
+        }),
+        defineField({
+          name: 'keyTakeaways',
+          title: 'Kluczowe wnioski',
+          type: 'array',
+          of: [{ type: 'string' }],
+          description: 'Lista 3–5 kluczowych wniosków z artykułu.',
+        }),
+      ],
     }),
     defineField({
       name: 'seo',
@@ -81,7 +127,14 @@ export const blogPost = defineType({
       fields: [
         defineField({ name: 'title', type: 'string', title: 'SEO Title (max 60 znaków)' }),
         defineField({ name: 'description', type: 'text', rows: 3, title: 'Meta Description (max 155 znaków)' }),
+        defineField({ name: 'canonical', type: 'url', title: 'Canonical URL (override)' }),
         defineField({ name: 'ogImage', type: 'image', title: 'OG Image (1200×630px)' }),
+        defineField({
+          name: 'keywords',
+          type: 'array',
+          title: 'Keywords',
+          of: [{ type: 'string' }],
+        }),
         defineField({ name: 'noIndex', type: 'boolean', title: 'Ukryj przed wyszukiwarkami', initialValue: false }),
       ],
     }),

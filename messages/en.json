@@ -29,20 +29,33 @@
       "description": "The first financial app built specifically for couples. Fair expense splitting, shared goals, privacy where you want it."
     },
     "hero": {
-      "headline": "Are money conversations TABOO in your relationship?",
+      "headlinePre": "Are money conversations",
+      "headlinePost": "in your relationship?",
+      "headlineWords": "TABOO,STRESSFUL,COMPLICATED,DIFFICULT,IGNORED",
       "subheadline": "The first financial app built specifically for couples. Fair expense splitting, shared goals, privacy where you want it.",
       "cta": "Start for free"
     },
     "painPoints": {
       "title": "Do these challenges sound familiar?",
+      "subtitle": "Your financial challenges as a couple",
       "items": [
-        "Who should pay for what?",
-        "How to avoid arguments about money?",
-        "How to plan a shared future without stress?"
+        {
+          "title": "Who should pay for what?",
+          "description": "And how to split expenses fairly when you earn differently? Constant calculations and tension at every bill."
+        },
+        {
+          "title": "How to avoid arguments about money?",
+          "description": "Money is one of the most common sources of conflict in relationships. Lack of transparency leads to mistrust."
+        },
+        {
+          "title": "How to plan a shared future without stress?",
+          "description": "An apartment, wedding, children — how to financially prepare for each next step?"
+        }
       ]
     },
     "features": {
       "title": "How OurMoney solves your problems",
+      "subtitle": "Not another Excel spreadsheet. An intelligent tool built specifically for couples who want to build a future together.",
       "items": [
         {
           "title": "Intelligent expense splitting",
@@ -84,7 +97,7 @@
       ]
     },
     "faq": {
-      "title": "Frequently asked questions",
+      "title": "FAQ",
       "items": [
         {
           "question": "Do we both need to have the app?",
@@ -174,7 +187,27 @@
     "title": "Latest Blogs, News & Articles",
     "description": "Discover how our powerful tools make managing money simpler, faster, and smarter.",
     "readingTime": "{minutes} min read",
-    "empty": "First articles coming soon. Check back regularly!"
+    "featured": "Featured",
+    "readMore": "Read article",
+    "empty": "First articles coming soon. Check back regularly!",
+    "tldr": "TL;DR",
+    "keyTakeaways": "Key Takeaways",
+    "articleFaqTitle": "Frequently Asked Questions",
+    "switchLanguage": "Switch language",
+    "langLabel": {
+      "pl": "Polish",
+      "en": "English"
+    },
+    "backToBlog": "Back to blog",
+    "authorSection": "About the author",
+    "shareArticle": "Copy link",
+    "linkCopied": "Copied!",
+    "relatedPosts": "Related articles",
+    "inArticleCta": {
+      "headline": "Manage finances together with your partner",
+      "subtext": "OurMoney is the first financial app built specifically for couples. Fair expense splitting, shared goals, full privacy.",
+      "button": "Try for free"
+    }
   },
   "NotFoundPage": {
     "meta": {
