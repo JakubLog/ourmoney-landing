@@ -1,23 +1,26 @@
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
+import { TrackedCTALink } from '@/components/ui/TrackedCTALink';
 
-export function CTABanner() {
-  const t = useTranslations('CTABanner');
-  const tCommon = useTranslations('Common');
+type Props = { locale: string };
+
+export async function CTABanner({ locale }: Props) {
+  const t = await getTranslations({ locale, namespace: 'CTABanner' });
+  const tCommon = await getTranslations({ locale, namespace: 'Common' });
 
   return (
-    <section className="bg-[#bbff00] px-6 py-20">
-      <div className="max-w-3xl mx-auto text-center">
-        <p className="text-xl md:text-2xl font-semibold text-black leading-snug mb-8">
+    <section className="bg-[#141414] px-6 py-24">
+      <div className="max-w-2xl mx-auto text-center">
+        <p className="font-display text-3xl md:text-4xl text-white leading-snug mb-10">
           {t('text')}
         </p>
-        <a
+        <TrackedCTALink
           href={tCommon('appUrl')}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block bg-black text-white text-sm font-semibold px-8 py-4 rounded-full hover:bg-[#141414] transition-colors"
+          className="inline-block bg-[#bbff00] text-black text-sm font-semibold px-10 py-4 rounded-full hover:bg-[#a2e600] transition-colors"
+          location="cta_banner"
+          locale={locale}
         >
           {t('button')}
-        </a>
+        </TrackedCTALink>
       </div>
     </section>
   );

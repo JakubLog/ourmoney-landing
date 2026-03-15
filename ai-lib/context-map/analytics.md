@@ -8,37 +8,19 @@
 
 ### Google Analytics 4
 - **Implementacja**: `@next/third-parties/google` (oficjalna biblioteka Next.js)
-- **GA ID**: `G-XXXXXXXXXX` (uzupełnij po konfiguracji)
-- **Gdzie**: `app/[locale]/layout.tsx`
-- **IP anonymization**: WYMAGANE (`anonymize_ip: true`)
-- **Cookie consent**: rozważyć przy EU traffic (GDPR)
-
-```typescript
-// app/[locale]/layout.tsx
-import { GoogleAnalytics } from '@next/third-parties/google';
-
-export default function RootLayout({ children }) {
-  return (
-    <html>
-      <body>
-        {children}
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
-      </body>
-    </html>
-  );
-}
-```
+- **GA ID**: `G-J6Z26RXMQY`
+- **Gdzie**: `app/[locale]/layout.tsx` — ładuje się tylko w `production`
+- **User property**: `locale` ustawiane przez `LocaleTracker` przy każdej sesji
 
 ### Google Search Console
 - **Status**: Do konfiguracji po deploymencie
 - **Weryfikacja**: DNS TXT record lub HTML file (Vercel: DNS preferowane)
 - **Sitemap**: `https://ourmoney.app/sitemap.xml`
+- **Kolejny krok**: Połącz z GA4 (Admin → Link with Search Console)
 
 ---
 
 ## Eventy GA4
-
-> Uzupełniaj przy implementacji. GA4 automatycznie śledzi pageviews.
 
 ### Automatyczne (GA4 Enhanced Measurement)
 - `page_view` — automatyczny
@@ -46,68 +28,58 @@ export default function RootLayout({ children }) {
 - `click` — zewnętrzne linki
 - `session_start` — automatyczny
 
-### Custom Events (do implementacji)
+### Custom Events (zaimplementowane)
 
 | Event | Trigger | Parametry |
 |-------|---------|-----------|
-| `cta_click` | Kliknięcie głównego CTA | `cta_location`, `cta_text`, `locale` |
-| `blog_post_read` | Scroll >75% posta | `post_slug`, `post_category`, `locale` |
+| `cta_click` | Kliknięcie CTA | `cta_location`, `cta_text`, `locale`, `post_slug?` |
+| `blog_post_read` | Scroll ≥75% artykułu | `post_slug`, `locale` |
 | `language_switch` | Zmiana języka PL/EN | `from_locale`, `to_locale` |
-| `outbound_link` | Link do aplikacji / zewnętrzny | `url`, `location` |
 
-### Implementacja custom events
-```typescript
-// lib/analytics.ts
-export function trackCTAClick(location: string, text: string, locale: string) {
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', 'cta_click', {
-      cta_location: location,
-      cta_text: text,
-      locale,
-    });
-  }
-}
-```
+### Lokalizacje CTA (`cta_location`)
 
----
+| Wartość | Gdzie |
+|---------|-------|
+| `header` | Przycisk w navbarze (desktop) |
+| `header_mobile` | Przycisk w navbarze (mobile) |
+| `hero` | Przycisk w sekcji Hero |
+| `cta_banner` | Sekcja CTABanner (footer strony) |
+| `article_mid` | CTA w połowie artykułu |
+| `article_end` | CTA na końcu artykułu |
 
-## Web Vitals Reporting
+### User Properties
 
-Opcjonalnie: raportuj Core Web Vitals do GA4.
-
-```typescript
-// app/[locale]/layout.tsx lub osobny komponent
-import { useReportWebVitals } from 'next/web-vitals';
-
-export function WebVitals() {
-  useReportWebVitals((metric) => {
-    window.gtag('event', metric.name, {
-      value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
-      event_label: metric.id,
-      non_interaction: true,
-    });
-  });
-}
-```
+| Property | Wartość | Gdzie ustawiane |
+|----------|---------|----------------|
+| `locale` | `pl` / `en` | `LocaleTracker` przy każdej sesji |
 
 ---
 
-## Konwersje (Google Ads / GA4)
+## Implementacja — pliki
 
-> Uzupełnij jeśli uruchomione kampanie płatne.
+| Plik | Rola |
+|------|------|
+| `src/lib/analytics.ts` | Helpery: `trackCTAClick`, `trackLanguageSwitch`, `trackBlogPostRead` |
+| `src/components/ui/TrackedCTALink.tsx` | Client component — `<a>` z onClick dla Server Components |
+| `src/components/layout/LocaleTracker.tsx` | Ustawia user property `locale` przy mount |
+| `src/components/blog/ReadingProgressBar.tsx` | Pasek postępu + event przy 75% |
 
-| Konwersja | Event | Wartość |
-|-----------|-------|---------|
-| Rejestracja w app | `cta_click` + redirect do `/register` | TBD |
+---
+
+## Konwersje (GA4)
+
+> W GA4: Admin → Events → Mark as conversion
+
+| Konwersja | Event | Uwagi |
+|-----------|-------|-------|
+| Klik CTA → app | `cta_click` | Oznacz jako konwersję |
 
 ---
 
 ## Privacy / GDPR
 
-- GA4 z `anonymize_ip: true` — minimalizacja danych
-- Cookies GA4: `_ga`, `_ga_XXXXXXXX` — wymagana zgoda w EU
-- Jeśli implementujesz cookie consent banner → inicjalizuj GA4 po zgodzie
-- `@next/third-parties/google` obsługuje Partytown do offload do web worker (opcjonalne)
+- Cookies GA4: `_ga`, `_ga_G-J6Z26RXMQY` — wymagana zgoda w EU
+- Aktualnie brak cookie consent banneru — do rozważenia przy skalowaniu EU traffic
 
 ---
 
@@ -117,9 +89,8 @@ export function WebVitals() {
 |-----------|---------------|---------|
 | Google Search Console | Impressions, CTR, pozycje, błędy indeksowania | Tygodniowo |
 | GA4 | Sessions, conversions, bounce rate, sources | Tygodniowo |
-| Vercel Analytics | TTFB, Real Experience Score | Na bieżąco |
 | PageSpeed Insights | Core Web Vitals per strona | Po deploymencie |
 
 ---
 
-_Ostatnia aktualizacja: 2026-03-14_
+_Ostatnia aktualizacja: 2026-03-15_

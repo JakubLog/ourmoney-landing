@@ -3,8 +3,11 @@ import { Instrument_Serif, Inter_Tight } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import { routing } from '@/i18n/routing';
 import '@/app/globals.css';
+import { SmoothScroll } from '@/components/layout/SmoothScroll';
+import { LocaleTracker } from '@/components/layout/LocaleTracker';
 
 const instrumentSerif = Instrument_Serif({
   subsets: ['latin'],
@@ -53,10 +56,16 @@ export default async function RootLayout({ children, params }: Props) {
       className={`${instrumentSerif.variable} ${interTight.variable}`}
     >
       <body>
-        <NextIntlClientProvider messages={messages}>
-          {children}
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <LocaleTracker locale={locale} />
+          <SmoothScroll>
+            {children}
+          </SmoothScroll>
         </NextIntlClientProvider>
       </body>
+      {process.env.NODE_ENV === 'production' && (
+        <GoogleAnalytics gaId="G-J6Z26RXMQY" />
+      )}
     </html>
   );
 }
