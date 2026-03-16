@@ -18,33 +18,55 @@ export function InvertDotButton({
   className = '',
   location,
   locale,
-  dotSize = 40,
+  dotSize = 80,
 }: Props) {
   const linkRef = useRef<HTMLAnchorElement>(null);
   const dotRef = useRef<HTMLSpanElement>(null);
+  const whiteTextRef = useRef<HTMLSpanElement>(null);
+  const radius = dotSize / 2;
+
+  const updatePosition = useCallback(
+    (x: number, y: number) => {
+      if (dotRef.current) {
+        dotRef.current.style.left = `${x}px`;
+        dotRef.current.style.top = `${y}px`;
+      }
+      if (whiteTextRef.current) {
+        whiteTextRef.current.style.clipPath = `circle(${radius}px at ${x}px ${y}px)`;
+      }
+    },
+    [radius],
+  );
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent) => {
-      if (!dotRef.current || !linkRef.current) return;
+      if (!linkRef.current) return;
       const rect = linkRef.current.getBoundingClientRect();
-      dotRef.current.style.left = `${e.clientX - rect.left}px`;
-      dotRef.current.style.top = `${e.clientY - rect.top}px`;
+      updatePosition(e.clientX - rect.left, e.clientY - rect.top);
     },
-    [],
+    [updatePosition],
   );
 
   const handleMouseEnter = useCallback(
     (e: React.MouseEvent) => {
-      if (!dotRef.current) return;
       handleMouseMove(e);
-      dotRef.current.style.transform = 'translate(-50%,-50%) scale(1)';
+      if (dotRef.current) {
+        dotRef.current.style.transform = 'translate(-50%,-50%) scale(1)';
+      }
+      if (whiteTextRef.current) {
+        whiteTextRef.current.style.opacity = '1';
+      }
     },
     [handleMouseMove],
   );
 
   const handleMouseLeave = useCallback(() => {
-    if (!dotRef.current) return;
-    dotRef.current.style.transform = 'translate(-50%,-50%) scale(0)';
+    if (dotRef.current) {
+      dotRef.current.style.transform = 'translate(-50%,-50%) scale(0)';
+    }
+    if (whiteTextRef.current) {
+      whiteTextRef.current.style.opacity = '0';
+    }
   }, []);
 
   return (
@@ -65,7 +87,20 @@ export function InvertDotButton({
         })
       }
     >
+      {/* Default text */}
       <span className="relative z-10">{children}</span>
+
+      {/* White text clipped to dot area */}
+      <span
+        ref={whiteTextRef}
+        aria-hidden="true"
+        className="absolute inset-0 z-20 flex items-center justify-center text-white pointer-events-none"
+        style={{ clipPath: 'circle(0px at 0px 0px)', opacity: 0 }}
+      >
+        {children}
+      </span>
+
+      {/* Dark dot */}
       <span
         ref={dotRef}
         aria-hidden="true"

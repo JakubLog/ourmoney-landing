@@ -1,6 +1,6 @@
 {
   "Common": {
-    "startFree": "Start for free",
+    "startFree": "Start together — for free",
     "learnMore": "Learn more",
     "readMore": "Read more",
     "backToHome": "Back to homepage",
@@ -21,7 +21,7 @@
   },
   "CTABanner": {
     "text": "See how simple shared finances can be. Start building a fair relationship today.",
-    "button": "Start for free"
+    "button": "Start on your own — add your partner later"
   },
   "HomePage": {
     "meta": {
@@ -29,11 +29,13 @@
       "description": "The first financial app built specifically for couples. Fair expense splitting, shared goals, privacy where you want it."
     },
     "hero": {
-      "headlinePre": "Are money conversations",
+      "headlineL1": "Are money conversations",
       "headlinePost": "in your relationship?",
       "headlineWords": "TABOO,STRESSFUL,COMPLICATED,DIFFICULT,IGNORED",
       "subheadline": "The first financial app built specifically for couples. Fair expense splitting, shared goals, privacy where you want it.",
-      "cta": "Start for free"
+      "cta": "Start together — for free",
+      "socialProof": "Join 50+ couples who already mastered their finances",
+      "noCreditCard": "No credit card required"
     },
     "painPoints": {
       "title": "Do these challenges sound familiar?",
@@ -56,6 +58,7 @@
     "features": {
       "title": "How OurMoney solves your problems",
       "subtitle": "Not another Excel spreadsheet. An intelligent tool built specifically for couples who want to build a future together.",
+      "cta": "Start on your own — add your partner later",
       "items": [
         {
           "title": "Intelligent expense splitting",

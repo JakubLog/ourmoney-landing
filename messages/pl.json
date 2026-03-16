@@ -1,6 +1,6 @@
 {
   "Common": {
-    "startFree": "Zacznij bezpłatnie",
+    "startFree": "Zacznijcie razem — za darmo",
     "learnMore": "Dowiedz się więcej",
     "readMore": "Czytaj więcej",
     "backToHome": "Wróć na stronę główną",
@@ -21,7 +21,7 @@
   },
   "CTABanner": {
     "text": "Sprawdź, jak proste mogą być wspólne finanse. Zacznijcie budować sprawiedliwą relację już dziś.",
-    "button": "Zacznij bezpłatnie"
+    "button": "Zacznij od siebie — dodaj partnera później"
   },
   "HomePage": {
     "meta": {
@@ -29,11 +29,13 @@
       "description": "Pierwsza aplikacja finansowa stworzona specjalnie dla par. Sprawiedliwy podział wydatków, wspólne cele, zachowanie prywatności tam, gdzie tego chcesz."
     },
     "hero": {
-      "headlinePre": "Czy pieniądze są źródłem",
+      "headlineL1": "Czy pieniądze są źródłem",
       "headlinePost": "w Waszym związku?",
       "headlineWords": "TABU,STRESU,KONFLIKTÓW,PROBLEMÓW,NAPIĘCIA",
       "subheadline": "Pierwsza aplikacja finansowa stworzona specjalnie dla par. Sprawiedliwy podział wydatków, wspólne cele, zachowanie prywatności.",
-      "cta": "Zacznij bezpłatnie"
+      "cta": "Zacznijcie razem — za darmo",
+      "socialProof": "Dołącz do 50+ par, które już opanowały finanse",
+      "noCreditCard": "Nie wymaga karty kredytowej"
     },
     "painPoints": {
       "title": "Czy te wyzwania brzmią znajomo?",
@@ -56,6 +58,7 @@
     "features": {
       "title": "Jak OurMoney rozwiązuje Wasze problemy",
       "subtitle": "Nie kolejny arkusz Excel. Inteligentne narzędzie stworzone specjalnie dla par, które chcą razem budować przyszłość.",
+      "cta": "Zacznij od siebie — dodaj partnera później",
       "items": [
         {
           "title": "Inteligentny podział wydatków",

@@ -11,9 +11,9 @@ export async function FAQSection({ locale }: Props) {
   const items = t.raw('items') as FAQItem[];
 
   return (
-    <section className="bg-white py-24 px-6">
+    <section className="bg-white py-20 md:py-28 px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-12 lg:gap-20">
+        <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-10 lg:gap-20">
           {/* Left column: title + CTA */}
           <div>
             <h2 className="text-5xl md:text-6xl text-dark mb-8">
