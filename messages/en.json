@@ -104,11 +104,11 @@
       "items": [
         {
           "question": "Do we both need to have the app?",
-          "answer": "Yes! OurMoney works best when both of you use the app and sync your data. This ensures full transparency and fair expense splitting."
+          "answer": "Not at the start! One of you can try the app first, and when you're ready — invite your partner and start using it together. This way you get 100% out of it without needing both of you on board from day one!"
         },
         {
           "question": "Is the app free?",
-          "answer": "For now, yes. In the future we plan to introduce a monthly subscription fee."
+          "answer": "The app is completely free — no credit card, no limits. When we introduce paid plans, existing users will be the first to know and will get special terms."
         },
         {
           "question": "How does expense splitting work?",
@@ -138,6 +138,9 @@
       "title": "Why we built OurMoney",
       "description": "At OurMoney, we don't just manage expenses. Our goal is to create a world where money stops being a source of conflict and becomes a tool for building a shared future.",
       "story": "We both have our own relationships, but share a common problem — finances as a couple is a challenge. It's not about lack of money. It's about the lack of a tool that truly understands how finances work for two. So we built OurMoney — the solution we were looking for and couldn't find."
+    },
+    "authorCard": {
+      "viewStory": "View story"
     },
     "team": {
       "title": "Meet the team",
@@ -226,14 +229,18 @@
       "title": "Privacy Policy | OurMoney",
       "description": "OurMoney privacy policy — how we collect and protect your data."
     },
-    "title": "Privacy Policy"
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: March 15, 2026",
+    "disclaimer": "This policy applies only to the <b>ourmoney.pl</b> website (landing page). A separate privacy policy applies to the application at app.ourmoney.pl."
   },
   "TermsPage": {
     "meta": {
       "title": "Terms of Service | OurMoney",
       "description": "Terms of service for using OurMoney."
     },
-    "title": "Terms of Service"
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated: March 15, 2026",
+    "disclaimer": "These terms apply only to the <b>ourmoney.pl</b> website (landing page). Separate terms apply to the application at app.ourmoney.pl."
   },
   "CookieConsent": {
     "message": "We use cookies to analyze site traffic and improve your experience.",

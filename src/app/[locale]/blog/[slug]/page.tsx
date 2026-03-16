@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Image from 'next/image';
 import { ArticlePortableText } from '@/components/blog/ArticlePortableText';
 import { ArticleCTA } from '@/components/blog/ArticleCTA';
@@ -190,6 +190,7 @@ function formatDate(iso: string, locale: string) {
 
 export default async function BlogPostPage({ params }: Props) {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'BlogPage' });
 
   const post = await client.fetch<Post | null>(

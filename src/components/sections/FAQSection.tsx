@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import { Plus, X } from 'lucide-react';
 import { InvertDotButton } from '@/components/ui/InvertDotButton';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 type FAQItem = { question: string; answer: string };
 type Props = { locale: string };
@@ -15,7 +16,7 @@ export async function FAQSection({ locale }: Props) {
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-10 lg:gap-20">
           {/* Left column: title + CTA */}
-          <div>
+          <ScrollReveal>
             <h2 className="text-5xl md:text-6xl text-dark mb-8">
               {t('title')}
             </h2>
@@ -27,10 +28,10 @@ export async function FAQSection({ locale }: Props) {
             >
               {tCommon('startFree')}
             </InvertDotButton>
-          </div>
+          </ScrollReveal>
 
           {/* Right column: accordion */}
-          <div>
+          <ScrollReveal delay={150}>
             {items.map((item) => (
               <details key={item.question} className="group border-t border-dark/10">
                 <summary className="flex items-center justify-between py-5 cursor-pointer">
@@ -48,7 +49,7 @@ export async function FAQSection({ locale }: Props) {
               </details>
             ))}
             <div className="border-t border-dark/10" />
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

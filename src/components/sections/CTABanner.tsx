@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { InvertDotButton } from '@/components/ui/InvertDotButton';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 type Props = { locale: string };
 
@@ -9,7 +10,7 @@ export async function CTABanner({ locale }: Props) {
 
   return (
     <section className="bg-dark px-6 py-20 md:py-28">
-      <div className="max-w-2xl mx-auto text-center">
+      <ScrollReveal className="max-w-2xl mx-auto text-center">
         <p className="font-display text-3xl md:text-4xl text-white leading-snug mb-8 md:mb-10">
           {t('text')}
         </p>
@@ -21,7 +22,7 @@ export async function CTABanner({ locale }: Props) {
         >
           {t('button')}
         </InvertDotButton>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import { ShoppingBasket, Fuel } from 'lucide-react';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 type Props = { locale: string };
 
@@ -10,15 +11,17 @@ export async function BrandPromiseSection({ locale }: Props) {
   return (
     <section className="bg-white py-20 md:py-28 px-6">
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-4xl md:text-5xl lg:text-6xl text-dark leading-tight mb-5">
-          {t('title')}
-        </h2>
-        <p className="text-dark/50 text-base md:text-lg leading-relaxed mb-12 md:mb-16 max-w-xl mx-auto">
-          {t('description')}
-        </p>
+        <ScrollReveal>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl text-dark leading-tight mb-5">
+            {t('title')}
+          </h2>
+          <p className="text-dark/50 text-base md:text-lg leading-relaxed mb-12 md:mb-16 max-w-xl mx-auto">
+            {t('description')}
+          </p>
+        </ScrollReveal>
 
         {/* Couple image with floating expense cards */}
-        <div className="relative max-w-4xl mx-auto">
+        <ScrollReveal animation="scale" className="relative max-w-4xl mx-auto">
           <div className="rounded-2xl overflow-hidden">
             <div className="relative aspect-[16/10]">
               <Image
@@ -66,7 +69,7 @@ export async function BrandPromiseSection({ locale }: Props) {
               Rafał
             </span>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import { ArrowRight } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 
@@ -15,6 +16,7 @@ type Author = {
 };
 
 export function AuthorCard({ author }: { author: Author }) {
+  const t = useTranslations('AboutPage.authorCard');
   const ref = useRef<HTMLDivElement>(null);
   const [pos, setPos] = useState({ x: 0, y: 0 });
   const [active, setActive] = useState(false);
@@ -72,7 +74,7 @@ export function AuthorCard({ author }: { author: Author }) {
         )}
 
         <div className="mt-6 flex items-center gap-2 text-sm text-white/30 group-hover:text-[#bbff00] transition-colors duration-300">
-          <span>Poznaj historię</span>
+          <span>{t('viewStory')}</span>
           <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
         </div>
       </Link>

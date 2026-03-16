@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { CTABanner } from '@/components/sections/CTABanner';
@@ -25,6 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ContactPage({ params }: Props) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'ContactPage' });
   const tFooter = await getTranslations({ locale, namespace: 'Footer' });
 

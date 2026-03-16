@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { ArrowLeft, Clock } from 'lucide-react';
 import { Header } from '@/components/layout/Header';
@@ -57,6 +57,7 @@ function readingTime(wordCount?: number) {
 
 export default async function AuthorPage({ params }: Props) {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'BlogPage' });
 
   const [author, posts] = await Promise.all([

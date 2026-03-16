@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Instrument_Serif, Inter_Tight } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, getTranslations } from 'next-intl/server';
+import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import { GoogleAnalytics } from '@next/third-parties/google';
@@ -30,7 +30,16 @@ const interTight = Inter_Tight({
 export const metadata: Metadata = {
   metadataBase: new URL('https://ourmoney.pl'),
   icons: {
-    icon: '/favicon.png',
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+    ],
+    apple: '/apple-icon-180.png',
+  },
+  other: {
+    'theme-color': '#141414',
+    'color-scheme': 'light',
   },
   robots: {
     index: true,
@@ -51,6 +60,8 @@ export default async function RootLayout({ children, params }: Props) {
     notFound();
   }
 
+  setRequestLocale(locale);
+
   const [messages, t] = await Promise.all([
     getMessages(),
     getTranslations({ locale, namespace: 'CookieConsent' }),
@@ -62,6 +73,13 @@ export default async function RootLayout({ children, params }: Props) {
       className={`${instrumentSerif.variable} ${interTight.variable}`}
     >
       <head>
+        <link
+          rel="preload"
+          href="/fonts/switzer-500.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
         {/* Consent Mode v2 defaults — must run before GA4 loads */}
         <Script id="gtag-consent-defaults" strategy="beforeInteractive">{`
           window.dataLayer = window.dataLayer || [];

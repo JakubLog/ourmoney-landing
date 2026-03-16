@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 
@@ -20,6 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function PrivacyPage({ params }: Props) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'PrivacyPage' });
 
   return (
@@ -29,16 +30,17 @@ export default async function PrivacyPage({ params }: Props) {
         <section className="bg-[#141414] pt-36 pb-16 px-6">
           <div className="max-w-3xl mx-auto">
             <h1 className="font-display text-4xl md:text-5xl text-white">{t('title')}</h1>
-            <p className="text-white/40 text-sm mt-4">Ostatnia aktualizacja: 15 marca 2026</p>
+            <p className="text-white/40 text-sm mt-4">{t('lastUpdated')}</p>
           </div>
         </section>
 
         <section className="bg-white py-16 px-6">
           <div className="max-w-3xl mx-auto prose prose-slate max-w-none">
 
-            <p className="text-sm bg-amber-50 border border-amber-200 rounded-lg p-4 not-prose text-amber-800">
-              <strong>Uwaga:</strong> Niniejsza polityka dotyczy wyłącznie strony internetowej <strong>ourmoney.pl</strong> (landing page). Odrębna polityka prywatności obowiązuje dla aplikacji dostępnej pod adresem app.ourmoney.pl.
-            </p>
+            <p
+              className="text-sm bg-amber-50 border border-amber-200 rounded-lg p-4 not-prose text-amber-800"
+              dangerouslySetInnerHTML={{ __html: `<strong>${locale === 'pl' ? 'Uwaga' : 'Note'}:</strong> ${t.raw('disclaimer')}` }}
+            />
 
             <h2>1. Administrator danych osobowych</h2>
             <p>

@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import { client } from '@/sanity/lib/client';
 import { TESTIMONIALS_QUERY } from '@/sanity/lib/queries';
 import { TestimonialsCarousel } from './TestimonialsCarousel';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 type Props = { locale: string };
 
@@ -20,7 +21,7 @@ export async function TestimonialsSection({ locale }: Props) {
     TESTIMONIALS_QUERY,
     { language: locale },
     process.env.NODE_ENV === 'production'
-      ? { next: { revalidate: 86400, tags: ['testimonials'] } }
+      ? { next: { revalidate: 86400, tags: ['landing'] } }
       : { cache: 'no-store' as const },
   );
 
@@ -28,9 +29,11 @@ export async function TestimonialsSection({ locale }: Props) {
 
   return (
     <section className="bg-[#E6E1D9] py-20 md:py-28 overflow-hidden">
-      <h2 className="font-display text-4xl md:text-5xl text-dark text-center leading-tight mb-12 md:mb-16 px-6">
-        {t('title')}
-      </h2>
+      <ScrollReveal className="px-6">
+        <h2 className="font-display text-4xl md:text-5xl text-dark text-center leading-tight mb-12 md:mb-16">
+          {t('title')}
+        </h2>
+      </ScrollReveal>
       <TestimonialsCarousel items={items} />
     </section>
   );

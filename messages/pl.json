@@ -104,11 +104,11 @@
       "items": [
         {
           "question": "Czy oboje musimy mieć aplikację?",
-          "answer": "Tak! OurMoney działa najlepiej, gdy oboje korzystacie z aplikacji i synchronizujecie dane. To gwarantuje pełną transparentność i sprawiedliwy podział wydatków."
+          "answer": "Na start — nie! Jeden z Was może wypróbować naszej aplikacji, a gdy będziecie gotowi — zaprosić drugą osobę i zacząć korzystać wspólnie. Tak wyciągniecie 100% bez potrzeby angażowania na start Was obu!"
         },
         {
           "question": "Czy aplikacja jest darmowa?",
-          "answer": "Na ten moment tak. W przyszłości planujemy wprowadzić opłatę miesięczną."
+          "answer": "Aplikacja jest w pełni bezpłatna — bez karty, bez limitu. Gdy wprowadzimy płatne plany, obecni użytkownicy dowiedzą się pierwsi i dostaną specjalne warunki."
         },
         {
           "question": "Jak działa podział wydatków?",
@@ -138,6 +138,9 @@
       "title": "Dlaczego tworzymy OurMoney?",
       "description": "W OurMoney nie zajmujemy się tylko \"zarządzaniem wydatkami\". Naszym celem jest stworzenie świata, w którym pieniądze przestają być źródłem konfliktów, a stają się narzędziem do budowania wspólnej przyszłości i realizacji marzeń.",
       "story": "Oboje mamy osobne związki, ale łączy nas wspólny problem – finanse w parze to wyzwanie. Nie chodzi o brak pieniędzy. Chodzi o brak narzędzia, które by naprawdę rozumiało, jak działają finanse we dwoje. Dlatego postanowiliśmy stworzyć OurMoney – rozwiązanie, którego sami szukaliśmy i nie mogliśmy znaleźć."
+    },
+    "authorCard": {
+      "viewStory": "Poznaj historię"
     },
     "team": {
       "title": "Poznaj zespół",
@@ -173,6 +176,11 @@
       "value": "@ourmoneypl"
     },
     "form": {
+      "namePlaceholder": "Imię i nazwisko",
+      "emailPlaceholder": "Adres e-mail",
+      "messagePlaceholder": "Twoja wiadomość...",
+      "submit": "Wyślij wiadomość",
+      "success": "Wiadomość wysłana! Odpowiemy wkrótce.",
       "note": "Odpowiadamy zazwyczaj w ciągu 24 godzin."
     }
   },
@@ -221,14 +229,18 @@
       "title": "Polityka Prywatności | OurMoney",
       "description": "Polityka prywatności aplikacji OurMoney."
     },
-    "title": "Polityka Prywatności"
+    "title": "Polityka Prywatności",
+    "lastUpdated": "Ostatnia aktualizacja: 15 marca 2026",
+    "disclaimer": "Niniejsza polityka dotyczy wyłącznie strony internetowej <b>ourmoney.pl</b> (landing page). Odrębna polityka prywatności obowiązuje dla aplikacji dostępnej pod adresem app.ourmoney.pl."
   },
   "TermsPage": {
     "meta": {
       "title": "Regulamin | OurMoney",
       "description": "Regulamin korzystania z aplikacji OurMoney."
     },
-    "title": "Regulamin"
+    "title": "Regulamin",
+    "lastUpdated": "Ostatnia aktualizacja: 15 marca 2026",
+    "disclaimer": "Niniejszy regulamin dotyczy wyłącznie strony internetowej <b>ourmoney.pl</b> (landing page). Odrębny regulamin obowiązuje dla aplikacji dostępnej pod adresem app.ourmoney.pl."
   },
   "CookieConsent": {
     "message": "Używamy plików cookies do analizy ruchu na stronie i poprawy jej działania.",

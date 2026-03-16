@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import { InvertDotButton } from '@/components/ui/InvertDotButton';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 type Feature = { title: string; description: string };
 type Props = { locale: string };
@@ -23,17 +24,20 @@ export function FeaturesSection({ locale }: Props) {
   const items = t.raw('items') as Feature[];
   const [open, setOpen] = useState<number>(0);
   const [animKey, setAnimKey] = useState(0);
+  const [imagesPreloaded, setImagesPreloaded] = useState(false);
 
   const activeImage = open >= 0 && open < FEATURE_IMAGES.length
     ? FEATURE_IMAGES[open]
     : FEATURE_IMAGES[0];
 
   const goToNext = useCallback(() => {
+    setImagesPreloaded(true);
     setOpen((prev) => (prev + 1) % items.length);
     setAnimKey((k) => k + 1);
   }, [items.length]);
 
   const handleClick = useCallback((i: number) => {
+    setImagesPreloaded(true);
     setOpen(i);
     setAnimKey((k) => k + 1);
   }, []);
@@ -41,15 +45,15 @@ export function FeaturesSection({ locale }: Props) {
   return (
     <section className="group/features bg-white py-20 md:py-28 px-6">
       <div className="max-w-6xl mx-auto">
-        {/* Header row: title + CTA */}
-        <div className="max-w-lg mb-12 md:mb-16">
+        {/* Header */}
+        <ScrollReveal className="max-w-lg mb-12 md:mb-16">
           <h2 className="text-4xl md:text-5xl text-dark leading-tight mb-4">
             {t('title')}
           </h2>
           <p className="text-dark/50 text-sm leading-relaxed">
             {t('subtitle')}
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* Two-column: accordion + image */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
@@ -115,7 +119,7 @@ export function FeaturesSection({ locale }: Props) {
           </div>
 
           {/* App screenshot in iPhone frame */}
-          <div className="flex justify-center">
+          <ScrollReveal animation="slide-right" className="flex justify-center">
             <div className="relative w-full max-w-[320px]">
               {/* Phone frame */}
               <div className="relative bg-dark rounded-[3rem] p-[10px] shadow-2xl">
@@ -124,23 +128,28 @@ export function FeaturesSection({ locale }: Props) {
                 {/* Screen */}
                 <div className="aspect-[9/19.5] rounded-[2.5rem] overflow-hidden bg-white p-5">
                   <div className="relative w-full h-full rounded-[2rem] overflow-hidden">
-                    {FEATURE_IMAGES.map((src, i) => (
-                      <Image
-                        key={src}
-                        src={src}
-                        alt={items[i]?.title ?? 'OurMoney app'}
-                        fill
-                        className="object-cover transition-opacity duration-300"
-                        style={{ opacity: activeImage === src ? 1 : 0 }}
-                        sizes="320px"
-                        {...(i === 0 ? { priority: true } : {})}
-                      />
-                    ))}
+                    {FEATURE_IMAGES.map((src, i) => {
+                      const isActive = activeImage === src;
+                      if (!imagesPreloaded && !isActive) return null;
+                      return (
+                        <Image
+                          key={src}
+                          src={src}
+                          alt={items[i]?.title ?? 'OurMoney app'}
+                          fill
+                          className="object-cover transition-opacity duration-300"
+                          style={{ opacity: isActive ? 1 : 0 }}
+                          sizes="320px"
+                          loading={i === 0 ? undefined : 'lazy'}
+                          priority={i === 0}
+                        />
+                      );
+                    })}
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

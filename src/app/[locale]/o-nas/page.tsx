@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { CTABanner } from '@/components/sections/CTABanner';
 import { AuthorCard } from '@/components/sections/AuthorCard';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { client, fetchOptions } from '@/sanity/lib/client';
 import { AUTHORS_QUERY } from '@/sanity/lib/queries';
 
@@ -37,6 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function AboutPage({ params }: Props) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'AboutPage' });
   const authors = await client.fetch<Author[]>(AUTHORS_QUERY, {}, fetchOptions);
 
@@ -68,19 +70,21 @@ export default async function AboutPage({ params }: Props) {
 
         {/* Mission statement */}
         <section className="bg-white py-20 px-6">
-          <div className="max-w-3xl mx-auto">
+          <ScrollReveal className="max-w-3xl mx-auto">
             <p className="font-display text-2xl md:text-3xl lg:text-4xl text-[#141414] leading-snug">
               {t('mission.description')}
             </p>
-          </div>
+          </ScrollReveal>
         </section>
 
         {/* Team — Sanity authors, clickable cards */}
         <section className="bg-[#f5f0e8] py-24 px-6">
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-6">
-              {authors.map((author) => (
-                <AuthorCard key={author._id} author={author} />
+              {authors.map((author, i) => (
+                <ScrollReveal key={author._id} delay={i * 150}>
+                  <AuthorCard author={author} />
+                </ScrollReveal>
               ))}
             </div>
           </div>

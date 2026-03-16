@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronRight } from 'lucide-react';
 import { Link, usePathname } from '@/i18n/navigation';
 import { Logo } from '@/components/ui/Logo';
 import { trackCTAClick, trackLanguageSwitch } from '@/lib/analytics';
@@ -36,11 +36,11 @@ export function Header() {
     <header
       className="fixed top-0 left-0 right-0 z-50"
       style={{
-        backgroundColor: 'rgba(0,0,0,0)',
-        backdropFilter: light ? 'blur(5px)' : 'none',
-        WebkitBackdropFilter: light ? 'blur(5px)' : 'none',
+        backgroundColor: open ? '#ffffff' : 'rgba(0,0,0,0)',
+        backdropFilter: scrolled && !open ? 'blur(5px)' : 'none',
+        WebkitBackdropFilter: scrolled && !open ? 'blur(5px)' : 'none',
         willChange: 'auto',
-        transition: 'backdrop-filter 0.3s ease',
+        transition: 'background-color 0.2s ease, backdrop-filter 0.3s ease',
       }}
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -115,35 +115,37 @@ export function Header() {
 
       {/* Mobile Menu */}
       {open && (
-        <div className="mobile-menu-enter md:hidden bg-white border-t border-black/10 px-6 py-6 flex flex-col gap-5">
+        <div className="mobile-menu-enter md:hidden border-t border-black/8 px-6 pb-8 flex flex-col">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-[#141414] text-base font-medium"
+              className="flex items-center justify-between py-4 text-[#141414] text-lg font-medium border-b border-black/6 active:bg-black/3"
               onClick={() => setOpen(false)}
             >
               {link.label}
+              <ChevronRight className="w-4 h-4 text-[#141414]/25" />
             </Link>
           ))}
-          <div className="flex items-center gap-4 pt-2 border-t border-black/10">
-            <Link
-              href={pathname}
-              locale={altLocale}
-              className="text-xs text-[#141414]/40 uppercase tracking-widest"
-              onClick={() => { setOpen(false); trackLanguageSwitch(locale, altLocale); }}
-            >
-              {altLocale}
-            </Link>
+
+          <div className="mt-7 flex flex-col gap-3">
             <a
               href={tCommon('appUrl')}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#bbff00] text-black text-sm font-semibold px-5 py-2 rounded-full"
+              className="w-full bg-[#bbff00] text-black text-base font-semibold py-4 rounded-full text-center"
               onClick={() => trackCTAClick({ location: 'header_mobile', text: tCommon('startFree'), locale })}
             >
               {tCommon('startFree')}
             </a>
+            <Link
+              href={pathname}
+              locale={altLocale}
+              className="text-center text-xs text-[#141414]/35 uppercase tracking-widest py-3"
+              onClick={() => { setOpen(false); trackLanguageSwitch(locale, altLocale); }}
+            >
+              {altLocale}
+            </Link>
           </div>
         </div>
       )}
