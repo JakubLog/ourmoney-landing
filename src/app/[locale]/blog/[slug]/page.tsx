@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import { ArticlePortableText } from '@/components/blog/ArticlePortableText';
@@ -14,7 +14,7 @@ import { ShareButton } from '@/components/blog/ShareButton';
 import { TrackedCTALink } from '@/components/ui/TrackedCTALink';
 import { Link } from '@/i18n/navigation';
 import { client, fetchOptions } from '@/sanity/lib/client';
-import { POST_QUERY, RELATED_POSTS_QUERY } from '@/sanity/lib/queries';
+import { POST_QUERY, POST_TRANSLATION_QUERY, RELATED_POSTS_QUERY } from '@/sanity/lib/queries';
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -52,6 +52,7 @@ type RelatedPost = {
   mainImageAlt?: string;
   authorName?: string;
   category?: Category;
+  estimatedWordCount?: number;
 };
 
 type Post = {
@@ -102,8 +103,8 @@ function estimateReadingTimeFromBody(body: any[]): number {
   return Math.max(1, Math.ceil(words / 200));
 }
 
-function estimateReadingTime(text: string): number {
-  const words = text.trim().split(/\s+/).length;
+function estimateReadingTimeFromChars(charCount: number): number {
+  const words = Math.round(charCount / 5);
   return Math.max(1, Math.ceil(words / 200));
 }
 
@@ -114,13 +115,13 @@ function buildLanguageAlternates(
 ): Record<string, string> {
   const locales = ['pl', 'en'];
   const result: Record<string, string> = {
-    [currentLocale]: `https://ourmoney.app/${currentLocale}/blog/${currentSlug}`,
+    [currentLocale]: `https://ourmoney.pl/${currentLocale}/blog/${currentSlug}`,
   };
   for (const locale of locales) {
     if (locale === currentLocale) continue;
     const t = translations?.filter(Boolean).find((tr) => tr!.language === locale);
     if (t?.slug) {
-      result[locale] = `https://ourmoney.app/${locale}/blog/${t.slug}`;
+      result[locale] = `https://ourmoney.pl/${locale}/blog/${t.slug}`;
     }
   }
   return result;
@@ -128,12 +129,22 @@ function buildLanguageAlternates(
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
-  const post = await client.fetch<Post | null>(POST_QUERY, { slug, language: locale });
-  if (!post) return {};
+  const post = await client.fetch<Post | null>(POST_QUERY, { slug, language: locale }, fetchOptions);
+  if (!post) {
+    const altPost = await client.fetch<{
+      _translations?: { slug: string; language: string }[];
+    } | null>(POST_TRANSLATION_QUERY, { slug, language: locale }, fetchOptions);
+
+    const target = altPost?._translations?.find((t) => t.language === locale);
+    if (target?.slug) {
+      redirect(`/${locale}/blog/${target.slug}`);
+    }
+    return {};
+  }
 
   const title = post.seo?.title ?? post.title;
   const description = post.seo?.description;
-  const canonicalUrl = post.seo?.canonical ?? `https://ourmoney.app/${locale}/blog/${slug}`;
+  const canonicalUrl = post.seo?.canonical ?? `https://ourmoney.pl/${locale}/blog/${slug}`;
   const ogImage = post.seo?.ogImageUrl ?? post.mainImageUrl;
 
   return {
@@ -187,7 +198,17 @@ export default async function BlogPostPage({ params }: Props) {
     fetchOptions,
   );
 
-  if (!post) notFound();
+  if (!post) {
+    const altPost = await client.fetch<{
+      _translations?: { slug: string; language: string }[];
+    } | null>(POST_TRANSLATION_QUERY, { slug, language: locale }, fetchOptions);
+
+    const target = altPost?._translations?.find((t) => t.language === locale);
+    if (target?.slug) {
+      redirect(`/${locale}/blog/${target.slug}`);
+    }
+    notFound();
+  }
 
   const relatedPosts = await client.fetch<RelatedPost[]>(
     RELATED_POSTS_QUERY,
@@ -195,7 +216,7 @@ export default async function BlogPostPage({ params }: Props) {
     fetchOptions,
   );
 
-  const canonicalUrl = post.seo?.canonical ?? `https://ourmoney.app/${locale}/blog/${slug}`;
+  const canonicalUrl = post.seo?.canonical ?? `https://ourmoney.pl/${locale}/blog/${slug}`;
   const readingMinutes = estimateReadingTimeFromBody(post.body ?? []);
   const otherLanguages =
     post._translations?.filter(Boolean).filter((tr) => tr!.language !== locale) ?? [];
@@ -218,14 +239,14 @@ export default async function BlogPostPage({ params }: Props) {
           ...(post.author.role && { jobTitle: post.author.role }),
           ...(post.author.bio && { description: post.author.bio }),
           ...(post.author.avatarUrl && { image: post.author.avatarUrl }),
-          url: `https://ourmoney.app/autor/${post.author.slug}`,
+          url: `https://ourmoney.pl/autor/${post.author.slug}`,
         }
       : undefined,
     publisher: {
       '@type': 'Organization',
       name: 'OurMoney',
-      url: 'https://ourmoney.app',
-      logo: { '@type': 'ImageObject', url: 'https://ourmoney.app/logo.png' },
+      url: 'https://ourmoney.pl',
+      logo: { '@type': 'ImageObject', url: 'https://ourmoney.pl/logo.png' },
     },
   };
 
@@ -234,7 +255,7 @@ export default async function BlogPostPage({ params }: Props) {
       '@type': 'ListItem',
       position: 1,
       name: 'Blog',
-      item: `https://ourmoney.app/${locale}/blog`,
+      item: `https://ourmoney.pl/${locale}/blog`,
     },
     ...(post.category
       ? [
@@ -242,7 +263,7 @@ export default async function BlogPostPage({ params }: Props) {
             '@type': 'ListItem',
             position: 2,
             name: post.category.title,
-            item: `https://ourmoney.app/${locale}/blog/kategoria/${post.category.slug}`,
+            item: `https://ourmoney.pl/${locale}/blog/kategoria/${post.category.slug}`,
           },
           { '@type': 'ListItem', position: 3, name: post.title },
         ]
@@ -559,7 +580,7 @@ export default async function BlogPostPage({ params }: Props) {
                     author={related.authorName}
                     locale={locale}
                     readingTimeLabel={t('readingTime', {
-                      minutes: estimateReadingTime(related.excerpt ?? ''),
+                      minutes: estimateReadingTimeFromChars(related.estimatedWordCount ?? 0),
                     })}
                   />
                 ))}

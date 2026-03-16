@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = 'https://ourmoney.app';
+  const base = 'https://ourmoney.pl';
   const locales = ['pl', 'en'];
 
   const staticPages = ['', '/o-nas', '/blog', '/kontakt'];

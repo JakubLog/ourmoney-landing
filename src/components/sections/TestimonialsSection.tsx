@@ -1,12 +1,30 @@
 import { getTranslations } from 'next-intl/server';
+import { client } from '@/sanity/lib/client';
+import { TESTIMONIALS_QUERY } from '@/sanity/lib/queries';
 import { TestimonialsCarousel } from './TestimonialsCarousel';
 
 type Props = { locale: string };
-type Testimonial = { name: string; rating: number; quote: string };
+
+type Testimonial = {
+  _id: string;
+  name: string;
+  quote: string;
+  rating: number;
+  photoUrl: string | null;
+};
 
 export async function TestimonialsSection({ locale }: Props) {
   const t = await getTranslations({ locale, namespace: 'HomePage.testimonials' });
-  const items = t.raw('items') as Testimonial[];
+
+  const items = await client.fetch<Testimonial[]>(
+    TESTIMONIALS_QUERY,
+    { language: locale },
+    process.env.NODE_ENV === 'production'
+      ? { next: { revalidate: 86400, tags: ['testimonials'] } }
+      : { cache: 'no-store' as const },
+  );
+
+  if (!items || items.length === 0) return null;
 
   return (
     <section className="bg-[#E6E1D9] py-24 overflow-hidden">

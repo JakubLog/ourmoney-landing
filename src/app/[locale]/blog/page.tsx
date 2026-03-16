@@ -9,8 +9,8 @@ import { POSTS_QUERY } from '@/sanity/lib/queries';
 
 type Props = { params: Promise<{ locale: string }> };
 
-function estimateReadingTime(text: string) {
-  const words = text.trim().split(/\s+/).length;
+function estimateReadingTime(charCount: number) {
+  const words = Math.round(charCount / 5);
   return Math.max(1, Math.ceil(words / 200));
 }
 
@@ -24,6 +24,7 @@ type Post = {
   mainImageAlt?: string;
   authorName?: string;
   category?: { title: string; slug: string };
+  estimatedWordCount: number;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -33,10 +34,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: t('title'),
     description: t('description'),
     alternates: {
-      canonical: `https://ourmoney.app/${locale}/blog`,
+      canonical: `https://ourmoney.pl/${locale}/blog`,
       languages: {
-        pl: 'https://ourmoney.app/pl/blog',
-        en: 'https://ourmoney.app/en/blog',
+        pl: 'https://ourmoney.pl/pl/blog',
+        en: 'https://ourmoney.pl/en/blog',
       },
     },
   };
@@ -98,7 +99,7 @@ export default async function BlogPage({ params }: Props) {
                   mainImageAlt={featured.mainImageAlt}
                   author={featured.authorName}
                   locale={locale}
-                  readingTimeLabel={t('readingTime', { minutes: estimateReadingTime(featured.excerpt) })}
+                  readingTimeLabel={t('readingTime', { minutes: estimateReadingTime(featured.estimatedWordCount) })}
                   featuredLabel={t('featured')}
                   readMoreLabel={t('readMore')}
                 />
@@ -117,7 +118,7 @@ export default async function BlogPage({ params }: Props) {
                         mainImageAlt={post.mainImageAlt}
                         author={post.authorName}
                         locale={locale}
-                        readingTimeLabel={t('readingTime', { minutes: estimateReadingTime(post.excerpt) })}
+                        readingTimeLabel={t('readingTime', { minutes: estimateReadingTime(post.estimatedWordCount) })}
                       />
                     ))}
                   </div>

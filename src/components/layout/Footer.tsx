@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { Instagram, Mail } from 'lucide-react';
@@ -23,13 +24,13 @@ export function Footer() {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8 pb-8 border-b border-white/10">
           {/* Logo */}
           <Link href="/" aria-label="OurMoney">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/ourmoney-logo-hero.svg"
               alt="OurMoney"
               width={100}
               height={17}
               className="h-[17px] w-auto opacity-80 hover:opacity-100 transition-opacity"
+              unoptimized
             />
           </Link>
 

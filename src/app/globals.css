@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url("https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap");
 @plugin "@tailwindcss/typography";
 
 @theme {
@@ -64,6 +65,34 @@
   }
 }
 
+/* FAQ details/summary — icon toggle + open animation */
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+
+.faq-plus  { display: block; }
+.faq-minus { display: none;  }
+details[open] .faq-plus  { display: none;  }
+details[open] .faq-minus { display: block; }
+
+.faq-answer {
+  animation: faqOpen 0.2s ease-out;
+}
+
+@keyframes faqOpen {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* Mobile menu slide-down */
+.mobile-menu-enter {
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -74,7 +103,7 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: #ffffff;
+  background-color: #141414;
   color: #141414;
   -webkit-font-smoothing: antialiased;
 }

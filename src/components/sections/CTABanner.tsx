@@ -1,5 +1,5 @@
 import { getTranslations } from 'next-intl/server';
-import { TrackedCTALink } from '@/components/ui/TrackedCTALink';
+import { InvertDotButton } from '@/components/ui/InvertDotButton';
 
 type Props = { locale: string };
 
@@ -13,14 +13,14 @@ export async function CTABanner({ locale }: Props) {
         <p className="font-display text-3xl md:text-4xl text-white leading-snug mb-10">
           {t('text')}
         </p>
-        <TrackedCTALink
+        <InvertDotButton
           href={tCommon('appUrl')}
-          className="inline-block bg-[#bbff00] text-black text-sm font-semibold px-10 py-4 rounded-full hover:bg-[#a2e600] transition-colors"
+          className="inline-block bg-accent text-black text-sm font-semibold px-10 py-4 rounded-full"
           location="cta_banner"
           locale={locale}
         >
           {t('button')}
-        </TrackedCTALink>
+        </InvertDotButton>
       </div>
     </section>
   );

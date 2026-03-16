@@ -25,7 +25,7 @@
   },
   "HomePage": {
     "meta": {
-      "title": "OurMoney — Shared budget for couples",
+      "title": "OurMoney - Shared budget for couples",
       "description": "The first financial app built specifically for couples. Fair expense splitting, shared goals, privacy where you want it."
     },
     "hero": {
@@ -231,5 +231,11 @@
       "description": "Terms of service for using OurMoney."
     },
     "title": "Terms of Service"
+  },
+  "CookieConsent": {
+    "message": "We use cookies to analyze site traffic and improve your experience.",
+    "accept": "Accept",
+    "reject": "Decline",
+    "learnMore": "Privacy policy"
   }
 }

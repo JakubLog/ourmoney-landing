@@ -55,9 +55,19 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm font-medium transition-colors ${light ? 'text-[#141414]/70 hover:text-[#141414]' : 'text-white/80 hover:text-white'}`}
+              className={`text-sm font-medium group px-1 py-2 ${light ? 'text-[#141414]/70 hover:text-[#141414]' : 'text-white/80 hover:text-white'}`}
             >
-              {link.label}
+              <span className="relative block overflow-hidden">
+                <span className="block transition-transform duration-200 ease-out group-hover:-translate-y-full">
+                  {link.label}
+                </span>
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 block translate-y-full transition-transform duration-200 ease-out group-hover:translate-y-0"
+                >
+                  {link.label}
+                </span>
+              </span>
             </Link>
           ))}
         </nav>
@@ -67,10 +77,20 @@ export function Header() {
           <Link
             href={pathname}
             locale={altLocale}
-            className={`text-xs uppercase tracking-widest transition-colors ${light ? 'text-[#141414]/40 hover:text-[#141414]/70' : 'text-white/40 hover:text-white/70'}`}
+            className={`text-xs uppercase tracking-widest group px-1 py-2 ${light ? 'text-[#141414]/40 hover:text-[#141414]/70' : 'text-white/40 hover:text-white/70'}`}
             onClick={() => trackLanguageSwitch(locale, altLocale)}
           >
-            {altLocale}
+            <span className="relative block overflow-hidden">
+              <span className="block transition-transform duration-200 ease-out group-hover:-translate-y-full">
+                {altLocale}
+              </span>
+              <span
+                aria-hidden="true"
+                className="absolute inset-0 block translate-y-full transition-transform duration-200 ease-out group-hover:translate-y-0"
+              >
+                {altLocale}
+              </span>
+            </span>
           </Link>
           <a
             href={tCommon('appUrl')}
@@ -95,7 +115,7 @@ export function Header() {
 
       {/* Mobile Menu */}
       {open && (
-        <div className="md:hidden bg-white border-t border-black/10 px-6 py-6 flex flex-col gap-5">
+        <div className="mobile-menu-enter md:hidden bg-white border-t border-black/10 px-6 py-6 flex flex-col gap-5">
           {navLinks.map((link) => (
             <Link
               key={link.href}

@@ -14,10 +14,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: t('title'),
     description: t('description'),
     alternates: {
-      canonical: `https://ourmoney.app/${locale}/kontakt`,
+      canonical: `https://ourmoney.pl/${locale}/kontakt`,
       languages: {
-        pl: 'https://ourmoney.app/pl/kontakt',
-        en: 'https://ourmoney.app/en/kontakt',
+        pl: 'https://ourmoney.pl/pl/kontakt',
+        en: 'https://ourmoney.pl/en/kontakt',
       },
     },
   };

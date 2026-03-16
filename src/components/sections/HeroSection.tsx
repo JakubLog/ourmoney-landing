@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
-import { TrackedCTALink } from '@/components/ui/TrackedCTALink';
+import { InvertDotButton } from '@/components/ui/InvertDotButton';
 import { AnimatedWord } from '@/components/ui/AnimatedWord';
 
 type Props = { locale: string };
@@ -36,14 +36,14 @@ export async function HeroSection({ locale }: Props) {
         <p className="text-base md:text-lg text-white/80 max-w-xl mx-auto mb-12 leading-relaxed">
           {t('subheadline')}
         </p>
-        <TrackedCTALink
+        <InvertDotButton
           href={tCommon('appUrl')}
-          className="inline-block bg-[#bbff00] text-black font-semibold px-10 py-4 rounded-full text-sm hover:bg-[#a2e600] transition-colors"
+          className="inline-block bg-accent text-black font-semibold px-10 py-4 rounded-full text-sm"
           location="hero"
           locale={locale}
         >
           {t('cta')}
-        </TrackedCTALink>
+        </InvertDotButton>
       </div>
     </section>
   );

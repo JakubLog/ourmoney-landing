@@ -7,17 +7,17 @@
 ## Architektura URL
 
 ```
-https://ourmoney.app/           → redirect → /pl/
-https://ourmoney.app/pl/        → Strona główna PL
-https://ourmoney.app/en/        → Strona główna EN
-https://ourmoney.app/pl/blog/   → Blog PL
-https://ourmoney.app/en/blog/   → Blog EN
-https://ourmoney.app/pl/blog/[slug]  → Post PL
-https://ourmoney.app/en/blog/[slug]  → Post EN
+https://ourmoney.pl/           → redirect → /pl/
+https://ourmoney.pl/pl/        → Strona główna PL
+https://ourmoney.pl/en/        → Strona główna EN
+https://ourmoney.pl/pl/blog/   → Blog PL
+https://ourmoney.pl/en/blog/   → Blog EN
+https://ourmoney.pl/pl/blog/[slug]  → Post PL
+https://ourmoney.pl/en/blog/[slug]  → Post EN
 ```
 
 hreflang: każda strona PL linkuje do EN i odwrotnie.
-Canonical: `https://ourmoney.app/[locale]/[path]`
+Canonical: `https://ourmoney.pl/[locale]/[path]`
 
 ---
 
@@ -103,7 +103,7 @@ Rozszerzony plik dla crawlerów które obsługują dłuższe dokumenty:
 
 ### Checklist konfiguracji
 - [ ] Weryfikacja domeny (DNS TXT record lub HTML file)
-- [ ] Dodanie sitemap: `https://ourmoney.app/sitemap.xml`
+- [ ] Dodanie sitemap: `https://ourmoney.pl/sitemap.xml`
 - [ ] Dodanie obu locale: `/pl/` i `/en/`
 - [ ] Core Web Vitals monitoring
 - [ ] Ustawienie kraju docelowego PL (jeśli główna wersja PL)

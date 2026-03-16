@@ -1,0 +1,87 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { Link } from '@/i18n/navigation';
+
+const CONSENT_KEY = 'ourmoney_cookie_consent';
+
+type ConsentStatus = 'granted' | 'denied';
+
+function applyGtagConsent(status: ConsentStatus) {
+  if (typeof window === 'undefined') return;
+  const w = window as Window & { gtag?: (...args: unknown[]) => void };
+  w.gtag?.('consent', 'update', {
+    analytics_storage: status,
+    ad_storage: status,
+    ad_user_data: status,
+    ad_personalization: status,
+  });
+}
+
+type Props = {
+  message: string;
+  acceptLabel: string;
+  rejectLabel: string;
+  learnMoreLabel: string;
+};
+
+export function CookieConsentBanner({ message, acceptLabel, rejectLabel, learnMoreLabel }: Props) {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const stored = localStorage.getItem(CONSENT_KEY) as ConsentStatus | null;
+    if (!stored) {
+      setVisible(true);
+    } else {
+      applyGtagConsent(stored);
+    }
+  }, []);
+
+  const handleAccept = () => {
+    localStorage.setItem(CONSENT_KEY, 'granted');
+    applyGtagConsent('granted');
+    setVisible(false);
+  };
+
+  const handleReject = () => {
+    localStorage.setItem(CONSENT_KEY, 'denied');
+    applyGtagConsent('denied');
+    setVisible(false);
+  };
+
+  if (!visible) return null;
+
+  return (
+    <div
+      role="dialog"
+      aria-label="Cookie consent"
+      className="fixed bottom-0 left-0 right-0 z-50 bg-[#141414] border-t border-white/10 px-6 py-4"
+    >
+      <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
+        <p className="text-sm text-white/60 leading-relaxed">
+          {message}{' '}
+          <Link
+            href="/polityka-prywatnosci"
+            className="text-white/40 hover:text-white underline underline-offset-2 transition-colors"
+          >
+            {learnMoreLabel}
+          </Link>
+        </p>
+        <div className="flex items-center gap-3 shrink-0">
+          <button
+            onClick={handleReject}
+            className="text-xs text-white/35 hover:text-white/60 transition-colors"
+          >
+            {rejectLabel}
+          </button>
+          <button
+            onClick={handleAccept}
+            className="bg-[#bbff00] text-black text-xs font-semibold px-5 py-2 rounded-full hover:bg-[#a2e600] transition-colors"
+          >
+            {acceptLabel}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}

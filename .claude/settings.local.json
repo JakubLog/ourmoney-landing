@@ -950,7 +950,12 @@
       "mcp__supabase__get_project_url",
       "mcp__supabase__get_logs",
       "mcp__supabase__list_edge_functions",
-      "mcp__supabase__deploy_edge_function"
+      "mcp__supabase__deploy_edge_function",
+      "Bash(find:*)",
+      "mcp__Sanity__query_documents",
+      "mcp__Sanity__patch_document_from_json",
+      "mcp__Sanity__create_documents_from_json",
+      "mcp__Sanity__publish_documents"
     ],
     "deny": [
       "Bash(rm -rf /*)",

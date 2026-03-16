@@ -25,7 +25,7 @@
   },
   "HomePage": {
     "meta": {
-      "title": "OurMoney — Wspólny budżet dla par",
+      "title": "OurMoney - Wspólny budżet dla par",
       "description": "Pierwsza aplikacja finansowa stworzona specjalnie dla par. Sprawiedliwy podział wydatków, wspólne cele, zachowanie prywatności tam, gdzie tego chcesz."
     },
     "hero": {
@@ -226,5 +226,11 @@
       "description": "Regulamin korzystania z aplikacji OurMoney."
     },
     "title": "Regulamin"
+  },
+  "CookieConsent": {
+    "message": "Używamy plików cookies do analizy ruchu na stronie i poprawy jej działania.",
+    "accept": "Akceptuję",
+    "reject": "Odrzucam",
+    "learnMore": "Polityka prywatności"
   }
 }

@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: '*', disallow: '/studio/' },
       { userAgent: '*', disallow: '/api/' },
     ],
-    sitemap: 'https://ourmoney.app/sitemap.xml',
+    sitemap: 'https://ourmoney.pl/sitemap.xml',
   };
 }

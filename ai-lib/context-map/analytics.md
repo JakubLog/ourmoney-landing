@@ -15,7 +15,7 @@
 ### Google Search Console
 - **Status**: Do konfiguracji po deploymencie
 - **Weryfikacja**: DNS TXT record lub HTML file (Vercel: DNS preferowane)
-- **Sitemap**: `https://ourmoney.app/sitemap.xml`
+- **Sitemap**: `https://ourmoney.pl/sitemap.xml`
 - **Kolejny krok**: Połącz z GA4 (Admin → Link with Search Console)
 
 ---

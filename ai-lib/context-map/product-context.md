@@ -10,8 +10,8 @@
 **OurMoney** to aplikacja mobilna (PWA) do wspólnego zarządzania budżetem domowym,
 skierowana przede wszystkim do par prowadzących wspólne finanse.
 
-**Aplikacja**: `https://app.ourmoney.app` (lub docelowy URL)
-**Landing**: `https://ourmoney.app` (lub docelowy URL)
+**Aplikacja**: `https://app.ourmoney.pl` (lub docelowy URL)
+**Landing**: `https://ourmoney.pl` (lub docelowy URL)
 
 ---
 

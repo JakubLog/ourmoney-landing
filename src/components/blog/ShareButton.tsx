@@ -13,7 +13,11 @@ export function ShareButton({ label, copiedLabel }: Props) {
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(window.location.href);
+      const url = new URL(window.location.href);
+      url.searchParams.set('utm_source', 'share');
+      url.searchParams.set('utm_medium', 'copy_link');
+      url.searchParams.set('utm_campaign', 'blog');
+      await navigator.clipboard.writeText(url.toString());
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {

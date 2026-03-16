@@ -1,46 +1,54 @@
-'use client';
-
-import { useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { Plus, Minus } from 'lucide-react';
+import { getTranslations } from 'next-intl/server';
+import { Plus, X } from 'lucide-react';
+import { InvertDotButton } from '@/components/ui/InvertDotButton';
 
 type FAQItem = { question: string; answer: string };
+type Props = { locale: string };
 
-export function FAQSection() {
-  const t = useTranslations('HomePage.faq');
+export async function FAQSection({ locale }: Props) {
+  const t = await getTranslations({ locale, namespace: 'HomePage.faq' });
+  const tCommon = await getTranslations({ locale, namespace: 'Common' });
   const items = t.raw('items') as FAQItem[];
-  const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="bg-[#f7f7f7] py-24 px-6">
-      <div className="max-w-3xl mx-auto">
-        <p className="text-xs font-semibold uppercase tracking-widest text-[#9c9c9c] text-center mb-4">
-          {t('title')}
-        </p>
-        <div className="flex flex-col gap-0">
-          {items.map((item, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-2xl mb-3 overflow-hidden"
+    <section className="bg-white py-24 px-6">
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-12 lg:gap-20">
+          {/* Left column: title + CTA */}
+          <div>
+            <h2 className="text-5xl md:text-6xl text-dark mb-8">
+              {t('title')}
+            </h2>
+            <InvertDotButton
+              href={tCommon('appUrl')}
+              className="inline-block bg-accent text-black font-semibold px-8 py-4 rounded-full text-sm"
+              location="faq"
+              locale={locale}
             >
-              <button
-                className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-[#fafafa] transition-colors"
-                onClick={() => setOpen(open === i ? null : i)}
-                aria-expanded={open === i}
-              >
-                <span className="font-medium text-[#141414] text-sm pr-6">{item.question}</span>
-                {open === i
-                  ? <Minus size={16} className="shrink-0 text-[#9c9c9c]" />
-                  : <Plus size={16} className="shrink-0 text-[#9c9c9c]" />
-                }
-              </button>
-              {open === i && (
-                <div className="px-6 pb-5">
-                  <p className="text-[#141414]/60 text-sm leading-relaxed">{item.answer}</p>
+              {tCommon('startFree')}
+            </InvertDotButton>
+          </div>
+
+          {/* Right column: accordion */}
+          <div>
+            {items.map((item) => (
+              <details key={item.question} className="group border-t border-dark/10">
+                <summary className="flex items-center justify-between py-5 cursor-pointer">
+                  <span className="font-medium text-dark text-base pr-6">{item.question}</span>
+                  <span aria-hidden="true" className="shrink-0 text-dark/40">
+                    <Plus size={18} className="faq-plus" />
+                    <X size={18} className="faq-minus" />
+                  </span>
+                </summary>
+                <div className="faq-answer pb-5">
+                  <p className="text-dark/50 text-sm leading-relaxed max-w-xl">
+                    {item.answer}
+                  </p>
                 </div>
-              )}
-            </div>
-          ))}
+              </details>
+            ))}
+            <div className="border-t border-dark/10" />
+          </div>
         </div>
       </div>
     </section>
