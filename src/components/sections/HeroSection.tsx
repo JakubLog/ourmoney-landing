@@ -10,7 +10,7 @@ export async function HeroSection({ locale }: Props) {
   const tCommon = await getTranslations({ locale, namespace: 'Common' });
 
   return (
-    <section className="relative flex flex-col items-center justify-center overflow-hidden min-h-[85vh]">
+    <section className="relative flex flex-col items-center justify-center overflow-hidden min-h-[85svh]">
       {/* Background image */}
       <Image
         src="/hero-bg.webp"
