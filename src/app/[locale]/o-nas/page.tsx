@@ -40,7 +40,7 @@ export default async function AboutPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'AboutPage' });
-  const authors = await client.fetch<Author[]>(AUTHORS_QUERY, {}, fetchOptions);
+  const authors = await client.fetch<Author[]>(AUTHORS_QUERY, { language: locale }, fetchOptions);
 
   return (
     <>

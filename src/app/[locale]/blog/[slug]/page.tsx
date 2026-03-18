@@ -15,6 +15,7 @@ import { TrackedCTALink } from '@/components/ui/TrackedCTALink';
 import { Link } from '@/i18n/navigation';
 import { client, fetchOptions } from '@/sanity/lib/client';
 import { POST_QUERY, POST_TRANSLATION_QUERY, RELATED_POSTS_QUERY } from '@/sanity/lib/queries';
+import { readingTime } from '@/lib/reading-time';
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -75,6 +76,7 @@ type Post = {
     buttonUrl?: string;
   };
   language: string;
+  estimatedWordCount?: number;
   seo?: {
     title?: string;
     description?: string;
@@ -90,23 +92,6 @@ type Post = {
   _translations?: (Translation | null)[];
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function estimateReadingTimeFromBody(body: any[]): number {
-  if (!Array.isArray(body)) return 1;
-  const text = body
-    .filter((block) => block._type === 'block')
-    .flatMap((block) => block.children ?? [])
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    .map((child: any) => child.text ?? '')
-    .join(' ');
-  const words = text.trim().split(/\s+/).filter(Boolean).length;
-  return Math.max(1, Math.ceil(words / 200));
-}
-
-function estimateReadingTimeFromChars(charCount: number): number {
-  const words = Math.round(charCount / 5);
-  return Math.max(1, Math.ceil(words / 200));
-}
 
 function buildLanguageAlternates(
   currentSlug: string,
@@ -192,6 +177,7 @@ export default async function BlogPostPage({ params }: Props) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'BlogPage' });
+  const tCommon = await getTranslations({ locale, namespace: 'Common' });
 
   const post = await client.fetch<Post | null>(
     POST_QUERY,
@@ -218,7 +204,7 @@ export default async function BlogPostPage({ params }: Props) {
   );
 
   const canonicalUrl = post.seo?.canonical ?? `https://ourmoney.pl/${locale}/blog/${slug}`;
-  const readingMinutes = estimateReadingTimeFromBody(post.body ?? []);
+  const readingMinutes = readingTime(post.estimatedWordCount);
   const otherLanguages =
     post._translations?.filter(Boolean).filter((tr) => tr!.language !== locale) ?? [];
 
@@ -514,7 +500,7 @@ export default async function BlogPostPage({ params }: Props) {
                     {t('inArticleCta.subtext')}
                   </p>
                   <TrackedCTALink
-                    href="https://app.ourmoney.pl/"
+                    href={tCommon('appUrl')}
                     className="inline-flex items-center gap-2 bg-[#bbff00] text-black font-semibold text-sm px-7 py-3.5 rounded-full hover:bg-[#d4ff4d] transition-colors"
                     location="article_end"
                     locale={locale}
@@ -581,7 +567,7 @@ export default async function BlogPostPage({ params }: Props) {
                     author={related.authorName}
                     locale={locale}
                     readingTimeLabel={t('readingTime', {
-                      minutes: estimateReadingTimeFromChars(related.estimatedWordCount ?? 0),
+                      minutes: readingTime(related.estimatedWordCount),
                     })}
                   />
                 ))}

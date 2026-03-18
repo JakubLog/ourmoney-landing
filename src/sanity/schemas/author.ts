@@ -35,6 +35,17 @@ export const author = defineType({
       type: 'text',
       rows: 4,
     }),
+    defineField({
+      name: 'language',
+      title: 'Język',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Polski', value: 'pl' },
+          { title: 'English', value: 'en' },
+        ],
+      },
+    }),
   ],
   preview: { select: { title: 'name', media: 'avatar' } },
 });

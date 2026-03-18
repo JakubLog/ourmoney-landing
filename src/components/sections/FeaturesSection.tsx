@@ -117,15 +117,18 @@ export function FeaturesSection({ locale }: Props) {
           </div>
 
           {/* App screenshot in iPhone frame */}
-          <ScrollReveal animation="slide-right" className="flex justify-center">
-            <div className="relative w-full max-w-[320px]">
+          <ScrollReveal animation="slide-right" className="flex justify-center overflow-x-clip">
+            <div className="relative w-full max-w-[280px] sm:max-w-[310px]">
               {/* Phone frame */}
               <div className="relative bg-dark rounded-[3rem] p-[10px] shadow-2xl">
                 {/* Dynamic Island */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 z-20 bg-dark w-[100px] h-[30px] rounded-b-2xl" />
-                {/* Screen */}
-                <div className="aspect-[9/19.5] rounded-[2.5rem] overflow-hidden bg-white p-5">
-                  <div className="relative w-full h-full rounded-[2rem] overflow-hidden">
+                {/* Screen — padding-top replaces aspect-ratio for cross-browser h-full support */}
+                <div className="rounded-[2.5rem] overflow-hidden bg-white p-5">
+                  <div
+                    className="relative rounded-[2rem] overflow-hidden"
+                    style={{ paddingTop: 'calc(100% * 19.5 / 9)' }}
+                  >
                     {FEATURE_IMAGES.map((src, i) => {
                       const isActive = activeImage === src;
                       if (!imagesPreloaded && !isActive) return null;
@@ -137,7 +140,7 @@ export function FeaturesSection({ locale }: Props) {
                           fill
                           className="object-cover transition-opacity duration-300"
                           style={{ opacity: isActive ? 1 : 0 }}
-                          sizes="320px"
+                          sizes="(max-width: 640px) 280px, 310px"
                           loading={i === 0 ? undefined : 'lazy'}
                           priority={i === 0}
                         />

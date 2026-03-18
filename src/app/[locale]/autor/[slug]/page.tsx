@@ -9,6 +9,7 @@ import { Footer } from '@/components/layout/Footer';
 import { CTABanner } from '@/components/sections/CTABanner';
 import { client, fetchOptions } from '@/sanity/lib/client';
 import { AUTHOR_QUERY, AUTHOR_POSTS_QUERY } from '@/sanity/lib/queries';
+import { readingTime } from '@/lib/reading-time';
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -50,10 +51,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-function readingTime(wordCount?: number) {
-  if (!wordCount) return null;
-  return Math.max(1, Math.round(wordCount / 200));
-}
 
 export default async function AuthorPage({ params }: Props) {
   const { locale, slug } = await params;

@@ -6,13 +6,9 @@ import { CTABanner } from '@/components/sections/CTABanner';
 import { BlogPostCard, FeaturedPostCard } from '@/components/blog/BlogPostCard';
 import { client, fetchOptions } from '@/sanity/lib/client';
 import { POSTS_QUERY } from '@/sanity/lib/queries';
+import { readingTime } from '@/lib/reading-time';
 
 type Props = { params: Promise<{ locale: string }> };
-
-function estimateReadingTime(charCount: number) {
-  const words = Math.round(charCount / 5);
-  return Math.max(1, Math.ceil(words / 200));
-}
 
 type Post = {
   _id: string;
@@ -100,7 +96,7 @@ export default async function BlogPage({ params }: Props) {
                   mainImageAlt={featured.mainImageAlt}
                   author={featured.authorName}
                   locale={locale}
-                  readingTimeLabel={t('readingTime', { minutes: estimateReadingTime(featured.estimatedWordCount) })}
+                  readingTimeLabel={t('readingTime', { minutes: readingTime(featured.estimatedWordCount) })}
                   featuredLabel={t('featured')}
                   readMoreLabel={t('readMore')}
                 />
@@ -119,7 +115,7 @@ export default async function BlogPage({ params }: Props) {
                         mainImageAlt={post.mainImageAlt}
                         author={post.authorName}
                         locale={locale}
-                        readingTimeLabel={t('readingTime', { minutes: estimateReadingTime(post.estimatedWordCount) })}
+                        readingTimeLabel={t('readingTime', { minutes: readingTime(post.estimatedWordCount) })}
                       />
                     ))}
                   </div>

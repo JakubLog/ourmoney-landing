@@ -51,6 +51,7 @@ export const POST_QUERY = groq`
     publishedAt,
     _updatedAt,
     body[]{ ..., _type == "image" => { ..., "url": asset->url, alt, caption } },
+    "estimatedWordCount": length(pt::text(body)),
     "mainImageUrl": mainImage.asset->url,
     "mainImageAlt": mainImage.alt,
     author->{ name, "slug": slug.current, "avatarUrl": avatar.asset->url, role, bio },
@@ -79,7 +80,7 @@ export const POST_QUERY = groq`
 `;
 
 export const AUTHORS_QUERY = groq`
-  *[_type == "author"] | order(name asc) {
+  *[_type == "author" && (language == $language || (!(defined(language)) && $language == "pl"))] | order(name asc) {
     _id,
     name,
     "slug": slug.current,
