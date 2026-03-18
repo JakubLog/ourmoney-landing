@@ -4,6 +4,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { CTABanner } from '@/components/sections/CTABanner';
 import { Mail, Instagram } from 'lucide-react';
+import { CopyEmail } from '@/components/ui/CopyEmail';
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -50,8 +51,8 @@ export default async function ContactPage({ params }: Props) {
           <div className="max-w-2xl mx-auto">
             <div className="grid sm:grid-cols-2 gap-6 mb-16">
               {/* Email */}
-              <a
-                href={`mailto:${tFooter('email')}`}
+              <CopyEmail
+                email={tFooter('email')}
                 className="flex items-center gap-4 p-6 rounded-2xl border border-[#e2dbd2] hover:border-[#141414] transition-colors group"
               >
                 <div className="w-12 h-12 bg-[#141414] rounded-xl flex items-center justify-center shrink-0">
@@ -63,7 +64,7 @@ export default async function ContactPage({ params }: Props) {
                     {tFooter('email')}
                   </p>
                 </div>
-              </a>
+              </CopyEmail>
 
               {/* Instagram */}
               <a

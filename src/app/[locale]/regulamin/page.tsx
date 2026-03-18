@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { CopyEmail } from '@/components/ui/CopyEmail';
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -48,7 +49,7 @@ export default async function TermsPage({ params }: Props) {
               <strong>ourmoney.pl</strong> (dalej: „Strona"), prowadzonej przez{' '}
               <strong>Jakub Fedoszczak</strong> oraz <strong>Magda Nestorowicz</strong>, działających pod marką <strong>OurMoney</strong>
               {' '}(dalej: „Operator"), dostępnego pod adresem e-mail:{' '}
-              <a href="mailto:kontakt@ourmoney.pl">kontakt@ourmoney.pl</a>.
+              <CopyEmail email="kontakt@ourmoney.pl" className="underline hover:opacity-70" />.
             </p>
             <p>
               Strona ma charakter informacyjny i prezentuje produkt — aplikację mobilną OurMoney
@@ -146,7 +147,7 @@ export default async function TermsPage({ params }: Props) {
             <h2>10. Kontakt</h2>
             <p>
               W przypadku pytań dotyczących niniejszego Regulaminu prosimy o kontakt:{' '}
-              <a href="mailto:kontakt@ourmoney.pl">kontakt@ourmoney.pl</a>
+              <CopyEmail email="kontakt@ourmoney.pl" className="underline hover:opacity-70" />
             </p>
           </div>
         </section>

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { CopyEmail } from '@/components/ui/CopyEmail';
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -49,7 +50,7 @@ export default async function PrivacyPage({ params }: Props) {
             </p>
             <p>
               Kontakt w sprawach ochrony danych osobowych:{' '}
-              <a href="mailto:kontakt@ourmoney.pl">kontakt@ourmoney.pl</a>
+              <CopyEmail email="kontakt@ourmoney.pl" className="underline hover:opacity-70" />
             </p>
             <p className="text-sm text-gray-500 italic">
               Administrator nie wyznaczył Inspektora Ochrony Danych (IOD).
@@ -123,7 +124,7 @@ export default async function PrivacyPage({ params }: Props) {
             <p>
               Możesz wycofać zgodę na cookies w dowolnym momencie, usuwając dane przechowywane
               przez przeglądarkę lub kontaktując się z nami pod adresem{' '}
-              <a href="mailto:kontakt@ourmoney.pl">kontakt@ourmoney.pl</a>.
+              <CopyEmail email="kontakt@ourmoney.pl" className="underline hover:opacity-70" />.
             </p>
 
             <h2>4. Podmioty przetwarzające dane (procesory)</h2>
@@ -198,7 +199,7 @@ export default async function PrivacyPage({ params }: Props) {
             </ul>
             <p>
               Aby skorzystać z powyższych praw, skontaktuj się z nami:{' '}
-              <a href="mailto:kontakt@ourmoney.pl">kontakt@ourmoney.pl</a>.
+              <CopyEmail email="kontakt@ourmoney.pl" className="underline hover:opacity-70" />.
               Na Twoje żądanie odpowiemy w terminie 30 dni.
             </p>
             <p>
@@ -219,7 +220,7 @@ export default async function PrivacyPage({ params }: Props) {
             <p>
               W sprawach dotyczących niniejszej Polityki Prywatności oraz przetwarzania
               danych osobowych prosimy o kontakt:{' '}
-              <a href="mailto:kontakt@ourmoney.pl">kontakt@ourmoney.pl</a>
+              <CopyEmail email="kontakt@ourmoney.pl" className="underline hover:opacity-70" />
             </p>
           </div>
         </section>

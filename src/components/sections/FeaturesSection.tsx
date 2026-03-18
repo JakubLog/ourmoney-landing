@@ -45,20 +45,18 @@ export function FeaturesSection({ locale }: Props) {
   return (
     <section className="group/features bg-white py-20 md:py-28 px-6">
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <ScrollReveal className="max-w-lg mb-12 md:mb-16">
-          <h2 className="text-4xl md:text-5xl text-dark leading-tight mb-4">
-            {t('title')}
-          </h2>
-          <p className="text-dark/50 text-sm leading-relaxed">
-            {t('subtitle')}
-          </p>
-        </ScrollReveal>
-
         {/* Two-column: accordion + image */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-          {/* Numbered accordion */}
+          {/* Left: header + accordion */}
           <div>
+            <ScrollReveal className="mb-12 md:mb-16">
+              <h2 className="text-4xl md:text-5xl text-dark leading-tight mb-4">
+                {t('title')}
+              </h2>
+              <p className="text-dark/50 text-sm leading-relaxed">
+                {t('subtitle')}
+              </p>
+            </ScrollReveal>
             {items.map((item, i) => (
               <div key={item.title} className="relative">
                 {/* Border top */}

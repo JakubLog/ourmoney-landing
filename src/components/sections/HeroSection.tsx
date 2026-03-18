@@ -26,12 +26,12 @@ export async function HeroSection({ locale }: Props) {
       {/* Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-6 text-center py-24 md:py-32">
         <h1 className="font-display text-5xl md:text-7xl lg:text-[5.25rem] text-white leading-[1.05] tracking-tight mb-6">
-          {t('headlineL1')}{' '}
+          {t('headlineL1')}
+          <br />
           <AnimatedWord
             words={t('headlineWords').split(',')}
             className="text-accent"
-          />
-          <br />
+          />{' '}
           {t('headlinePost')}
         </h1>
         <p className="text-base md:text-lg text-white/80 max-w-xl mx-auto mb-8 leading-relaxed">

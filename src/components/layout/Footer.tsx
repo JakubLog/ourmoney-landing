@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { Instagram, Mail } from 'lucide-react';
+import { CopyEmail } from '@/components/ui/CopyEmail';
 
 export function Footer() {
   const t = useTranslations('Navigation');
@@ -20,9 +21,8 @@ export function Footer() {
   return (
     <footer className="bg-[#141414] text-white py-12 px-6">
       <div className="max-w-6xl mx-auto">
-        {/* Top row */}
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8 pb-8 border-b border-white/10">
-          {/* Logo */}
+        {/* Top: logo + contact */}
+        <div className="flex items-center justify-between pb-8 border-b border-white/10">
           <Link href="/" aria-label="OurMoney">
             <Image
               src="/ourmoney-logo-hero.svg"
@@ -34,28 +34,14 @@ export function Footer() {
             />
           </Link>
 
-          {/* Nav links */}
-          <nav className="flex flex-wrap gap-x-6 gap-y-3">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm text-white/60 hover:text-white transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Contact */}
           <div className="flex items-center gap-4">
-            <a
-              href={`mailto:${tFooter('email')}`}
+            <CopyEmail
+              email={tFooter('email')}
               className="flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors"
             >
               <Mail size={15} />
-              {tFooter('email')}
-            </a>
+              <span className="hidden sm:inline">{tFooter('email')}</span>
+            </CopyEmail>
             <a
               href={tFooter('instagram')}
               target="_blank"
@@ -67,6 +53,19 @@ export function Footer() {
             </a>
           </div>
         </div>
+
+        {/* Nav links */}
+        <nav className="grid grid-cols-2 sm:flex sm:flex-wrap gap-x-6 gap-y-3 py-8 border-b border-white/10">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm text-white/60 hover:text-white transition-colors"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
 
         {/* Bottom */}
         <p className="mt-6 text-xs text-white/40">{tFooter('copyright')}</p>

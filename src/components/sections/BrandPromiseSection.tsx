@@ -34,40 +34,45 @@ export async function BrandPromiseSection({ locale }: Props) {
             </div>
           </div>
 
-          {/* Floating card: Biedronka — bottom left */}
-          <div className="float-a absolute bottom-6 left-2 md:bottom-10 md:left-6 bg-white rounded-xl shadow-lg px-4 py-3 flex items-center gap-3 z-10">
-            <div className="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center shrink-0" aria-hidden="true">
-              <ShoppingBasket className="w-5 h-5 text-red-400" />
-            </div>
-            <div className="text-left">
-              <p className="text-sm font-semibold text-dark">Biedronka</p>
-              <p className="text-xs text-dark/50">Zakupy spożywcze</p>
-            </div>
-            <div className="text-right ml-4">
-              <p className="text-sm font-semibold text-dark">129,89 zł</p>
-              <p className="text-xs text-dark/50">23.02.2026</p>
-            </div>
-            <span className="absolute -top-2 -right-2 bg-accent text-[10px] font-semibold text-dark px-2 py-0.5 rounded-full">
-              Agnieszka
-            </span>
-          </div>
+          {/* Cards: absolute on desktop, flex row below image on mobile */}
+          <div className="flex gap-3 mt-4 md:block md:mt-0">
 
-          {/* Floating card: Paliwo — right */}
-          <div className="float-b absolute bottom-24 right-2 md:bottom-28 md:right-6 bg-white rounded-xl shadow-lg px-4 py-3 flex items-center gap-3 z-10">
-            <div className="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center shrink-0" aria-hidden="true">
-              <Fuel className="w-5 h-5 text-green-500" />
+            {/* Card: Biedronka */}
+            <div className="float-a flex-1 md:flex-none relative md:absolute md:bottom-10 md:left-6 bg-white rounded-xl shadow-lg px-3 py-2 md:px-4 md:py-3 flex items-center gap-2 md:gap-3 z-10">
+              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-red-50 flex items-center justify-center shrink-0" aria-hidden="true">
+                <ShoppingBasket className="w-4 h-4 md:w-5 md:h-5 text-red-400" />
+              </div>
+              <div className="text-left min-w-0">
+                <p className="text-xs md:text-sm font-semibold text-dark">Biedronka</p>
+                <p className="text-[10px] md:text-xs text-dark/50">Zakupy spożywcze</p>
+              </div>
+              <div className="text-right ml-auto md:ml-4 shrink-0">
+                <p className="text-xs md:text-sm font-semibold text-dark">129,89 zł</p>
+                <p className="hidden md:block text-xs text-dark/50">23.02.2026</p>
+              </div>
+              <span className="absolute -top-2 -right-2 bg-accent text-[10px] font-semibold text-dark px-2 py-0.5 rounded-full">
+                Agnieszka
+              </span>
             </div>
-            <div className="text-left">
-              <p className="text-sm font-semibold text-dark">Paliwo</p>
-              <p className="text-xs text-dark/50">Samochód</p>
+
+            {/* Card: Paliwo */}
+            <div className="float-b flex-1 md:flex-none relative md:absolute md:bottom-28 md:right-6 bg-white rounded-xl shadow-lg px-3 py-2 md:px-4 md:py-3 flex items-center gap-2 md:gap-3 z-10">
+              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-green-50 flex items-center justify-center shrink-0" aria-hidden="true">
+                <Fuel className="w-4 h-4 md:w-5 md:h-5 text-green-500" />
+              </div>
+              <div className="text-left min-w-0">
+                <p className="text-xs md:text-sm font-semibold text-dark">Paliwo</p>
+                <p className="text-[10px] md:text-xs text-dark/50">Samochód</p>
+              </div>
+              <div className="text-right ml-auto md:ml-4 shrink-0">
+                <p className="text-xs md:text-sm font-semibold text-dark">312,23 zł</p>
+                <p className="hidden md:block text-xs text-dark/50">28.02.2026</p>
+              </div>
+              <span className="absolute -top-2 -right-2 bg-accent text-[10px] font-semibold text-dark px-2 py-0.5 rounded-full">
+                Rafał
+              </span>
             </div>
-            <div className="text-right ml-4">
-              <p className="text-sm font-semibold text-dark">312,23 zł</p>
-              <p className="text-xs text-dark/50">28.02.2026</p>
-            </div>
-            <span className="absolute -top-2 -right-2 bg-accent text-[10px] font-semibold text-dark px-2 py-0.5 rounded-full">
-              Rafał
-            </span>
+
           </div>
         </ScrollReveal>
       </div>
