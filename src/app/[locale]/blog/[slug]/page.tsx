@@ -459,7 +459,7 @@ export default async function BlogPostPage({ params }: Props) {
                     alt={post.author.name}
                     width={64}
                     height={64}
-                    className="rounded-full shrink-0 object-cover"
+                    className="rounded-full shrink-0 object-cover overflow-hidden"
                   />
                 )}
                 <div>
