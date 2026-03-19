@@ -1,6 +1,6 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useRef } from 'react';
 import { useAnimate } from 'framer-motion';
 
@@ -8,44 +8,44 @@ const EASE: [number, number, number, number] = [0.76, 0, 0.24, 1];
 
 export function PageTransitionOverlay() {
   const pathname = usePathname();
+  const router = useRouter();
   const [scope, animate] = useAnimate();
 
-  const MIN_COVER_MS = 380;
-
   const isFirst = useRef(true);
-  const coverDone = useRef(false);
-  const revealPending = useRef(false);
-  const coverStartedAt = useRef(0);
+  const isAnimating = useRef(false);
 
   const animateFn = useRef(animate);
   const scopeEl = useRef(scope);
+  const routerRef = useRef(router);
   animateFn.current = animate;
   scopeEl.current = scope;
+  routerRef.current = router;
 
-  async function doReveal() {
-    const elapsed = performance.now() - coverStartedAt.current;
-    const remaining = MIN_COVER_MS - elapsed;
-    if (remaining > 0) await new Promise<void>(r => setTimeout(r, remaining));
-
-    await animateFn.current(scopeEl.current.current, { x: [null, '-100%'] }, { duration: 0.38, ease: EASE });
-    animateFn.current(scopeEl.current.current, { x: '100%' }, { duration: 0 });
-    coverDone.current = false;
-    revealPending.current = false;
-  }
-
+  // When pathname changes (navigation complete) → reveal
   useEffect(() => {
     if (isFirst.current) {
       isFirst.current = false;
       return;
     }
-    if (coverDone.current) {
-      doReveal();
-    } else {
-      revealPending.current = true;
+    if (!isAnimating.current) return;
+
+    async function reveal() {
+      // Small pause so the new page renders behind the overlay
+      await new Promise<void>(r => setTimeout(r, 50));
+      await animateFn.current(
+        scopeEl.current.current,
+        { x: [null, '-100%'] },
+        { duration: 0.38, ease: EASE },
+      );
+      animateFn.current(scopeEl.current.current, { x: '100%' }, { duration: 0 });
+      isAnimating.current = false;
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    reveal();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
+  // Intercept link clicks: cover first, THEN navigate
   useEffect(() => {
     async function handleClick(e: MouseEvent) {
       if (e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
@@ -53,20 +53,28 @@ export function PageTransitionOverlay() {
       if (!link || link.target === '_blank') return;
       const href = link.getAttribute('href') ?? '';
       if (!href.startsWith('/') || href.includes('#')) return;
+      if (isAnimating.current) return;
 
-      coverDone.current = false;
-      revealPending.current = false;
-      coverStartedAt.current = performance.now();
+      // Block Next.js from navigating immediately
+      e.preventDefault();
+      e.stopPropagation();
 
-      await animateFn.current(scopeEl.current.current, { x: ['100%', '0%'] }, { duration: 0.28, ease: EASE });
+      isAnimating.current = true;
 
-      coverDone.current = true;
-      if (revealPending.current) doReveal();
+      // Cover the screen fully first
+      await animateFn.current(
+        scopeEl.current.current,
+        { x: ['100%', '0%'] },
+        { duration: 0.28, ease: EASE },
+      );
+
+      // NOW navigate — page swaps behind the overlay
+      routerRef.current.push(href);
     }
 
-    document.addEventListener('click', handleClick);
-    return () => document.removeEventListener('click', handleClick);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    document.addEventListener('click', handleClick, { capture: true });
+    return () => document.removeEventListener('click', handleClick, { capture: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
