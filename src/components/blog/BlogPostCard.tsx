@@ -9,6 +9,7 @@ type PostCardProps = {
   publishedAt: string;
   mainImageUrl?: string;
   mainImageAlt?: string;
+  mainImageBlur?: string;
   author?: string;
   locale: string;
   readingTimeLabel: string;
@@ -60,6 +61,7 @@ export function BlogPostCard({
   publishedAt,
   mainImageUrl,
   mainImageAlt,
+  mainImageBlur,
   author,
   locale,
   readingTimeLabel,
@@ -77,6 +79,7 @@ export function BlogPostCard({
             src={mainImageUrl}
             alt={mainImageAlt ?? title}
             fill
+            {...(mainImageBlur && { placeholder: 'blur' as const, blurDataURL: mainImageBlur })}
             className="object-cover group-hover:scale-105 transition-transform duration-700"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
@@ -120,6 +123,7 @@ export function FeaturedPostCard({
   publishedAt,
   mainImageUrl,
   mainImageAlt,
+  mainImageBlur,
   author,
   locale,
   readingTimeLabel,
@@ -139,6 +143,7 @@ export function FeaturedPostCard({
             alt={mainImageAlt ?? title}
             fill
             priority
+            {...(mainImageBlur && { placeholder: 'blur' as const, blurDataURL: mainImageBlur })}
             className="object-cover group-hover:scale-105 transition-transform duration-700"
             sizes="(max-width: 768px) 100vw, 55vw"
           />

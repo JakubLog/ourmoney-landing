@@ -51,6 +51,7 @@ type RelatedPost = {
   excerpt: string;
   mainImageUrl?: string;
   mainImageAlt?: string;
+  mainImageBlur?: string;
   authorName?: string;
   category?: Category;
   estimatedWordCount?: number;
@@ -66,6 +67,7 @@ type Post = {
   body: any[];
   mainImageUrl?: string;
   mainImageAlt?: string;
+  mainImageBlur?: string;
   author?: Author;
   category?: Category;
   relatedFaq?: FaqItem[];
@@ -359,6 +361,7 @@ export default async function BlogPostPage({ params }: Props) {
               alt={post.mainImageAlt ?? post.title}
               fill
               priority
+              {...(post.mainImageBlur && { placeholder: 'blur' as const, blurDataURL: post.mainImageBlur })}
               className="object-cover"
               sizes="100vw"
             />
@@ -564,6 +567,7 @@ export default async function BlogPostPage({ params }: Props) {
                     publishedAt={related.publishedAt}
                     mainImageUrl={related.mainImageUrl}
                     mainImageAlt={related.mainImageAlt}
+                    mainImageBlur={related.mainImageBlur}
                     author={related.authorName}
                     locale={locale}
                     readingTimeLabel={t('readingTime', {

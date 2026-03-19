@@ -18,6 +18,7 @@ type Post = {
   excerpt: string;
   mainImageUrl?: string;
   mainImageAlt?: string;
+  mainImageBlur?: string;
   authorName?: string;
   category?: { title: string; slug: string };
   estimatedWordCount: number;
@@ -94,6 +95,7 @@ export default async function BlogPage({ params }: Props) {
                   publishedAt={featured.publishedAt}
                   mainImageUrl={featured.mainImageUrl}
                   mainImageAlt={featured.mainImageAlt}
+                  mainImageBlur={featured.mainImageBlur}
                   author={featured.authorName}
                   locale={locale}
                   readingTimeLabel={t('readingTime', { minutes: readingTime(featured.estimatedWordCount) })}
@@ -113,6 +115,7 @@ export default async function BlogPage({ params }: Props) {
                         publishedAt={post.publishedAt}
                         mainImageUrl={post.mainImageUrl}
                         mainImageAlt={post.mainImageAlt}
+                        mainImageBlur={post.mainImageBlur}
                         author={post.authorName}
                         locale={locale}
                         readingTimeLabel={t('readingTime', { minutes: readingTime(post.estimatedWordCount) })}
