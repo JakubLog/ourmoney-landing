@@ -10,9 +10,12 @@ export function PageTransitionOverlay() {
   const pathname = usePathname();
   const [scope, animate] = useAnimate();
 
+  const MIN_COVER_MS = 380;
+
   const isFirst = useRef(true);
   const coverDone = useRef(false);
   const revealPending = useRef(false);
+  const coverStartedAt = useRef(0);
 
   const animateFn = useRef(animate);
   const scopeEl = useRef(scope);
@@ -20,7 +23,10 @@ export function PageTransitionOverlay() {
   scopeEl.current = scope;
 
   async function doReveal() {
-    await new Promise<void>(r => setTimeout(r, 80));
+    const elapsed = performance.now() - coverStartedAt.current;
+    const remaining = MIN_COVER_MS - elapsed;
+    if (remaining > 0) await new Promise<void>(r => setTimeout(r, remaining));
+
     await animateFn.current(scopeEl.current.current, { x: [null, '-100%'] }, { duration: 0.38, ease: EASE });
     animateFn.current(scopeEl.current.current, { x: '100%' }, { duration: 0 });
     coverDone.current = false;
@@ -50,6 +56,7 @@ export function PageTransitionOverlay() {
 
       coverDone.current = false;
       revealPending.current = false;
+      coverStartedAt.current = performance.now();
 
       await animateFn.current(scopeEl.current.current, { x: ['100%', '0%'] }, { duration: 0.28, ease: EASE });
 
