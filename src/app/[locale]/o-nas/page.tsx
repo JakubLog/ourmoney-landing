@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { routing } from '@/i18n/routing';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { CTABanner } from '@/components/sections/CTABanner';
@@ -8,6 +9,12 @@ import { AuthorCard } from '@/components/sections/AuthorCard';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { client, fetchOptions } from '@/sanity/lib/client';
 import { AUTHORS_QUERY } from '@/sanity/lib/queries';
+
+export const revalidate = 86400;
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 type Props = { params: Promise<{ locale: string }> };
 

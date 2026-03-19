@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { routing } from '@/i18n/routing';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { CTABanner } from '@/components/sections/CTABanner';
@@ -7,6 +8,12 @@ import { BlogPostCard, FeaturedPostCard } from '@/components/blog/BlogPostCard';
 import { client, fetchOptions } from '@/sanity/lib/client';
 import { POSTS_QUERY } from '@/sanity/lib/queries';
 import { readingTime } from '@/lib/reading-time';
+
+export const revalidate = 3600; // ISR: regenerate every 1h
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 type Props = { params: Promise<{ locale: string }> };
 

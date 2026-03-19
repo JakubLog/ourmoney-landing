@@ -7,15 +7,21 @@ const CONSENT_KEY = 'ourmoney_cookie_consent';
 
 type ConsentStatus = 'granted' | 'denied';
 
-function applyGtagConsent(status: ConsentStatus) {
+function applyConsent(status: ConsentStatus) {
   if (typeof window === 'undefined') return;
-  const w = window as Window & { gtag?: (...args: unknown[]) => void };
+  const w = window as Window & {
+    gtag?: (...args: unknown[]) => void;
+    fbq?: (...args: unknown[]) => void;
+  };
+  // Google Consent Mode v2
   w.gtag?.('consent', 'update', {
     analytics_storage: status,
     ad_storage: status,
     ad_user_data: status,
     ad_personalization: status,
   });
+  // Meta Pixel consent
+  w.fbq?.('consent', status === 'granted' ? 'grant' : 'revoke');
 }
 
 type Props = {
@@ -33,19 +39,19 @@ export function CookieConsentBanner({ message, acceptLabel, rejectLabel, learnMo
     if (!stored) {
       setVisible(true);
     } else {
-      applyGtagConsent(stored);
+      applyConsent(stored);
     }
   }, []);
 
   const handleAccept = () => {
     localStorage.setItem(CONSENT_KEY, 'granted');
-    applyGtagConsent('granted');
+    applyConsent('granted');
     setVisible(false);
   };
 
   const handleReject = () => {
     localStorage.setItem(CONSENT_KEY, 'denied');
-    applyGtagConsent('denied');
+    applyConsent('denied');
     setVisible(false);
   };
 

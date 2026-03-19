@@ -106,8 +106,63 @@ export default async function RootLayout({ children, params }: Props) {
             wait_for_update: 500
           });
         `}</Script>
+        <Script id="console-warning" strategy="lazyOnload">{`
+          (function(){
+            var isPL = document.documentElement.lang === 'pl';
+            console.log(
+              '%c' + (isPL ? 'STOP!' : 'STOP!'),
+              'color:#bbff00;font-size:48px;font-weight:bold;text-shadow:2px 2px 0 #141414'
+            );
+            console.log(
+              '%c' + (isPL
+                ? 'To jest funkcja przegladarki przeznaczona dla deweloperow. Jesli ktos powiedzial Ci, zebys cos tu wkleil - to oszustwo. Moze to dac atakujacemu dostep do Twojego konta.'
+                : 'This is a browser feature intended for developers. If someone told you to paste something here - it is a scam. It could give an attacker access to your account.'),
+              'color:#fff;font-size:16px;font-family:sans-serif'
+            );
+            console.log(
+              '%c' + (isPL
+                ? 'PS: Szukasz pracy? Napisz do nas -> kontakt@ourmoney.pl \\uD83D\\uDC9A'
+                : 'PS: Looking for work? Hit us up -> kontakt@ourmoney.pl \\uD83D\\uDC9A'),
+              'color:#9c9c9c;font-size:12px;font-family:sans-serif'
+            );
+          })();
+        `}</Script>
+        <Script id="console-suppress" strategy="lazyOnload">{`
+          (function(){
+            if(location.hostname==='localhost'||location.hostname==='127.0.0.1')return;
+            var noop=function(){};
+            console.log=noop;
+            console.warn=noop;
+            console.error=noop;
+            console.info=noop;
+            console.debug=noop;
+          })();
+        `}</Script>
       </head>
       <body>
+        {process.env.NODE_ENV === 'production' && (
+          <>
+            {/* GTM noscript fallback */}
+            <noscript>
+              <iframe
+                src="https://www.googletagmanager.com/ns.html?id=GTM-WTS9NS7J"
+                height="0"
+                width="0"
+                style={{ display: 'none', visibility: 'hidden' }}
+              />
+            </noscript>
+            {/* Meta Pixel noscript fallback */}
+            <noscript>
+              <img
+                height="1"
+                width="1"
+                style={{ display: 'none' }}
+                src="https://www.facebook.com/tr?id=1930936670874838&ev=PageView&noscript=1"
+                alt=""
+              />
+            </noscript>
+          </>
+        )}
         <NextIntlClientProvider locale={locale} messages={messages}>
           <LocaleTracker locale={locale} />
           <SmoothScroll>
@@ -125,6 +180,7 @@ export default async function RootLayout({ children, params }: Props) {
       </body>
       {process.env.NODE_ENV === 'production' && (
         <>
+          {/* GA4 */}
           <Script
             id="_next-ga-init"
             strategy="lazyOnload"
@@ -141,6 +197,37 @@ export default async function RootLayout({ children, params }: Props) {
             id="_next-ga"
             strategy="lazyOnload"
             src="https://www.googletagmanager.com/gtag/js?id=G-J6Z26RXMQY"
+          />
+          {/* GTM */}
+          <Script
+            id="_next-gtm"
+            strategy="lazyOnload"
+            dangerouslySetInnerHTML={{
+              __html: `
+                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','GTM-WTS9NS7J');
+              `,
+            }}
+          />
+          {/* Meta Pixel — respects Consent Mode, fires only after consent granted */}
+          <Script
+            id="_next-fbq-init"
+            strategy="lazyOnload"
+            dangerouslySetInnerHTML={{
+              __html: `
+                !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+                n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+                t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+                document,'script','https://connect.facebook.net/en_US/fbevents.js');
+                fbq('consent','revoke');
+                fbq('init','1930936670874838');
+                fbq('track','PageView');
+              `,
+            }}
           />
         </>
       )}

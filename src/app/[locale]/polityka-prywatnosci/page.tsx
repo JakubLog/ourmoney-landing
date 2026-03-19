@@ -1,8 +1,13 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { routing } from '@/i18n/routing';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { CopyEmail } from '@/components/ui/CopyEmail';
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -93,14 +98,36 @@ export default async function PrivacyPage({ params }: Props) {
               do obsługi zapytania, nie dłużej niż 24 miesiące.
             </p>
 
-            <h3>2.3. Dane marketingowe (Meta Pixel — planowane)</h3>
+            <h3>2.3. Dane marketingowe (Meta Pixel)</h3>
             <p>
-              Strona planuje wdrożenie Meta Pixel (Facebook/Instagram) w celu mierzenia skuteczności
-              reklam i remarketingu. Meta Pixel będzie aktywowany wyłącznie po wyrażeniu zgody
-              na cookies marketingowych.
+              Strona korzysta z Meta Pixel (Facebook/Instagram) w celu mierzenia skuteczności
+              reklam i remarketingu. Meta Pixel jest aktywowany wyłącznie po wyrażeniu zgody
+              na cookies marketingowych. Przed wyrażeniem zgody Pixel działa w trybie
+              wstrzymanym (<code>fbq(&apos;consent&apos;, &apos;revoke&apos;)</code>) i nie zbiera danych
+              umożliwiających identyfikację użytkownika.
             </p>
             <p>
               <strong>Podstawa prawna:</strong> zgoda użytkownika (art. 6 ust. 1 lit. a RODO).
+            </p>
+            <p>
+              <strong>Okres przechowywania:</strong> dane w Meta Pixel przechowywane są przez
+              okres do 180 dni (domyślne ustawienie Meta).
+            </p>
+            <p>
+              <strong>Advanced Matching:</strong> po wyrażeniu zgody Meta Pixel może wykorzystywać
+              funkcję Advanced Matching, która przesyła do Meta zahashowane (SHA-256) dane podane
+              przez użytkownika w formularzu kontaktowym — adres e-mail oraz imię i nazwisko — w celu
+              lepszego dopasowania konwersji do profilu użytkownika na platformie Meta. Dane te są
+              hashowane po stronie przeglądarki przed wysłaniem i nie są przechowywane przez nas
+              w postaci jawnej na serwerach Meta.
+            </p>
+
+            <h3>2.4. Google Tag Manager (GTM)</h3>
+            <p>
+              Strona korzysta z Google Tag Manager — narzędzia do zarządzania tagami analitycznymi
+              i marketingowymi. GTM sam w sobie nie zbiera danych osobowych ani nie ustawia plików
+              cookies. Służy wyłącznie jako kontener do ładowania innych narzędzi (GA4, Meta Pixel),
+              które podlegają osobnym zasadom opisanym powyżej.
             </p>
 
             <h2>3. Pliki cookies</h2>
@@ -117,8 +144,8 @@ export default async function PrivacyPage({ params }: Props) {
                 Okres ważności: do 2 lat.
               </li>
               <li>
-                <strong>Marketingowe</strong> — pliki Meta Pixel (po wdrożeniu). Aktywowane
-                wyłącznie po wyrażeniu zgody. Okres ważności: do 90 dni.
+                <strong>Marketingowe</strong> — pliki Meta Pixel: <code>_fbp</code>,{' '}
+                <code>_fbc</code>. Aktywowane wyłącznie po wyrażeniu zgody. Okres ważności: do 90 dni.
               </li>
             </ul>
             <p>
@@ -142,9 +169,10 @@ export default async function PrivacyPage({ params }: Props) {
               </a>.
             </p>
 
-            <h3>4.2. Meta Platforms Ireland Ltd (Meta Pixel — planowane)</h3>
+            <h3>4.2. Meta Platforms Ireland Ltd (Meta Pixel)</h3>
             <p>
-              Narzędzie marketingowe. Meta Platforms Ireland Ltd z siedzibą w Irlandii (UE) przetwarza
+              Narzędzie marketingowe służące do mierzenia skuteczności reklam i remarketingu.
+              Meta Platforms Ireland Ltd z siedzibą w Irlandii (UE) przetwarza
               dane zgodnie z RODO. Polityka prywatności Meta:{' '}
               <a href="https://www.facebook.com/privacy/policy" target="_blank" rel="noopener noreferrer">
                 facebook.com/privacy/policy
