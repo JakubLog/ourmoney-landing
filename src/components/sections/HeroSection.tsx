@@ -17,6 +17,8 @@ export async function HeroSection({ locale }: Props) {
         alt=""
         fill
         priority
+        placeholder="blur"
+        blurDataURL="data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAACQAwCdASoUAA0APm0skkWkIqGYBABABsSygF2ADO64MI1TsWQAAP7HDgl1sgHPkqougshD1xuX2uqraK2xIgw0+ZAropQAAAA="
         className="object-cover object-center"
         sizes="100vw"
       />

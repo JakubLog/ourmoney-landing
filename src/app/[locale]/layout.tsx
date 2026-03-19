@@ -4,13 +4,13 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
-import { GoogleAnalytics } from '@next/third-parties/google';
 import { routing } from '@/i18n/routing';
 import '@/app/globals.css';
 import { SmoothScroll } from '@/components/layout/SmoothScroll';
 import { LocaleTracker } from '@/components/layout/LocaleTracker';
 import { CookieConsentBanner } from '@/components/layout/CookieConsentBanner';
-import { PageTransitionOverlay } from '@/components/layout/PageTransitionOverlay';
+import { LazyPageTransition } from '@/components/layout/LazyPageTransition';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const instrumentSerif = Instrument_Serif({
   subsets: ['latin'],
@@ -75,7 +75,21 @@ export default async function RootLayout({ children, params }: Props) {
       <head>
         <link
           rel="preload"
+          href="/fonts/switzer-400.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
           href="/fonts/switzer-500.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/switzer-600.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
@@ -105,11 +119,30 @@ export default async function RootLayout({ children, params }: Props) {
             rejectLabel={t('reject')}
             learnMoreLabel={t('learnMore')}
           />
-          <PageTransitionOverlay />
+          <LazyPageTransition />
+          <SpeedInsights />
         </NextIntlClientProvider>
       </body>
       {process.env.NODE_ENV === 'production' && (
-        <GoogleAnalytics gaId="G-J6Z26RXMQY" />
+        <>
+          <Script
+            id="_next-ga-init"
+            strategy="lazyOnload"
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){window.dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-J6Z26RXMQY');
+              `,
+            }}
+          />
+          <Script
+            id="_next-ga"
+            strategy="lazyOnload"
+            src="https://www.googletagmanager.com/gtag/js?id=G-J6Z26RXMQY"
+          />
+        </>
       )}
     </html>
   );

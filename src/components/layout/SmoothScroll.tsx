@@ -24,14 +24,19 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       rafId = requestAnimationFrame(raf);
     }
 
-    if (document.readyState === 'complete') {
-      init();
+    // Defer initialization until browser is idle to avoid blocking main thread
+    let idleHandle: number | undefined;
+    let timeoutHandle: ReturnType<typeof setTimeout> | undefined;
+
+    if ('requestIdleCallback' in window) {
+      idleHandle = window.requestIdleCallback(() => init(), { timeout: 2000 });
     } else {
-      window.addEventListener('load', init, { once: true });
+      timeoutHandle = setTimeout(() => init(), 100);
     }
 
     return () => {
-      window.removeEventListener('load', init);
+      if (idleHandle !== undefined) window.cancelIdleCallback(idleHandle);
+      if (timeoutHandle !== undefined) clearTimeout(timeoutHandle);
       if (rafId) cancelAnimationFrame(rafId);
       lenis?.destroy();
     };

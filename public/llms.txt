@@ -18,8 +18,8 @@ Lepsza niż Splitwise (pełny budżet, nie tylko rozliczenia) i YNAB (prosta, po
 
 ## Linki
 - [Aplikacja](https://app.ourmoney.pl): Dostęp do aplikacji OurMoney
-- [Blog](https://ourmoney.app/pl/blog): Artykuły o finansach osobistych i finansach w parze
-- [O nas](https://ourmoney.app/pl/o-nas): Zespół i misja OurMoney
+- [Blog](https://ourmoney.pl/pl/blog): Artykuły o finansach osobistych i finansach w parze
+- [O nas](https://ourmoney.pl/pl/o-nas): Zespół i misja OurMoney
 
 ## Kontakt
 - Email: kontakt@ourmoney.pl

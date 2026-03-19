@@ -1,14 +1,12 @@
-'use client';
-
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { Instagram, Mail } from 'lucide-react';
 import { CopyEmail } from '@/components/ui/CopyEmail';
 
-export function Footer() {
-  const t = useTranslations('Navigation');
-  const tFooter = useTranslations('Footer');
+export async function Footer() {
+  const t = await getTranslations('Navigation');
+  const tFooter = await getTranslations('Footer');
 
   const links = [
     { href: '/o-nas', label: t('about') },

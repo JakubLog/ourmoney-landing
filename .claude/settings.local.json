@@ -956,7 +956,12 @@
       "mcp__Sanity__patch_document_from_json",
       "mcp__Sanity__create_documents_from_json",
       "mcp__Sanity__publish_documents",
-      "WebFetch(domain:api.fontshare.com)"
+      "WebFetch(domain:api.fontshare.com)",
+      "Bash(mv hero-bg.webp hero-bg-original.webp)",
+      "Bash(mv hero-bg-opt.webp hero-bg.webp)",
+      "Bash(mv about-bg-opt.avif about-bg.avif)",
+      "Bash(mv bg-section-2-opt.avif bg-section-2.avif)",
+      "Bash(rm bg-section-1.avif)"
     ],
     "deny": [
       "Bash(rm -rf /*)",

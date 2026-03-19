@@ -28,6 +28,8 @@ export async function BrandPromiseSection({ locale }: Props) {
                 src="/bg-section-2.avif"
                 alt="Para korzystająca z aplikacji OurMoney"
                 fill
+                placeholder="blur"
+                blurDataURL="data:image/avif;base64,AAAAHGZ0eXBhdmlmAAAAAG1pZjFhdmlmbWlhZgAAANZtZXRhAAAAAAAAACFoZGxyAAAAAAAAAABwaWN0AAAAAAAAAAAAAAAAAAAAAA5waXRtAAAAAAABAAAAImlsb2MAAAAAREAAAQABAAAAAAD6AAEAAAAAAAAAJwAAACNpaW5mAAAAAAABAAAAFWluZmUCAAAAAAEAAGF2MDEAAAAAVmlwcnAAAAA4aXBjbwAAAAxhdjFDgSACAAAAABRpc3BlAAAAAAAAABQAAAANAAAAEHBpeGkAAAAAAwgICAAAABZpcG1hAAAAAAAAAAEAAQOBAgMAAAAvbWRhdBIACgg4EOeMICGg0jIZGAAAAEC1gKKG4YuKvzn4glcc20wkbr0Vig=="
                 className="object-cover object-center"
                 sizes="(max-width: 1024px) 100vw, 900px"
               />

@@ -1,0 +1,67 @@
+# OurMoney — Kompletny przewodnik
+
+> Pierwsza aplikacja finansowa stworzona specjalnie dla par. Wspólny budżet, sprawiedliwy podział wydatków, prywatność.
+
+## Czym jest OurMoney?
+
+OurMoney to Progressive Web App (PWA) umożliwiająca parom wspólne zarządzanie finansami.
+Aplikacja łączy prostotę arkusza kalkulacyjnego z inteligentnymi funkcjami partnerskimi.
+
+## Problem który rozwiązujemy
+
+Pary zarządzające wspólnym budżetem napotykają problemy:
+- Kto ile zapłacił i za co?
+- Jak sprawiedliwie dzielić wydatki przy różnych dochodach?
+- Gdzie kończy się wspólny budżet, a zaczyna prywatny?
+- Arkusze kalkulacyjne są żmudne, a aplikacje jak Splitwise rozliczają tylko długi, nie budżet.
+
+## Kluczowe funkcje
+
+### Inteligentny podział wydatków
+Trzy tryby: 50/50, proporcjonalny do dochodów, lub własne proporcje.
+Każdy wydatek automatycznie przypisany do odpowiedniej osoby.
+
+### Moje-Twoje-Nasze
+Trzy przestrzenie finansowe: prywatna dla każdego partnera i wspólna.
+Pełna kontrola nad tym, co jest widoczne dla drugiej osoby.
+
+### Wspólne cele finansowe
+Wspólne oszczędzanie na wakacje, remont, wkład własny na mieszkanie.
+Śledzenie postępu w czasie rzeczywistym.
+
+### Raporty i analizy z AI
+Automatyczne kategoryzowanie wydatków.
+Miesięczne podsumowania i trendy.
+
+### PWA — działa jak natywna aplikacja
+Instalacja na telefonie bez App Store / Google Play.
+Działa offline, szybka, responsywna.
+
+## Dla kogo jest OurMoney?
+
+- Pary mieszkające razem i dzielące koszty
+- Partnerzy z różnymi dochodami szukający sprawiedliwego podziału
+- Osoby zmęczone arkuszami kalkulacyjnymi
+- Pary planujące wspólne cele finansowe (ślub, mieszkanie, wakacje)
+
+## Porównanie z alternatywami
+
+| Cecha | OurMoney | Splitwise | YNAB | Arkusz |
+|-------|----------|-----------|------|--------|
+| Wspólny budżet | Tak | Nie (tylko długi) | Częściowo | Ręcznie |
+| Podział wg dochodów | Tak | Nie | Nie | Ręcznie |
+| Prywatność (Moje/Twoje) | Tak | Nie | Nie | Nie |
+| Po polsku | Tak | Częściowo | Nie | — |
+| Bezpłatna wersja | Tak | Tak | Nie | Tak |
+
+## Linki
+
+- Strona główna: https://ourmoney.pl
+- Aplikacja: https://app.ourmoney.pl
+- Blog: https://ourmoney.pl/pl/blog
+- O nas: https://ourmoney.pl/pl/o-nas
+
+## Kontakt
+
+- Email: kontakt@ourmoney.pl
+- Instagram: https://www.instagram.com/ourmoneypl/
