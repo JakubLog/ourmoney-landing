@@ -80,15 +80,16 @@ export default async function AboutPage({ params }: Props) {
         {/* Mission statement */}
         <section className="bg-white py-20 px-6">
           <ScrollReveal className="max-w-3xl mx-auto">
-            <p className="font-display text-2xl md:text-3xl lg:text-4xl text-[#141414] leading-snug">
+            <h2 className="font-display text-2xl md:text-3xl lg:text-4xl text-[#141414] leading-snug">
               {t('mission.description')}
-            </p>
+            </h2>
           </ScrollReveal>
         </section>
 
         {/* Team — Sanity authors, clickable cards */}
         <section className="bg-[#f5f0e8] py-24 px-6">
           <div className="max-w-4xl mx-auto">
+            <h2 className="sr-only">{t('team.title')}</h2>
             <div className="grid md:grid-cols-2 gap-6">
               {authors.map((author, i) => (
                 <ScrollReveal key={author._id} delay={i * 150}>

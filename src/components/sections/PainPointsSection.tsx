@@ -23,23 +23,25 @@ export async function PainPointsSection({ locale }: Props) {
         </ScrollReveal>
 
         {/* Cards — staggered */}
-        <div className="grid md:grid-cols-3 gap-5">
+        <ul className="grid md:grid-cols-3 gap-5 list-none p-0 m-0">
           {items.map((item, i) => (
-            <ScrollReveal key={i} delay={i * 100}>
-              <div
-                className="rounded-2xl p-8 md:p-10 flex flex-col gap-4 h-full"
-                style={{ backgroundColor: CARD_COLORS[i] }}
-              >
-                <h3 className="text-dark text-lg leading-snug">
-                  {item.title}
-                </h3>
-                <p className="text-dark/60 text-sm leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
-            </ScrollReveal>
+            <li key={i}>
+              <ScrollReveal delay={i * 100}>
+                <div
+                  className="rounded-2xl p-8 md:p-10 flex flex-col gap-4 h-full"
+                  style={{ backgroundColor: CARD_COLORS[i] }}
+                >
+                  <h3 className="text-dark text-lg leading-snug">
+                    {item.title}
+                  </h3>
+                  <p className="text-dark/60 text-sm leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+              </ScrollReveal>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

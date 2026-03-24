@@ -28,6 +28,7 @@ export function ShareButton({ label, copiedLabel }: Props) {
   return (
     <button
       onClick={handleCopy}
+      aria-label={copied ? copiedLabel : label}
       className="inline-flex items-center gap-1.5 text-xs text-white/30 hover:text-[#bbff00] transition-colors border border-white/10 hover:border-[#bbff00]/30 px-3 py-1.5 rounded-full"
     >
       {copied ? <Check size={12} /> : <Link2 size={12} />}

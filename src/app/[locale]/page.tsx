@@ -77,6 +77,21 @@ export default async function HomePage({ params }: Props) {
         publisher: { '@id': 'https://ourmoney.pl/#organization' },
       },
       {
+        '@type': 'SoftwareApplication',
+        name: 'OurMoney',
+        applicationCategory: 'FinanceApplication',
+        operatingSystem: 'Web',
+        url: 'https://ourmoney.pl',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'PLN',
+        },
+        description: locale === 'pl'
+          ? 'Aplikacja do wspólnego zarządzania budżetem domowym dla par'
+          : 'Shared budget management app for couples',
+      },
+      {
         '@type': 'FAQPage',
         mainEntity: faqItems.map((item) => ({
           '@type': 'Question',

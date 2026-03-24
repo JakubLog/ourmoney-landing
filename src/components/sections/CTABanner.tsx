@@ -11,9 +11,9 @@ export async function CTABanner({ locale }: Props) {
   return (
     <section className="bg-dark px-6 py-20 md:py-28">
       <ScrollReveal className="max-w-2xl mx-auto text-center">
-        <p className="font-display text-3xl md:text-4xl text-white leading-snug mb-8 md:mb-10">
+        <h2 className="font-display text-3xl md:text-4xl text-white leading-snug mb-8 md:mb-10">
           {t('text')}
-        </p>
+        </h2>
         <InvertDotButton
           href={tCommon('appUrl')}
           className="inline-block bg-accent text-black text-sm font-semibold px-10 py-4 rounded-full"

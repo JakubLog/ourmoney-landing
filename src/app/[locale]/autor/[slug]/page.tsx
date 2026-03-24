@@ -56,6 +56,7 @@ export default async function AuthorPage({ params }: Props) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'BlogPage' });
+  const tAuthor = await getTranslations({ locale, namespace: 'AuthorPage' });
 
   const [author, posts] = await Promise.all([
     client.fetch<AuthorData | null>(AUTHOR_QUERY, { slug }, fetchOptions),
@@ -64,8 +65,27 @@ export default async function AuthorPage({ params }: Props) {
 
   if (!author) notFound();
 
+  const personJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: author.name,
+    jobTitle: author.role ?? undefined,
+    description: author.bio ?? undefined,
+    image: author.avatarUrl ?? undefined,
+    url: `https://ourmoney.pl/${locale}/autor/${slug}`,
+    worksFor: {
+      '@type': 'Organization',
+      name: 'OurMoney',
+      url: 'https://ourmoney.pl',
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+      />
       <Header />
       <main>
         {/* Author hero */}
@@ -76,7 +96,7 @@ export default async function AuthorPage({ params }: Props) {
               className="inline-flex items-center gap-2 text-white/50 hover:text-white text-sm mb-10 transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
-              O nas
+              {tAuthor('backToAbout')}
             </Link>
 
             <div className="flex items-center gap-6 mb-8">
@@ -116,7 +136,7 @@ export default async function AuthorPage({ params }: Props) {
           <section className="bg-white py-20 px-6">
             <div className="max-w-3xl mx-auto">
               <h2 className="font-display text-2xl md:text-3xl text-[#141414] mb-10">
-                Artykuły
+                {tAuthor('articles')}
               </h2>
               <div className="flex flex-col gap-6">
                 {posts.map((post) => {

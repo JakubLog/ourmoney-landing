@@ -28,7 +28,7 @@ export function ArticleCTA({
 }: Props) {
   const effectiveUrl = buttonUrl ? withLocaleParam(buttonUrl, locale) : undefined;
   return (
-    <aside className="my-12 p-8 rounded-2xl bg-[#141414] text-center not-prose">
+    <aside className="my-12 p-8 rounded-2xl bg-[#141414] text-center not-prose" aria-label={heading}>
       <h3 className="font-display text-2xl md:text-3xl text-white mb-3 leading-tight">
         {heading}
       </h3>

@@ -4,6 +4,10 @@ import { useEffect } from 'react';
 
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
+    // Skip smooth scroll on mobile/tablet — native scrolling is better for performance and UX
+    const isMobile = window.matchMedia('(max-width: 1024px)').matches;
+    if (isMobile) return;
+
     let lenis: InstanceType<typeof import('lenis').default> | null = null;
     let rafId: number;
 

@@ -29,6 +29,7 @@ const interTight = Inter_Tight({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://ourmoney.pl'),
+  authors: [{ name: 'No-fuss House' }],
   icons: {
     icon: [
       { url: '/icon.svg', type: 'image/svg+xml' },

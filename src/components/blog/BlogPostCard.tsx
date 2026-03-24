@@ -68,51 +68,53 @@ export function BlogPostCard({
 }: PostCardProps) {
 
   return (
-    <Link
-      href={`/blog/${slug}`}
-      className="group flex flex-col bg-[#1a1a1a] rounded-2xl overflow-hidden border border-white/5 hover:border-[#bbff00]/25 transition-all duration-400 hover:-translate-y-1"
-    >
-      {/* Image */}
-      <div className="relative aspect-[16/9] overflow-hidden shrink-0">
-        {mainImageUrl ? (
-          <Image
-            src={mainImageUrl}
-            alt={mainImageAlt ?? title}
-            fill
-            {...(mainImageBlur && { placeholder: 'blur' as const, blurDataURL: mainImageBlur })}
-            className="object-cover group-hover:scale-105 transition-transform duration-700"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
-        ) : (
-          <ImagePlaceholder />
-        )}
-      </div>
-
-      {/* Content */}
-      <div className="flex flex-col flex-1 p-6 gap-3">
-        <h2 className="font-display text-xl text-white leading-snug line-clamp-2 group-hover:text-[#bbff00] transition-colors duration-300">
-          {title}
-        </h2>
-        <p className="text-sm text-white/40 leading-relaxed line-clamp-3 flex-1">
-          {excerpt}
-        </p>
-        <div className="flex items-center justify-between pt-4 border-t border-white/8 mt-auto">
-          <span className="text-xs text-white/25">
-            {formatDate(publishedAt, locale)}
-            {author && <> · {author}</>}
-          </span>
-          <div className="flex items-center gap-1.5">
-            <span className="text-xs text-[#bbff00]/50">
-              {readingTimeLabel}
-            </span>
-            <ArrowUpRight
-              size={13}
-              className="text-white/15 group-hover:text-[#bbff00] transition-colors duration-300"
+    <article className="group flex flex-col bg-[#1a1a1a] rounded-2xl overflow-hidden border border-white/5 hover:border-[#bbff00]/25 transition-all duration-400 hover:-translate-y-1">
+      <Link
+        href={`/blog/${slug}`}
+        className="flex flex-col flex-1"
+      >
+        {/* Image */}
+        <div className="relative aspect-[16/9] overflow-hidden shrink-0">
+          {mainImageUrl ? (
+            <Image
+              src={mainImageUrl}
+              alt={mainImageAlt ?? title}
+              fill
+              {...(mainImageBlur && { placeholder: 'blur' as const, blurDataURL: mainImageBlur })}
+              className="object-cover group-hover:scale-105 transition-transform duration-700"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
-          </div>
+          ) : (
+            <ImagePlaceholder />
+          )}
         </div>
-      </div>
-    </Link>
+
+        {/* Content */}
+        <div className="flex flex-col flex-1 p-6 gap-3">
+          <h3 className="font-display text-xl text-white leading-snug line-clamp-2 group-hover:text-[#bbff00] transition-colors duration-300">
+            {title}
+          </h3>
+          <p className="text-sm text-white/40 leading-relaxed line-clamp-3 flex-1">
+            {excerpt}
+          </p>
+          <footer className="flex items-center justify-between pt-4 border-t border-white/8 mt-auto">
+            <time dateTime={publishedAt} className="text-xs text-white/25">
+              {formatDate(publishedAt, locale)}
+            </time>
+            {author && <span className="text-xs text-white/25"> · {author}</span>}
+            <div className="flex items-center gap-1.5">
+              <span className="text-xs text-[#bbff00]/50">
+                {readingTimeLabel}
+              </span>
+              <ArrowUpRight
+                size={13}
+                className="text-white/15 group-hover:text-[#bbff00] transition-colors duration-300"
+              />
+            </div>
+          </footer>
+        </div>
+      </Link>
+    </article>
   );
 }
 
@@ -131,80 +133,82 @@ export function FeaturedPostCard({
   readMoreLabel,
 }: FeaturedPostCardProps) {
   return (
-    <Link
-      href={`/blog/${slug}`}
-      className="group relative flex flex-col md:flex-row rounded-3xl overflow-hidden border border-white/5 hover:border-[#bbff00]/20 transition-all duration-500 bg-[#1a1a1a] min-h-[380px] md:min-h-[420px]"
-    >
-      {/* Image — 55% width on desktop */}
-      <div className="relative w-full md:w-[55%] aspect-[4/3] md:aspect-auto overflow-hidden shrink-0">
-        {mainImageUrl ? (
-          <Image
-            src={mainImageUrl}
-            alt={mainImageAlt ?? title}
-            fill
-            priority
-            {...(mainImageBlur && { placeholder: 'blur' as const, blurDataURL: mainImageBlur })}
-            className="object-cover group-hover:scale-105 transition-transform duration-700"
-            sizes="(max-width: 768px) 100vw, 55vw"
-          />
-        ) : (
-          <div className="w-full h-full">
-            <svg width="100%" height="100%" viewBox="0 0 600 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-              <defs>
-                <radialGradient id="frg1" cx="25%" cy="35%" r="70%">
-                  <stop offset="0%" stopColor="#bbff00" stopOpacity="0.12" />
-                  <stop offset="100%" stopColor="#bbff00" stopOpacity="0" />
-                </radialGradient>
-                <radialGradient id="frg2" cx="80%" cy="75%" r="55%">
-                  <stop offset="0%" stopColor="#6b7fff" stopOpacity="0.08" />
-                  <stop offset="100%" stopColor="#6b7fff" stopOpacity="0" />
-                </radialGradient>
-              </defs>
-              <rect width="600" height="420" fill="#1a1a1a" />
-              <rect width="600" height="420" fill="url(#frg1)" />
-              <rect width="600" height="420" fill="url(#frg2)" />
-              <circle cx="150" cy="120" r="200" fill="none" stroke="#bbff00" strokeOpacity="0.05" strokeWidth="1" />
-              <circle cx="450" cy="300" r="140" fill="none" stroke="#ffffff" strokeOpacity="0.03" strokeWidth="1" />
-              <circle cx="300" cy="210" r="80" fill="none" stroke="#bbff00" strokeOpacity="0.07" strokeWidth="0.5" />
-              <line x1="0" y1="210" x2="600" y2="210" stroke="#ffffff" strokeOpacity="0.02" strokeWidth="1" />
-              <line x1="300" y1="0" x2="300" y2="420" stroke="#ffffff" strokeOpacity="0.02" strokeWidth="1" />
-            </svg>
-          </div>
-        )}
-        {/* Fade edge desktop */}
-        <div className="hidden md:block absolute inset-y-0 right-0 w-20 bg-gradient-to-r from-transparent to-[#1a1a1a]" />
-      </div>
-
-      {/* Content — 45% on desktop */}
-      <div className="flex flex-col justify-between p-8 md:p-12 flex-1">
-        <div className="flex flex-col gap-5">
-          <span className="inline-flex items-center bg-[#bbff00] text-black text-xs font-semibold px-3 py-1 rounded-full w-fit tracking-wide">
-            {featuredLabel}
-          </span>
-          <h2 className="font-display text-3xl md:text-[2.5rem] text-white leading-tight group-hover:text-[#bbff00] transition-colors duration-300">
-            {title}
-          </h2>
-          <p className="text-sm text-white/45 leading-relaxed line-clamp-4">
-            {excerpt}
-          </p>
+    <article className="group relative flex flex-col md:flex-row rounded-3xl overflow-hidden border border-white/5 hover:border-[#bbff00]/20 transition-all duration-500 bg-[#1a1a1a] min-h-[380px] md:min-h-[420px]">
+      <Link
+        href={`/blog/${slug}`}
+        className="flex flex-col md:flex-row flex-1"
+      >
+        {/* Image — 55% width on desktop */}
+        <div className="relative w-full md:w-[55%] aspect-[4/3] md:aspect-auto overflow-hidden shrink-0">
+          {mainImageUrl ? (
+            <Image
+              src={mainImageUrl}
+              alt={mainImageAlt ?? title}
+              fill
+              priority
+              {...(mainImageBlur && { placeholder: 'blur' as const, blurDataURL: mainImageBlur })}
+              className="object-cover group-hover:scale-105 transition-transform duration-700"
+              sizes="(max-width: 768px) 100vw, 55vw"
+            />
+          ) : (
+            <div className="w-full h-full">
+              <svg width="100%" height="100%" viewBox="0 0 600 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <defs>
+                  <radialGradient id="frg1" cx="25%" cy="35%" r="70%">
+                    <stop offset="0%" stopColor="#bbff00" stopOpacity="0.12" />
+                    <stop offset="100%" stopColor="#bbff00" stopOpacity="0" />
+                  </radialGradient>
+                  <radialGradient id="frg2" cx="80%" cy="75%" r="55%">
+                    <stop offset="0%" stopColor="#6b7fff" stopOpacity="0.08" />
+                    <stop offset="100%" stopColor="#6b7fff" stopOpacity="0" />
+                  </radialGradient>
+                </defs>
+                <rect width="600" height="420" fill="#1a1a1a" />
+                <rect width="600" height="420" fill="url(#frg1)" />
+                <rect width="600" height="420" fill="url(#frg2)" />
+                <circle cx="150" cy="120" r="200" fill="none" stroke="#bbff00" strokeOpacity="0.05" strokeWidth="1" />
+                <circle cx="450" cy="300" r="140" fill="none" stroke="#ffffff" strokeOpacity="0.03" strokeWidth="1" />
+                <circle cx="300" cy="210" r="80" fill="none" stroke="#bbff00" strokeOpacity="0.07" strokeWidth="0.5" />
+                <line x1="0" y1="210" x2="600" y2="210" stroke="#ffffff" strokeOpacity="0.02" strokeWidth="1" />
+                <line x1="300" y1="0" x2="300" y2="420" stroke="#ffffff" strokeOpacity="0.02" strokeWidth="1" />
+              </svg>
+            </div>
+          )}
+          {/* Fade edge desktop */}
+          <div className="hidden md:block absolute inset-y-0 right-0 w-20 bg-gradient-to-r from-transparent to-[#1a1a1a]" />
         </div>
 
-        <div className="flex items-end justify-between pt-6 mt-6 border-t border-white/8">
-          <div>
-            <p className="text-xs text-white/25">
-              {formatDate(publishedAt, locale)}
-              {author && <> · {author}</>}
-            </p>
-            <p className="text-xs text-[#bbff00]/50 mt-1">
-              {readingTimeLabel}
+        {/* Content — 45% on desktop */}
+        <div className="flex flex-col justify-between p-8 md:p-12 flex-1">
+          <div className="flex flex-col gap-5">
+            <span className="inline-flex items-center bg-[#bbff00] text-black text-xs font-semibold px-3 py-1 rounded-full w-fit tracking-wide">
+              {featuredLabel}
+            </span>
+            <h2 className="font-display text-3xl md:text-[2.5rem] text-white leading-tight group-hover:text-[#bbff00] transition-colors duration-300">
+              {title}
+            </h2>
+            <p className="text-sm text-white/45 leading-relaxed line-clamp-4">
+              {excerpt}
             </p>
           </div>
-          <div className="flex items-center gap-2 text-white/30 group-hover:text-[#bbff00] transition-colors duration-300">
-            <span className="text-sm font-medium">{readMoreLabel}</span>
-            <ArrowUpRight size={16} />
-          </div>
+
+          <footer className="flex items-end justify-between pt-6 mt-6 border-t border-white/8">
+            <div>
+              <time dateTime={publishedAt} className="text-xs text-white/25">
+                {formatDate(publishedAt, locale)}
+              </time>
+              {author && <span className="text-xs text-white/25"> · {author}</span>}
+              <p className="text-xs text-[#bbff00]/50 mt-1">
+                {readingTimeLabel}
+              </p>
+            </div>
+            <div className="flex items-center gap-2 text-white/30 group-hover:text-[#bbff00] transition-colors duration-300">
+              <span className="text-sm font-medium">{readMoreLabel}</span>
+              <ArrowUpRight size={16} />
+            </div>
+          </footer>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </article>
   );
 }

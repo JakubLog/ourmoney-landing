@@ -220,6 +220,7 @@ export default async function BlogPostPage({ params }: Props) {
     dateModified: post._updatedAt ?? post.publishedAt,
     url: canonicalUrl,
     inLanguage: post.language,
+    ...(post.estimatedWordCount && { wordCount: post.estimatedWordCount }),
     ...(post.seo?.keywords?.length && { keywords: post.seo.keywords.join(', ') }),
     author: post.author
       ? {
@@ -228,7 +229,7 @@ export default async function BlogPostPage({ params }: Props) {
           ...(post.author.role && { jobTitle: post.author.role }),
           ...(post.author.bio && { description: post.author.bio }),
           ...(post.author.avatarUrl && { image: post.author.avatarUrl }),
-          url: `https://ourmoney.pl/autor/${post.author.slug}`,
+          url: `https://ourmoney.pl/${locale}/blog/autor/${post.author.slug}`,
         }
       : undefined,
     publisher: {
@@ -297,11 +298,12 @@ export default async function BlogPostPage({ params }: Props) {
         />
       )}
       <main>
+        <article itemScope itemType="https://schema.org/Article">
         {/* Hero */}
-        <section className="bg-[#141414] pt-36 pb-16 px-6">
+        <header className="bg-[#141414] pt-36 pb-16 px-6">
           <div className="max-w-3xl mx-auto">
             {/* Top bar: back link + share + language switcher */}
-            <div className="flex items-center justify-between mb-10 flex-wrap gap-3">
+            <nav className="flex items-center justify-between mb-10 flex-wrap gap-3" aria-label="Blog navigation">
               <Link
                 href="/blog"
                 className="inline-flex items-center gap-2 text-white/30 hover:text-white text-xs transition-colors"
@@ -317,12 +319,13 @@ export default async function BlogPostPage({ params }: Props) {
                     href={`/blog/${tr!.slug}`}
                     locale={tr!.language as 'pl' | 'en'}
                     className="inline-flex items-center gap-1.5 text-xs text-white/30 hover:text-[#bbff00] transition-colors border border-white/10 hover:border-[#bbff00]/30 px-3 py-1.5 rounded-full"
+                    hrefLang={tr!.language}
                   >
                     {tr!.language === 'pl' ? t('langLabel.pl') : t('langLabel.en')}
                   </Link>
                 ))}
               </div>
-            </div>
+            </nav>
 
             {/* Category + meta */}
             <div className="flex flex-wrap items-center gap-3 mb-6 text-white/40 text-xs">
@@ -331,11 +334,13 @@ export default async function BlogPostPage({ params }: Props) {
                   {post.category.title}
                 </span>
               )}
-              <span>{formatDate(post.publishedAt, locale)}</span>
+              <time dateTime={post.publishedAt}>{formatDate(post.publishedAt, locale)}</time>
               {post.author && (
                 <>
                   <span>·</span>
-                  <span>{post.author.name}</span>
+                  <span itemProp="author" itemScope itemType="https://schema.org/Person">
+                    <span itemProp="name">{post.author.name}</span>
+                  </span>
                   {post.author.role && (
                     <span className="text-white/25">— {post.author.role}</span>
                   )}
@@ -347,15 +352,15 @@ export default async function BlogPostPage({ params }: Props) {
               </span>
             </div>
 
-            <h1 className="font-display text-4xl md:text-6xl text-white leading-tight">
+            <h1 className="font-display text-4xl md:text-6xl text-white leading-tight" itemProp="headline">
               {post.title}
             </h1>
           </div>
-        </section>
+        </header>
 
         {/* Main image */}
         {post.mainImageUrl && (
-          <div className="relative w-full aspect-[16/7] bg-[#1a1a1a]">
+          <figure className="relative w-full aspect-[16/7] bg-[#1a1a1a] m-0">
             <Image
               src={post.mainImageUrl}
               alt={post.mainImageAlt ?? post.title}
@@ -365,11 +370,11 @@ export default async function BlogPostPage({ params }: Props) {
               className="object-cover"
               sizes="100vw"
             />
-          </div>
+          </figure>
         )}
 
         {/* Body */}
-        <section className="bg-white py-16 px-6">
+        <section className="bg-white py-16 px-6" itemProp="articleBody">
           <div className="max-w-3xl mx-auto">
             {/* TL;DR */}
             {post.aiSeo?.aiSummary && (
@@ -455,7 +460,7 @@ export default async function BlogPostPage({ params }: Props) {
 
             {/* Author box */}
             {post.author && (post.author.bio || post.author.avatarUrl) && (
-              <aside className="mt-14 pt-10 border-t border-[#141414]/8 flex items-start gap-5">
+              <aside className="mt-14 pt-10 border-t border-[#141414]/8 flex items-start gap-5" aria-label={t('authorSection')}>
                 {post.author.avatarUrl && (
                   <Image
                     src={post.author.avatarUrl}
@@ -465,7 +470,7 @@ export default async function BlogPostPage({ params }: Props) {
                     className="rounded-full shrink-0 object-cover overflow-hidden"
                   />
                 )}
-                <div>
+                <address className="not-italic">
                   <p className="text-xs text-[#141414]/40 mb-1 uppercase tracking-wider">
                     {t('authorSection')}
                   </p>
@@ -478,7 +483,7 @@ export default async function BlogPostPage({ params }: Props) {
                       {post.author.bio}
                     </p>
                   )}
-                </div>
+                </address>
               </aside>
             )}
 
@@ -550,9 +555,11 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         </section>
 
+        </article>
+
         {/* Related posts */}
         {relatedPosts.length > 0 && (
-          <section className="bg-[#141414] py-24 px-6">
+          <section className="bg-[#141414] py-24 px-6" aria-label={t('relatedPosts')}>
             <div className="max-w-5xl mx-auto">
               <div className="border-t border-white/8 pt-10 mb-10">
                 <h2 className="font-display text-3xl text-white">{t('relatedPosts')}</h2>

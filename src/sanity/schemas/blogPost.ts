@@ -15,7 +15,19 @@ export const blogPost = defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      options: { source: 'title' },
+      options: {
+        source: 'title',
+        slugify: (input: string) =>
+          input
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/\u0142/g, 'l')
+            .replace(/\u0141/g, 'L')
+            .toLowerCase()
+            .trim()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/(^-|-$)/g, ''),
+      },
       validation: (Rule) => Rule.required(),
     }),
     defineField({

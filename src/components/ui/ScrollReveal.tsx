@@ -27,6 +27,35 @@ const REVEALED_STYLES: Record<Animation, string> = {
   'scale': 'opacity:1;transform:scale(1)',
 };
 
+// Shared IntersectionObserver — one observer for all ScrollReveal instances
+type RevealEntry = {
+  el: HTMLElement;
+  anim: Animation;
+  delay: number;
+  duration: number;
+};
+
+const registry = new Map<Element, RevealEntry>();
+let sharedObserver: IntersectionObserver | null = null;
+
+function getObserver(): IntersectionObserver {
+  if (sharedObserver) return sharedObserver;
+  sharedObserver = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        const item = registry.get(entry.target);
+        if (!item) continue;
+        item.el.style.cssText = `${REVEALED_STYLES[item.anim]};transition:opacity ${item.duration}ms cubic-bezier(0.22,1,0.36,1) ${item.delay}ms,transform ${item.duration}ms cubic-bezier(0.22,1,0.36,1) ${item.delay}ms`;
+        sharedObserver!.unobserve(entry.target);
+        registry.delete(entry.target);
+      }
+    },
+    { threshold: 0.15 },
+  );
+  return sharedObserver;
+}
+
 export function ScrollReveal({
   children,
   animation = 'fade-up',
@@ -54,22 +83,18 @@ export function ScrollReveal({
 
     el.style.cssText = `${INITIAL_STYLES[anim]};transition:opacity ${duration}ms cubic-bezier(0.22,1,0.36,1) ${delay}ms,transform ${duration}ms cubic-bezier(0.22,1,0.36,1) ${delay}ms;will-change:opacity,transform`;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.style.cssText = `${REVEALED_STYLES[anim]};transition:opacity ${duration}ms cubic-bezier(0.22,1,0.36,1) ${delay}ms,transform ${duration}ms cubic-bezier(0.22,1,0.36,1) ${delay}ms`;
-          observer.unobserve(el);
-        }
-      },
-      { threshold: 0.15 },
-    );
-
+    registry.set(el, { el, anim, delay, duration });
+    const observer = getObserver();
     observer.observe(el);
-    return () => observer.disconnect();
+
+    return () => {
+      observer.unobserve(el);
+      registry.delete(el);
+    };
   }, [animation, delay, duration]);
 
   return (
-      <Tag ref={ref} className={className}>
+    <Tag ref={ref} className={className}>
       {children}
     </Tag>
   );

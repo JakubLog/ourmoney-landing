@@ -11,10 +11,19 @@ type Feature = { title: string; description: string };
 type Props = { locale: string };
 
 const FEATURE_IMAGES = [
-  '/app-screens/inteligentny-podzial-wydatkow.JPG',
-  '/app-screens/wspolne-cele-finansowe.JPG',
-  '/app-screens/moje-twoje-nasze-wydatki.JPG',
+  '/app-screens/inteligentny-podzial-wydatkow.webp',
+  '/app-screens/wspolne-cele-finansowe.webp',
+  '/app-screens/moje-twoje-nasze-wydatki.webp',
 ];
+
+const FEATURE_BLUR: Record<string, string> = {
+  '/app-screens/inteligentny-podzial-wydatkow.webp':
+    'data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAABwBACdASoUACwAPzmMwFgvKKajqrgKAeAnCUAAA+j/bPeAyUAoWh9xczQAAAD+3pQpet2UpYbVb9bG4em7asxSn7jtvYIT2XUd7paps4If+8DB+AJOX99ANTMnEXiMwAAAAA==',
+  '/app-screens/wspolne-cele-finansowe.webp':
+    'data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAAAwAwCdASoUACwAPzmSvlevKqYjqqgB4CcJaQAAUf7LtYzQAP7uZB81kbd/NWuxhEO1XIkSi1UUVfgRr5vslzsyAAA=',
+  '/app-screens/moje-twoje-nasze-wydatki.webp':
+    'data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAAAwAwCdASoUACwAPzmWxlovKqgkJWmZ4CcJZwAAKxb0AmcAAP7ubF2DHKxTsfLg6VxjvMofZI2UMvsn7y7XZxQqhAA=',
+};
 
 const CYCLE_DURATION = 5000;
 
@@ -57,52 +66,54 @@ export function FeaturesSection({ locale }: Props) {
                 {t('subtitle')}
               </p>
             </ScrollReveal>
-            {items.map((item, i) => (
-              <div key={item.title} className="relative">
-                {/* Border top */}
-                <div className="h-px bg-dark/10" />
-                {/* Progress bar — only on active item */}
-                {open === i && (
-                  <div
-                    key={animKey}
-                    className="absolute top-0 left-0 h-px bg-accent origin-left group-hover/features:[animation-play-state:paused]"
-                    style={{
-                      animation: `progressFill ${CYCLE_DURATION}ms linear forwards`,
-                      width: '100%',
-                    }}
-                    onAnimationEnd={goToNext}
-                  />
-                )}
-                <button
-                  className="w-full flex items-center gap-4 py-5 text-left group cursor-pointer"
-                  onClick={() => handleClick(i)}
-                  aria-expanded={open === i}
-                >
-                  <span className="text-dark/30 text-sm font-medium tabular-nums w-8 shrink-0">
-                    {String(i + 1).padStart(2, '0')}.
-                  </span>
-                  <span className={`font-medium text-base flex-1 transition-colors ${open === i ? 'text-dark' : 'text-dark/40'}`}>
-                    {item.title}
-                  </span>
+            <ol className="list-none p-0 m-0">
+              {items.map((item, i) => (
+                <li key={item.title} className="relative">
+                  {/* Border top */}
+                  <div className="h-px bg-dark/10" />
+                  {/* Progress bar — only on active item */}
                   {open === i && (
-                    <ArrowRight size={18} className="shrink-0 text-dark" />
+                    <div
+                      key={animKey}
+                      className="absolute top-0 left-0 h-px bg-accent origin-left group-hover/features:[animation-play-state:paused]"
+                      style={{
+                        animation: `progressFill ${CYCLE_DURATION}ms linear forwards`,
+                        width: '100%',
+                      }}
+                      onAnimationEnd={goToNext}
+                    />
                   )}
-                </button>
-                <div
-                  style={{
-                    display: 'grid',
-                    gridTemplateRows: open === i ? '1fr' : '0fr',
-                    transition: 'grid-template-rows 0.25s ease-out',
-                  }}
-                >
-                  <div style={{ overflow: 'hidden' }}>
-                    <p className="pb-5 pl-12 text-sm text-dark/50 leading-relaxed max-w-md">
-                      {item.description}
-                    </p>
+                  <button
+                    className="w-full flex items-center gap-4 py-5 text-left group cursor-pointer"
+                    onClick={() => handleClick(i)}
+                    aria-expanded={open === i}
+                  >
+                    <span className="text-dark/30 text-sm font-medium tabular-nums w-8 shrink-0">
+                      {String(i + 1).padStart(2, '0')}.
+                    </span>
+                    <span className={`font-medium text-base flex-1 transition-colors ${open === i ? 'text-dark' : 'text-dark/40'}`}>
+                      {item.title}
+                    </span>
+                    {open === i && (
+                      <ArrowRight size={18} className="shrink-0 text-dark" />
+                    )}
+                  </button>
+                  <div
+                    style={{
+                      display: 'grid',
+                      gridTemplateRows: open === i ? '1fr' : '0fr',
+                      transition: 'grid-template-rows 0.25s ease-out',
+                    }}
+                  >
+                    <div style={{ overflow: 'hidden' }}>
+                      <p className="pb-5 pl-12 text-sm text-dark/50 leading-relaxed max-w-md">
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                </li>
+              ))}
+            </ol>
             <div className="h-px bg-dark/10" />
             <div className="mt-8">
               <InvertDotButton
@@ -143,6 +154,8 @@ export function FeaturesSection({ locale }: Props) {
                           sizes="(max-width: 640px) 280px, 310px"
                           loading={i === 0 ? undefined : 'lazy'}
                           priority={i === 0}
+                          placeholder="blur"
+                          blurDataURL={FEATURE_BLUR[src]}
                         />
                       );
                     })}

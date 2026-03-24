@@ -25,7 +25,7 @@
   },
   "HomePage": {
     "meta": {
-      "title": "OurMoney - Wspólny budżet dla par",
+      "title": "OurMoney — Wspólny budżet domowy dla par | Finanse razem",
       "description": "Pierwsza aplikacja finansowa stworzona specjalnie dla par. Sprawiedliwy podział wydatków, wspólne cele, zachowanie prywatności tam, gdzie tego chcesz."
     },
     "hero": {
@@ -247,5 +247,9 @@
     "accept": "Akceptuję",
     "reject": "Odrzucam",
     "learnMore": "Polityka prywatności"
+  },
+  "AuthorPage": {
+    "backToAbout": "O nas",
+    "articles": "Artykuły"
   }
 }

@@ -961,7 +961,12 @@
       "Bash(mv hero-bg-opt.webp hero-bg.webp)",
       "Bash(mv about-bg-opt.avif about-bg.avif)",
       "Bash(mv bg-section-2-opt.avif bg-section-2.avif)",
-      "Bash(rm bg-section-1.avif)"
+      "Bash(rm bg-section-1.avif)",
+      "Bash(mv about-bg.avif about-bg-original.avif)",
+      "Bash(mv about-bg-new.avif about-bg.avif)",
+      "Bash(mv bg-section-2.avif bg-section-2-original.avif)",
+      "Bash(mv bg-section-2-new.avif bg-section-2.avif)",
+      "Bash(rm -f about-bg-opt.avif bg-section-2-opt.avif)"
     ],
     "deny": [
       "Bash(rm -rf /*)",

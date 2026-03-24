@@ -60,9 +60,61 @@ export default async function BlogPage({ params }: Props) {
 
   const [featured, ...rest] = posts;
 
+  const jsonLdCollection = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: t('title'),
+    description: t('description'),
+    url: `https://ourmoney.pl/${locale}/blog`,
+    inLanguage: locale === 'pl' ? 'pl-PL' : 'en-US',
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'OurMoney',
+      url: 'https://ourmoney.pl',
+    },
+    ...(posts.length > 0 && {
+      hasPart: posts.map((p) => ({
+        '@type': 'BlogPosting',
+        headline: p.title,
+        url: `https://ourmoney.pl/${locale}/blog/${p.slug}`,
+        datePublished: p.publishedAt,
+        ...(p.mainImageUrl && { image: p.mainImageUrl }),
+        ...(p.authorName && {
+          author: { '@type': 'Person', name: p.authorName },
+        }),
+      })),
+    }),
+  };
+
+  const jsonLdBreadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: locale === 'pl' ? 'Strona główna' : 'Home',
+        item: `https://ourmoney.pl/${locale}`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+      },
+    ],
+  };
+
   return (
     <>
       <Header />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdCollection) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
+      />
       <main>
         {/* Hero */}
         <section className="bg-[#141414] pt-36 pb-16 px-6">
