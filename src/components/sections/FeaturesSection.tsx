@@ -148,6 +148,7 @@ export function FeaturesSection({ locale }: Props) {
                           key={src}
                           src={src}
                           alt={items[i]?.title ?? 'OurMoney app'}
+                          title={items[i]?.title ?? 'OurMoney app'}
                           fill
                           className="object-cover transition-opacity duration-300"
                           style={{ opacity: isActive ? 1 : 0 }}

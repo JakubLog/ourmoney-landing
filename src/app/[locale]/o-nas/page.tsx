@@ -40,6 +40,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         en: 'https://ourmoney.pl/en/o-nas',
       },
     },
+    openGraph: {
+      title: t('title'),
+      description: t('description'),
+      url: `https://ourmoney.pl/${locale}/o-nas`,
+      locale: locale === 'pl' ? 'pl_PL' : 'en_US',
+      type: 'website',
+    },
+    twitter: {
+      title: t('title'),
+      description: t('description'),
+    },
   };
 }
 

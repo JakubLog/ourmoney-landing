@@ -52,6 +52,7 @@ export const POST_QUERY = groq`
     "slug": slug.current,
     publishedAt,
     _updatedAt,
+    excerpt,
     body[]{ ..., _type == "image" => { ..., "url": asset->url, alt, caption } },
     "estimatedWordCount": length(pt::text(body)),
     "mainImageUrl": mainImage.asset->url,

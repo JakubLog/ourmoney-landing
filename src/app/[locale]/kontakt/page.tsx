@@ -26,6 +26,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         en: 'https://ourmoney.pl/en/kontakt',
       },
     },
+    openGraph: {
+      title: t('title'),
+      description: t('description'),
+      url: `https://ourmoney.pl/${locale}/kontakt`,
+      locale: locale === 'pl' ? 'pl_PL' : 'en_US',
+      type: 'website',
+    },
+    twitter: {
+      title: t('title'),
+      description: t('description'),
+    },
   };
 }
 

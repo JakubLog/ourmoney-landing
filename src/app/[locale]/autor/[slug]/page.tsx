@@ -38,15 +38,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const author = await client.fetch<AuthorData | null>(AUTHOR_QUERY, { slug }, fetchOptions);
   if (!author) return {};
+  const title = `${author.name} | OurMoney`;
+  const description = author.bio ?? undefined;
   return {
-    title: `${author.name} | OurMoney`,
-    description: author.bio ?? undefined,
+    title,
+    description,
     alternates: {
       canonical: `https://ourmoney.pl/${locale}/autor/${slug}`,
       languages: {
         pl: `https://ourmoney.pl/pl/autor/${slug}`,
-        en: `https://ourmoney.pl/en/author/${slug}`,
+        en: `https://ourmoney.pl/en/autor/${slug}`,
       },
+    },
+    openGraph: {
+      title,
+      description,
+      url: `https://ourmoney.pl/${locale}/autor/${slug}`,
+      locale: locale === 'pl' ? 'pl_PL' : 'en_US',
+      type: 'profile',
+      ...(author.avatarUrl && { images: [{ url: author.avatarUrl, width: 400, height: 400 }] }),
+    },
+    twitter: {
+      title,
+      description,
+      ...(author.avatarUrl && { images: [author.avatarUrl] }),
     },
   };
 }
@@ -104,6 +119,7 @@ export default async function AuthorPage({ params }: Props) {
                 <Image
                   src={author.avatarUrl}
                   alt={author.name}
+                  title={author.name}
                   width={96}
                   height={96}
                   className="rounded-full object-cover w-24 h-24 flex-shrink-0"
@@ -151,6 +167,7 @@ export default async function AuthorPage({ params }: Props) {
                         <Image
                           src={post.mainImageUrl}
                           alt={post.mainImageAlt ?? post.title}
+                          title={post.mainImageAlt ?? post.title}
                           width={100}
                           height={70}
                           className="rounded-lg object-cover flex-shrink-0 w-[100px] h-[70px]"

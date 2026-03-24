@@ -79,6 +79,7 @@ export function BlogPostCard({
             <Image
               src={mainImageUrl}
               alt={mainImageAlt ?? title}
+              title={mainImageAlt ?? title}
               fill
               {...(mainImageBlur && { placeholder: 'blur' as const, blurDataURL: mainImageBlur })}
               className="object-cover group-hover:scale-105 transition-transform duration-700"
@@ -144,6 +145,7 @@ export function FeaturedPostCard({
             <Image
               src={mainImageUrl}
               alt={mainImageAlt ?? title}
+              title={mainImageAlt ?? title}
               fill
               priority
               {...(mainImageBlur && { placeholder: 'blur' as const, blurDataURL: mainImageBlur })}

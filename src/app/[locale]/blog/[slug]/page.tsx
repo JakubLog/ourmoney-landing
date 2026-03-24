@@ -63,6 +63,7 @@ type Post = {
   slug: string;
   publishedAt: string;
   _updatedAt: string;
+  excerpt?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   body: any[];
   mainImageUrl?: string;
@@ -130,7 +131,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const title = post.seo?.title ?? post.title;
-  const description = post.seo?.description;
+  const description = post.seo?.description ?? post.excerpt;
   const canonicalUrl = post.seo?.canonical ?? `https://ourmoney.pl/${locale}/blog/${slug}`;
   const ogImage = post.seo?.ogImageUrl ?? post.mainImageUrl;
 
@@ -214,7 +215,7 @@ export default async function BlogPostPage({ params }: Props) {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: post.title,
-    description: post.seo?.description,
+    description: post.seo?.description ?? post.excerpt,
     image: post.mainImageUrl,
     datePublished: post.publishedAt,
     dateModified: post._updatedAt ?? post.publishedAt,
@@ -335,6 +336,11 @@ export default async function BlogPostPage({ params }: Props) {
                 </span>
               )}
               <time dateTime={post.publishedAt}>{formatDate(post.publishedAt, locale)}</time>
+              {post._updatedAt && post._updatedAt > post.publishedAt && (
+                <time dateTime={post._updatedAt} className="sr-only">
+                  {formatDate(post._updatedAt, locale)}
+                </time>
+              )}
               {post.author && (
                 <>
                   <span>·</span>
@@ -364,6 +370,7 @@ export default async function BlogPostPage({ params }: Props) {
             <Image
               src={post.mainImageUrl}
               alt={post.mainImageAlt ?? post.title}
+              title={post.mainImageAlt ?? post.title}
               fill
               priority
               {...(post.mainImageBlur && { placeholder: 'blur' as const, blurDataURL: post.mainImageBlur })}
@@ -465,6 +472,7 @@ export default async function BlogPostPage({ params }: Props) {
                   <Image
                     src={post.author.avatarUrl}
                     alt={post.author.name}
+                    title={post.author.name}
                     width={64}
                     height={64}
                     className="rounded-full shrink-0 object-cover overflow-hidden"

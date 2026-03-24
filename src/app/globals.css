@@ -149,7 +149,12 @@ details[open] .faq-minus { display: block; }
 }
 
 html {
-  scroll-behavior: smooth !important;
+  scroll-behavior: smooth;
+}
+
+/* When Lenis is active, it controls scrolling — disable native smooth scroll */
+html.lenis, html.lenis-smooth {
+  scroll-behavior: auto;
 }
 
 body {

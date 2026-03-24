@@ -52,6 +52,7 @@ export function AuthorCard({ author }: { author: Author }) {
           <Image
             src={author.avatarUrl}
             alt={author.name}
+            title={author.name}
             width={120}
             height={120}
             className="rounded-full object-cover mb-6 flex-shrink-0"

@@ -2,23 +2,17 @@
 
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useRef } from 'react';
-import { useAnimate } from 'framer-motion';
 
-const EASE: [number, number, number, number] = [0.76, 0, 0.24, 1];
+const EASE = 'cubic-bezier(0.76, 0, 0.24, 1)';
 
 export function PageTransitionOverlay() {
   const pathname = usePathname();
   const router = useRouter();
-  const [scope, animate] = useAnimate();
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   const isFirst = useRef(true);
   const isAnimating = useRef(false);
-
-  const animateFn = useRef(animate);
-  const scopeEl = useRef(scope);
   const routerRef = useRef(router);
-  animateFn.current = animate;
-  scopeEl.current = scope;
   routerRef.current = router;
 
   // When pathname changes (navigation complete) → reveal
@@ -28,16 +22,19 @@ export function PageTransitionOverlay() {
       return;
     }
     if (!isAnimating.current) return;
+    const el = overlayRef.current;
+    if (!el) return;
 
     async function reveal() {
       // Small pause so the new page renders behind the overlay
       await new Promise<void>(r => setTimeout(r, 50));
-      await animateFn.current(
-        scopeEl.current.current,
-        { x: [null, '-100%'] },
-        { duration: 0.38, ease: EASE },
+      const anim = el!.animate(
+        [{ transform: 'translateX(0%)' }, { transform: 'translateX(-100%)' }],
+        { duration: 380, easing: EASE, fill: 'forwards' },
       );
-      animateFn.current(scopeEl.current.current, { x: '100%' }, { duration: 0 });
+      await anim.finished;
+      el!.style.transform = 'translateX(100%)';
+      anim.cancel();
       isAnimating.current = false;
     }
 
@@ -55,6 +52,9 @@ export function PageTransitionOverlay() {
       if (!href.startsWith('/') || href.includes('#')) return;
       if (isAnimating.current) return;
 
+      const el = overlayRef.current;
+      if (!el) return;
+
       // Block Next.js from navigating immediately
       e.preventDefault();
       e.stopPropagation();
@@ -62,11 +62,13 @@ export function PageTransitionOverlay() {
       isAnimating.current = true;
 
       // Cover the screen fully first
-      await animateFn.current(
-        scopeEl.current.current,
-        { x: ['100%', '0%'] },
-        { duration: 0.28, ease: EASE },
+      const anim = el.animate(
+        [{ transform: 'translateX(100%)' }, { transform: 'translateX(0%)' }],
+        { duration: 280, easing: EASE, fill: 'forwards' },
       );
+      await anim.finished;
+      anim.cancel();
+      el.style.transform = 'translateX(0%)';
 
       // NOW navigate — page swaps behind the overlay
       routerRef.current.push(href);
@@ -79,7 +81,7 @@ export function PageTransitionOverlay() {
 
   return (
     <div
-      ref={scope}
+      ref={overlayRef}
       style={{ transform: 'translateX(100%)' }}
       className="fixed inset-0 z-[9999] bg-[#141414] pointer-events-none will-change-transform"
     />

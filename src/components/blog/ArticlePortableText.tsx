@@ -17,6 +17,7 @@ const components: PortableTextComponents = {
             <Image
               src={value.url}
               alt={value.alt || value.caption || 'Article image'}
+              title={value.alt || value.caption || undefined}
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 800px"

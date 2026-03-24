@@ -25,6 +25,7 @@ export async function Footer() {
             <Image
               src="/ourmoney-logo-hero.svg"
               alt="OurMoney"
+              title="OurMoney"
               width={100}
               height={17}
               className="h-[17px] w-auto opacity-80 hover:opacity-100 transition-opacity"
