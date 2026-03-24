@@ -22,9 +22,10 @@ export function Header() {
   }, []);
 
   const navLinks = [
-    { href: '/o-nas', label: t('about') },
-    { href: '/blog', label: t('blog') },
-    { href: '/kontakt', label: t('contact') },
+    { href: '/' as const, label: t('home') },
+    { href: '/o-nas' as const, label: t('about') },
+    { href: '/blog' as const, label: t('blog') },
+    { href: '/kontakt' as const, label: t('contact') },
   ];
 
   const altLocale = locale === 'pl' ? 'en' : 'pl';
@@ -45,31 +46,34 @@ export function Header() {
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" aria-label="OurMoney">
+        <Link href="/" aria-label="OurMoney — strona główna">
           <Logo textColor={light ? '#141414' : '#ffffff'} />
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`text-sm font-medium group px-1 py-2 ${light ? 'text-[#141414]/70 hover:text-[#141414]' : 'text-white/80 hover:text-white'}`}
-            >
-              <span className="relative block overflow-hidden">
-                <span className="block transition-transform duration-200 ease-out group-hover:-translate-y-full">
-                  {link.label}
-                </span>
-                <span
-                  aria-hidden="true"
-                  className="absolute inset-0 block translate-y-full transition-transform duration-200 ease-out group-hover:translate-y-0"
+        <nav aria-label={locale === 'pl' ? 'Nawigacja główna' : 'Main navigation'} className="hidden md:flex items-center">
+          <ul className="flex items-center gap-8 list-none m-0 p-0">
+            {navLinks.slice(1).map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={`text-sm font-medium group px-1 py-2 ${light ? 'text-[#141414]/70 hover:text-[#141414]' : 'text-white/80 hover:text-white'}`}
                 >
-                  {link.label}
-                </span>
-              </span>
-            </Link>
-          ))}
+                  <span className="relative block overflow-hidden">
+                    <span className="block transition-transform duration-200 ease-out group-hover:-translate-y-full">
+                      {link.label}
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-0 block translate-y-full transition-transform duration-200 ease-out group-hover:translate-y-0"
+                    >
+                      {link.label}
+                    </span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </nav>
 
         {/* Right: Lang + CTA */}
@@ -79,6 +83,7 @@ export function Header() {
             locale={altLocale}
             className={`text-xs uppercase tracking-widest group px-1 py-2 ${light ? 'text-[#141414]/40 hover:text-[#141414]/70' : 'text-white/40 hover:text-white/70'}`}
             onClick={() => trackLanguageSwitch(locale, altLocale)}
+            hrefLang={altLocale}
           >
             <span className="relative block overflow-hidden">
               <span className="block transition-transform duration-200 ease-out group-hover:-translate-y-full">
@@ -108,6 +113,7 @@ export function Header() {
           className={`md:hidden p-1 transition-colors ${light ? 'text-[#141414]' : 'text-white'}`}
           onClick={() => setOpen(!open)}
           aria-label="Menu"
+          aria-expanded={open}
         >
           {open ? <X size={22} strokeWidth={1.5} /> : <Menu size={22} strokeWidth={1.5} />}
         </button>
@@ -115,18 +121,21 @@ export function Header() {
 
       {/* Mobile Menu */}
       {open && (
-        <div className="mobile-menu-enter md:hidden border-t border-black/8 px-6 pb-8 flex flex-col">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="flex items-center justify-between py-4 text-[#141414] text-lg font-medium border-b border-black/6 active:bg-black/3"
-              onClick={() => setOpen(false)}
-            >
-              {link.label}
-              <ChevronRight className="w-4 h-4 text-[#141414]/25" />
-            </Link>
-          ))}
+        <nav aria-label={locale === 'pl' ? 'Menu mobilne' : 'Mobile menu'} className="mobile-menu-enter md:hidden border-t border-black/8 px-6 pb-8 flex flex-col">
+          <ul className="list-none m-0 p-0">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="flex items-center justify-between py-4 text-[#141414] text-lg font-medium border-b border-black/6 active:bg-black/3"
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                  <ChevronRight className="w-4 h-4 text-[#141414]/25" />
+                </Link>
+              </li>
+            ))}
+          </ul>
 
           <div className="mt-7 flex flex-col gap-3">
             <a
@@ -142,12 +151,13 @@ export function Header() {
               href={pathname}
               locale={altLocale}
               className="text-center text-xs text-[#141414]/35 uppercase tracking-widest py-3"
+              hrefLang={altLocale}
               onClick={() => { setOpen(false); trackLanguageSwitch(locale, altLocale); }}
             >
               {altLocale}
             </Link>
           </div>
-        </div>
+        </nav>
       )}
     </header>
   );
