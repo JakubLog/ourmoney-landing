@@ -264,6 +264,7 @@
       "messagePlaceholder": "Twoja wiadomość...",
       "submit": "Wyślij wiadomość",
       "success": "Wiadomość wysłana! Odpowiemy wkrótce.",
+      "error": "Nie udało się wysłać wiadomości. Spróbuj ponownie.",
       "note": "Odpowiadamy zazwyczaj w ciągu 24 godzin."
     }
   },

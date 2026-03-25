@@ -6,6 +6,7 @@ import { Footer } from '@/components/layout/Footer';
 import { CTABanner } from '@/components/sections/CTABanner';
 import { Mail, Instagram } from 'lucide-react';
 import { CopyEmail } from '@/components/ui/CopyEmail';
+import { ContactForm } from '@/components/ui/ContactForm';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -101,12 +102,8 @@ export default async function ContactPage({ params }: Props) {
               </a>
             </div>
 
-            {/* Simple mailto form note */}
-            <div className="bg-[#f7f7f7] rounded-2xl p-8 text-center">
-              <p className="text-[#141414]/60 text-sm leading-relaxed">
-                {t('form.note')}
-              </p>
-            </div>
+            {/* Contact form */}
+            <ContactForm />
           </div>
         </section>
 

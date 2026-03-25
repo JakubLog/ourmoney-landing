@@ -264,6 +264,7 @@
       "messagePlaceholder": "Your message...",
       "submit": "Send message",
       "success": "Message sent! We'll reply soon.",
+      "error": "Failed to send message. Please try again.",
       "note": "We usually respond within 24 hours."
     }
   },
