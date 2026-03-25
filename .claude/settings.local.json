@@ -968,7 +968,8 @@
       "Bash(mv bg-section-2-new.avif bg-section-2.avif)",
       "Bash(rm -f about-bg-opt.avif bg-section-2-opt.avif)",
       "Read(//e/AutomationHouse/OurMoney/**)",
-      "WebFetch(domain:www.npmjs.com)"
+      "WebFetch(domain:www.npmjs.com)",
+      "Bash(node -e \":*)"
     ],
     "deny": [
       "Bash(rm -rf /*)",
