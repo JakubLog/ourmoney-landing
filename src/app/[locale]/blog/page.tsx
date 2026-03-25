@@ -9,7 +9,7 @@ import { client, fetchOptions } from '@/sanity/lib/client';
 import { POSTS_QUERY } from '@/sanity/lib/queries';
 import { readingTime } from '@/lib/reading-time';
 
-export const revalidate = process.env.NODE_ENV === 'production' ? 3600 : 0;
+export const revalidate = 3600;
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));

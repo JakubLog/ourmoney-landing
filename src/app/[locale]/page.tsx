@@ -15,7 +15,7 @@ import { BeforeAfterSection } from '@/components/sections/BeforeAfterSection';
 import { TrustSection } from '@/components/sections/TrustSection';
 import { ComparisonSection } from '@/components/sections/ComparisonSection';
 
-export const revalidate = process.env.NODE_ENV === 'production' ? 86400 : 0;
+export const revalidate = 86400;
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
