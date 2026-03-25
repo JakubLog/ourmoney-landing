@@ -10,8 +10,12 @@ import { BrandPromiseSection } from '@/components/sections/BrandPromiseSection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { FAQSection } from '@/components/sections/FAQSection';
 import { CTABanner } from '@/components/sections/CTABanner';
+import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
+import { BeforeAfterSection } from '@/components/sections/BeforeAfterSection';
+import { TrustSection } from '@/components/sections/TrustSection';
+import { ComparisonSection } from '@/components/sections/ComparisonSection';
 
-export const revalidate = 86400; // ISR: regenerate every 24h
+export const revalidate = process.env.NODE_ENV === 'production' ? 86400 : 0;
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -112,9 +116,13 @@ export default async function HomePage({ params }: Props) {
       <main style={{ fontFamily: '"Switzer", "Switzer Placeholder", sans-serif', fontWeight: 500 }}>
         <HeroSection locale={locale} />
         <PainPointsSection locale={locale} />
+        <HowItWorksSection locale={locale} />
         <FeaturesSection locale={locale} />
+        <BeforeAfterSection locale={locale} />
         <BrandPromiseSection locale={locale} />
+        <ComparisonSection locale={locale} />
         <TestimonialsSection locale={locale} />
+        <TrustSection locale={locale} />
         <FAQSection locale={locale} />
         <CTABanner locale={locale} />
       </main>

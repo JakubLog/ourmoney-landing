@@ -99,6 +99,89 @@
         }
       ]
     },
+    "howItWorks": {
+      "title": "Zacznij w",
+      "titleHighlight": "3 prostych krokach",
+      "subtitle": "Konfiguracja zajmuje mniej niż minutę. Bez skomplikowanych formularzy, bez karty kredytowej.",
+      "steps": [
+        {
+          "title": "Załóż konto",
+          "description": "Rejestracja trwa 30 sekund. Podaj e-mail, ustaw hasło — gotowe. Możesz zacząć sam/sama."
+        },
+        {
+          "title": "Dodaj wydatki",
+          "description": "Wpisz wspólne rachunki, zakupy, subskrypcje. OurMoney automatycznie policzy, kto ile powinien wpłacić."
+        },
+        {
+          "title": "Zaproś partnera",
+          "description": "Wyślij zaproszenie jednym klikiem. Od teraz macie wspólny wgląd w finanse i wspólne cele."
+        }
+      ]
+    },
+    "beforeAfter": {
+      "title": "Finanse",
+      "titleHighlight": "przed i po",
+      "titleEnd": "OurMoney",
+      "beforeLabel": "Bez OurMoney",
+      "afterLabel": "Z OurMoney",
+      "before": [
+        "Kłótnie o to, kto za co zapłacił",
+        "Arkusze Excel, notatki, zgadywanie",
+        "Brak wspólnych celów finansowych",
+        "Niezręczne rozmowy o pieniądzach",
+        "Poczucie niesprawiedliwego podziału"
+      ],
+      "after": [
+        "Jasny podział — każdy wie, ile wpłaca",
+        "Wszystko w jednym miejscu, automatycznie",
+        "Wspólne cele ze śledzeniem postępu",
+        "Transparentność bez trudnych rozmów",
+        "Sprawiedliwość oparta na danych, nie emocjach"
+      ]
+    },
+    "trust": {
+      "title": "Wasze dane są bezpieczne",
+      "subtitle": "Finanse to delikatny temat. Dlatego bezpieczeństwo traktujemy priorytetowo.",
+      "items": [
+        {
+          "title": "Szyfrowanie end-to-end",
+          "description": "Wszystkie dane przesyłane są szyfrowanym połączeniem SSL/TLS."
+        },
+        {
+          "title": "Prywatność by design",
+          "description": "Nie sprzedajemy danych. Nie wyświetlamy reklam. Wasze finanse to Wasza sprawa."
+        },
+        {
+          "title": "Pełna kontrola",
+          "description": "Wy decydujecie, co jest wspólne, a co prywatne. Możecie usunąć dane w dowolnej chwili."
+        },
+        {
+          "title": "RODO compliant",
+          "description": "Działamy zgodnie z europejskimi standardami ochrony danych osobowych."
+        }
+      ]
+    },
+    "comparison": {
+      "title": "Dlaczego nie Excel, Splitwise czy notatki?",
+      "subtitle": "OurMoney to jedyne narzędzie zaprojektowane specjalnie dla par — nie dla współlokatorów, nie dla grup.",
+      "competitors": ["OurMoney", "Excel", "Splitwise", "Notatki"],
+      "features": [
+        "Stworzony dla par",
+        "Podział proporcjonalny do dochodów",
+        "Wspólne cele oszczędnościowe",
+        "Prywatność (moje/twoje/nasze)",
+        "Automatyczne kalkulacje",
+        "Działa na każdym urządzeniu"
+      ],
+      "grid": [
+        ["yes", "no", "no", "no"],
+        ["yes", "partial", "no", "no"],
+        ["yes", "no", "no", "no"],
+        ["yes", "no", "no", "no"],
+        ["yes", "partial", "partial", "no"],
+        ["yes", "yes", "yes", "partial"]
+      ]
+    },
     "faq": {
       "title": "FAQ",
       "items": [

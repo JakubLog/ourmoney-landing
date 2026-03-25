@@ -27,6 +27,9 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Prevent webpack from bundling heavy Sanity Studio packages into vendor-chunks
+  // (fixes corrupt .next cache on Windows due to NTFS file locking during HMR)
+  serverExternalPackages: ['sanity', '@sanity/vision'],
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'cdn.sanity.io' },

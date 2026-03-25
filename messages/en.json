@@ -99,6 +99,89 @@
         }
       ]
     },
+    "howItWorks": {
+      "title": "Get started in",
+      "titleHighlight": "3 simple steps",
+      "subtitle": "Setup takes less than a minute. No complicated forms, no credit card required.",
+      "steps": [
+        {
+          "title": "Create an account",
+          "description": "Registration takes 30 seconds. Enter your email, set a password — done. You can start on your own."
+        },
+        {
+          "title": "Add expenses",
+          "description": "Enter shared bills, groceries, subscriptions. OurMoney automatically calculates who should contribute what."
+        },
+        {
+          "title": "Invite your partner",
+          "description": "Send an invite with one click. From now on you both have shared visibility into finances and goals."
+        }
+      ]
+    },
+    "beforeAfter": {
+      "title": "Finances",
+      "titleHighlight": "before and after",
+      "titleEnd": "OurMoney",
+      "beforeLabel": "Without OurMoney",
+      "afterLabel": "With OurMoney",
+      "before": [
+        "Arguments about who paid for what",
+        "Spreadsheets, notes, guesswork",
+        "No shared financial goals",
+        "Awkward conversations about money",
+        "Feeling of unfair splitting"
+      ],
+      "after": [
+        "Clear split — everyone knows their share",
+        "Everything in one place, automatically",
+        "Shared goals with progress tracking",
+        "Transparency without difficult conversations",
+        "Fairness based on data, not emotions"
+      ]
+    },
+    "trust": {
+      "title": "Your data is safe",
+      "subtitle": "Finances are a sensitive topic. That's why we prioritize security.",
+      "items": [
+        {
+          "title": "End-to-end encryption",
+          "description": "All data is transmitted over encrypted SSL/TLS connections."
+        },
+        {
+          "title": "Privacy by design",
+          "description": "We don't sell data. We don't show ads. Your finances are your business."
+        },
+        {
+          "title": "Full control",
+          "description": "You decide what's shared and what's private. You can delete your data anytime."
+        },
+        {
+          "title": "GDPR compliant",
+          "description": "We operate in full compliance with European data protection standards."
+        }
+      ]
+    },
+    "comparison": {
+      "title": "Why not Excel, Splitwise, or notes?",
+      "subtitle": "OurMoney is the only tool designed specifically for couples — not roommates, not groups.",
+      "competitors": ["OurMoney", "Excel", "Splitwise", "Notes"],
+      "features": [
+        "Built for couples",
+        "Income-proportional splitting",
+        "Shared savings goals",
+        "Privacy (mine/yours/ours)",
+        "Automatic calculations",
+        "Works on any device"
+      ],
+      "grid": [
+        ["yes", "no", "no", "no"],
+        ["yes", "partial", "no", "no"],
+        ["yes", "no", "no", "no"],
+        ["yes", "no", "no", "no"],
+        ["yes", "partial", "partial", "no"],
+        ["yes", "yes", "yes", "partial"]
+      ]
+    },
     "faq": {
       "title": "FAQ",
       "items": [

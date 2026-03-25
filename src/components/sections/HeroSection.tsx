@@ -2,12 +2,52 @@ import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import { InvertDotButton } from '@/components/ui/InvertDotButton';
 import { AnimatedWord } from '@/components/ui/AnimatedWord';
+import { client } from '@/sanity/lib/client';
+import { TESTIMONIALS_QUERY } from '@/sanity/lib/queries';
 
 type Props = { locale: string };
+
+type Testimonial = {
+  _id: string;
+  name: string;
+  rating: number;
+  photoUrl: string | null;
+};
 
 export async function HeroSection({ locale }: Props) {
   const t = await getTranslations({ locale, namespace: 'HomePage.hero' });
   const tCommon = await getTranslations({ locale, namespace: 'Common' });
+
+  const testimonials = await client.fetch<Testimonial[]>(
+    TESTIMONIALS_QUERY,
+    { language: locale },
+    process.env.NODE_ENV === 'production'
+      ? { next: { revalidate: 86400, tags: ['landing'] } }
+      : { cache: 'no-store' as const },
+  );
+
+  const avatars = testimonials
+    .filter((t) => t.photoUrl)
+    .slice(0, 5);
+
+  const avgRating =
+    testimonials.length > 0
+      ? testimonials.reduce((sum, t) => sum + (t.rating ?? 5), 0) / testimonials.length
+      : 5;
+
+  const aggregateRatingJsonLd = testimonials.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'OurMoney',
+    applicationCategory: 'FinanceApplication',
+    operatingSystem: 'Web',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: avgRating.toFixed(1),
+      bestRating: '5',
+      ratingCount: testimonials.length,
+    },
+  } : null;
 
   return (
     <section className="relative flex flex-col items-center justify-center overflow-hidden min-h-[85svh]">
@@ -39,11 +79,34 @@ export async function HeroSection({ locale }: Props) {
         <p className="text-base md:text-lg text-white/80 max-w-xl mx-auto mb-8 leading-relaxed">
           {t('subheadline')}
         </p>
-        <div className="mb-6 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 text-sm text-white/50">
-          <span>{t('socialProof')}</span>
-          <span aria-hidden="true" className="hidden sm:inline">·</span>
-          <span>{t('noCreditCard')}</span>
-        </div>
+
+        {/* Social proof with avatars */}
+        <aside aria-label={t('socialProof')} className="mb-6 flex flex-col items-center gap-3">
+          <div className="flex items-center justify-center gap-3">
+            {avatars.length > 0 && (
+              <div className="flex -space-x-2" aria-hidden="true">
+                {avatars.map((person) => (
+                  <Image
+                    key={person._id}
+                    src={person.photoUrl!}
+                    alt={person.name}
+                    width={36}
+                    height={36}
+                    className="w-9 h-9 rounded-full object-cover ring-2 ring-accent/70"
+                  />
+                ))}
+              </div>
+            )}
+            <span className="text-sm text-white/60">{t('socialProof')}</span>
+          </div>
+          {aggregateRatingJsonLd && (
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(aggregateRatingJsonLd) }}
+            />
+          )}
+        </aside>
+
         <InvertDotButton
           href={tCommon('appUrl')}
           className="inline-block bg-accent text-black font-semibold px-10 py-4 rounded-full text-sm"
@@ -52,6 +115,7 @@ export async function HeroSection({ locale }: Props) {
         >
           {t('cta')}
         </InvertDotButton>
+        <p className="mt-3 text-xs text-white/40">{t('noCreditCard')}</p>
       </div>
     </section>
   );

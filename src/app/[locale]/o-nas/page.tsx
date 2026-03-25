@@ -10,7 +10,7 @@ import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { client, fetchOptions } from '@/sanity/lib/client';
 import { AUTHORS_QUERY } from '@/sanity/lib/queries';
 
-export const revalidate = 86400;
+export const revalidate = process.env.NODE_ENV === 'production' ? 86400 : 0;
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
