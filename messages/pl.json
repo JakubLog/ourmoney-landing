@@ -1,6 +1,6 @@
 {
   "Common": {
-    "startFree": "Zacznijcie razem — za darmo",
+    "startFree": "Zacznijcie razem - za darmo",
     "learnMore": "Dowiedz się więcej",
     "readMore": "Czytaj więcej",
     "backToHome": "Wróć na stronę główną",
@@ -21,19 +21,19 @@
   },
   "CTABanner": {
     "text": "Sprawdź, jak proste mogą być wspólne finanse. Zacznijcie budować sprawiedliwą relację już dziś.",
-    "button": "Zacznij od siebie — dodaj partnera później"
+    "button": "Zacznij od siebie - dodaj partnera później"
   },
   "HomePage": {
     "meta": {
-      "title": "OurMoney — Wspólny budżet domowy dla par | Finanse razem",
+      "title": "OurMoney - Wspólny budżet domowy dla par | Finanse razem",
       "description": "Pierwsza aplikacja finansowa stworzona specjalnie dla par. Sprawiedliwy podział wydatków, wspólne cele, zachowanie prywatności tam, gdzie tego chcesz."
     },
     "hero": {
       "headlineL1": "Czy pieniądze są źródłem",
       "headlinePost": "w Waszym związku?",
       "headlineWords": "TABU,STRESU,KONFLIKTÓW,PROBLEMÓW,NAPIĘCIA",
-      "subheadline": "Pierwsza aplikacja finansowa stworzona specjalnie dla par. Sprawiedliwy podział wydatków, wspólne cele, zachowanie prywatności.",
-      "cta": "Zacznijcie razem — za darmo",
+      "subheadline": "Pierwsza aplikacja finansowa stworzona specjalnie dla par. Wspólny budżet domowy, sprawiedliwy podział wydatków, wspólne cele - z zachowaniem prywatności.",
+      "cta": "Zacznijcie razem - za darmo",
       "socialProof": "Dołącz do 50+ par, które już opanowały finanse",
       "noCreditCard": "Nie wymaga karty kredytowej"
     },
@@ -58,19 +58,27 @@
     "features": {
       "title": "Jak OurMoney rozwiązuje Wasze problemy",
       "subtitle": "Nie kolejny arkusz Excel. Inteligentne narzędzie stworzone specjalnie dla par, które chcą razem budować przyszłość.",
-      "cta": "Zacznij od siebie — dodaj partnera później",
+      "cta": "Zacznij od siebie - dodaj partnera później",
       "items": [
+        {
+          "title": "Wszystko w jednym miejscu",
+          "description": "Przejrzysty pulpit pokazuje Wasze wydatki, budżet miesiąca i postęp celów na pierwszy rzut oka. Bez szukania, bez tabelek."
+        },
         {
           "title": "Inteligentny podział wydatków",
           "description": "Automatycznie dzieli wspólne wydatki proporcjonalnie do Waszych dochodów. Sprawiedliwie i bez obliczeń. Jeden klik i wiadomo, kto ile wpłaca."
         },
         {
-          "title": "Wspólne cele finansowe",
-          "description": "Razem odkładajcie na wymarzone wakacje, remont czy wkład własny. Śledźcie postęp i świętujcie każdy krok do celu."
+          "title": "Zasady, które sami ustalacie",
+          "description": "Po równo, proporcjonalnie do dochodów albo tylko śledzenie - wybierzcie model, który pasuje Waszemu związkowi. Zmienicie go w każdej chwili."
         },
         {
           "title": "Moje-Twoje-Nasze wydatki",
-          "description": "Każde z Was ma swoją prywatną przestrzeń i wspólną. Pełna transparentność tam, gdzie chcecie — prywatność tam, gdzie potrzebujecie."
+          "description": "Każde z Was ma swoją prywatną przestrzeń i wspólną. Pełna transparentność tam, gdzie chcecie - prywatność tam, gdzie potrzebujecie."
+        },
+        {
+          "title": "Import wyciągów bankowych",
+          "description": "Wgraj wyciąg ze swojego banku, a OurMoney automatycznie doda i skategoryzuje wydatki. Koniec z ręcznym przepisywaniem transakcji."
         }
       ]
     },
@@ -106,7 +114,7 @@
       "steps": [
         {
           "title": "Załóż konto",
-          "description": "Rejestracja trwa 30 sekund. Podaj e-mail, ustaw hasło — gotowe. Możesz zacząć sam/sama."
+          "description": "Rejestracja trwa 30 sekund. Podaj e-mail, ustaw hasło - gotowe. Możesz zacząć sam/sama."
         },
         {
           "title": "Dodaj wydatki",
@@ -132,7 +140,7 @@
         "Poczucie niesprawiedliwego podziału"
       ],
       "after": [
-        "Jasny podział — każdy wie, ile wpłaca",
+        "Jasny podział - każdy wie, ile wpłaca",
         "Wszystko w jednym miejscu, automatycznie",
         "Wspólne cele ze śledzeniem postępu",
         "Transparentność bez trudnych rozmów",
@@ -163,8 +171,13 @@
     },
     "comparison": {
       "title": "Dlaczego nie Excel, Splitwise czy notatki?",
-      "subtitle": "OurMoney to jedyne narzędzie zaprojektowane specjalnie dla par — nie dla współlokatorów, nie dla grup.",
-      "competitors": ["OurMoney", "Excel", "Splitwise", "Notatki"],
+      "subtitle": "OurMoney to jedyne narzędzie zaprojektowane specjalnie dla par - nie dla współlokatorów, nie dla grup.",
+      "competitors": [
+        "OurMoney",
+        "Excel",
+        "Splitwise",
+        "Notatki"
+      ],
       "features": [
         "Stworzony dla par",
         "Podział proporcjonalny do dochodów",
@@ -174,12 +187,42 @@
         "Działa na każdym urządzeniu"
       ],
       "grid": [
-        ["yes", "no", "no", "no"],
-        ["yes", "partial", "no", "no"],
-        ["yes", "no", "no", "no"],
-        ["yes", "no", "no", "no"],
-        ["yes", "partial", "partial", "no"],
-        ["yes", "yes", "yes", "partial"]
+        [
+          "yes",
+          "no",
+          "no",
+          "no"
+        ],
+        [
+          "yes",
+          "partial",
+          "no",
+          "no"
+        ],
+        [
+          "yes",
+          "no",
+          "no",
+          "no"
+        ],
+        [
+          "yes",
+          "no",
+          "no",
+          "no"
+        ],
+        [
+          "yes",
+          "partial",
+          "partial",
+          "no"
+        ],
+        [
+          "yes",
+          "yes",
+          "yes",
+          "partial"
+        ]
       ]
     },
     "faq": {
@@ -187,11 +230,11 @@
       "items": [
         {
           "question": "Czy oboje musimy mieć aplikację?",
-          "answer": "Na start — nie! Jeden z Was może wypróbować naszej aplikacji, a gdy będziecie gotowi — zaprosić drugą osobę i zacząć korzystać wspólnie. Tak wyciągniecie 100% bez potrzeby angażowania na start Was obu!"
+          "answer": "Na start - nie! Jeden z Was może wypróbować naszej aplikacji, a gdy będziecie gotowi - zaprosić drugą osobę i zacząć korzystać wspólnie. Tak wyciągniecie 100% bez potrzeby angażowania na start Was obu!"
         },
         {
           "question": "Czy aplikacja jest darmowa?",
-          "answer": "Aplikacja jest w pełni bezpłatna — bez karty, bez limitu. Gdy wprowadzimy płatne plany, obecni użytkownicy dowiedzą się pierwsi i dostaną specjalne warunki."
+          "answer": "Aplikacja jest w pełni bezpłatna - bez karty, bez limitu. Gdy wprowadzimy płatne plany, obecni użytkownicy dowiedzą się pierwsi i dostaną specjalne warunki."
         },
         {
           "question": "Jak działa podział wydatków?",
@@ -200,6 +243,10 @@
         {
           "question": "Czy aplikacja działa na iOS i Android?",
           "answer": "OurMoney to Progressive Web App (PWA) - działa na każdym urządzeniu przez przeglądarkę. Możecie dodać ją do ekranu głównego jak zwykłą aplikację. Jedno konto, wszędzie dostęp!"
+        },
+        {
+          "question": "Jak zainstalować OurMoney na telefonie?",
+          "answer": "OurMoney to aplikacja PWA - instalujesz ją prosto z przeglądarki, bez App Store czy Google Play. Na iPhonie: otwórz app.ourmoney.pl w Safari, stuknij ikonę udostępniania i wybierz 'Do ekranu początkowego'. Na Androidzie: otwórz stronę w Chrome i wybierz z menu 'Zainstaluj aplikację'. Po instalacji OurMoney działa jak zwykła aplikacja - z własną ikoną i trybem offline."
         },
         {
           "question": "Czy nasze dane będą bezpieczne?",
@@ -211,7 +258,7 @@
   "AboutPage": {
     "meta": {
       "title": "O nas | OurMoney",
-      "description": "Poznaj zespół stojący za OurMoney — aplikacją, która pomaga parom zarządzać wspólnymi finansami bez kłótni."
+      "description": "Poznaj zespół stojący za OurMoney - aplikacją, która pomaga parom zarządzać wspólnymi finansami bez kłótni."
     },
     "hero": {
       "headline": "Budujemy mosty tam, gdzie pieniądze stawiają mury",
@@ -220,7 +267,7 @@
     "mission": {
       "title": "Dlaczego tworzymy OurMoney?",
       "description": "W OurMoney nie zajmujemy się tylko \"zarządzaniem wydatkami\". Naszym celem jest stworzenie świata, w którym pieniądze przestają być źródłem konfliktów, a stają się narzędziem do budowania wspólnej przyszłości i realizacji marzeń.",
-      "story": "Oboje mamy osobne związki, ale łączy nas wspólny problem – finanse w parze to wyzwanie. Nie chodzi o brak pieniędzy. Chodzi o brak narzędzia, które by naprawdę rozumiało, jak działają finanse we dwoje. Dlatego postanowiliśmy stworzyć OurMoney – rozwiązanie, którego sami szukaliśmy i nie mogliśmy znaleźć."
+      "story": "Oboje mamy osobne związki, ale łączy nas wspólny problem - finanse w parze to wyzwanie. Nie chodzi o brak pieniędzy. Chodzi o brak narzędzia, które by naprawdę rozumiało, jak działają finanse we dwoje. Dlatego postanowiliśmy stworzyć OurMoney - rozwiązanie, którego sami szukaliśmy i nie mogliśmy znaleźć."
     },
     "authorCard": {
       "viewStory": "Poznaj historię"
@@ -236,7 +283,7 @@
         {
           "name": "Magdalena Nestorowicz",
           "role": "Co-Founder & AI Product Designer",
-          "bio": "Projektantka Interfejsów. Wie, że rozmowa o pieniądzach w związku nie musi być trudna – potrzeba tylko odpowiedniego podejścia."
+          "bio": "Projektantka Interfejsów. Wie, że rozmowa o pieniądzach w związku nie musi być trudna - potrzeba tylko odpowiedniego podejścia."
         }
       ]
     }
@@ -244,11 +291,11 @@
   "ContactPage": {
     "meta": {
       "title": "Kontakt | OurMoney",
-      "description": "Skontaktuj się z zespołem OurMoney."
+      "description": "Masz pytanie o OurMoney? Napisz do nas - odpowiadamy na pytania o aplikację, wspólny budżet i współpracę, zwykle w ciągu 24 godzin."
     },
     "hero": {
       "headline": "Skontaktuj się z nami",
-      "description": "Masz pytania? Napisz do nas — odpowiemy tak szybko, jak to możliwe."
+      "description": "Masz pytania? Napisz do nas - odpowiemy tak szybko, jak to możliwe."
     },
     "email": {
       "label": "Email",
@@ -301,7 +348,7 @@
   },
   "NotFoundPage": {
     "meta": {
-      "title": "404 — Nie znaleziono strony | OurMoney",
+      "title": "404 - Nie znaleziono strony | OurMoney",
       "description": "Strona, której szukasz, nie istnieje."
     },
     "headline": "Ups, coś poszło nie tak!",

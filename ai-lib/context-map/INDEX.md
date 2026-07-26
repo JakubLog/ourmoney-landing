@@ -64,6 +64,11 @@ _Uzupełniaj w miarę dodawania kolejnych stron._
 | 2026-03-15 | BlogPage i18n rozszerzony: tldr, keyTakeaways, articleFaqTitle, langLabel, inArticleCta, backToBlog, authorSection, relatedPosts, shareArticle | i18n |
 | 2026-03-15 | SEO blog post: JSON-LD Article+Person, BreadcrumbList, FAQPage (warunkowy), hreflang z _translations, AI SEO meta tags | seo |
 | 2026-03-15 | Hero headline AnimatedWord: TABU→STRESU→KONFLIKTÓW→PROBLEMÓW→NAPIĘCIA (PL) | pages |
+| 2026-07-25 | Nowe screeny produktu (6 PNG) w public/app-screens; Features: podmiana na dodawaj-prosto-wydatki/wspolne-cele/koperty; hero: mockup telefonu (strona-glowna.png, xl+); FAQ +pytanie o instalację PWA (PL+EN, wchodzi do FAQPage JSON-LD); plany: kalkulator podziału + lead magnet (ai-lib/plans/2026-07-25-*) | pages, i18n, seo |
+| 2026-07-25 | Homepage: unifikacja typografii H2 (font-display wszędzie), eyebrow w PainPoints, hero z kaskadowym wejściem (.hero-stagger), ScrollReveal z rootMargin -10% (wcześniejszy reveal przy Lenis), Testimonials przeniesione przed Comparison (social proof wyżej + naprawiony rytm teł) | pages, design-system |
+| 2026-07-25 | Liquid Glass UI: klasy .glass/.glass-nav/.glass-light/.sheen w globals.css, Header jako floating glass pill, glass social proof w hero, cookie banner glass sheet, karty BrandPromise glass-light, CTABanner glass card z poświatą akcentu; fallbacki a11y (reduced-transparency/motion, @supports) | design-system |
+| 2026-07-25 | Audyt SEO + poprawki: naprawa JSON-LD postów (logo, URL autora, breadcrumb), og:image na /blog /kontakt /o-nas, hreflang x-default wszędzie, sitemap +autorzy +_updatedAt, robots scalone reguły, scalony SoftwareApplication JSON-LD (aggregateRating w page.tsx), WebVitalsReporter→GA4, skrócony tytuł EN home, dłuższe meta desc kontaktu, keywords w hero, usunięte *-original.avif, wszystkie długie myślniki→"-" | seo, i18n, analytics, pages |
+| 2026-07-26 | Features: realistyczny mockup iPhone 17 Pro Max (tytanowa ramka, Dynamic Island z kamerą, pasek statusu, przyciski boczne, home indicator, tło #f8f8f7 dopasowane do screenów); akordeon przebudowany na 5 itemów w nowej kolejności (pulpit, podział, zasady, moje-twoje-nasze, import z banku) z mapowaniem 1:1 na screeny; usunięty item "Wspólne cele finansowe" (PL+EN) | pages, i18n, design-system |
 
 ---
 

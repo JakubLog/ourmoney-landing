@@ -1,6 +1,6 @@
 {
   "Common": {
-    "startFree": "Start together — for free",
+    "startFree": "Start together - for free",
     "learnMore": "Learn more",
     "readMore": "Read more",
     "backToHome": "Back to homepage",
@@ -21,19 +21,19 @@
   },
   "CTABanner": {
     "text": "See how simple shared finances can be. Start building a fair relationship today.",
-    "button": "Start on your own — add your partner later"
+    "button": "Start on your own - add your partner later"
   },
   "HomePage": {
     "meta": {
-      "title": "OurMoney — Shared household budget for couples | Finances together",
-      "description": "The first financial app built specifically for couples. Fair expense splitting, shared goals, privacy where you want it."
+      "title": "OurMoney - Budget app for couples | Finances together",
+      "description": "The first financial app built specifically for couples. Shared household budget, fair expense splitting, common goals - with privacy where you want it."
     },
     "hero": {
       "headlineL1": "Are money conversations",
       "headlinePost": "in your relationship?",
       "headlineWords": "TABOO,STRESSFUL,COMPLICATED,DIFFICULT,IGNORED",
       "subheadline": "The first financial app built specifically for couples. Fair expense splitting, shared goals, privacy where you want it.",
-      "cta": "Start together — for free",
+      "cta": "Start together - for free",
       "socialProof": "Join 50+ couples who already mastered their finances",
       "noCreditCard": "No credit card required"
     },
@@ -51,26 +51,34 @@
         },
         {
           "title": "How to plan a shared future without stress?",
-          "description": "An apartment, wedding, children — how to financially prepare for each next step?"
+          "description": "An apartment, wedding, children - how to financially prepare for each next step?"
         }
       ]
     },
     "features": {
       "title": "How OurMoney solves your problems",
       "subtitle": "Not another Excel spreadsheet. An intelligent tool built specifically for couples who want to build a future together.",
-      "cta": "Start on your own — add your partner later",
+      "cta": "Start on your own - add your partner later",
       "items": [
+        {
+          "title": "Everything in one place",
+          "description": "A clear dashboard shows your expenses, monthly budget, and goal progress at a glance. No digging, no spreadsheets."
+        },
         {
           "title": "Intelligent expense splitting",
           "description": "Automatically splits shared expenses proportionally to your incomes. Fair and calculation-free. One tap and you know who pays what."
         },
         {
-          "title": "Shared financial goals",
-          "description": "Save together for dream vacations, home renovation, or a down payment. Track progress and celebrate every milestone."
+          "title": "Rules you set yourselves",
+          "description": "Split equally, proportionally to income, or just track - pick the model that fits your relationship. Change it anytime."
         },
         {
           "title": "Mine-Yours-Ours expenses",
-          "description": "Each of you has your own private space and a shared one. Full transparency where you want it — privacy where you need it."
+          "description": "Each of you has your own private space and a shared one. Full transparency where you want it - privacy where you need it."
+        },
+        {
+          "title": "Bank statement import",
+          "description": "Upload a statement from your bank and OurMoney automatically adds and categorizes expenses. No more retyping transactions by hand."
         }
       ]
     },
@@ -85,7 +93,7 @@
         {
           "name": "Aga",
           "rating": 5,
-          "quote": "OurMoney is an app that makes agreeing on shared finances easier than deciding who walks the dog on Saturday morning. Highly recommend — and waiting for the dog-negotiation app too ;)"
+          "quote": "OurMoney is an app that makes agreeing on shared finances easier than deciding who walks the dog on Saturday morning. Highly recommend - and waiting for the dog-negotiation app too ;)"
         },
         {
           "name": "Daniel",
@@ -95,7 +103,7 @@
         {
           "name": "Klaudia",
           "rating": 5,
-          "quote": "OurMoney is literally — our expenses in one place. Easy to use, clear for tracking purchases, and with huge potential for tracking more and more financial aspects. Great for anyone who wants to start monitoring their cashflow better."
+          "quote": "OurMoney is literally - our expenses in one place. Easy to use, clear for tracking purchases, and with huge potential for tracking more and more financial aspects. Great for anyone who wants to start monitoring their cashflow better."
         }
       ]
     },
@@ -106,7 +114,7 @@
       "steps": [
         {
           "title": "Create an account",
-          "description": "Registration takes 30 seconds. Enter your email, set a password — done. You can start on your own."
+          "description": "Registration takes 30 seconds. Enter your email, set a password - done. You can start on your own."
         },
         {
           "title": "Add expenses",
@@ -132,7 +140,7 @@
         "Feeling of unfair splitting"
       ],
       "after": [
-        "Clear split — everyone knows their share",
+        "Clear split - everyone knows their share",
         "Everything in one place, automatically",
         "Shared goals with progress tracking",
         "Transparency without difficult conversations",
@@ -163,8 +171,13 @@
     },
     "comparison": {
       "title": "Why not Excel, Splitwise, or notes?",
-      "subtitle": "OurMoney is the only tool designed specifically for couples — not roommates, not groups.",
-      "competitors": ["OurMoney", "Excel", "Splitwise", "Notes"],
+      "subtitle": "OurMoney is the only tool designed specifically for couples - not roommates, not groups.",
+      "competitors": [
+        "OurMoney",
+        "Excel",
+        "Splitwise",
+        "Notes"
+      ],
       "features": [
         "Built for couples",
         "Income-proportional splitting",
@@ -174,12 +187,42 @@
         "Works on any device"
       ],
       "grid": [
-        ["yes", "no", "no", "no"],
-        ["yes", "partial", "no", "no"],
-        ["yes", "no", "no", "no"],
-        ["yes", "no", "no", "no"],
-        ["yes", "partial", "partial", "no"],
-        ["yes", "yes", "yes", "partial"]
+        [
+          "yes",
+          "no",
+          "no",
+          "no"
+        ],
+        [
+          "yes",
+          "partial",
+          "no",
+          "no"
+        ],
+        [
+          "yes",
+          "no",
+          "no",
+          "no"
+        ],
+        [
+          "yes",
+          "no",
+          "no",
+          "no"
+        ],
+        [
+          "yes",
+          "partial",
+          "partial",
+          "no"
+        ],
+        [
+          "yes",
+          "yes",
+          "yes",
+          "partial"
+        ]
       ]
     },
     "faq": {
@@ -187,11 +230,11 @@
       "items": [
         {
           "question": "Do we both need to have the app?",
-          "answer": "Not at the start! One of you can try the app first, and when you're ready — invite your partner and start using it together. This way you get 100% out of it without needing both of you on board from day one!"
+          "answer": "Not at the start! One of you can try the app first, and when you're ready - invite your partner and start using it together. This way you get 100% out of it without needing both of you on board from day one!"
         },
         {
           "question": "Is the app free?",
-          "answer": "The app is completely free — no credit card, no limits. When we introduce paid plans, existing users will be the first to know and will get special terms."
+          "answer": "The app is completely free - no credit card, no limits. When we introduce paid plans, existing users will be the first to know and will get special terms."
         },
         {
           "question": "How does expense splitting work?",
@@ -199,7 +242,11 @@
         },
         {
           "question": "Does the app work on iOS and Android?",
-          "answer": "OurMoney is a Progressive Web App (PWA) — it works on any device through the browser. You can add it to your home screen just like a native app. One account, access everywhere!"
+          "answer": "OurMoney is a Progressive Web App (PWA) - it works on any device through the browser. You can add it to your home screen just like a native app. One account, access everywhere!"
+        },
+        {
+          "question": "How do I install OurMoney on my phone?",
+          "answer": "OurMoney is a PWA - you install it straight from your browser, no App Store or Google Play needed. On iPhone: open app.ourmoney.pl in Safari, tap the share icon and choose 'Add to Home Screen'. On Android: open the site in Chrome and pick 'Install app' from the menu. Once installed, OurMoney works like a regular app - with its own icon and offline support."
         },
         {
           "question": "Will our data be secure?",
@@ -211,7 +258,7 @@
   "AboutPage": {
     "meta": {
       "title": "About | OurMoney",
-      "description": "Meet the team behind OurMoney — the app helping couples manage shared finances without arguments."
+      "description": "Meet the team behind OurMoney - the app helping couples manage shared finances without arguments."
     },
     "hero": {
       "headline": "We build bridges where money builds walls",
@@ -220,7 +267,7 @@
     "mission": {
       "title": "Why we built OurMoney",
       "description": "At OurMoney, we don't just manage expenses. Our goal is to create a world where money stops being a source of conflict and becomes a tool for building a shared future.",
-      "story": "We both have our own relationships, but share a common problem — finances as a couple is a challenge. It's not about lack of money. It's about the lack of a tool that truly understands how finances work for two. So we built OurMoney — the solution we were looking for and couldn't find."
+      "story": "We both have our own relationships, but share a common problem - finances as a couple is a challenge. It's not about lack of money. It's about the lack of a tool that truly understands how finances work for two. So we built OurMoney - the solution we were looking for and couldn't find."
     },
     "authorCard": {
       "viewStory": "View story"
@@ -236,7 +283,7 @@
         {
           "name": "Magdalena Nestorowicz",
           "role": "Co-Founder & AI Product Designer",
-          "bio": "Interface Designer. She knows that talking about money in a relationship doesn't have to be hard — you just need the right approach."
+          "bio": "Interface Designer. She knows that talking about money in a relationship doesn't have to be hard - you just need the right approach."
         }
       ]
     }
@@ -244,11 +291,11 @@
   "ContactPage": {
     "meta": {
       "title": "Contact | OurMoney",
-      "description": "Get in touch with the OurMoney team. We're here to help."
+      "description": "Questions about OurMoney? Get in touch - we answer questions about the app, shared budgets and partnerships, usually within 24 hours."
     },
     "hero": {
       "headline": "Get in touch",
-      "description": "Have questions? Write to us — we'll reply as soon as possible."
+      "description": "Have questions? Write to us - we'll reply as soon as possible."
     },
     "email": {
       "label": "Email",
@@ -301,7 +348,7 @@
   },
   "NotFoundPage": {
     "meta": {
-      "title": "404 — Page not found | OurMoney",
+      "title": "404 - Page not found | OurMoney",
       "description": "The page you're looking for doesn't exist."
     },
     "headline": "Oops, something went wrong!",
@@ -311,7 +358,7 @@
   "PrivacyPage": {
     "meta": {
       "title": "Privacy Policy | OurMoney",
-      "description": "OurMoney privacy policy — how we collect and protect your data."
+      "description": "OurMoney privacy policy - how we collect and protect your data."
     },
     "title": "Privacy Policy",
     "lastUpdated": "Last updated: March 15, 2026",

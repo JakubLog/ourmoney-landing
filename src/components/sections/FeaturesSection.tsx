@@ -11,18 +11,24 @@ type Feature = { title: string; description: string };
 type Props = { locale: string };
 
 const FEATURE_IMAGES = [
-  '/app-screens/inteligentny-podzial-wydatkow.webp',
-  '/app-screens/wspolne-cele-finansowe.webp',
-  '/app-screens/moje-twoje-nasze-wydatki.webp',
+  '/app-screens/strona-glowna.png',
+  '/app-screens/dodawaj-prosto-wydatki.png',
+  '/app-screens/ustawienia.png',
+  '/app-screens/koperty.png',
+  '/app-screens/importuj-z-banku.png',
 ];
 
 const FEATURE_BLUR: Record<string, string> = {
-  '/app-screens/inteligentny-podzial-wydatkow.webp':
-    'data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAABwBACdASoUACwAPzmMwFgvKKajqrgKAeAnCUAAA+j/bPeAyUAoWh9xczQAAAD+3pQpet2UpYbVb9bG4em7asxSn7jtvYIT2XUd7paps4If+8DB+AJOX99ANTMnEXiMwAAAAA==',
-  '/app-screens/wspolne-cele-finansowe.webp':
-    'data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAAAwAwCdASoUACwAPzmSvlevKqYjqqgB4CcJaQAAUf7LtYzQAP7uZB81kbd/NWuxhEO1XIkSi1UUVfgRr5vslzsyAAA=',
-  '/app-screens/moje-twoje-nasze-wydatki.webp':
-    'data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAAAwAwCdASoUACwAPzmWxlovKqgkJWmZ4CcJZwAAKxb0AmcAAP7ubF2DHKxTsfLg6VxjvMofZI2UMvsn7y7XZxQqhAA=',
+  '/app-screens/dodawaj-prosto-wydatki.png':
+    'data:image/webp;base64,UklGRloCAABXRUJQVlA4WAoAAAAgAAAACwAAGwAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggbAAAAHADAJ0BKgwAHAAumWi0WiKoKCgIAJhLOAAFzu41djuHav9IAAD+9CAtV8jHTgl/yn5fbPjYGP881z9ew3+GqCKVgs6Z6fAvir0AEdj3eDpnZMlH9cdnKf0Ur+K06a7aKu/Ot8lh76ACBAAAAA==',
+  '/app-screens/koperty.png':
+    'data:image/webp;base64,UklGRlQCAABXRUJQVlA4WAoAAAAgAAAACwAAGwAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggZgAAANADAJ0BKgwAHAA+0VSjS6gkoyGwCAEAGglnAAPjYg3wehcULGeQAAD+9M7eiejlz2pHrTgO8zI2UZUyLM2tmFq6lY9fiTurWXsEfw+BuO2T0MbBva+nDcP0fxYTLzXluL291MAAAA==',
+  '/app-screens/importuj-z-banku.png':
+    'data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAAAwAwCdASoMABsAPzmEuVOvKKWkMAgB4CcJZwABNGD6E+AAAP7w7lKVS+nUuXdimkIvQTn5vmPagAAA',
+  '/app-screens/strona-glowna.png':
+    'data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAACQAwCdASoMABwAPzmGuVOvKKWisAgB4CcJYgAAXKKmKAsXviAAAP7T21xgMMOP0g+25WjwBwH/YaAklYrCCfyCclfW7nyqHzcl8gW2lesVTdocJ4AAAA==',
+  '/app-screens/ustawienia.png':
+    'data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAAAQAwCdASoMABsAPzmGuVOvKSWisAgB4CcJZwAAerOYEwAA/u3wxV/AyAd/6O69X/xKa2RWgAA=',
 };
 
 const CYCLE_DURATION = 5000;
@@ -59,7 +65,7 @@ export function FeaturesSection({ locale }: Props) {
           {/* Left: header + accordion */}
           <div>
             <ScrollReveal className="mb-12 md:mb-16">
-              <h2 className="text-4xl md:text-5xl text-dark leading-tight mb-4">
+              <h2 className="font-display text-4xl md:text-5xl text-dark leading-tight mb-4">
                 {t('title')}
               </h2>
               <p className="text-dark/50 text-sm leading-relaxed">
@@ -71,7 +77,7 @@ export function FeaturesSection({ locale }: Props) {
                 <li key={item.title} className="relative">
                   {/* Border top */}
                   <div className="h-px bg-dark/10" />
-                  {/* Progress bar — only on active item */}
+                  {/* Progress bar - only on active item */}
                   {open === i && (
                     <div
                       key={animKey}
@@ -127,39 +133,80 @@ export function FeaturesSection({ locale }: Props) {
             </div>
           </div>
 
-          {/* App screenshot in iPhone frame */}
+          {/* App screenshot in iPhone 17 Pro Max frame */}
           <ScrollReveal animation="slide-right" className="flex justify-center overflow-x-clip">
             <div className="relative w-full max-w-[280px] sm:max-w-[310px]">
-              {/* Phone frame */}
-              <div className="relative bg-dark rounded-[3rem] p-[10px] shadow-2xl">
-                {/* Dynamic Island */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 z-20 bg-dark w-[100px] h-[30px] rounded-b-2xl" />
-                {/* Screen — padding-top replaces aspect-ratio for cross-browser h-full support */}
-                <div className="rounded-[2.5rem] overflow-hidden bg-white p-5">
-                  <div
-                    className="relative rounded-[2rem] overflow-hidden"
-                    style={{ paddingTop: 'calc(100% * 19.5 / 9)' }}
-                  >
-                    {FEATURE_IMAGES.map((src, i) => {
-                      const isActive = activeImage === src;
-                      if (!imagesPreloaded && !isActive) return null;
-                      return (
-                        <Image
-                          key={src}
-                          src={src}
-                          alt={items[i]?.title ?? 'OurMoney app'}
-                          title={items[i]?.title ?? 'OurMoney app'}
-                          fill
-                          className="object-cover transition-opacity duration-300"
-                          style={{ opacity: isActive ? 1 : 0 }}
-                          sizes="(max-width: 640px) 280px, 310px"
-                          loading={i === 0 ? undefined : 'lazy'}
-                          priority={i === 0}
-                          placeholder="blur"
-                          blurDataURL={FEATURE_BLUR[src]}
-                        />
-                      );
-                    })}
+              {/* Side buttons */}
+              <div className="absolute -left-[2px] top-[15%] w-[3px] h-6 bg-neutral-700 rounded-l-sm" />
+              <div className="absolute -left-[2px] top-[22%] w-[3px] h-11 bg-neutral-700 rounded-l-sm" />
+              <div className="absolute -left-[2px] top-[30%] w-[3px] h-11 bg-neutral-700 rounded-l-sm" />
+              <div className="absolute -right-[2px] top-[24%] w-[3px] h-16 bg-neutral-700 rounded-r-sm" />
+              {/* Titanium ring */}
+              <div className="relative rounded-[3.4rem] bg-gradient-to-b from-neutral-500 via-neutral-700 to-neutral-500 p-[3px] shadow-2xl">
+                {/* Bezel */}
+                <div className="bg-black rounded-[3.2rem] p-[9px]">
+                  {/* Screen */}
+                  <div className="relative rounded-[2.7rem] overflow-hidden bg-[#f8f8f7]">
+                    {/* Status bar */}
+                    <div className="relative z-20 h-11 bg-[#f8f8f7] flex items-end justify-between px-7 pb-1.5">
+                      <span className="text-dark text-[13px] font-semibold leading-none tabular-nums">
+                        9:41
+                      </span>
+                      {/* Dynamic Island */}
+                      <div className="absolute top-[10px] left-1/2 -translate-x-1/2 w-[92px] h-[26px] bg-black rounded-full flex items-center justify-end pr-2">
+                        <div className="w-[10px] h-[10px] rounded-full bg-[#1c1c1e] ring-1 ring-[#2c2c2e]" />
+                      </div>
+                      <span className="flex items-center gap-1" aria-hidden="true">
+                        {/* Signal */}
+                        <svg width="16" height="11" viewBox="0 0 16 11" fill="currentColor" className="text-dark">
+                          <rect x="0" y="7" width="3" height="4" rx="1" />
+                          <rect x="4.5" y="4.5" width="3" height="6.5" rx="1" />
+                          <rect x="9" y="2" width="3" height="9" rx="1" />
+                          <rect x="13.5" y="0" width="2.5" height="11" rx="1" opacity="0.35" />
+                        </svg>
+                        {/* Wifi */}
+                        <svg width="15" height="11" viewBox="0 0 15 11" fill="currentColor" className="text-dark">
+                          <path d="M7.5 9.2a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8Z" transform="translate(0 -1.5)" />
+                          <path d="M4.6 7.2a4.2 4.2 0 0 1 5.8 0l-1.2 1.2a2.5 2.5 0 0 0-3.4 0L4.6 7.2Z" />
+                          <path d="M2.2 4.8a7.6 7.6 0 0 1 10.6 0l-1.2 1.2a5.9 5.9 0 0 0-8.2 0L2.2 4.8Z" />
+                          <path d="M0 2.5a10.9 10.9 0 0 1 15 0l-1.2 1.2a9.2 9.2 0 0 0-12.6 0L0 2.5Z" opacity="0.9" />
+                        </svg>
+                        {/* Battery */}
+                        <svg width="25" height="12" viewBox="0 0 25 12" className="text-dark">
+                          <rect x="0.5" y="0.5" width="21" height="11" rx="3.5" fill="none" stroke="currentColor" opacity="0.4" />
+                          <rect x="2" y="2" width="15" height="8" rx="2" fill="currentColor" />
+                          <path d="M23 4v4a2.2 2.2 0 0 0 0-4Z" fill="currentColor" opacity="0.4" />
+                        </svg>
+                      </span>
+                    </div>
+                    {/* App screen - padding-top replaces aspect-ratio for cross-browser h-full support */}
+                    <div
+                      className="relative mb-4 rounded-b-[2.2rem] overflow-hidden bg-[#f8f8f7]"
+                      style={{ paddingTop: 'calc(100% * 898 / 391)' }}
+                    >
+                      {FEATURE_IMAGES.map((src, i) => {
+                        const isActive = activeImage === src;
+                        if (!imagesPreloaded && !isActive) return null;
+                        return (
+                          <Image
+                            key={src}
+                            src={src}
+                            alt={items[i]?.title ?? 'OurMoney app'}
+                            title={items[i]?.title ?? 'OurMoney app'}
+                            fill
+                            className="object-cover object-top transition-opacity duration-300"
+                            style={{ opacity: isActive ? 1 : 0 }}
+                            sizes="(max-width: 640px) 280px, 310px"
+                            loading={i === 0 ? undefined : 'lazy'}
+                            priority={i === 0}
+                            placeholder="blur"
+                            blurDataURL={FEATURE_BLUR[src]}
+                          />
+                        );
+                      })}
+                    </div>
+                    {/* Home indicator */}
+                    <div className="absolute bottom-[7px] left-1/2 -translate-x-1/2 z-30 w-[36%] h-[5px] rounded-full bg-black/80" />
                   </div>
                 </div>
               </div>
