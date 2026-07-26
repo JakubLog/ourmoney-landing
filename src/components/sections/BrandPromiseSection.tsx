@@ -12,7 +12,7 @@ export async function BrandPromiseSection({ locale }: Props) {
     <section className="bg-white py-20 md:py-28 px-6">
       <div className="max-w-4xl mx-auto text-center">
         <ScrollReveal>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl text-dark leading-tight mb-5">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-dark leading-tight mb-5">
             {t('title')}
           </h2>
           <p className="text-dark/50 text-base md:text-lg leading-relaxed mb-12 md:mb-16 max-w-xl mx-auto">
@@ -41,7 +41,7 @@ export async function BrandPromiseSection({ locale }: Props) {
           <div className="flex gap-3 mt-4 md:block md:mt-0">
 
             {/* Card: Biedronka */}
-            <div className="float-a flex-1 md:flex-none relative md:absolute md:bottom-10 md:left-6 bg-white rounded-xl shadow-lg px-3 py-2 md:px-4 md:py-3 flex items-center gap-2 md:gap-3 z-10">
+            <div className="float-a glass-light flex-1 md:flex-none relative md:absolute md:bottom-10 md:left-6 rounded-2xl px-3 py-2 md:px-4 md:py-3 flex items-center gap-2 md:gap-3 z-10">
               <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-red-50 flex items-center justify-center shrink-0" aria-hidden="true">
                 <ShoppingBasket className="w-4 h-4 md:w-5 md:h-5 text-red-400" />
               </div>
@@ -59,7 +59,7 @@ export async function BrandPromiseSection({ locale }: Props) {
             </div>
 
             {/* Card: Paliwo */}
-            <div className="float-b flex-1 md:flex-none relative md:absolute md:bottom-28 md:right-6 bg-white rounded-xl shadow-lg px-3 py-2 md:px-4 md:py-3 flex items-center gap-2 md:gap-3 z-10">
+            <div className="float-b glass-light flex-1 md:flex-none relative md:absolute md:bottom-28 md:right-6 rounded-2xl px-3 py-2 md:px-4 md:py-3 flex items-center gap-2 md:gap-3 z-10">
               <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-green-50 flex items-center justify-center shrink-0" aria-hidden="true">
                 <Fuel className="w-4 h-4 md:w-5 md:h-5 text-green-500" />
               </div>

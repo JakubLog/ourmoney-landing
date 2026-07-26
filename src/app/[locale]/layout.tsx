@@ -10,6 +10,7 @@ import { SmoothScroll } from '@/components/layout/SmoothScroll';
 import { LocaleTracker } from '@/components/layout/LocaleTracker';
 import { CookieConsentBanner } from '@/components/layout/CookieConsentBanner';
 import { LazyPageTransition } from '@/components/layout/LazyPageTransition';
+import { WebVitalsReporter } from '@/components/layout/WebVitalsReporter';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const instrumentSerif = Instrument_Serif({
@@ -104,7 +105,7 @@ export default async function RootLayout({ children, params }: Props) {
           type="font/woff2"
           crossOrigin="anonymous"
         />
-        {/* Consent Mode v2 defaults — must run before GA4 loads */}
+        {/* Consent Mode v2 defaults - must run before GA4 loads */}
         <Script id="gtag-consent-defaults" strategy="beforeInteractive">{`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -185,6 +186,7 @@ export default async function RootLayout({ children, params }: Props) {
             learnMoreLabel={t('learnMore')}
           />
           <LazyPageTransition />
+          {process.env.NODE_ENV === 'production' && <WebVitalsReporter />}
           <SpeedInsights />
         </NextIntlClientProvider>
       </body>
@@ -222,7 +224,7 @@ export default async function RootLayout({ children, params }: Props) {
               `,
             }}
           />
-          {/* Meta Pixel — respects Consent Mode, fires only after consent granted */}
+          {/* Meta Pixel - respects Consent Mode, fires only after consent granted */}
           <Script
             id="_next-fbq-init"
             strategy="lazyOnload"

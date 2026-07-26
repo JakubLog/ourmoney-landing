@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'OurMoney — Wspólny budżet dla par',
+    name: 'OurMoney - Wspólny budżet dla par',
     short_name: 'OurMoney',
     description:
       'Pierwsza aplikacja finansowa stworzona specjalnie dla par. Sprawiedliwy podział wydatków, wspólne cele, pełna prywatność.',

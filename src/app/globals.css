@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-/* Switzer — self-hosted (previously fontshare CDN) */
+/* Switzer - self-hosted (previously fontshare CDN) */
 @font-face {
   font-family: "Switzer";
   src: url("/fonts/switzer-400.woff2") format("woff2");
@@ -87,7 +87,7 @@
   }
 }
 
-/* FAQ details/summary — icon toggle + open animation */
+/* FAQ details/summary - icon toggle + open animation */
 details > summary { list-style: none; }
 details > summary::-webkit-details-marker { display: none; }
 
@@ -105,23 +105,36 @@ details[open] .faq-minus { display: block; }
   to   { opacity: 1; transform: translateY(0);    }
 }
 
-/* Mobile menu slide-down */
-.mobile-menu-enter {
-  animation: slideDown 0.2s ease-out;
+/* Mobile menu - plynne rozwijanie i zamykanie panelu.
+   Grid rows 0fr -> 1fr animuje wysokosc tresci bez skoku layoutu,
+   dzieki czemu pigulka nav rosnie razem z panelem. */
+.mobile-menu {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 0.3s cubic-bezier(0.32, 0.72, 0, 1),
+    opacity 0.2s ease-out;
+}
+.mobile-menu--open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+.mobile-menu > div {
+  overflow: hidden;
+  min-height: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu { transition: opacity 0.15s ease-out; }
 }
 
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-8px); }
-  to   { opacity: 1; transform: translateY(0);    }
-}
-
-/* Feature progress bar — auto-cycle */
+/* Feature progress bar - auto-cycle */
 @keyframes progressFill {
   from { transform: scaleX(0); }
   to   { transform: scaleX(1); }
 }
 
-/* Floating cards — Brand Promise section */
+/* Floating cards - Brand Promise section */
 @keyframes float-a {
   0%, 100% { transform: translateY(0px);    }
   50%       { transform: translateY(-10px); }
@@ -133,8 +146,8 @@ details[open] .faq-minus { display: block; }
 .float-a { animation: float-a 4s ease-in-out infinite; }
 .float-b { animation: float-b 5s ease-in-out infinite; }
 
-/* Page entrance — CSS replacement for framer-motion template */
-/* NOTE: Do NOT use transform here — it creates a containing block
+/* Page entrance - CSS replacement for framer-motion template */
+/* NOTE: Do NOT use transform here - it creates a containing block
    that breaks position:fixed on the Header (and any other fixed child). */
 @keyframes fadeIn {
   from { opacity: 0; }
@@ -142,6 +155,150 @@ details[open] .faq-minus { display: block; }
 }
 .animate-fadeIn {
   animation: fadeIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
+}
+
+/* ============================================
+   Liquid Glass - materialy szkla (iOS-like)
+   Zasady: tylko male / fixed elementy (koszt backdrop-filter),
+   tekst na szkle min. white/80, koncentryczne promienie.
+   ============================================ */
+
+/* Szklo na ciemnym tle / nad zdjeciami */
+.glass {
+  background: rgba(255, 255, 255, 0.06);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top-color: rgba(255, 255, 255, 0.18); /* specular highlight */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+/* Szklo nawigacji - ciemny tint gwarantujacy kontrast bialego tekstu
+   niezaleznie od tresci pod spodem (biale sekcje bloga itp.) */
+.glass-nav {
+  background: rgba(20, 20, 20, 0.55);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top-color: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+/* Szklo na jasnym tle / jasne karty nad zdjeciami */
+.glass-light {
+  background: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(20, 20, 20, 0.08);
+  border-top-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 32px rgba(20, 20, 20, 0.12);
+}
+
+/* Fallback: brak wsparcia backdrop-filter */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass { background: rgba(20, 20, 20, 0.88); }
+  .glass-nav { background: rgba(20, 20, 20, 0.94); }
+  .glass-light { background: rgba(255, 255, 255, 0.96); }
+}
+
+/* Dostepnosc: uzytkownik nie chce przezroczystosci */
+@media (prefers-reduced-transparency: reduce) {
+  .glass,
+  .glass-nav,
+  .glass-light {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .glass { background: rgba(20, 20, 20, 0.92); }
+  .glass-nav { background: rgba(20, 20, 20, 0.96); }
+  .glass-light { background: rgba(255, 255, 255, 0.98); }
+}
+
+/* Header - plynny morph transparent -> glass pill.
+   Sterowany zmienna --nav-p (0..1) ustawiana w Header.tsx
+   proporcjonalnie do scrolla - Lenis naturalnie wygladza ruch,
+   a krotki transition dosmoothowuje otwarcie menu mobilnego. */
+.nav-shell {
+  padding: calc(0.75rem * var(--nav-p, 0)) calc(0.75rem * var(--nav-p, 0)) 0;
+  transition: padding 0.25s ease-out;
+}
+.nav-pill {
+  margin-inline: auto;
+  width: 100%;
+  max-width: calc(100% * (1 - var(--nav-p, 0)) + 64rem * var(--nav-p, 0));
+  /* Staly promien: przy wysokosci wiersza 56-64px daje pelna pigulke,
+     a przy otwartym menu naturalne zaokraglenie karty - bez animowania
+     border-radius z 9999px, ktore konczy sie wizualnym skokiem. */
+  border-radius: 32px;
+  background: rgba(20, 20, 20, calc(0.55 * var(--nav-p, 0)));
+  -webkit-backdrop-filter: blur(calc(20px * var(--nav-p, 0))) saturate(calc(100% + 80% * var(--nav-p, 0)));
+  backdrop-filter: blur(calc(20px * var(--nav-p, 0))) saturate(calc(100% + 80% * var(--nav-p, 0)));
+  border: 1px solid rgba(255, 255, 255, calc(0.1 * var(--nav-p, 0)));
+  border-top-color: rgba(255, 255, 255, calc(0.16 * var(--nav-p, 0)));
+  box-shadow: 0 8px 32px rgba(0, 0, 0, calc(0.35 * var(--nav-p, 0)));
+  transition:
+    background-color 0.25s ease-out,
+    border-color 0.25s ease-out,
+    box-shadow 0.25s ease-out,
+    max-width 0.25s ease-out,
+    -webkit-backdrop-filter 0.25s ease-out,
+    backdrop-filter 0.25s ease-out;
+}
+.nav-row {
+  height: calc(4rem - 0.5rem * var(--nav-p, 0));
+  transition: height 0.25s ease-out;
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .nav-pill { background: rgba(20, 20, 20, calc(0.94 * var(--nav-p, 0))); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .nav-pill {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: rgba(20, 20, 20, calc(0.96 * var(--nav-p, 0)));
+  }
+}
+
+/* Sheen - blysk przesuwajacy sie po CTA na hover */
+.sheen { position: relative; overflow: hidden; }
+.sheen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 60%;
+  transform: translateX(-170%) skewX(-20deg);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  pointer-events: none;
+}
+.sheen:hover::after {
+  animation: sheenSweep 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes sheenSweep {
+  from { transform: translateX(-170%) skewX(-20deg); }
+  to   { transform: translateX(300%) skewX(-20deg); }
+}
+
+/* Hero - kaskadowe wejscie tresci (headline -> subheadline -> social proof -> CTA) */
+@keyframes heroUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-stagger > * {
+    opacity: 0;
+    animation: heroUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .hero-stagger > *:nth-child(1) { animation-delay: 0.05s; }
+  .hero-stagger > *:nth-child(2) { animation-delay: 0.16s; }
+  .hero-stagger > *:nth-child(3) { animation-delay: 0.27s; }
+  .hero-stagger > *:nth-child(4) { animation-delay: 0.38s; }
+  .hero-stagger > *:nth-child(5) { animation-delay: 0.48s; }
+}
+
+/* Redukcja ruchu - wylacz dekoracyjne animacje */
+@media (prefers-reduced-motion: reduce) {
+  .sheen:hover::after { animation: none; }
+  .float-a, .float-b { animation: none; }
 }
 
 * {
@@ -152,7 +309,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* When Lenis is active, it controls scrolling — disable native smooth scroll */
+/* When Lenis is active, it controls scrolling - disable native smooth scroll */
 html.lenis, html.lenis-smooth {
   scroll-behavior: auto;
 }

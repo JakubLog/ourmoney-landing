@@ -14,10 +14,10 @@ type Props = {
 };
 
 const INITIAL_STYLES: Record<Animation, string> = {
-  'fade-up': 'opacity:0;transform:translateY(32px)',
+  'fade-up': 'opacity:0;transform:translateY(24px)',
   'fade-in': 'opacity:0',
-  'slide-right': 'opacity:0;transform:translateX(40px)',
-  'scale': 'opacity:0;transform:scale(0.96)',
+  'slide-right': 'opacity:0;transform:translateX(32px)',
+  'scale': 'opacity:0;transform:scale(0.97)',
 };
 
 const REVEALED_STYLES: Record<Animation, string> = {
@@ -27,7 +27,7 @@ const REVEALED_STYLES: Record<Animation, string> = {
   'scale': 'opacity:1;transform:scale(1)',
 };
 
-// Shared IntersectionObserver — one observer for all ScrollReveal instances
+// Shared IntersectionObserver - one observer for all ScrollReveal instances
 type RevealEntry = {
   el: HTMLElement;
   anim: Animation;
@@ -51,7 +51,9 @@ function getObserver(): IntersectionObserver {
         registry.delete(entry.target);
       }
     },
-    { threshold: 0.15 },
+    // rootMargin: reveal zaczyna sie zanim element w pelni wejdzie w viewport -
+    // przy szybkim scrollu (Lenis) użytkownik nie widzi pustych sekcji
+    { threshold: 0, rootMargin: '0px 0px -10% 0px' },
   );
   return sharedObserver;
 }
@@ -60,7 +62,7 @@ export function ScrollReveal({
   children,
   animation = 'fade-up',
   delay = 0,
-  duration = 600,
+  duration = 500,
   className = '',
   as: Tag = 'div',
 }: Props) {

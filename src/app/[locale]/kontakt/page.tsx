@@ -25,18 +25,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       languages: {
         pl: 'https://ourmoney.pl/pl/kontakt',
         en: 'https://ourmoney.pl/en/kontakt',
+        'x-default': 'https://ourmoney.pl/pl/kontakt',
       },
     },
     openGraph: {
       title: t('title'),
       description: t('description'),
       url: `https://ourmoney.pl/${locale}/kontakt`,
+      siteName: 'OurMoney',
+      images: [{ url: '/og-image.png', width: 1200, height: 630 }],
       locale: locale === 'pl' ? 'pl_PL' : 'en_US',
       type: 'website',
     },
     twitter: {
+      card: 'summary_large_image',
       title: t('title'),
       description: t('description'),
+      images: ['/og-image.png'],
     },
   };
 }

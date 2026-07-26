@@ -48,6 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       languages: {
         pl: `https://ourmoney.pl/pl/autor/${slug}`,
         en: `https://ourmoney.pl/en/autor/${slug}`,
+        'x-default': `https://ourmoney.pl/pl/autor/${slug}`,
       },
     },
     openGraph: {

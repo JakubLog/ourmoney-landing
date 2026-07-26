@@ -88,6 +88,30 @@ NIE edytuj plików w `components/ui/` ręcznie bez powodu.
 
 ---
 
+## Liquid Glass (materiały szkła)
+
+Wprowadzone 2026-07-25. Klasy w `globals.css`:
+
+| Klasa | Użycie | Gdzie |
+|-------|--------|-------|
+| `.glass` | Szkło na ciemnym tle / nad zdjęciami | Hero social proof pill, CTABanner card |
+| `.glass-nav` | Szkło z ciemnym tintem (gwarantowany kontrast białego tekstu) | Header (floating pill), CookieConsentBanner |
+| `.glass-light` | Jasne szkło na jasnym tle / nad zdjęciami | Karty BrandPromise |
+| `.sheen` | Błysk przesuwający się po CTA na hover | Przyciski CTA (hero, header, banner) |
+
+### Zasady
+- Szkło TYLKO na małych/fixed elementach - `backdrop-filter` jest drogi (Lenis + INP)
+- Tekst na szkle: min. `text-white/80` (kontrast AA)
+- Specular highlight: górna krawędź 1px jaśniejsza (`border-top-color`)
+- Koncentryczne promienie: promień dziecka = promień rodzica - padding
+- Białe sekcje (FAQ, artykuły) zostają czyste - bez szkła
+- Fallbacki: `@supports not (backdrop-filter)` → solid bg; `prefers-reduced-transparency` → solid bg; `prefers-reduced-motion` → sheen/float wyłączone
+
+### Header - floating pill (scroll-linked morph)
+Transparent na górze → glass pill, morph sterowany zmienną CSS `--nav-p` (0..1, proporcjonalnie do scrolla 0-120px, ustawiana przez rAF w `Header.tsx`). Interpolowane: padding, max-width (100%→64rem), tint, blur, border, cień, wysokość (h-16→h-14). Klasy `.nav-shell` / `.nav-pill` / `.nav-row` w globals.css. Lenis wygładza scroll → morph jest płynny; krótki transition 0.18s dosmoothowuje otwarcie menu mobilnego (wymusza `--nav-p: 1`, `rounded-[28px]`). Tekst zawsze biały.
+
+---
+
 ## Responsywność
 
 ### Breakpoints (Tailwind domyślne)

@@ -21,17 +21,17 @@ Canonical: `https://ourmoney.pl/[locale]/[path]`
 
 ---
 
-## Słowa kluczowe (do uzupełnienia)
+## Słowa kluczowe
 
-> Wypełnij po przeprowadzeniu keyword research.
+> Wstępny research SERP: 2026-07-25 (audyt SEO). Volume/konkurencja z narzędzi - nadal TBD.
 
 ### Główne (strona główna)
-| Keyword | Język | Volume | Konkurencja |
-|---------|-------|--------|-------------|
-| aplikacja do budżetu dla par | PL | TBD | TBD |
-| wspólny budżet domowy | PL | TBD | TBD |
-| zarządzanie finansami para | PL | TBD | TBD |
-| budget app for couples | EN | TBD | TBD |
+| Keyword | Język | Volume | Konkurencja | Obserwacje SERP (2026-07) |
+|---------|-------|--------|-------------|---------------------------|
+| aplikacja do budżetu dla par | PL | TBD | TBD | SERP zdominowany przez artykuły rankingowe (freenance.io, yomio.app); ourmoney.pl/en pojawia się (EN zamiast PL - naprawione przez x-default) |
+| wspólny budżet domowy | PL | TBD | TBD | Brak widoczności; frazę dodano do hero subheadline |
+| zarządzanie finansami para | PL | TBD | TBD | Brak widoczności |
+| budget app for couples | EN | TBD | TBD | Nie badane |
 
 ### Blog / Long-tail
 | Keyword | Temat posta | Priorytet |
@@ -39,6 +39,11 @@ Canonical: `https://ourmoney.pl/[locale]/[path]`
 | jak zarządzać wspólnym budżetem | Poradnik dla par | Wysoki |
 | jak oszczędzać pieniądze | Cel oszczędnościowy | Wysoki |
 | (uzupełnij) | | |
+
+### Działania pozycjonujące (z audytu 2026-07-25)
+- Zdobyć wpisy w rankingach "aplikacje budżetowe dla par" (freenance.io, yomio.app) - najszybsza droga do widoczności w kategorii
+- Publikować posty pod long-taile z tabeli wyżej
+- Frazy kluczowe wplecione w treść homepage: "wspólny budżet domowy" (hero), "podział wydatków" (features)
 
 ---
 

@@ -26,7 +26,7 @@ export function HowItWorksSection({ locale }: Props) {
           observer.disconnect();
         }
       },
-      { threshold: 0.6 },
+      { threshold: 0.35 },
     );
 
     observer.observe(el);
@@ -64,7 +64,7 @@ export function HowItWorksSection({ locale }: Props) {
           </p>
         </ScrollReveal>
 
-        {/* Steps — horizontal with connecting line */}
+        {/* Steps - horizontal with connecting line */}
         <div className="relative">
           {/* Horizontal connecting line */}
           <div

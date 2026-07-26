@@ -25,7 +25,7 @@ export function BeforeAfterSection({ locale }: Props) {
           observer.disconnect();
         }
       },
-      { threshold: 0.6 },
+      { threshold: 0.35 },
     );
 
     observer.observe(el);

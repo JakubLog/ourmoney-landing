@@ -21,7 +21,7 @@ export function ShareButton({ label, copiedLabel }: Props) {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // fallback: select URL from address bar — not needed, just silently fail
+      // fallback: select URL from address bar - not needed, just silently fail
     }
   };
 

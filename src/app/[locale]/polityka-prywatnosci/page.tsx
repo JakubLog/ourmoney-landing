@@ -72,7 +72,7 @@ export default async function PrivacyPage({ params }: Props) {
             <p>
               <strong>Podstawa prawna:</strong> zgoda użytkownika (art. 6 ust. 1 lit. a RODO).
               Dane są zbierane wyłącznie po wyrażeniu zgody w banerze cookies.
-              Przed wyrażeniem zgody GA4 działa w trybie cookieless (Consent Mode v2) — zbiera
+              Przed wyrażeniem zgody GA4 działa w trybie cookieless (Consent Mode v2) - zbiera
               wyłącznie anonimowe, zagregowane dane bez identyfikacji użytkownika.
             </p>
             <p>
@@ -91,7 +91,7 @@ export default async function PrivacyPage({ params }: Props) {
             </ul>
             <p>
               <strong>Podstawa prawna:</strong> prawnie uzasadniony interes Administratora (art. 6 ust. 1 lit. f RODO)
-              — obsługa zapytań kierowanych przez użytkowników.
+              - obsługa zapytań kierowanych przez użytkowników.
             </p>
             <p>
               <strong>Okres przechowywania:</strong> wiadomości przechowywane są przez okres niezbędny
@@ -116,7 +116,7 @@ export default async function PrivacyPage({ params }: Props) {
             <p>
               <strong>Advanced Matching:</strong> po wyrażeniu zgody Meta Pixel może wykorzystywać
               funkcję Advanced Matching, która przesyła do Meta zahashowane (SHA-256) dane podane
-              przez użytkownika w formularzu kontaktowym — adres e-mail oraz imię i nazwisko — w celu
+              przez użytkownika w formularzu kontaktowym - adres e-mail oraz imię i nazwisko - w celu
               lepszego dopasowania konwersji do profilu użytkownika na platformie Meta. Dane te są
               hashowane po stronie przeglądarki przed wysłaniem i nie są przechowywane przez nas
               w postaci jawnej na serwerach Meta.
@@ -124,7 +124,7 @@ export default async function PrivacyPage({ params }: Props) {
 
             <h3>2.4. Google Tag Manager (GTM)</h3>
             <p>
-              Strona korzysta z Google Tag Manager — narzędzia do zarządzania tagami analitycznymi
+              Strona korzysta z Google Tag Manager - narzędzia do zarządzania tagami analitycznymi
               i marketingowymi. GTM sam w sobie nie zbiera danych osobowych ani nie ustawia plików
               cookies. Służy wyłącznie jako kontener do ładowania innych narzędzi (GA4, Meta Pixel),
               które podlegają osobnym zasadom opisanym powyżej.
@@ -134,17 +134,17 @@ export default async function PrivacyPage({ params }: Props) {
             <p>Strona wykorzystuje następujące rodzaje plików cookies:</p>
             <ul>
               <li>
-                <strong>Niezbędne</strong> — przechowują informację o wyrażonej (lub odmówionej)
+                <strong>Niezbędne</strong> - przechowują informację o wyrażonej (lub odmówionej)
                 zgodzie na cookies (<code>ourmoney_cookie_consent</code> w localStorage).
                 Nie wymagają zgody.
               </li>
               <li>
-                <strong>Analityczne</strong> — pliki Google Analytics: <code>_ga</code>,{' '}
+                <strong>Analityczne</strong> - pliki Google Analytics: <code>_ga</code>,{' '}
                 <code>_ga_J6Z26RXMQY</code>. Aktywowane wyłącznie po wyrażeniu zgody.
                 Okres ważności: do 2 lat.
               </li>
               <li>
-                <strong>Marketingowe</strong> — pliki Meta Pixel: <code>_fbp</code>,{' '}
+                <strong>Marketingowe</strong> - pliki Meta Pixel: <code>_fbp</code>,{' '}
                 <code>_fbc</code>. Aktywowane wyłącznie po wyrażeniu zgody. Okres ważności: do 90 dni.
               </li>
             </ul>
@@ -202,7 +202,7 @@ export default async function PrivacyPage({ params }: Props) {
             <h2>5. Przekazywanie danych do państw trzecich</h2>
             <p>
               Część podmiotów przetwarzających (Google, Vercel, ClickUp) ma siedzibę w Stanach Zjednoczonych
-              — poza Europejskim Obszarem Gospodarczym. Przekazywanie danych odbywa się na podstawie
+              - poza Europejskim Obszarem Gospodarczym. Przekazywanie danych odbywa się na podstawie
               standardowych klauzul umownych (SCC) zatwierdzonych przez Komisję Europejską,
               co zapewnia odpowiedni poziom ochrony danych.
             </p>
@@ -217,13 +217,13 @@ export default async function PrivacyPage({ params }: Props) {
             <h2>7. Prawa użytkownika</h2>
             <p>Na podstawie RODO przysługują Ci następujące prawa:</p>
             <ul>
-              <li><strong>Prawo dostępu</strong> — możesz zażądać kopii swoich danych.</li>
-              <li><strong>Prawo do sprostowania</strong> — możesz żądać poprawienia nieprawidłowych danych.</li>
-              <li><strong>Prawo do usunięcia</strong> — możesz żądać usunięcia danych („prawo do bycia zapomnianym").</li>
-              <li><strong>Prawo do ograniczenia przetwarzania</strong> — możesz żądać ograniczenia przetwarzania Twoich danych.</li>
-              <li><strong>Prawo do przenoszenia danych</strong> — możesz otrzymać swoje dane w formacie nadającym się do odczytu maszynowego.</li>
-              <li><strong>Prawo sprzeciwu</strong> — możesz sprzeciwić się przetwarzaniu opartemu na prawnie uzasadnionym interesie.</li>
-              <li><strong>Prawo cofnięcia zgody</strong> — możesz wycofać zgodę na cookies w dowolnym momencie, bez wpływu na zgodność z prawem przetwarzania przed jej cofnięciem.</li>
+              <li><strong>Prawo dostępu</strong> - możesz zażądać kopii swoich danych.</li>
+              <li><strong>Prawo do sprostowania</strong> - możesz żądać poprawienia nieprawidłowych danych.</li>
+              <li><strong>Prawo do usunięcia</strong> - możesz żądać usunięcia danych („prawo do bycia zapomnianym").</li>
+              <li><strong>Prawo do ograniczenia przetwarzania</strong> - możesz żądać ograniczenia przetwarzania Twoich danych.</li>
+              <li><strong>Prawo do przenoszenia danych</strong> - możesz otrzymać swoje dane w formacie nadającym się do odczytu maszynowego.</li>
+              <li><strong>Prawo sprzeciwu</strong> - możesz sprzeciwić się przetwarzaniu opartemu na prawnie uzasadnionym interesie.</li>
+              <li><strong>Prawo cofnięcia zgody</strong> - możesz wycofać zgodę na cookies w dowolnym momencie, bez wpływu na zgodność z prawem przetwarzania przed jej cofnięciem.</li>
             </ul>
             <p>
               Aby skorzystać z powyższych praw, skontaktuj się z nami:{' '}
@@ -231,7 +231,7 @@ export default async function PrivacyPage({ params }: Props) {
               Na Twoje żądanie odpowiemy w terminie 30 dni.
             </p>
             <p>
-              Masz również prawo wniesienia skargi do organu nadzorczego —
+              Masz również prawo wniesienia skargi do organu nadzorczego -
               Prezesa Urzędu Ochrony Danych Osobowych (UODO), ul. Stawki 2, 00-193 Warszawa.
             </p>
 

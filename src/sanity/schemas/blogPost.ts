@@ -102,7 +102,7 @@ export const blogPost = defineType({
     defineField({
       name: 'cta',
       title: 'CTA (Call to Action)',
-      description: 'Wyróżniony baner — pojawi się w połowie i na końcu artykułu.',
+      description: 'Wyróżniony baner - pojawi się w połowie i na końcu artykułu.',
       type: 'object',
       fields: [
         defineField({ name: 'heading', type: 'string', title: 'Nagłówek' }),
@@ -128,7 +128,7 @@ export const blogPost = defineType({
           title: 'Kluczowe wnioski',
           type: 'array',
           of: [{ type: 'string' }],
-          description: 'Lista 3–5 kluczowych wniosków z artykułu.',
+          description: 'Lista 3-5 kluczowych wniosków z artykułu.',
         }),
       ],
     }),

@@ -16,13 +16,13 @@ export async function PainPointsSection({ locale }: Props) {
       <div className="max-w-6xl mx-auto">
         {/* Heading */}
         <ScrollReveal className="text-center mb-12 md:mb-16">
-          <h2 className="text-4xl md:text-5xl text-dark leading-tight mb-4">
+          <p className="text-xs text-dark/40 uppercase tracking-[0.2em] mb-4">{t('subtitle')}</p>
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-dark leading-tight">
             {t('title')}
           </h2>
-          <p className="text-sm text-muted tracking-wide">{t('subtitle')}</p>
         </ScrollReveal>
 
-        {/* Cards — staggered */}
+        {/* Cards - staggered */}
         <ul className="grid md:grid-cols-3 gap-5 list-none p-0 m-0">
           {items.map((item, i) => (
             <li key={i}>

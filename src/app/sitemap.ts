@@ -6,7 +6,15 @@ const SITEMAP_POSTS_QUERY = groq`
   *[_type == "blogPost" && defined(slug.current)] {
     "slug": slug.current,
     language,
-    publishedAt
+    publishedAt,
+    _updatedAt
+  }
+`;
+
+const SITEMAP_AUTHORS_QUERY = groq`
+  *[_type == "author" && defined(slug.current)] {
+    "slug": slug.current,
+    _updatedAt
   }
 `;
 
@@ -14,6 +22,12 @@ type SitemapPost = {
   slug: string;
   language: string | null;
   publishedAt: string | null;
+  _updatedAt: string | null;
+};
+
+type SitemapAuthor = {
+  slug: string;
+  _updatedAt: string | null;
 };
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -25,24 +39,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticEntries = staticPages.flatMap((path) =>
     locales.map((locale) => ({
       url: `${base}/${locale}${path}`,
-      lastModified: new Date(),
       priority: path === '' ? 1.0 : 0.8,
       changeFrequency: 'weekly' as const,
     }))
   );
 
-  const posts = await client.fetch<SitemapPost[]>(
-    SITEMAP_POSTS_QUERY,
-    {},
-    { cache: 'no-store' as const },
-  );
+  const [posts, authors] = await Promise.all([
+    client.fetch<SitemapPost[]>(SITEMAP_POSTS_QUERY, {}, { cache: 'no-store' as const }),
+    client.fetch<SitemapAuthor[]>(SITEMAP_AUTHORS_QUERY, {}, { cache: 'no-store' as const }),
+  ]);
 
   const blogEntries = posts.map((post) => ({
     url: `${base}/${post.language || 'pl'}/blog/${post.slug}`,
-    lastModified: post.publishedAt ? new Date(post.publishedAt) : new Date(),
+    lastModified: new Date(post._updatedAt ?? post.publishedAt ?? Date.now()),
     priority: 0.7,
     changeFrequency: 'monthly' as const,
   }));
 
-  return [...staticEntries, ...blogEntries];
+  const authorEntries = authors.flatMap((author) =>
+    locales.map((locale) => ({
+      url: `${base}/${locale}/autor/${author.slug}`,
+      lastModified: new Date(author._updatedAt ?? Date.now()),
+      priority: 0.5,
+      changeFrequency: 'monthly' as const,
+    }))
+  );
+
+  return [...staticEntries, ...blogEntries, ...authorEntries];
 }

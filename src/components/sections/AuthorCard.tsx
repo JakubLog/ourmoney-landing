@@ -28,7 +28,7 @@ export function AuthorCard({ author }: { author: Author }) {
   }
 
   return (
-    /* Outer wrapper — 1.5px "border" pokazywany przez gradient */
+    /* Outer wrapper - 1.5px "border" pokazywany przez gradient */
     <div
       ref={ref}
       onMouseMove={handleMove}

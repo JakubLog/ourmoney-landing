@@ -1,4 +1,4 @@
-# OurMoney — Kompletny przewodnik
+# OurMoney - Kompletny przewodnik
 
 > Pierwsza aplikacja finansowa stworzona specjalnie dla par. Wspólny budżet, sprawiedliwy podział wydatków, prywatność.
 
@@ -33,7 +33,7 @@ Wspólne oszczędzanie na wakacje, remont, wkład własny na mieszkanie.
 Automatyczne kategoryzowanie wydatków.
 Miesięczne podsumowania i trendy.
 
-### PWA — działa jak natywna aplikacja
+### PWA - działa jak natywna aplikacja
 Instalacja na telefonie bez App Store / Google Play.
 Działa offline, szybka, responsywna.
 
@@ -51,7 +51,7 @@ Działa offline, szybka, responsywna.
 | Wspólny budżet | Tak | Nie (tylko długi) | Częściowo | Ręcznie |
 | Podział wg dochodów | Tak | Nie | Nie | Ręcznie |
 | Prywatność (Moje/Twoje) | Tak | Nie | Nie | Nie |
-| Po polsku | Tak | Częściowo | Nie | — |
+| Po polsku | Tak | Częściowo | Nie | - |
 | Bezpłatna wersja | Tak | Tak | Nie | Tak |
 
 ## Linki

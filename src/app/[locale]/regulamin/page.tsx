@@ -57,7 +57,7 @@ export default async function TermsPage({ params }: Props) {
               <CopyEmail email="kontakt@ourmoney.pl" className="underline hover:opacity-70" />.
             </p>
             <p>
-              Strona ma charakter informacyjny i prezentuje produkt — aplikację mobilną OurMoney
+              Strona ma charakter informacyjny i prezentuje produkt - aplikację mobilną OurMoney
               dostępną pod adresem <a href="https://app.ourmoney.pl">app.ourmoney.pl</a>.
               Korzystanie ze Strony jest bezpłatne i dobrowolne.
             </p>
@@ -92,8 +92,8 @@ export default async function TermsPage({ params }: Props) {
 
             <h2>4. Własność intelektualna</h2>
             <p>
-              Wszelkie treści zamieszczone na Stronie — w tym teksty, grafiki, logotypy, ikony,
-              zdjęcia, materiały wideo oraz kod źródłowy — stanowią własność Operatora lub podmiotów,
+              Wszelkie treści zamieszczone na Stronie - w tym teksty, grafiki, logotypy, ikony,
+              zdjęcia, materiały wideo oraz kod źródłowy - stanowią własność Operatora lub podmiotów,
               które udzieliły licencji na ich wykorzystanie, i są chronione przepisami prawa
               autorskiego oraz innych przepisów o własności intelektualnej.
             </p>

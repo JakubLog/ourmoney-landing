@@ -61,10 +61,10 @@ export function CookieConsentBanner({ message, acceptLabel, rejectLabel, learnMo
     <div
       role="dialog"
       aria-label="Cookie consent"
-      className="fixed bottom-0 left-0 right-0 z-50 bg-[#141414] border-t border-white/10 px-6 py-4"
+      className="fixed bottom-0 left-0 right-0 z-50 px-3 pb-3 sm:px-4 sm:pb-4"
     >
-      <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
-        <p className="text-sm text-white/60 leading-relaxed">
+      <div className="glass-nav rounded-[20px] max-w-5xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
+        <p className="text-sm text-white/75 leading-relaxed">
           {message}{' '}
           <Link
             href="/polityka-prywatnosci"
@@ -76,7 +76,7 @@ export function CookieConsentBanner({ message, acceptLabel, rejectLabel, learnMo
         <div className="flex items-center gap-3 shrink-0">
           <button
             onClick={handleReject}
-            className="text-xs text-white/35 hover:text-white/60 transition-colors"
+            className="text-xs text-white/50 hover:text-white/80 transition-colors"
           >
             {rejectLabel}
           </button>

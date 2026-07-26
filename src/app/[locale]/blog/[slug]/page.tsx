@@ -112,6 +112,7 @@ function buildLanguageAlternates(
       result[locale] = `https://ourmoney.pl/${locale}/blog/${t.slug}`;
     }
   }
+  result['x-default'] = result['pl'] ?? result[currentLocale];
   return result;
 }
 
@@ -230,14 +231,14 @@ export default async function BlogPostPage({ params }: Props) {
           ...(post.author.role && { jobTitle: post.author.role }),
           ...(post.author.bio && { description: post.author.bio }),
           ...(post.author.avatarUrl && { image: post.author.avatarUrl }),
-          url: `https://ourmoney.pl/${locale}/blog/autor/${post.author.slug}`,
+          url: `https://ourmoney.pl/${locale}/autor/${post.author.slug}`,
         }
       : undefined,
     publisher: {
       '@type': 'Organization',
       name: 'OurMoney',
       url: 'https://ourmoney.pl',
-      logo: { '@type': 'ImageObject', url: 'https://ourmoney.pl/logo.png' },
+      logo: { '@type': 'ImageObject', url: 'https://ourmoney.pl/icon-512.png' },
     },
   };
 
@@ -248,17 +249,7 @@ export default async function BlogPostPage({ params }: Props) {
       name: 'Blog',
       item: `https://ourmoney.pl/${locale}/blog`,
     },
-    ...(post.category
-      ? [
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: post.category.title,
-            item: `https://ourmoney.pl/${locale}/blog/kategoria/${post.category.slug}`,
-          },
-          { '@type': 'ListItem', position: 3, name: post.title },
-        ]
-      : [{ '@type': 'ListItem', position: 2, name: post.title }]),
+    { '@type': 'ListItem', position: 2, name: post.title },
   ];
 
   const jsonLdBreadcrumb = {
@@ -348,7 +339,7 @@ export default async function BlogPostPage({ params }: Props) {
                     <span itemProp="name">{post.author.name}</span>
                   </span>
                   {post.author.role && (
-                    <span className="text-white/25">— {post.author.role}</span>
+                    <span className="text-white/25">- {post.author.role}</span>
                   )}
                 </>
               )}
@@ -416,7 +407,7 @@ export default async function BlogPostPage({ params }: Props) {
               </section>
             ) : null}
 
-            {/* Article content — mid-CTA wstawiane przed pierwszym headingiem po połowie */}
+            {/* Article content - mid-CTA wstawiane przed pierwszym headingiem po połowie */}
             {(() => {
               const body = post.body ?? [];
               const cta = post.cta?.heading ? post.cta : null;
@@ -495,7 +486,7 @@ export default async function BlogPostPage({ params }: Props) {
               </aside>
             )}
 
-            {/* End CTA — Sanity gdy ustawione, fallback na i18n */}
+            {/* End CTA - Sanity gdy ustawione, fallback na i18n */}
             <div className="mt-14">
               {post.cta?.heading ? (
                 <ArticleCTA

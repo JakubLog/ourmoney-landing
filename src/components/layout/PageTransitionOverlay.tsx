@@ -70,7 +70,7 @@ export function PageTransitionOverlay() {
       anim.cancel();
       el.style.transform = 'translateX(0%)';
 
-      // NOW navigate — page swaps behind the overlay
+      // NOW navigate - page swaps behind the overlay
       routerRef.current.push(href);
     }
 

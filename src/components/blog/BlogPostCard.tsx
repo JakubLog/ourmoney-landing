@@ -139,7 +139,7 @@ export function FeaturedPostCard({
         href={`/blog/${slug}`}
         className="flex flex-col md:flex-row flex-1"
       >
-        {/* Image — 55% width on desktop */}
+        {/* Image - 55% width on desktop */}
         <div className="relative w-full md:w-[55%] aspect-[4/3] md:aspect-auto overflow-hidden shrink-0">
           {mainImageUrl ? (
             <Image
@@ -180,7 +180,7 @@ export function FeaturedPostCard({
           <div className="hidden md:block absolute inset-y-0 right-0 w-20 bg-gradient-to-r from-transparent to-[#1a1a1a]" />
         </div>
 
-        {/* Content — 45% on desktop */}
+        {/* Content - 45% on desktop */}
         <div className="flex flex-col justify-between p-8 md:p-12 flex-1">
           <div className="flex flex-col gap-5">
             <span className="inline-flex items-center bg-[#bbff00] text-black text-xs font-semibold px-3 py-1 rounded-full w-fit tracking-wide">

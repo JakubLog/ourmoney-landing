@@ -30,7 +30,7 @@ export default function NotFound() {
           ))}
         </div>
 
-        {/* Giant 404 — layered with offset for depth */}
+        {/* Giant 404 - layered with offset for depth */}
         <div className="relative select-none mb-2" aria-hidden="true">
           {/* Shadow layer */}
           <span
@@ -54,7 +54,7 @@ export default function NotFound() {
           >
             404
           </span>
-          {/* Main layer — accent gradient */}
+          {/* Main layer - accent gradient */}
           <span
             className="relative font-display text-[12rem] md:text-[20rem] lg:text-[26rem] leading-none tracking-tighter"
             style={{
@@ -82,7 +82,7 @@ export default function NotFound() {
           className="text-white/35 text-sm md:text-base max-w-md mb-12 leading-relaxed"
           style={{ fontFamily: '"Switzer", "Inter Tight", sans-serif' }}
         >
-          Ta strona nie istnieje — ale Twoje finanse mogą wyglądać lepiej.
+          Ta strona nie istnieje - ale Twoje finanse mogą wyglądać lepiej.
         </p>
 
         {/* CTA */}

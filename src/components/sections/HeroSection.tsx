@@ -30,25 +30,6 @@ export async function HeroSection({ locale }: Props) {
     .filter((t) => t.photoUrl)
     .slice(0, 5);
 
-  const avgRating =
-    testimonials.length > 0
-      ? testimonials.reduce((sum, t) => sum + (t.rating ?? 5), 0) / testimonials.length
-      : 5;
-
-  const aggregateRatingJsonLd = testimonials.length > 0 ? {
-    '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    name: 'OurMoney',
-    applicationCategory: 'FinanceApplication',
-    operatingSystem: 'Web',
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: avgRating.toFixed(1),
-      bestRating: '5',
-      ratingCount: testimonials.length,
-    },
-  } : null;
-
   return (
     <section className="relative flex flex-col items-center justify-center overflow-hidden min-h-[85svh]">
       {/* Background image */}
@@ -66,7 +47,7 @@ export async function HeroSection({ locale }: Props) {
       <div className="absolute inset-0 bg-black/45" aria-hidden="true" />
 
       {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center py-24 md:py-32">
+      <div className="hero-stagger relative z-10 max-w-6xl mx-auto px-6 text-center py-24 md:py-32">
         <h1 className="font-display text-5xl md:text-7xl lg:text-[5.25rem] text-white leading-[1.05] tracking-tight mb-6">
           {t('headlineL1')}
           <br />
@@ -82,7 +63,7 @@ export async function HeroSection({ locale }: Props) {
 
         {/* Social proof with avatars */}
         <aside aria-label={t('socialProof')} className="mb-6 flex flex-col items-center gap-3">
-          <div className="flex items-center justify-center gap-3">
+          <div className="glass rounded-full pl-3 pr-5 py-2 flex items-center justify-center gap-3">
             {avatars.length > 0 && (
               <div className="flex -space-x-2" aria-hidden="true">
                 {avatars.map((person) => (
@@ -97,19 +78,13 @@ export async function HeroSection({ locale }: Props) {
                 ))}
               </div>
             )}
-            <span className="text-sm text-white/60">{t('socialProof')}</span>
+            <span className="text-sm text-white/80">{t('socialProof')}</span>
           </div>
-          {aggregateRatingJsonLd && (
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(aggregateRatingJsonLd) }}
-            />
-          )}
         </aside>
 
         <InvertDotButton
           href={tCommon('appUrl')}
-          className="inline-block bg-accent text-black font-semibold px-10 py-4 rounded-full text-sm"
+          className="sheen inline-block bg-accent text-black font-semibold px-10 py-4 rounded-full text-sm"
           location="hero"
           locale={locale}
         >
@@ -117,6 +92,7 @@ export async function HeroSection({ locale }: Props) {
         </InvertDotButton>
         <p className="mt-3 text-xs text-white/40">{t('noCreditCard')}</p>
       </div>
+
     </section>
   );
 }

@@ -42,18 +42,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       languages: {
         pl: 'https://ourmoney.pl/pl/blog',
         en: 'https://ourmoney.pl/en/blog',
+        'x-default': 'https://ourmoney.pl/pl/blog',
       },
     },
     openGraph: {
       title: t('title'),
       description: t('description'),
       url: `https://ourmoney.pl/${locale}/blog`,
+      siteName: 'OurMoney',
+      images: [{ url: '/og-image.png', width: 1200, height: 630 }],
       locale: locale === 'pl' ? 'pl_PL' : 'en_US',
       type: 'website',
     },
     twitter: {
+      card: 'summary_large_image',
       title: t('title'),
       description: t('description'),
+      images: ['/og-image.png'],
     },
   };
 }
@@ -173,7 +178,7 @@ export default async function BlogPage({ params }: Props) {
                   readMoreLabel={t('readMore')}
                 />
 
-                {/* Grid — remaining posts */}
+                {/* Grid - remaining posts */}
                 {rest.length > 0 && (
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 pt-4">
                     {rest.map((post) => (

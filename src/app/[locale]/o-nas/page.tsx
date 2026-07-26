@@ -38,18 +38,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       languages: {
         pl: 'https://ourmoney.pl/pl/o-nas',
         en: 'https://ourmoney.pl/en/o-nas',
+        'x-default': 'https://ourmoney.pl/pl/o-nas',
       },
     },
     openGraph: {
       title: t('title'),
       description: t('description'),
       url: `https://ourmoney.pl/${locale}/o-nas`,
+      siteName: 'OurMoney',
+      images: [{ url: '/og-image.png', width: 1200, height: 630 }],
       locale: locale === 'pl' ? 'pl_PL' : 'en_US',
       type: 'website',
     },
     twitter: {
+      card: 'summary_large_image',
       title: t('title'),
       description: t('description'),
+      images: ['/og-image.png'],
     },
   };
 }
@@ -64,7 +69,7 @@ export default async function AboutPage({ params }: Props) {
     <>
       <Header />
       <main>
-        {/* Hero — full-bleed image with text overlay */}
+        {/* Hero - full-bleed image with text overlay */}
         <section className="relative flex items-end" style={{ minHeight: '80vh' }}>
           <Image
             src="/about-bg.avif"
@@ -97,7 +102,7 @@ export default async function AboutPage({ params }: Props) {
           </ScrollReveal>
         </section>
 
-        {/* Team — Sanity authors, clickable cards */}
+        {/* Team - Sanity authors, clickable cards */}
         <section className="bg-[#f5f0e8] py-24 px-6">
           <div className="max-w-4xl mx-auto">
             <h2 className="sr-only">{t('team.title')}</h2>

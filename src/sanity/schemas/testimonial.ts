@@ -20,7 +20,7 @@ export const testimonial = defineType({
     }),
     defineField({
       name: 'rating',
-      title: 'Ocena (1–5)',
+      title: 'Ocena (1-5)',
       type: 'number',
       options: { list: [1, 2, 3, 4, 5] },
       initialValue: 5,

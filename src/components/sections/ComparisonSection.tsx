@@ -36,7 +36,7 @@ export async function ComparisonSection({ locale }: Props) {
     <section className="bg-white py-20 md:py-28 px-6">
       <div className="max-w-4xl mx-auto">
         <ScrollReveal className="text-center mb-12 md:mb-16">
-          <h2 className="text-4xl md:text-5xl text-dark leading-tight mb-4">
+          <h2 className="font-display text-4xl md:text-5xl text-dark leading-tight mb-4">
             {t('title')}
           </h2>
           <p className="text-dark/50 text-sm leading-relaxed max-w-lg mx-auto">

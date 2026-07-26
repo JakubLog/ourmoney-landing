@@ -17,7 +17,7 @@ export async function FAQSection({ locale }: Props) {
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-10 lg:gap-20">
           {/* Left column: title + CTA */}
           <ScrollReveal>
-            <h2 className="text-5xl md:text-6xl text-dark mb-8">
+            <h2 className="font-display text-5xl md:text-6xl text-dark mb-8">
               {t('title')}
             </h2>
             <InvertDotButton

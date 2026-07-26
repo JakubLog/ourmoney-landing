@@ -14,6 +14,8 @@ import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
 import { BeforeAfterSection } from '@/components/sections/BeforeAfterSection';
 import { TrustSection } from '@/components/sections/TrustSection';
 import { ComparisonSection } from '@/components/sections/ComparisonSection';
+import { client } from '@/sanity/lib/client';
+import { TESTIMONIALS_QUERY } from '@/sanity/lib/queries';
 
 export const revalidate = 86400;
 
@@ -23,6 +25,7 @@ export function generateStaticParams() {
 
 type Props = { params: Promise<{ locale: string }> };
 type FAQItem = { question: string; answer: string };
+type Testimonial = { _id: string; name: string; rating: number; photoUrl: string | null };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -36,6 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       languages: {
         pl: 'https://ourmoney.pl/pl',
         en: 'https://ourmoney.pl/en',
+        'x-default': 'https://ourmoney.pl/pl',
       },
     },
     openGraph: {
@@ -61,6 +65,19 @@ export default async function HomePage({ params }: Props) {
   setRequestLocale(locale);
   const tFaq = await getTranslations({ locale, namespace: 'HomePage.faq' });
   const faqItems = tFaq.raw('items') as FAQItem[];
+
+  // Ten sam fetch co w HeroSection — Next dedupuje żądanie w ramach renderu
+  const testimonials = await client.fetch<Testimonial[]>(
+    TESTIMONIALS_QUERY,
+    { language: locale },
+    process.env.NODE_ENV === 'production'
+      ? { next: { revalidate: 86400, tags: ['landing'] } }
+      : { cache: 'no-store' as const },
+  );
+  const avgRating =
+    testimonials.length > 0
+      ? testimonials.reduce((sum, t) => sum + (t.rating ?? 5), 0) / testimonials.length
+      : null;
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -94,6 +111,14 @@ export default async function HomePage({ params }: Props) {
         description: locale === 'pl'
           ? 'Aplikacja do wspólnego zarządzania budżetem domowym dla par'
           : 'Shared budget management app for couples',
+        ...(avgRating !== null && {
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: avgRating.toFixed(1),
+            bestRating: '5',
+            ratingCount: testimonials.length,
+          },
+        }),
       },
       {
         '@type': 'FAQPage',
@@ -120,8 +145,8 @@ export default async function HomePage({ params }: Props) {
         <FeaturesSection locale={locale} />
         <BeforeAfterSection locale={locale} />
         <BrandPromiseSection locale={locale} />
-        <ComparisonSection locale={locale} />
         <TestimonialsSection locale={locale} />
+        <ComparisonSection locale={locale} />
         <TrustSection locale={locale} />
         <FAQSection locale={locale} />
         <CTABanner locale={locale} />

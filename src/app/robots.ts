@@ -3,9 +3,11 @@ import { MetadataRoute } from 'next';
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      { userAgent: '*', allow: '/' },
-      { userAgent: '*', disallow: '/studio/' },
-      { userAgent: '*', disallow: '/api/' },
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: ['/studio/', '/api/'],
+      },
     ],
     sitemap: 'https://ourmoney.pl/sitemap.xml',
   };
