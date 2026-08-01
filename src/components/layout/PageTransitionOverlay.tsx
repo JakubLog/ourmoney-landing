@@ -83,7 +83,7 @@ export function PageTransitionOverlay() {
     <div
       ref={overlayRef}
       style={{ transform: 'translateX(100%)' }}
-      className="fixed inset-0 z-[9999] bg-[#141414] pointer-events-none will-change-transform"
+      className="fixed inset-0 z-[9999] bg-dark pointer-events-none will-change-transform"
     />
   );
 }

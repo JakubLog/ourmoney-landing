@@ -34,7 +34,7 @@ export function AuthorCard({ author }: { author: Author }) {
       onMouseMove={handleMove}
       onMouseEnter={() => setActive(true)}
       onMouseLeave={() => setActive(false)}
-      className="rounded-[18px] p-[1.5px]"
+      className="rounded-card p-[1.5px]"
       style={{
         background: active
           ? `radial-gradient(circle 220px at ${pos.x}px ${pos.y}px, #bbff00 0%, rgba(187,255,0,0.6) 30%, rgba(20,20,20,0.18) 60%)`
@@ -45,7 +45,7 @@ export function AuthorCard({ author }: { author: Author }) {
       {/* Inner card */}
       <Link
         href={`/autor/${author.slug}`}
-        className="group flex flex-col bg-[#141414] rounded-2xl p-10 h-full"
+        className="group flex flex-col bg-dark rounded-2xl p-10 h-full"
       >
         {/* Avatar */}
         {author.avatarUrl ? (
@@ -60,7 +60,7 @@ export function AuthorCard({ author }: { author: Author }) {
           />
         ) : (
           <div className="w-[120px] h-[120px] rounded-full bg-white/10 flex items-center justify-center mb-6 flex-shrink-0">
-            <span className="text-[#bbff00] font-bold text-4xl">
+            <span className="text-accent font-bold text-4xl">
               {author.name.charAt(0)}
             </span>
           </div>
@@ -68,13 +68,13 @@ export function AuthorCard({ author }: { author: Author }) {
 
         <h3 className="text-white font-semibold text-xl mb-1">{author.name}</h3>
         {author.role && (
-          <p className="text-[#bbff00] text-sm font-medium mb-5">{author.role}</p>
+          <p className="text-accent text-sm font-medium mb-6">{author.role}</p>
         )}
         {author.bio && (
           <p className="text-white/55 text-base leading-relaxed flex-1">{author.bio}</p>
         )}
 
-        <div className="mt-6 flex items-center gap-2 text-sm text-white/30 group-hover:text-[#bbff00] transition-colors duration-300">
+        <div className="mt-6 flex items-center gap-2 text-sm text-white/30 group-hover:text-accent transition-colors duration-300">
           <span>{t('viewStory')}</span>
           <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
         </div>

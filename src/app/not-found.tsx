@@ -4,7 +4,7 @@ import '@/app/globals.css';
 export default function NotFound() {
   return (
     <html lang="pl">
-      <body className="bg-[#141414] min-h-screen flex flex-col items-center justify-center px-6 text-center overflow-hidden relative">
+      <body className="bg-dark min-h-screen flex flex-col items-center justify-center px-6 text-center overflow-hidden relative">
         {/* Ambient glow */}
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-20 blur-[120px] pointer-events-none"
@@ -16,7 +16,7 @@ export default function NotFound() {
           {[...Array(6)].map((_, i) => (
             <div
               key={i}
-              className="absolute rounded-full bg-[#bbff00]"
+              className="absolute rounded-full bg-accent"
               style={{
                 width: `${4 + i * 2}px`,
                 height: `${4 + i * 2}px`,
@@ -69,18 +69,16 @@ export default function NotFound() {
         </div>
 
         {/* Divider line */}
-        <div className="w-12 h-px bg-[#bbff00]/30 mb-8" />
+        <div className="w-12 h-px bg-accent/30 mb-8" />
 
         {/* Copy */}
         <h1
           className="text-white/90 text-xl md:text-2xl mb-3 tracking-tight"
-          style={{ fontFamily: '"Switzer", "Inter Tight", sans-serif', fontWeight: 500 }}
         >
           Zabłądziłeś? Nawet najlepszy budżet nie przewidzi tego.
         </h1>
         <p
           className="text-white/35 text-sm md:text-base max-w-md mb-12 leading-relaxed"
-          style={{ fontFamily: '"Switzer", "Inter Tight", sans-serif' }}
         >
           Ta strona nie istnieje - ale Twoje finanse mogą wyglądać lepiej.
         </p>
@@ -88,8 +86,7 @@ export default function NotFound() {
         {/* CTA */}
         <Link
           href="/pl"
-          className="group relative bg-[#bbff00] text-[#141414] font-semibold px-10 py-4 rounded-full text-sm hover:bg-[#a2e600] transition-all duration-300 hover:shadow-[0_0_40px_rgba(187,255,0,0.2)]"
-          style={{ fontFamily: '"Switzer", "Inter Tight", sans-serif' }}
+          className="group relative bg-accent text-dark font-semibold px-10 py-4 rounded-full text-sm hover:bg-accent-dark transition-all duration-300 hover:shadow-[0_0_40px_rgba(187,255,0,0.2)]"
         >
           Wróć na stronę główną
         </Link>

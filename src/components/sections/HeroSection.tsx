@@ -63,7 +63,7 @@ export async function HeroSection({ locale }: Props) {
 
         {/* Social proof with avatars */}
         <aside aria-label={t('socialProof')} className="mb-6 flex flex-col items-center gap-3">
-          <div className="glass rounded-full pl-3 pr-5 py-2 flex items-center justify-center gap-3">
+          <div className="glass rounded-full pl-3 pr-6 py-2 flex items-center justify-center gap-3">
             {avatars.length > 0 && (
               <div className="flex -space-x-2" aria-hidden="true">
                 {avatars.map((person) => (

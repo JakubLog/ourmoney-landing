@@ -63,7 +63,7 @@ export function CookieConsentBanner({ message, acceptLabel, rejectLabel, learnMo
       aria-label="Cookie consent"
       className="fixed bottom-0 left-0 right-0 z-50 px-3 pb-3 sm:px-4 sm:pb-4"
     >
-      <div className="glass-nav rounded-[20px] max-w-5xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
+      <div className="glass-nav rounded-panel max-w-5xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
         <p className="text-sm text-white/75 leading-relaxed">
           {message}{' '}
           <Link
@@ -82,7 +82,7 @@ export function CookieConsentBanner({ message, acceptLabel, rejectLabel, learnMo
           </button>
           <button
             onClick={handleAccept}
-            className="bg-[#bbff00] text-black text-xs font-semibold px-5 py-2 rounded-full hover:bg-[#a2e600] transition-colors"
+            className="bg-accent text-black text-xs font-semibold px-6 py-2 rounded-full hover:bg-accent-dark transition-colors"
           >
             {acceptLabel}
           </button>

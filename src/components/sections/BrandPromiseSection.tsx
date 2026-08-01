@@ -12,7 +12,7 @@ export async function BrandPromiseSection({ locale }: Props) {
     <section className="bg-white py-20 md:py-28 px-6">
       <div className="max-w-4xl mx-auto text-center">
         <ScrollReveal>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-dark leading-tight mb-5">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-dark leading-tight mb-6">
             {t('title')}
           </h2>
           <p className="text-dark/50 text-base md:text-lg leading-relaxed mb-12 md:mb-16 max-w-xl mx-auto">
@@ -47,13 +47,13 @@ export async function BrandPromiseSection({ locale }: Props) {
               </div>
               <div className="text-left min-w-0">
                 <p className="text-xs md:text-sm font-semibold text-dark">Biedronka</p>
-                <p className="text-[10px] md:text-xs text-dark/50">Zakupy spożywcze</p>
+                <p className="text-xs text-dark/50">Zakupy spożywcze</p>
               </div>
               <div className="text-right ml-auto md:ml-4 shrink-0">
                 <p className="text-xs md:text-sm font-semibold text-dark">129,89 zł</p>
                 <p className="hidden md:block text-xs text-dark/50">23.02.2026</p>
               </div>
-              <span className="absolute -top-2 -right-2 bg-accent text-[10px] font-semibold text-dark px-2 py-0.5 rounded-full">
+              <span className="absolute -top-2 -right-2 bg-accent text-xs font-semibold text-dark px-2 py-1 rounded-full">
                 Agnieszka
               </span>
             </div>
@@ -65,13 +65,13 @@ export async function BrandPromiseSection({ locale }: Props) {
               </div>
               <div className="text-left min-w-0">
                 <p className="text-xs md:text-sm font-semibold text-dark">Paliwo</p>
-                <p className="text-[10px] md:text-xs text-dark/50">Samochód</p>
+                <p className="text-xs text-dark/50">Samochód</p>
               </div>
               <div className="text-right ml-auto md:ml-4 shrink-0">
                 <p className="text-xs md:text-sm font-semibold text-dark">312,23 zł</p>
                 <p className="hidden md:block text-xs text-dark/50">28.02.2026</p>
               </div>
-              <span className="absolute -top-2 -right-2 bg-accent text-[10px] font-semibold text-dark px-2 py-0.5 rounded-full">
+              <span className="absolute -top-2 -right-2 bg-accent text-xs font-semibold text-dark px-2 py-1 rounded-full">
                 Rafał
               </span>
             </div>

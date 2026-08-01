@@ -5,7 +5,11 @@ type Props = { locale: string };
 
 type PainItem = { title: string; description: string };
 
-const CARD_COLORS = ['#e4e9f5', '#e2dbd2', '#eeeceb'];
+const CARD_COLORS = [
+  'var(--color-surface-cool)',
+  'var(--color-beige)',
+  'var(--color-surface-2)',
+];
 
 export async function PainPointsSection({ locale }: Props) {
   const t = await getTranslations({ locale, namespace: 'HomePage.painPoints' });
@@ -23,7 +27,7 @@ export async function PainPointsSection({ locale }: Props) {
         </ScrollReveal>
 
         {/* Cards - staggered */}
-        <ul className="grid md:grid-cols-3 gap-5 list-none p-0 m-0">
+        <ul className="grid md:grid-cols-3 gap-6 list-none p-0 m-0">
           {items.map((item, i) => (
             <li key={i}>
               <ScrollReveal delay={i * 100}>

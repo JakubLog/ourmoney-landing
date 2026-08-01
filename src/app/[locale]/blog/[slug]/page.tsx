@@ -292,7 +292,7 @@ export default async function BlogPostPage({ params }: Props) {
       <main>
         <article itemScope itemType="https://schema.org/Article">
         {/* Hero */}
-        <header className="bg-[#141414] pt-36 pb-16 px-6">
+        <header className="bg-dark pt-36 pb-16 px-6">
           <div className="max-w-3xl mx-auto">
             {/* Top bar: back link + share + language switcher */}
             <nav className="flex items-center justify-between mb-10 flex-wrap gap-3" aria-label="Blog navigation">
@@ -310,7 +310,7 @@ export default async function BlogPostPage({ params }: Props) {
                     key={tr!.language}
                     href={`/blog/${tr!.slug}`}
                     locale={tr!.language as 'pl' | 'en'}
-                    className="inline-flex items-center gap-1.5 text-xs text-white/30 hover:text-[#bbff00] transition-colors border border-white/10 hover:border-[#bbff00]/30 px-3 py-1.5 rounded-full"
+                    className="inline-flex items-center gap-2 text-xs text-white/30 hover:text-accent transition-colors border border-white/10 hover:border-accent/30 px-3 py-2 rounded-full"
                     hrefLang={tr!.language}
                   >
                     {tr!.language === 'pl' ? t('langLabel.pl') : t('langLabel.en')}
@@ -357,7 +357,7 @@ export default async function BlogPostPage({ params }: Props) {
 
         {/* Main image */}
         {post.mainImageUrl && (
-          <figure className="relative w-full aspect-[16/7] bg-[#1a1a1a] m-0">
+          <figure className="relative w-full aspect-[16/7] bg-dark-3 m-0">
             <Image
               src={post.mainImageUrl}
               alt={post.mainImageAlt ?? post.title}
@@ -378,12 +378,12 @@ export default async function BlogPostPage({ params }: Props) {
             {post.aiSeo?.aiSummary && (
               <aside
                 aria-label={t('tldr')}
-                className="mb-10 p-6 rounded-2xl border border-[#bbff00]/20 bg-[#bbff00]/5"
+                className="mb-10 p-6 rounded-2xl border border-accent/20 bg-accent/5"
               >
-                <strong className="block text-sm font-semibold text-[#141414] mb-2">
+                <strong className="block text-sm font-semibold text-dark mb-2">
                   {t('tldr')}
                 </strong>
-                <p className="text-sm text-[#141414]/70 leading-relaxed">{post.aiSeo.aiSummary}</p>
+                <p className="text-sm text-dark/70 leading-relaxed">{post.aiSeo.aiSummary}</p>
               </aside>
             )}
 
@@ -391,13 +391,13 @@ export default async function BlogPostPage({ params }: Props) {
             {post.aiSeo?.keyTakeaways?.length ? (
               <section
                 aria-label={t('keyTakeaways')}
-                className="mb-10 p-6 rounded-2xl bg-[#f7f7f7]"
+                className="mb-10 p-6 rounded-2xl bg-surface"
               >
-                <h2 className="text-sm font-semibold text-[#141414] mb-4">{t('keyTakeaways')}</h2>
+                <h2 className="text-sm font-semibold text-dark mb-4">{t('keyTakeaways')}</h2>
                 <ul className="space-y-2">
                   {post.aiSeo.keyTakeaways.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-[#141414]/70">
-                      <span className="text-[#bbff00] mt-0.5 shrink-0" aria-hidden="true">
+                    <li key={i} className="flex items-start gap-2 text-sm text-dark/70">
+                      <span className="text-accent mt-0.5 shrink-0" aria-hidden="true">
                         ✓
                       </span>
                       {item}
@@ -458,7 +458,7 @@ export default async function BlogPostPage({ params }: Props) {
 
             {/* Author box */}
             {post.author && (post.author.bio || post.author.avatarUrl) && (
-              <aside className="mt-14 pt-10 border-t border-[#141414]/8 flex items-start gap-5" aria-label={t('authorSection')}>
+              <aside className="mt-14 pt-10 border-t border-dark/8 flex items-start gap-6" aria-label={t('authorSection')}>
                 {post.author.avatarUrl && (
                   <Image
                     src={post.author.avatarUrl}
@@ -470,15 +470,15 @@ export default async function BlogPostPage({ params }: Props) {
                   />
                 )}
                 <address className="not-italic">
-                  <p className="text-xs text-[#141414]/40 mb-1 uppercase tracking-wider">
+                  <p className="text-xs text-dark/40 mb-1 uppercase tracking-wider">
                     {t('authorSection')}
                   </p>
-                  <p className="font-semibold text-[#141414] text-sm">{post.author.name}</p>
+                  <p className="font-semibold text-dark text-sm">{post.author.name}</p>
                   {post.author.role && (
-                    <p className="text-xs text-[#141414]/50 mt-0.5">{post.author.role}</p>
+                    <p className="text-xs text-dark/50 mt-1">{post.author.role}</p>
                   )}
                   {post.author.bio && (
-                    <p className="text-sm text-[#141414]/60 mt-3 leading-relaxed">
+                    <p className="text-sm text-dark/60 mt-3 leading-relaxed">
                       {post.author.bio}
                     </p>
                   )}
@@ -499,16 +499,16 @@ export default async function BlogPostPage({ params }: Props) {
                   locale={locale}
                 />
               ) : (
-                <aside className="p-8 rounded-2xl bg-[#141414] text-center">
+                <aside className="p-8 rounded-2xl bg-dark text-center">
                   <p className="font-display text-2xl md:text-3xl text-white mb-3 leading-tight">
                     {t('inArticleCta.headline')}
                   </p>
-                  <p className="text-sm text-white/50 mb-7 max-w-md mx-auto leading-relaxed">
+                  <p className="text-sm text-white/50 mb-8 max-w-md mx-auto leading-relaxed">
                     {t('inArticleCta.subtext')}
                   </p>
                   <TrackedCTALink
                     href={tCommon('appUrl')}
-                    className="inline-flex items-center gap-2 bg-[#bbff00] text-black font-semibold text-sm px-7 py-3.5 rounded-full hover:bg-[#d4ff4d] transition-colors"
+                    className="inline-flex items-center gap-2 bg-accent text-black font-semibold text-sm px-8 py-4 rounded-full hover:bg-accent-light transition-colors"
                     location="article_end"
                     locale={locale}
                     postSlug={slug}
@@ -523,27 +523,27 @@ export default async function BlogPostPage({ params }: Props) {
             {post.relatedFaq?.length ? (
               <section
                 aria-label={t('articleFaqTitle')}
-                className="mt-14 pt-12 border-t border-[#141414]/8"
+                className="mt-14 pt-12 border-t border-dark/8"
               >
-                <h2 className="font-display text-2xl text-[#141414] mb-6">
+                <h2 className="font-display text-2xl text-dark mb-6">
                   {t('articleFaqTitle')}
                 </h2>
                 <div className="space-y-3">
                   {post.relatedFaq.map((faq, i) => (
                     <details
                       key={i}
-                      className="group border border-[#141414]/10 rounded-xl overflow-hidden"
+                      className="group border border-dark/10 rounded-xl overflow-hidden"
                     >
-                      <summary className="cursor-pointer flex items-center justify-between p-5 text-sm font-medium text-[#141414] list-none hover:bg-[#f7f7f7] transition-colors">
+                      <summary className="cursor-pointer flex items-center justify-between p-6 text-sm font-medium text-dark list-none hover:bg-surface transition-colors">
                         {faq.question}
                         <span
-                          className="text-[#141414]/30 group-open:rotate-45 transition-transform duration-200 shrink-0 ml-4 text-lg"
+                          className="text-dark/30 group-open:rotate-45 transition-transform duration-200 shrink-0 ml-4 text-lg"
                           aria-hidden="true"
                         >
                           +
                         </span>
                       </summary>
-                      <p className="px-5 pb-5 text-sm text-[#141414]/60 leading-relaxed">
+                      <p className="px-6 pb-6 text-sm text-dark/60 leading-relaxed">
                         {faq.answer}
                       </p>
                     </details>
@@ -558,12 +558,12 @@ export default async function BlogPostPage({ params }: Props) {
 
         {/* Related posts */}
         {relatedPosts.length > 0 && (
-          <section className="bg-[#141414] py-24 px-6" aria-label={t('relatedPosts')}>
+          <section className="bg-dark py-24 px-6" aria-label={t('relatedPosts')}>
             <div className="max-w-5xl mx-auto">
               <div className="border-t border-white/8 pt-10 mb-10">
                 <h2 className="font-display text-3xl text-white">{t('relatedPosts')}</h2>
               </div>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {relatedPosts.map((related) => (
                   <BlogPostCard
                     key={related._id}

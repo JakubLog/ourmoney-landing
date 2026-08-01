@@ -33,7 +33,7 @@ export function BeforeAfterSection({ locale }: Props) {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-[#f7f5f2] py-20 md:py-28 px-6">
+    <section ref={sectionRef} className="bg-surface py-20 md:py-28 px-6">
       <div className="max-w-5xl mx-auto">
         <ScrollReveal className="text-center mb-12 md:mb-16">
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-dark leading-tight mb-4">

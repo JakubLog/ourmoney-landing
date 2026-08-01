@@ -90,7 +90,7 @@ export function FeaturesSection({ locale }: Props) {
                     />
                   )}
                   <button
-                    className="w-full flex items-center gap-4 py-5 text-left group cursor-pointer"
+                    className="w-full flex items-center gap-4 py-6 text-left group cursor-pointer"
                     onClick={() => handleClick(i)}
                     aria-expanded={open === i}
                   >
@@ -112,7 +112,7 @@ export function FeaturesSection({ locale }: Props) {
                     }}
                   >
                     <div style={{ overflow: 'hidden' }}>
-                      <p className="pb-5 pl-12 text-sm text-dark/50 leading-relaxed max-w-md">
+                      <p className="pb-6 pl-12 text-sm text-dark/50 leading-relaxed max-w-md">
                         {item.description}
                       </p>
                     </div>
@@ -146,15 +146,15 @@ export function FeaturesSection({ locale }: Props) {
                 {/* Bezel */}
                 <div className="bg-black rounded-[3.2rem] p-[9px]">
                   {/* Screen */}
-                  <div className="relative rounded-[2.7rem] overflow-hidden bg-[#f8f8f7]">
+                  <div className="relative rounded-[2.7rem] overflow-hidden bg-screen">
                     {/* Status bar */}
-                    <div className="relative z-20 h-11 bg-[#f8f8f7] flex items-end justify-between px-7 pb-1.5">
+                    <div className="relative z-20 h-11 bg-screen flex items-end justify-between px-7 pb-1.5">
                       <span className="text-dark text-[13px] font-semibold leading-none tabular-nums">
                         9:41
                       </span>
                       {/* Dynamic Island */}
                       <div className="absolute top-[10px] left-1/2 -translate-x-1/2 w-[92px] h-[26px] bg-black rounded-full flex items-center justify-end pr-2">
-                        <div className="w-[10px] h-[10px] rounded-full bg-[#1c1c1e] ring-1 ring-[#2c2c2e]" />
+                        <div className="w-[10px] h-[10px] rounded-full bg-dark-2 ring-1 ring-[#2c2c2e]" />
                       </div>
                       <span className="flex items-center gap-1" aria-hidden="true">
                         {/* Signal */}
@@ -181,7 +181,7 @@ export function FeaturesSection({ locale }: Props) {
                     </div>
                     {/* App screen - padding-top replaces aspect-ratio for cross-browser h-full support */}
                     <div
-                      className="relative mb-4 rounded-b-[2.2rem] overflow-hidden bg-[#f8f8f7]"
+                      className="relative mb-4 rounded-b-[2.2rem] overflow-hidden bg-screen"
                       style={{ paddingTop: 'calc(100% * 898 / 391)' }}
                     >
                       {FEATURE_IMAGES.map((src, i) => {

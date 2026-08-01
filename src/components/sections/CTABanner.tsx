@@ -12,7 +12,8 @@ export async function CTABanner({ locale }: Props) {
     <section className="bg-dark px-6 py-20 md:py-28">
       <ScrollReveal className="max-w-3xl mx-auto">
         <div className="relative">
-          {/* Accent glow behind the glass card */}
+          {/* Accent glow behind the glass card.
+              40px = radius-hero (32) + inset (8) - promien koncentryczny, nie token */}
           <div
             aria-hidden="true"
             className="absolute -inset-8 rounded-[40px] blur-2xl"
@@ -21,7 +22,7 @@ export async function CTABanner({ locale }: Props) {
                 'radial-gradient(ellipse at center, rgba(187,255,0,0.14), transparent 65%)',
             }}
           />
-          <div className="relative glass rounded-[32px] px-8 py-14 md:px-14 md:py-16 text-center">
+          <div className="relative glass rounded-hero px-8 py-14 md:px-14 md:py-16 text-center">
             <h2 className="font-display text-3xl md:text-4xl text-white leading-snug mb-8 md:mb-10">
               {t('text')}
             </h2>
