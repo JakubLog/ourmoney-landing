@@ -44,6 +44,8 @@
   --color-dark-3: #1a1a1a;         /* karty na ciemnym tle (blog) */
 
   --color-accent-light: #d4ff4d;   /* hover na accent */
+  --color-accent-deep: #557300;    /* zielen na jasnym tle - accent ma na bieli 1.3:1,
+                                      ten wariant 5.4:1, wiec nadaje sie na tekst i ikony */
 
   /* Promienie - trzy stopnie + rounded-full.
      Wartosci arbitralne w px sa dozwolone tylko przy promieniach koncentrycznych

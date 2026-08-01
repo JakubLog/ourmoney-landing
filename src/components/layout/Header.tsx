@@ -5,6 +5,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { Link, usePathname } from '@/i18n/navigation';
 import { Logo } from '@/components/ui/Logo';
+import { startHref } from '@/lib/appLinks';
 import { trackCTAClick, trackLanguageSwitch } from '@/lib/analytics';
 
 export function Header() {
@@ -37,6 +38,7 @@ export function Header() {
 
   const navLinks = [
     { href: '/' as const, label: t('home') },
+    { href: '/kalkulator' as const, label: t('calculator') },
     { href: '/o-nas' as const, label: t('about') },
     { href: '/blog' as const, label: t('blog') },
     { href: '/kontakt' as const, label: t('contact') },
@@ -47,20 +49,25 @@ export function Header() {
   return (
     <header ref={headerRef} className="nav-shell fixed top-0 left-0 right-0 z-50">
       <div className="nav-pill">
-        <div className="nav-row px-6 flex items-center justify-between">
+        {/* Desktop: 3 kolumny 1fr-auto-1fr, zeby nawigacja stala dokladnie
+            na srodku paska niezaleznie od szerokosci logo i bloku CTA */}
+        <div className="nav-row px-6 flex items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr]">
           {/* Logo */}
-          <Link href="/" aria-label="OurMoney - strona główna">
+          <Link href="/" aria-label="OurMoney - strona główna" className="md:justify-self-start">
             <Logo />
           </Link>
 
           {/* Desktop Nav */}
-          <nav aria-label={locale === 'pl' ? 'Nawigacja główna' : 'Main navigation'} className="hidden md:flex items-center">
+          <nav aria-label={locale === 'pl' ? 'Nawigacja główna' : 'Main navigation'} className="hidden md:flex items-center md:justify-self-center">
             <ul className="flex items-center gap-8 list-none m-0 p-0">
               {navLinks.slice(1).map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm font-medium group px-1 py-2 text-white/80 hover:text-white"
+                    // inline-block: kotwica z blokowym spanem w srodku, jako
+                    // inline rozpadalaby sie na anonimowe bloki i zawyzala
+                    // wysokosc <li> ponad wiersz paska
+                    className="inline-block text-sm font-medium group px-1 py-2 text-white/80 hover:text-white"
                   >
                     <span className="relative block overflow-hidden">
                       <span className="block transition-transform duration-200 ease-out group-hover:-translate-y-full">
@@ -80,7 +87,7 @@ export function Header() {
           </nav>
 
           {/* Right: Lang + CTA */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-4 md:justify-self-end">
             <Link
               href={pathname}
               locale={altLocale}
@@ -101,9 +108,7 @@ export function Header() {
               </span>
             </Link>
             <a
-              href={tCommon('appUrl')}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={startHref(locale)}
               className="sheen bg-accent text-black text-sm font-semibold px-6 py-2 rounded-full hover:bg-accent-dark transition-colors"
               onClick={() => trackCTAClick({ location: 'header', text: tCommon('startFree'), locale })}
             >
@@ -145,9 +150,7 @@ export function Header() {
 
             <div className="mt-8 flex flex-col gap-3">
               <a
-                href={tCommon('appUrl')}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={startHref(locale)}
                 className="w-full bg-accent text-black text-base font-semibold py-4 rounded-full text-center"
                 onClick={() => trackCTAClick({ location: 'header_mobile', text: tCommon('startFree'), locale })}
               >

@@ -12,11 +12,13 @@ type Props = {
 };
 
 export function TrackedCTALink({ href, children, className, location, locale, postSlug }: Props) {
+  // Linki wewnetrzne (strona przejscia /start) zostaja w tej samej karcie
+  const isInternal = href.startsWith('/');
+
   return (
     <a
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
+      {...(isInternal ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
       className={className}
       onClick={() =>
         trackCTAClick({

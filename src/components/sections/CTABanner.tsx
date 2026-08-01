@@ -1,12 +1,13 @@
 import { getTranslations } from 'next-intl/server';
 import { InvertDotButton } from '@/components/ui/InvertDotButton';
+import { startHref } from '@/lib/appLinks';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
+import { SectionLead } from '@/components/ui/SectionLead';
 
 type Props = { locale: string };
 
 export async function CTABanner({ locale }: Props) {
   const t = await getTranslations({ locale, namespace: 'CTABanner' });
-  const tCommon = await getTranslations({ locale, namespace: 'Common' });
 
   return (
     <section className="bg-dark px-6 py-20 md:py-28">
@@ -23,11 +24,14 @@ export async function CTABanner({ locale }: Props) {
             }}
           />
           <div className="relative glass rounded-hero px-8 py-14 md:px-14 md:py-16 text-center">
-            <h2 className="font-display text-3xl md:text-4xl text-white leading-snug mb-8 md:mb-10">
+            <h2 className="font-display text-3xl md:text-4xl text-white leading-snug mb-6">
               {t('text')}
             </h2>
+            <SectionLead tone="dark" className="mb-8 md:mb-10">
+              {t('subtitle')}
+            </SectionLead>
             <InvertDotButton
-              href={tCommon('appUrl')}
+              href={startHref(locale)}
               className="sheen inline-block bg-accent text-black text-sm font-semibold px-10 py-4 rounded-full"
               location="cta_banner"
               locale={locale}

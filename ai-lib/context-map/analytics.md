@@ -36,6 +36,7 @@
 | `blog_post_read` | Scroll ≥75% artykułu | `post_slug`, `locale` |
 | `language_switch` | Zmiana języka PL/EN | `from_locale`, `to_locale` |
 | `calculator_used` | Pierwsza zmiana pola w kalkulatorze (raz na sesję, guard w sessionStorage) | `locale`, `placement` (`homepage` / `calculator_page`) |
+| `app_open` | Wejście na `/[locale]/start` — realne wyjście do aplikacji | `platform` (`ios`/`android`/`web`), `plan` (`premium`/`free`), `locale` |
 
 ### Lokalizacje CTA (`cta_location`)
 
@@ -48,6 +49,10 @@
 | `article_mid` | CTA w połowie artykułu |
 | `calculator` | CTA pod kalkulatorem (homepage + /kalkulator) |
 | `article_end` | CTA na końcu artykułu |
+| `features` | CTA pod akordeonem funkcji |
+| `faq` | CTA w kolumnie FAQ |
+| `pricing_free` | CTA planu darmowego w cenniku (bez `?plan=`) |
+| `pricing_premium` | CTA planu Premium w cenniku (dokłada `?plan=premium`) |
 
 ### User Properties
 

@@ -3,6 +3,7 @@ import { client } from '@/sanity/lib/client';
 import { TESTIMONIALS_QUERY } from '@/sanity/lib/queries';
 import { TestimonialsCarousel } from './TestimonialsCarousel';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
+import { SectionLead } from '@/components/ui/SectionLead';
 
 type Props = { locale: string };
 
@@ -30,9 +31,10 @@ export async function TestimonialsSection({ locale }: Props) {
   return (
     <section className="bg-sand py-20 md:py-28 overflow-hidden">
       <ScrollReveal className="px-6">
-        <h2 className="font-display text-4xl md:text-5xl text-dark text-center leading-tight mb-12 md:mb-16">
+        <h2 className="font-display text-4xl md:text-5xl text-dark text-center leading-tight mb-6">
           {t('title')}
         </h2>
+        <SectionLead className="mb-12 md:mb-16">{t('subtitle')}</SectionLead>
       </ScrollReveal>
       <TestimonialsCarousel items={items} />
     </section>

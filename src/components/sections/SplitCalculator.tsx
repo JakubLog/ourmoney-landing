@@ -12,7 +12,7 @@ import { trackCalculatorUsed } from '@/lib/analytics';
 
 type Props = {
   locale: string;
-  appUrl: string;
+  ctaHref: string;
   /** Skad wywolany - trafia do GA4 (homepage / calculator_page) */
   placement: string;
 };
@@ -31,7 +31,7 @@ function toAmount(value: string): number {
   return Number.isFinite(n) && n > 0 ? n : 0;
 }
 
-export function SplitCalculator({ locale, appUrl, placement }: Props) {
+export function SplitCalculator({ locale, ctaHref, placement }: Props) {
   const t = useTranslations('SplitCalculator');
   const [mode, setMode] = useState<SplitMode>('proportional');
   const [you, setYou] = useState(DEFAULTS.you);
@@ -243,7 +243,7 @@ export function SplitCalculator({ locale, appUrl, placement }: Props) {
 
       <div className="mt-8 flex flex-col items-center gap-4 border-t border-white/10 pt-8">
         <InvertDotButton
-          href={appUrl}
+          href={ctaHref}
           className="sheen inline-block rounded-full bg-accent px-8 py-4 text-sm font-semibold text-black"
           location="calculator"
           locale={locale}

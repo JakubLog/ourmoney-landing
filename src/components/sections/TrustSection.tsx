@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import { ShieldCheck, Lock, Eye, Server } from 'lucide-react';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
+import { SectionLead } from '@/components/ui/SectionLead';
 
 type Props = { locale: string };
 
@@ -14,12 +15,10 @@ export async function TrustSection({ locale }: Props) {
     <section className="bg-dark py-20 md:py-28 px-6">
       <div className="max-w-6xl mx-auto">
         <ScrollReveal className="text-center mb-12 md:mb-16">
-          <h2 className="font-display text-4xl md:text-5xl text-white leading-tight mb-4">
+          <h2 className="font-display text-4xl md:text-5xl text-white leading-tight mb-6">
             {t('title')}
           </h2>
-          <p className="text-white/50 text-sm leading-relaxed max-w-lg mx-auto">
-            {t('subtitle')}
-          </p>
+          <SectionLead tone="dark">{t('subtitle')}</SectionLead>
         </ScrollReveal>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">

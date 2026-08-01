@@ -19,6 +19,23 @@ export function trackCTAClick({
   });
 }
 
+// Strona przejscia /start - moment faktycznego wyjscia z landingu do aplikacji
+export function trackAppOpen({
+  platform,
+  plan,
+  locale,
+}: {
+  platform: 'ios' | 'android' | 'web';
+  plan: 'premium' | null;
+  locale: string;
+}) {
+  sendGAEvent('event', 'app_open', {
+    platform,
+    plan: plan ?? 'free',
+    locale,
+  });
+}
+
 export function trackLanguageSwitch(fromLocale: string, toLocale: string) {
   sendGAEvent('event', 'language_switch', {
     from_locale: fromLocale,

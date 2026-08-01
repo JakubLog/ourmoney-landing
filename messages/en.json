@@ -3,8 +3,22 @@
     "startFree": "Start together - for free",
     "learnMore": "Learn more",
     "readMore": "Read more",
-    "backToHome": "Back to homepage",
-    "appUrl": "https://app.ourmoney.pl/?locale=en"
+    "backToHome": "Back to homepage"
+  },
+  "StartPage": {
+    "meta": {
+      "title": "Opening the app | OurMoney",
+      "description": "We are taking you to the OurMoney app in a moment."
+    },
+    "title": "Opening OurMoney",
+    "subtitle": "We are detecting your device and taking you straight to the app.",
+    "statusPending": "Preparing your redirect...",
+    "statusFired": "Nothing happened? Open the app manually.",
+    "manualCta": "Open OurMoney",
+    "storeSoonIos": "The App Store version is coming soon. For now we are opening the web app (PWA) - add it to your Home Screen straight from Safari.",
+    "storeSoonAndroid": "The Google Play version is coming soon. For now we are opening the web app (PWA) - install it straight from Chrome.",
+    "planPremiumLabel": "Selected plan: Premium",
+    "planPremiumNote": "We saved your choice - you will activate the plan in the app after creating your account."
   },
   "Navigation": {
     "home": "Home",
@@ -22,6 +36,7 @@
   },
   "CTABanner": {
     "text": "See how simple shared finances can be. Start building a fair relationship today.",
+    "subtitle": "Set up a shared household budget in minutes - free, no credit card required.",
     "button": "Start on your own - add your partner later"
   },
   "HomePage": {
@@ -39,8 +54,9 @@
       "noCreditCard": "No credit card required"
     },
     "painPoints": {
+      "eyebrow": "Your financial challenges as a couple",
       "title": "Do these challenges sound familiar?",
-      "subtitle": "Your financial challenges as a couple",
+      "subtitle": "Unequal incomes, spending decided on the fly and money talks pushed to next week - that is what a shared household budget looks like in most relationships.",
       "items": [
         {
           "title": "Who should pay for what?",
@@ -57,13 +73,14 @@
       ]
     },
     "calculator": {
-      "subtitle": "Calculator",
+      "eyebrow": "Calculator",
       "title": "How much should each of you actually pay?",
-      "description": "Enter two incomes and your shared expenses. You will see the income-proportional split and how much extra the lower earner pays under a 50/50 split."
+      "subtitle": "Enter two incomes and your shared expenses. You will see the income-proportional split and how much extra the lower earner pays under a 50/50 split.",
+      "cta": "Expense split calculator"
     },
     "features": {
       "title": "How OurMoney solves your problems",
-      "subtitle": "Not another Excel spreadsheet. An intelligent tool built specifically for couples who want to build a future together.",
+      "subtitle": "Not another Excel spreadsheet. A shared household budget app with expense splitting, envelopes and bank import - built specifically for couples.",
       "cta": "Start on your own - add your partner later",
       "items": [
         {
@@ -89,9 +106,9 @@
       ]
     },
     "aiReport": {
-      "subtitle": "AI analysis",
+      "eyebrow": "AI analysis",
       "title": "A monthly report nobody has to write",
-      "description": "OurMoney analyses your spending and tells you plainly what went well, what is drifting and what to do about it. No spreadsheets, no digging through statements.",
+      "subtitle": "OurMoney analyses your spending and tells you plainly what went well, what is drifting and what to do about it. No spreadsheets, no digging through statements.",
       "badge": "Example report",
       "reportTitle": "AI report - monthly summary",
       "summary": "You spent 8,640 zl on a joint income of 11,000 zl. You saved 1,200 zl, which is 11% of your income - two points less than last month, mostly due to higher energy bills.",
@@ -138,11 +155,12 @@
     },
     "brandPromise": {
       "title": "We're on the relationship's side",
-      "description": "See how simple shared finances can be. Start building a fair relationship today!",
+      "subtitle": "OurMoney never judges who spent more. It shows your shared finances so both of you see the same picture and can agree without arguing about money.",
       "cta": "Start for free"
     },
     "testimonials": {
       "title": "People who took their finances into their own hands",
+      "subtitle": "Reviews from couples using OurMoney every day - on splitting expenses, shared goals and talking about money without tension.",
       "items": [
         {
           "name": "Aga",
@@ -164,7 +182,7 @@
     "howItWorks": {
       "title": "Get started in",
       "titleHighlight": "3 simple steps",
-      "subtitle": "Setup takes less than a minute. No complicated forms, no credit card required.",
+      "subtitle": "You can set up a shared budget in under a minute. No complicated forms, no credit card, no need for both of you to sign up on day one.",
       "steps": [
         {
           "title": "Create an account",
@@ -184,6 +202,7 @@
       "title": "Finances",
       "titleHighlight": "before and after",
       "titleEnd": "OurMoney",
+      "subtitle": "See what changes in running shared finances once every expense lands in one place and the splitting rule is agreed up front.",
       "beforeLabel": "Without OurMoney",
       "afterLabel": "With OurMoney",
       "before": [
@@ -279,8 +298,59 @@
         ]
       ]
     },
+    "pricing": {
+      "eyebrow": "Pricing",
+      "title": "Start for free. Go Premium whenever you want.",
+      "subtitle": "Day-to-day budgeting costs nothing and has no limits - on your own or together with your partner. You only pay for full history, AI analysis and transactions pulled straight from your bank.",
+      "badge": "Full power",
+      "includedLabel": "In this plan:",
+      "limitsLabel": "What is not included:",
+      "note": "Prices in PLN, VAT included. The free plan needs no card and never expires - you can turn Premium on and off in the app whenever you want.",
+      "plans": {
+        "free": {
+          "name": "Free",
+          "price": "0 PLN",
+          "period": "forever",
+          "description": "Everything you need day to day. No card, no trial period.",
+          "cta": "Start for free",
+          "features": [
+            "Shared budget for two people",
+            "Unlimited expenses and income",
+            "Equal, income-proportional or mine/yours/ours split",
+            "Shared goals and envelopes",
+            "Phone app (PWA) and dashboard overview"
+          ],
+          "limits": [
+            "Limited number of custom categories",
+            "Shortened transaction history",
+            "No AI analysis or recommendations",
+            "1 bank import per month",
+            "Up to 5 receipt scans per month",
+            "No bank integration"
+          ]
+        },
+        "premium": {
+          "name": "Premium",
+          "price": "39.99 PLN",
+          "period": "/mo",
+          "yearly": "or 399.99 PLN per year - 2 months free",
+          "description": "The same as the free plan, only without any limits.",
+          "cta": "Get Premium",
+          "features": [
+            "Everything in the free plan",
+            "Unlimited custom categories",
+            "Full transaction history, no cut-off",
+            "AI analysis with recommendations every month",
+            "Unlimited bank statement imports",
+            "Unlimited receipt scans",
+            "Bank integration - transactions arrive on their own"
+          ]
+        }
+      }
+    },
     "faq": {
       "title": "FAQ",
+      "subtitle": "The most common questions about a shared budget for couples - expense splitting, privacy, data security and using the app without your partner.",
       "items": [
         {
           "question": "Do we both need to have the app?",
@@ -288,7 +358,7 @@
         },
         {
           "question": "Is the app free?",
-          "answer": "The app is completely free - no credit card, no limits. When we introduce paid plans, existing users will be the first to know and will get special terms."
+          "answer": "Yes - the basic plan is free forever and needs no credit card. Day-to-day budgeting has no limits: add as many expenses as you want and split them between you. The free plan only caps custom categories, history length, bank imports (1 per month) and receipt scans (5 per month). AI analysis and bank integration are part of Premium - 39.99 PLN per month or 399.99 PLN per year."
         },
         {
           "question": "How does expense splitting work?",
@@ -476,23 +546,65 @@
     },
     "eyebrow": "Free tool",
     "title": "Expense split calculator for unequal incomes",
-    "subtitle": "Enter your incomes and shared costs. You will see the fair share for each of you and how much more the lower earner pays under a 50/50 split.",
-    "howTitle": "How we calculate the fair split",
-    "howBody": "Each of you covers the same percentage of shared expenses as your income represents in your joint income. With salaries of 6500 zl and 4500 zl the joint income is 11 000 zl, so the shares are 59% and 41%. With 4000 zl of shared expenses that means 2360 zl and 1640 zl instead of 2000 zl each.",
-    "faqTitle": "Common questions",
+    "subtitle": "A calculator for couples who want to know who should contribute what to the shared budget. Enter your incomes and shared costs - you will see the fair share for each of you and how much more the lower earner pays under a 50/50 split.",
+    "howTitle": "How to split expenses in a relationship with unequal incomes",
+    "howBody": [
+      "The rule is simple: each of you covers the same percentage of shared expenses as your income represents in your joint income. With salaries of 6500 zl and 4500 zl the joint income is 11 000 zl, so the shares are 59% and 41%. With 4000 zl of shared expenses that means 2360 zl and 1640 zl instead of 2000 zl each.",
+      "A difference of 360 zl looks minor until you look at what is left after the bills. Under a 50/50 split the person earning 4500 zl keeps 2500 zl while their partner keeps 4500 zl - almost twice as much. Under a proportional split they keep 2860 zl and 4140 zl, so you both hand the same fraction of your money to the shared budget. That is the whole difference between \"we pay the same\" and \"it feels the same\".",
+      "Count as shared everything you both use: rent or the mortgage, utilities, food, transport, trips. Keep personal shopping, hobbies and gifts for each other outside the shared budget - otherwise the question of who pays what turns into auditing every coffee. The result is a starting point for a rule, not a verdict: you can round the amounts or agree on your own proportions."
+    ],
+    "modelsTitle": "Equally, proportionally, or your own proportions",
+    "modelsIntro": "These three rules map to the three splitting modes in OurMoney. The calculator covers the first two, the third one you set in the app.",
+    "models": [
+      {
+        "name": "Equal split (50/50)",
+        "description": "Each of you pays half of the shared expenses, regardless of income.",
+        "forWho": "For couples with similar incomes - the simplest to calculate and the easiest to keep track of."
+      },
+      {
+        "name": "Proportional to income",
+        "description": "Your share of the shared costs matches your share of the couple’s joint income.",
+        "forWho": "For couples with a clear income gap, when 50/50 leaves one person with no breathing room."
+      },
+      {
+        "name": "Custom proportions",
+        "description": "You set the split yourself, for example 60/40, and keep it regardless of salary swings.",
+        "forWho": "When income is irregular or you have a reason to depart from pure maths - parental leave, one partner’s loan, a shared goal."
+      }
+    ],
+    "faqTitle": "Splitting expenses as a couple - common questions",
     "faq": [
       {
         "question": "Is a proportional split fairer than 50/50?",
         "answer": "When incomes differ a lot, a 50/50 split hits the lower earner much harder - after the shared bills they have far less money left. A proportional split evens out that burden. There is no single right answer, what matters is choosing a rule deliberately and both agreeing to it."
       },
       {
+        "question": "How do we split expenses when one of us earns twice as much?",
+        "answer": "With incomes of 8000 zl and 4000 zl the shares are 67% and 33%. Out of 4500 zl of shared expenses that means 3015 zl and 1485 zl instead of 2250 zl each. The lower earner is left with 2515 zl instead of 1750 zl - 44% more free money, and that gap usually decides whether a shared budget survives without tension."
+      },
+      {
+        "question": "What counts as a shared expense?",
+        "answer": "Anything you both use: housing, utilities, food, household supplies, transport, joint trips and subscriptions. Personal spending - clothes, hobbies, seeing friends, gifts for each other - stays outside the shared pool. The narrower and clearer your definition of a shared expense, the fewer arguments over individual receipts."
+      },
+      {
         "question": "How do we count income when it is irregular?",
-        "answer": "Use the average of the last three to six months. With large swings (freelance, commission) it is easier to set the proportions once a quarter than to recalculate every month."
+        "answer": "Use the average of the last three to six months. With large swings (freelance, commission, seasonality) it is easier to set the proportions once a quarter than to recalculate every month. Count net income - what actually lands in your account."
+      },
+      {
+        "question": "Do we need a joint account to split expenses?",
+        "answer": "No. A joint account makes paying bills easier, but it is not required. Plenty of couples keep separate accounts and settle the difference with one transfer a month - the calculator shows exactly who owes whom. In OurMoney you see the same settlement continuously, without a shared bank account."
+      },
+      {
+        "question": "How often should we recalculate the proportions?",
+        "answer": "With stable salaries once a year, or after a raise or a job change. With irregular income, once a quarter. Recalculating more often rarely changes the outcome enough to be worth it, and it costs the rule its most valuable feature: predictability."
       },
       {
         "question": "Does OurMoney do this automatically?",
-        "answer": "Yes. You set the splitting rule once and every shared expense is divided automatically - proportionally to income, equally, or by your own custom proportions. You also see who has already paid how much."
+        "answer": "Yes. You set the splitting rule once and every shared expense is divided automatically - proportionally to income, equally, or by your own custom proportions. You also see who has already paid how much and who settles up at the end of the month."
       }
-    ]
+    ],
+    "moreTitle": "More on shared finances",
+    "moreBody": "On the blog we write about shared household budgets, money conversations in a relationship and savings goals for couples.",
+    "moreCta": "Read the blog"
   }
 }

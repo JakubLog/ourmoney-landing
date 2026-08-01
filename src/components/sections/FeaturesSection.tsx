@@ -5,7 +5,9 @@ import { useTranslations } from 'next-intl';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import { InvertDotButton } from '@/components/ui/InvertDotButton';
+import { startHref } from '@/lib/appLinks';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
+import { SectionLead } from '@/components/ui/SectionLead';
 
 type Feature = { title: string; description: string };
 type Props = { locale: string };
@@ -35,7 +37,6 @@ const CYCLE_DURATION = 5000;
 
 export function FeaturesSection({ locale }: Props) {
   const t = useTranslations('HomePage.features');
-  const tCommon = useTranslations('Common');
   const items = t.raw('items') as Feature[];
   const [open, setOpen] = useState<number>(0);
   const [animKey, setAnimKey] = useState(0);
@@ -65,12 +66,10 @@ export function FeaturesSection({ locale }: Props) {
           {/* Left: header + accordion */}
           <div>
             <ScrollReveal className="mb-12 md:mb-16">
-              <h2 className="font-display text-4xl md:text-5xl text-dark leading-tight mb-4">
+              <h2 className="font-display text-4xl md:text-5xl text-dark leading-tight mb-6">
                 {t('title')}
               </h2>
-              <p className="text-dark/50 text-sm leading-relaxed">
-                {t('subtitle')}
-              </p>
+              <SectionLead align="left">{t('subtitle')}</SectionLead>
             </ScrollReveal>
             <ol className="list-none p-0 m-0">
               {items.map((item, i) => (
@@ -123,7 +122,7 @@ export function FeaturesSection({ locale }: Props) {
             <div className="h-px bg-dark/10" />
             <div className="mt-8">
               <InvertDotButton
-                href={tCommon('appUrl')}
+                href={startHref(locale)}
                 className="inline-block bg-accent text-black font-semibold px-8 py-4 rounded-full text-sm"
                 location="features"
                 locale={locale}

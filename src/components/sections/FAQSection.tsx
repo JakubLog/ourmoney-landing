@@ -1,7 +1,9 @@
 import { getTranslations } from 'next-intl/server';
 import { Plus, X } from 'lucide-react';
 import { InvertDotButton } from '@/components/ui/InvertDotButton';
+import { startHref } from '@/lib/appLinks';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
+import { SectionLead } from '@/components/ui/SectionLead';
 
 type FAQItem = { question: string; answer: string };
 type Props = { locale: string };
@@ -17,11 +19,14 @@ export async function FAQSection({ locale }: Props) {
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-10 lg:gap-20">
           {/* Left column: title + CTA */}
           <ScrollReveal>
-            <h2 className="font-display text-5xl md:text-6xl text-dark mb-8">
+            <h2 className="font-display text-5xl md:text-6xl text-dark mb-6">
               {t('title')}
             </h2>
+            <SectionLead align="left" className="mb-8">
+              {t('subtitle')}
+            </SectionLead>
             <InvertDotButton
-              href={tCommon('appUrl')}
+              href={startHref(locale)}
               className="inline-block bg-accent text-black font-semibold px-8 py-4 rounded-full text-sm"
               location="faq"
               locale={locale}

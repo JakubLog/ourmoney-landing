@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { useRef, useEffect, useState } from 'react';
 import { UserPlus, ListChecks, Target } from 'lucide-react';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
+import { SectionLead } from '@/components/ui/SectionLead';
 
 type Props = { locale: string };
 
@@ -37,7 +38,7 @@ export function HowItWorksSection({ locale }: Props) {
     <section ref={sectionRef} className="bg-surface py-20 md:py-28 px-6 overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <ScrollReveal className="text-center mb-16 md:mb-20">
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-dark leading-tight mb-4">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-dark leading-tight mb-6">
             {t('title')}{' '}
             <span className="relative inline-block">
               <svg
@@ -59,9 +60,7 @@ export function HowItWorksSection({ locale }: Props) {
               <span className="relative">{t('titleHighlight')}</span>
             </span>
           </h2>
-          <p className="text-dark/40 text-sm leading-relaxed max-w-md mx-auto">
-            {t('subtitle')}
-          </p>
+          <SectionLead>{t('subtitle')}</SectionLead>
         </ScrollReveal>
 
         {/* Steps - horizontal with connecting line */}

@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import { ShoppingBasket, Fuel } from 'lucide-react';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
+import { SectionLead } from '@/components/ui/SectionLead';
 
 type Props = { locale: string };
 
@@ -15,9 +16,7 @@ export async function BrandPromiseSection({ locale }: Props) {
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-dark leading-tight mb-6">
             {t('title')}
           </h2>
-          <p className="text-dark/50 text-base md:text-lg leading-relaxed mb-12 md:mb-16 max-w-xl mx-auto">
-            {t('description')}
-          </p>
+          <SectionLead className="mb-12 md:mb-16">{t('subtitle')}</SectionLead>
         </ScrollReveal>
 
         {/* Couple image with floating expense cards */}

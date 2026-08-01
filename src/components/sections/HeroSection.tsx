@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import { InvertDotButton } from '@/components/ui/InvertDotButton';
+import { startHref } from '@/lib/appLinks';
 import { AnimatedWord } from '@/components/ui/AnimatedWord';
 import { client } from '@/sanity/lib/client';
 import { TESTIMONIALS_QUERY } from '@/sanity/lib/queries';
@@ -16,7 +17,6 @@ type Testimonial = {
 
 export async function HeroSection({ locale }: Props) {
   const t = await getTranslations({ locale, namespace: 'HomePage.hero' });
-  const tCommon = await getTranslations({ locale, namespace: 'Common' });
 
   const testimonials = await client.fetch<Testimonial[]>(
     TESTIMONIALS_QUERY,
@@ -83,7 +83,7 @@ export async function HeroSection({ locale }: Props) {
         </aside>
 
         <InvertDotButton
-          href={tCommon('appUrl')}
+          href={startHref(locale)}
           className="sheen inline-block bg-accent text-black font-semibold px-10 py-4 rounded-full text-sm"
           location="hero"
           locale={locale}
