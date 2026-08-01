@@ -9,6 +9,7 @@ export async function Footer() {
   const tFooter = await getTranslations('Footer');
 
   const links = [
+    { href: '/kalkulator', label: t('calculator') },
     { href: '/o-nas', label: t('about') },
     { href: '/blog', label: t('blog') },
     { href: '/kontakt', label: t('contact') },
@@ -17,7 +18,7 @@ export async function Footer() {
   ];
 
   return (
-    <footer className="bg-[#141414] text-white py-12 px-6">
+    <footer className="bg-dark text-white py-12 px-6">
       <div className="max-w-6xl mx-auto">
         {/* Top: logo + contact */}
         <div className="flex items-center justify-between pb-8 border-b border-white/10">

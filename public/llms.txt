@@ -18,6 +18,7 @@ Lepsza niż Splitwise (pełny budżet, nie tylko rozliczenia) i YNAB (prosta, po
 
 ## Linki
 - [Aplikacja](https://app.ourmoney.pl): Dostęp do aplikacji OurMoney
+- [Kalkulator podziału wydatków](https://ourmoney.pl/pl/kalkulator): Darmowe narzędzie - liczy sprawiedliwy podział wspólnych wydatków proporcjonalnie do dochodów i porównuje go z podziałem po równo
 - [Blog](https://ourmoney.pl/pl/blog): Artykuły o finansach osobistych i finansach w parze
 - [O nas](https://ourmoney.pl/pl/o-nas): Zespół i misja OurMoney
 
