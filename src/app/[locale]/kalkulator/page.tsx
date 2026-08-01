@@ -1,11 +1,13 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { Plus, X } from 'lucide-react';
+import { ArrowRight, Plus, X } from 'lucide-react';
 import { routing } from '@/i18n/routing';
+import { Link } from '@/i18n/navigation';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { CTABanner } from '@/components/sections/CTABanner';
 import { SplitCalculator } from '@/components/sections/SplitCalculator';
+import { startHref } from '@/lib/appLinks';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 export function generateStaticParams() {
@@ -14,6 +16,7 @@ export function generateStaticParams() {
 
 type Props = { params: Promise<{ locale: string }> };
 type FAQItem = { question: string; answer: string };
+type SplitModel = { name: string; description: string; forWho: string };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -52,8 +55,9 @@ export default async function CalculatorPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'CalculatorPage' });
-  const tCommon = await getTranslations({ locale, namespace: 'Common' });
   const faqItems = t.raw('faq') as FAQItem[];
+  const howParagraphs = t.raw('howBody') as string[];
+  const models = t.raw('models') as SplitModel[];
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -121,18 +125,40 @@ export default async function CalculatorPage({ params }: Props) {
 
             <SplitCalculator
               locale={locale}
-              appUrl={tCommon('appUrl')}
+              ctaHref={startHref(locale)}
               placement="calculator_page"
             />
           </div>
         </section>
 
-        {/* Jak liczymy + FAQ */}
+        {/* Jak liczymy + modele podzialu + FAQ */}
         <section className="bg-white px-6 py-20 md:py-28">
           <div className="mx-auto max-w-3xl">
             <ScrollReveal>
               <h2 className="font-display mb-6 text-3xl text-dark md:text-4xl">{t('howTitle')}</h2>
-              <p className="text-base leading-relaxed text-dark/60">{t('howBody')}</p>
+              <div className="space-y-5">
+                {howParagraphs.map((paragraph) => (
+                  <p key={paragraph} className="text-base leading-relaxed text-dark/60">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal className="mt-16" delay={100}>
+              <h2 className="font-display mb-6 text-3xl text-dark md:text-4xl">
+                {t('modelsTitle')}
+              </h2>
+              <p className="mb-8 text-base leading-relaxed text-dark/60">{t('modelsIntro')}</p>
+              <ul className="m-0 grid list-none gap-4 p-0">
+                {models.map((model) => (
+                  <li key={model.name} className="rounded-card border border-dark/10 p-6">
+                    <h3 className="mb-2 text-lg font-medium text-dark">{model.name}</h3>
+                    <p className="text-sm leading-relaxed text-dark/60">{model.description}</p>
+                    <p className="mt-3 text-sm leading-relaxed text-dark/40">{model.forWho}</p>
+                  </li>
+                ))}
+              </ul>
             </ScrollReveal>
 
             <ScrollReveal className="mt-16" delay={100}>
@@ -140,7 +166,7 @@ export default async function CalculatorPage({ params }: Props) {
               {faqItems.map((item) => (
                 <details key={item.question} className="group border-t border-dark/10">
                   <summary className="flex cursor-pointer items-center justify-between py-6">
-                    <span className="pr-6 text-base font-medium text-dark">{item.question}</span>
+                    <h3 className="pr-6 text-base font-medium text-dark">{item.question}</h3>
                     <span aria-hidden="true" className="shrink-0 text-dark/40">
                       <Plus size={18} className="faq-plus" />
                       <X size={18} className="faq-minus" />
@@ -152,6 +178,18 @@ export default async function CalculatorPage({ params }: Props) {
                 </details>
               ))}
               <div className="border-t border-dark/10" />
+            </ScrollReveal>
+
+            <ScrollReveal className="mt-16">
+              <h2 className="font-display mb-4 text-3xl text-dark md:text-4xl">{t('moreTitle')}</h2>
+              <p className="text-base leading-relaxed text-dark/60">{t('moreBody')}</p>
+              <Link
+                href="/blog"
+                className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-dark underline underline-offset-4 hover:text-dark/70"
+              >
+                {t('moreCta')}
+                <ArrowRight size={16} aria-hidden="true" />
+              </Link>
             </ScrollReveal>
           </div>
         </section>

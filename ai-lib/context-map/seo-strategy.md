@@ -33,6 +33,20 @@ Canonical: `https://ourmoney.pl/[locale]/[path]`
 | zarządzanie finansami para | PL | TBD | TBD | Brak widoczności |
 | budget app for couples | EN | TBD | TBD | Nie badane |
 
+### Kalkulator (`/kalkulator`)
+| Keyword | Język | Gdzie użyte | Wystąpienia |
+|---------|-------|-------------|-------------|
+| kalkulator podziału wydatków | PL | title, H1, anchor z homepage | title + H1 |
+| jak dzielić wydatki w związku | PL | H2, H2 FAQ, pytanie FAQ | 3 |
+| podział wydatków przy różnych zarobkach | PL | H1, H2 | 2 |
+| po równo / 50/50 | PL | H3 modelu, treść, FAQ | 8 |
+| proporcjonalnie do dochodów | PL | H3 modelu, treść, FAQ | 6 |
+| wspólny budżet | PL | subtitle, treść, FAQ | 4 |
+
+Strona ma ~750 słów (PL i EN), H2/H3 z frazami, `WebApplication` + `FAQPage` (7 pytań) + `BreadcrumbList`,
+link wychodzący do `/blog` i przychodzący z homepage (anchor: "Kalkulator podziału wydatków").
+Do zrobienia: linki z postów blogowych do kalkulatora, dedykowany OG image.
+
 ### Blog / Long-tail
 | Keyword | Temat posta | Priorytet |
 |---------|-------------|-----------|
@@ -139,6 +153,15 @@ Szczegóły eventów: `analytics.md`
 | CLS | < 0.1 | GSC, PageSpeed Insights |
 | INP | < 200ms | GSC, PageSpeed Insights |
 | TTFB | < 800ms | Vercel Analytics |
+
+---
+
+## Strony wyłączone z indeksacji
+
+| Strona | Sposób | Powód |
+|--------|--------|-------|
+| `/[locale]/start` | `robots: { index: false, follow: true }` w `generateMetadata()`, poza sitemapą | Bramka przekierowująca do aplikacji — brak treści do indeksacji. Crawl zostaje dozwolony, żeby Google widział `noindex` i przechodził dalej po linkach |
+| `/studio` | `disallow` w `app/robots.ts` | Sanity Studio |
 
 ---
 

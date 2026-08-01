@@ -25,6 +25,10 @@ export function InvertDotButton({
   const whiteTextRef = useRef<HTMLSpanElement>(null);
   const radius = dotSize / 2;
 
+  // Linki wewnetrzne (np. strona przejscia /start) zostaja w tej samej karcie -
+  // nowa karta ma sens tylko dla adresow poza landingiem.
+  const isInternal = href.startsWith('/');
+
   const updatePosition = useCallback(
     (x: number, y: number) => {
       if (dotRef.current) {
@@ -73,8 +77,7 @@ export function InvertDotButton({
     <a
       ref={linkRef}
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
+      {...(isInternal ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
       className={`relative overflow-hidden cursor-pointer ${className}`}
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}

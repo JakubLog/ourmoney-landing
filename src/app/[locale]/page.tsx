@@ -5,7 +5,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { PainPointsSection } from '@/components/sections/PainPointsSection';
-import { SplitCalculatorSection } from '@/components/sections/SplitCalculatorSection';
+import { CalculatorTeaserSection } from '@/components/sections/CalculatorTeaserSection';
 import { FeaturesSection } from '@/components/sections/FeaturesSection';
 import { AiReportSection } from '@/components/sections/AiReportSection';
 import { BrandPromiseSection } from '@/components/sections/BrandPromiseSection';
@@ -16,6 +16,7 @@ import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
 import { BeforeAfterSection } from '@/components/sections/BeforeAfterSection';
 import { TrustSection } from '@/components/sections/TrustSection';
 import { ComparisonSection } from '@/components/sections/ComparisonSection';
+import { PricingSection } from '@/components/sections/PricingSection';
 import { client } from '@/sanity/lib/client';
 import { TESTIMONIALS_QUERY } from '@/sanity/lib/queries';
 
@@ -105,11 +106,40 @@ export default async function HomePage({ params }: Props) {
         applicationCategory: 'FinanceApplication',
         operatingSystem: 'Web',
         url: 'https://ourmoney.pl',
-        offers: {
-          '@type': 'Offer',
-          price: '0',
-          priceCurrency: 'PLN',
-        },
+        // Trzy oferty odpowiadaja sekcji cennika: plan darmowy + Premium
+        // w rozliczeniu miesiecznym i rocznym
+        offers: [
+          {
+            '@type': 'Offer',
+            name: locale === 'pl' ? 'Darmowy' : 'Free',
+            price: '0',
+            priceCurrency: 'PLN',
+          },
+          {
+            '@type': 'Offer',
+            name: locale === 'pl' ? 'Premium (miesięcznie)' : 'Premium (monthly)',
+            price: '39.99',
+            priceCurrency: 'PLN',
+            priceSpecification: {
+              '@type': 'UnitPriceSpecification',
+              price: '39.99',
+              priceCurrency: 'PLN',
+              unitText: locale === 'pl' ? 'miesiąc' : 'month',
+            },
+          },
+          {
+            '@type': 'Offer',
+            name: locale === 'pl' ? 'Premium (rocznie)' : 'Premium (yearly)',
+            price: '399.99',
+            priceCurrency: 'PLN',
+            priceSpecification: {
+              '@type': 'UnitPriceSpecification',
+              price: '399.99',
+              priceCurrency: 'PLN',
+              unitText: locale === 'pl' ? 'rok' : 'year',
+            },
+          },
+        ],
         description: locale === 'pl'
           ? 'Aplikacja do wspólnego zarządzania budżetem domowym dla par'
           : 'Shared budget management app for couples',
@@ -143,7 +173,7 @@ export default async function HomePage({ params }: Props) {
       <main>
         <HeroSection locale={locale} />
         <PainPointsSection locale={locale} />
-        <SplitCalculatorSection locale={locale} />
+        <CalculatorTeaserSection locale={locale} />
         <HowItWorksSection locale={locale} />
         <FeaturesSection locale={locale} />
         <AiReportSection locale={locale} />
@@ -152,6 +182,7 @@ export default async function HomePage({ params }: Props) {
         <TestimonialsSection locale={locale} />
         <ComparisonSection locale={locale} />
         <TrustSection locale={locale} />
+        <PricingSection locale={locale} />
         <FAQSection locale={locale} />
         <CTABanner locale={locale} />
       </main>

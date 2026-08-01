@@ -3,8 +3,22 @@
     "startFree": "Zacznijcie razem - za darmo",
     "learnMore": "Dowiedz się więcej",
     "readMore": "Czytaj więcej",
-    "backToHome": "Wróć na stronę główną",
-    "appUrl": "https://app.ourmoney.pl/"
+    "backToHome": "Wróć na stronę główną"
+  },
+  "StartPage": {
+    "meta": {
+      "title": "Otwieramy aplikację | OurMoney",
+      "description": "Za chwilę przeniesiemy Cię do aplikacji OurMoney."
+    },
+    "title": "Otwieramy OurMoney",
+    "subtitle": "Rozpoznajemy Twoje urządzenie i przenosimy Cię prosto do aplikacji.",
+    "statusPending": "Przygotowujemy przekierowanie...",
+    "statusFired": "Nic się nie stało? Otwórz aplikację ręcznie.",
+    "manualCta": "Otwórz OurMoney",
+    "storeSoonIos": "Wersja z App Store - już wkrótce. Na razie otwieramy aplikację webową (PWA), którą dodasz do ekranu początkowego prosto z Safari.",
+    "storeSoonAndroid": "Wersja z Google Play - już wkrótce. Na razie otwieramy aplikację webową (PWA), którą zainstalujesz prosto z Chrome.",
+    "planPremiumLabel": "Wybrany plan: Premium",
+    "planPremiumNote": "Zapamiętaliśmy Wasz wybór - plan włączycie w aplikacji po założeniu konta."
   },
   "Navigation": {
     "home": "Strona główna",
@@ -22,6 +36,7 @@
   },
   "CTABanner": {
     "text": "Sprawdź, jak proste mogą być wspólne finanse. Zacznijcie budować sprawiedliwą relację już dziś.",
+    "subtitle": "Wspólny budżet domowy założycie w kilka minut - za darmo i bez karty kredytowej.",
     "button": "Zacznij od siebie - dodaj partnera później"
   },
   "HomePage": {
@@ -39,8 +54,9 @@
       "noCreditCard": "Nie wymaga karty kredytowej"
     },
     "painPoints": {
+      "eyebrow": "Wasze wyzwania finansowe jako pary",
       "title": "Czy te wyzwania brzmią znajomo?",
-      "subtitle": "Wasze wyzwania finansowe jako pary",
+      "subtitle": "Nierówne zarobki, wydatki ustalane w biegu i rozmowy o pieniądzach odkładane na później - tak wygląda wspólny budżet domowy w większości związków.",
       "items": [
         {
           "title": "Kto powinien płacić za co?",
@@ -57,13 +73,14 @@
       ]
     },
     "calculator": {
-      "subtitle": "Kalkulator",
+      "eyebrow": "Kalkulator",
       "title": "Ile sprawiedliwie powinno płacić każde z Was?",
-      "description": "Wpiszcie dwa dochody i wspólne wydatki. Zobaczycie podział proporcjonalny do zarobków i to, ile dopłaca osoba zarabiająca mniej, gdy dzielicie po równo."
+      "subtitle": "Wpiszcie dwa dochody i wspólne wydatki. Zobaczycie podział proporcjonalny do zarobków i to, ile dopłaca osoba zarabiająca mniej, gdy dzielicie po równo.",
+      "cta": "Kalkulator podziału wydatków"
     },
     "features": {
       "title": "Jak OurMoney rozwiązuje Wasze problemy",
-      "subtitle": "Nie kolejny arkusz Excel. Inteligentne narzędzie stworzone specjalnie dla par, które chcą razem budować przyszłość.",
+      "subtitle": "Nie kolejny arkusz Excel. Aplikacja do wspólnego budżetu domowego z podziałem wydatków, kopertami i importem z banku - stworzona specjalnie dla par.",
       "cta": "Zacznij od siebie - dodaj partnera później",
       "items": [
         {
@@ -89,9 +106,9 @@
       ]
     },
     "aiReport": {
-      "subtitle": "Analiza AI",
+      "eyebrow": "Analiza AI",
       "title": "Co miesiąc dostajecie raport, którego nikt nie musi pisać",
-      "description": "OurMoney analizuje Wasze wydatki i mówi wprost, co poszło dobrze, co wymyka się spod kontroli i co z tym zrobić. Bez tabelek i bez ślęczenia nad wyciągiem.",
+      "subtitle": "OurMoney analizuje Wasze wydatki i mówi wprost, co poszło dobrze, co wymyka się spod kontroli i co z tym zrobić. Bez tabelek i bez ślęczenia nad wyciągiem.",
       "badge": "Przykładowy raport",
       "reportTitle": "Raport AI - podsumowanie miesiąca",
       "summary": "Wydaliście 8 640 zł przy wspólnym dochodzie 11 000 zł. Odłożyliście 1 200 zł, czyli 11% dochodu - o dwa punkty mniej niż miesiąc wcześniej, głównie przez wyższe rachunki za energię.",
@@ -138,11 +155,12 @@
     },
     "brandPromise": {
       "title": "Jesteśmy po stronie związku",
-      "description": "Sprawdź, jak proste mogą być wspólne finanse. Zacznijcie budować sprawiedliwą relację już dziś!",
+      "subtitle": "OurMoney nie ocenia, kto wydał więcej. Pokazuje wspólne finanse tak, żeby oboje widzieli ten sam obraz i mogli się dogadać bez kłótni o pieniądze.",
       "cta": "Zacznij bezpłatnie"
     },
     "testimonials": {
       "title": "Osoby, które wzięły finanse w swoje ręce",
+      "subtitle": "Opinie par korzystających z OurMoney na co dzień - o podziale wydatków, wspólnych celach i rozmowach o pieniądzach bez napięcia.",
       "items": [
         {
           "name": "Aga",
@@ -164,7 +182,7 @@
     "howItWorks": {
       "title": "Zacznij w",
       "titleHighlight": "3 prostych krokach",
-      "subtitle": "Konfiguracja zajmuje mniej niż minutę. Bez skomplikowanych formularzy, bez karty kredytowej.",
+      "subtitle": "Wspólny budżet skonfigurujecie w mniej niż minutę. Bez skomplikowanych formularzy, bez karty kredytowej, bez zgody obojga na start.",
       "steps": [
         {
           "title": "Załóż konto",
@@ -184,6 +202,7 @@
       "title": "Finanse",
       "titleHighlight": "przed i po",
       "titleEnd": "OurMoney",
+      "subtitle": "Zobaczcie, co zmienia się w prowadzeniu wspólnych finansów, gdy każdy wydatek trafia w jedno miejsce, a zasada podziału jest ustalona z góry.",
       "beforeLabel": "Bez OurMoney",
       "afterLabel": "Z OurMoney",
       "before": [
@@ -279,8 +298,59 @@
         ]
       ]
     },
+    "pricing": {
+      "eyebrow": "Cennik",
+      "title": "Zacznijcie za darmo. Premium wtedy, kiedy zechcecie.",
+      "subtitle": "Codzienne prowadzenie budżetu nic nie kosztuje i nie ma limitów - samemu albo razem z partnerem. Płacicie dopiero za pełną historię, analizę AI i automatyczne pobieranie transakcji z banku.",
+      "badge": "Pełna moc",
+      "includedLabel": "W tym planie:",
+      "limitsLabel": "Czego tu nie ma:",
+      "note": "Ceny w złotówkach, brutto. Plan darmowy nie wymaga karty i nie wygasa - Premium włączacie i wyłączacie w aplikacji, kiedy chcecie.",
+      "plans": {
+        "free": {
+          "name": "Darmowy",
+          "price": "0 zł",
+          "period": "na zawsze",
+          "description": "Wszystko, czego potrzebujecie na co dzień. Bez karty, bez okresu próbnego.",
+          "cta": "Zacznijcie za darmo",
+          "features": [
+            "Wspólny budżet dla dwóch osób",
+            "Nielimitowane wydatki i przychody",
+            "Podział po równo, proporcjonalnie albo moje/twoje/nasze",
+            "Wspólne cele i koperty",
+            "Aplikacja na telefon (PWA) i pulpit z podsumowaniem"
+          ],
+          "limits": [
+            "Ograniczona liczba własnych kategorii",
+            "Skrócona historia transakcji",
+            "Bez analizy AI i rekomendacji",
+            "1 import z banku miesięcznie",
+            "Do 5 skanów paragonu miesięcznie",
+            "Bez integracji z bankiem"
+          ]
+        },
+        "premium": {
+          "name": "Premium",
+          "price": "39,99 zł",
+          "period": "/mies.",
+          "yearly": "albo 399,99 zł rocznie - 2 miesiące gratis",
+          "description": "To samo co w planie darmowym, tylko bez żadnych limitów.",
+          "cta": "Wybierzcie Premium",
+          "features": [
+            "Wszystko z planu darmowego",
+            "Nielimitowane własne kategorie",
+            "Pełna historia transakcji bez ograniczeń",
+            "Analiza AI z rekomendacjami co miesiąc",
+            "Nielimitowane importy wyciągów bankowych",
+            "Nielimitowane skany paragonów",
+            "Integracja z bankiem - transakcje wpadają same"
+          ]
+        }
+      }
+    },
     "faq": {
       "title": "FAQ",
+      "subtitle": "Najczęstsze pytania o wspólny budżet dla par - podział wydatków, prywatność, bezpieczeństwo danych i korzystanie z aplikacji bez partnera.",
       "items": [
         {
           "question": "Czy oboje musimy mieć aplikację?",
@@ -288,7 +358,7 @@
         },
         {
           "question": "Czy aplikacja jest darmowa?",
-          "answer": "Aplikacja jest w pełni bezpłatna - bez karty, bez limitu. Gdy wprowadzimy płatne plany, obecni użytkownicy dowiedzą się pierwsi i dostaną specjalne warunki."
+          "answer": "Tak - podstawowa wersja jest darmowa na zawsze i nie wymaga karty. Codzienne prowadzenie budżetu nie ma limitów: dodajecie tyle wydatków, ile chcecie, i dzielicie je między sobą. Darmowy plan ogranicza tylko liczbę własnych kategorii, długość historii, import z banku (1 miesięcznie) i skany paragonów (5 miesięcznie). Analiza AI i integracja z bankiem są w Premium - 39,99 zł miesięcznie albo 399,99 zł rocznie."
         },
         {
           "question": "Jak działa podział wydatków?",
@@ -476,23 +546,65 @@
     },
     "eyebrow": "Darmowe narzędzie",
     "title": "Kalkulator podziału wydatków przy różnych zarobkach",
-    "subtitle": "Wpiszcie dochody i wspólne koszty. Zobaczycie, ile wynosi sprawiedliwa część każdego z Was i o ile więcej dopłaca osoba zarabiająca mniej, gdy dzielicie po równo.",
-    "howTitle": "Jak liczymy sprawiedliwy podział",
-    "howBody": "Każde z Was pokrywa taki procent wspólnych wydatków, jaki jego dochód stanowi w Waszym łącznym dochodzie. Przy zarobkach 6500 zł i 4500 zł łączny dochód to 11 000 zł, więc udziały wynoszą 59% i 41%. Przy wspólnych wydatkach 4000 zł daje to 2360 zł i 1640 zł zamiast 2000 zł na głowę.",
-    "faqTitle": "Częste pytania",
+    "subtitle": "Kalkulator dla par, które chcą wiedzieć, kto ile powinien dokładać do wspólnego budżetu. Wpiszcie dochody i wspólne koszty - zobaczycie sprawiedliwą część każdego z Was i to, o ile więcej dopłaca osoba zarabiająca mniej, gdy dzielicie wydatki po równo.",
+    "howTitle": "Jak dzielić wydatki w związku przy różnych zarobkach",
+    "howBody": [
+      "Zasada jest prosta: każde z Was pokrywa taki procent wspólnych wydatków, jaki jego dochód stanowi w Waszym łącznym dochodzie. Przy zarobkach 6500 zł i 4500 zł łączny dochód to 11 000 zł, więc udziały wynoszą 59% i 41%. Przy wspólnych wydatkach 4000 zł daje to 2360 zł i 1640 zł zamiast 2000 zł na głowę.",
+      "Różnica 360 zł wygląda niepozornie, dopóki nie spojrzycie na to, co zostaje po opłaceniu rachunków. Przy podziale po równo osobie zarabiającej 4500 zł zostaje 2500 zł, a jej partnerowi 4500 zł - prawie dwa razy więcej. Po podziale proporcjonalnym zostaje 2860 zł i 4140 zł, czyli oboje oddajecie na wspólny budżet ten sam ułamek swoich pieniędzy. To jest cała różnica między \"płacimy tyle samo\" a \"czujemy to tak samo\".",
+      "Do wspólnych wydatków wliczcie to, z czego korzystacie oboje: czynsz lub ratę kredytu, media, jedzenie, transport, wyjazdy. Prywatne zakupy, hobby i prezenty dla siebie nawzajem zostawcie poza wspólnym budżetem - inaczej rozmowa o tym, kto ile płaci, zamienia się w rozliczanie każdej kawy. Wynik kalkulatora to punkt wyjścia do ustalenia zasady, a nie wyrok: możecie zaokrąglić kwoty do wygodnych albo umówić się na własne proporcje."
+    ],
+    "modelsTitle": "Po równo, proporcjonalnie czy własne proporcje",
+    "modelsIntro": "Te trzy zasady odpowiadają trzem trybom podziału w OurMoney. Kalkulator liczy dwie pierwsze, trzecią ustawiacie już w aplikacji.",
+    "models": [
+      {
+        "name": "Po równo (50/50)",
+        "description": "Każde z Was wpłaca połowę wspólnych wydatków, niezależnie od zarobków.",
+        "forWho": "Dla par o zbliżonych dochodach - najprostszy do policzenia i najłatwiejszy do pilnowania."
+      },
+      {
+        "name": "Proporcjonalnie do dochodów",
+        "description": "Udział we wspólnych kosztach odpowiada udziałowi w łącznym dochodzie pary.",
+        "forWho": "Dla par z wyraźną różnicą zarobków, gdy podział po równo zostawia jedną osobę bez oddechu."
+      },
+      {
+        "name": "Własne proporcje",
+        "description": "Sami ustalacie podział, na przykład 60/40, i trzymacie się go niezależnie od wahań pensji.",
+        "forWho": "Gdy dochody są nieregularne albo macie powód, żeby odejść od czystej matematyki - urlop rodzicielski, kredyt jednego z Was, wspólny cel."
+      }
+    ],
+    "faqTitle": "Podział wydatków w związku - częste pytania",
     "faq": [
       {
         "question": "Czy podział proporcjonalny jest sprawiedliwszy niż po równo?",
         "answer": "Przy dużej różnicy zarobków podział po równo obciąża osobę zarabiającą mniej znacznie mocniej - po opłaceniu wspólnych rachunków zostaje jej mniej wolnych pieniędzy. Podział proporcjonalny wyrównuje ten ciężar. Nie ma jednej dobrej odpowiedzi, ważne żebyście wybrali zasadę świadomie i oboje się z nią zgadzali."
       },
       {
+        "question": "Jak dzielić wydatki, gdy jedno z Was zarabia dwa razy więcej?",
+        "answer": "Przy dochodach 8000 zł i 4000 zł udziały wynoszą 67% i 33%. Ze wspólnych wydatków 4500 zł daje to 3015 zł i 1485 zł zamiast 2250 zł na głowę. Osobie zarabiającej mniej zostaje wtedy 2515 zł zamiast 1750 zł, czyli o 44% więcej wolnych pieniędzy - i to zwykle ta różnica decyduje, czy wspólny budżet da się utrzymać bez napięć."
+      },
+      {
+        "question": "Co wliczać do wspólnych wydatków?",
+        "answer": "Wszystko, z czego korzystacie oboje: mieszkanie, media, jedzenie, środki czystości, transport, wspólne wyjazdy i subskrypcje. Wydatki osobiste - ubrania, hobby, spotkania ze znajomymi, prezenty dla siebie nawzajem - zostawcie poza wspólną pulą. Im węższa i jaśniejsza definicja wspólnego wydatku, tym mniej sporów o pojedyncze paragony."
+      },
+      {
         "question": "Jak liczyć dochód, gdy jest nieregularny?",
-        "answer": "Weźcie średnią z ostatnich trzech do sześciu miesięcy. Przy dużych wahaniach (freelance, prowizje) łatwiej ustalić proporcje raz na kwartał niż przeliczać co miesiąc."
+        "answer": "Weźcie średnią z ostatnich trzech do sześciu miesięcy. Przy dużych wahaniach (freelance, prowizje, sezonowość) łatwiej ustalić proporcje raz na kwartał niż przeliczać co miesiąc. Liczcie dochód netto, czyli to, co realnie wpływa na konto."
+      },
+      {
+        "question": "Czy do dzielenia wydatków potrzebne jest wspólne konto?",
+        "answer": "Nie. Wspólne konto upraszcza opłacanie rachunków, ale nie jest warunkiem. Wiele par trzyma osobne konta i raz w miesiącu wyrównuje różnicę jednym przelewem - kalkulator pokazuje dokładnie, kto komu ile powinien oddać. W OurMoney widzicie to samo rozliczenie na bieżąco, bez wspólnego rachunku w banku."
+      },
+      {
+        "question": "Jak często przeliczać proporcje?",
+        "answer": "Przy stałych pensjach wystarczy raz w roku albo po każdej podwyżce czy zmianie pracy. Przy nieregularnych dochodach - raz na kwartał. Częstsze przeliczanie zwykle nie zmienia wyniku na tyle, żeby było warte zachodu, a odbiera zasadzie to, co w niej najcenniejsze: przewidywalność."
       },
       {
         "question": "Czy OurMoney liczy to automatycznie?",
-        "answer": "Tak. W aplikacji ustawiacie zasadę podziału raz, a każdy wspólny wydatek jest dzielony automatycznie - proporcjonalnie do dochodów, po równo albo według własnych proporcji. Widzicie też na bieżąco, kto ile już wpłacił."
+        "answer": "Tak. W aplikacji ustawiacie zasadę podziału raz, a każdy wspólny wydatek jest dzielony automatycznie - proporcjonalnie do dochodów, po równo albo według własnych proporcji. Widzicie też na bieżąco, kto ile już wpłacił i kto komu dopłaca na koniec miesiąca."
       }
-    ]
+    ],
+    "moreTitle": "Więcej o wspólnych finansach",
+    "moreBody": "Na blogu piszemy o wspólnym budżecie domowym, rozmowach o pieniądzach w związku i celach oszczędnościowych dla par.",
+    "moreCta": "Zobacz artykuły na blogu"
   }
 }

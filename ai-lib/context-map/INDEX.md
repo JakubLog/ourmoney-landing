@@ -16,7 +16,8 @@
 | 6 | Polityka prywatności | `/[locale]/polityka-prywatnosci` | Done | `src/app/[locale]/polityka-prywatnosci/page.tsx` |
 | 7 | Regulamin | `/[locale]/regulamin` | Done (placeholder) | `src/app/[locale]/regulamin/page.tsx` |
 | 8 | Kalkulator podziału | `/[locale]/kalkulator` | Done | `src/app/[locale]/kalkulator/page.tsx` |
-| 9 | 404 | `not-found` | Done | `src/app/not-found.tsx` |
+| 9 | Przejście do aplikacji | `/[locale]/start` | Done (dynamic, noindex) | `src/app/[locale]/start/page.tsx` |
+| 10 | 404 | `not-found` | Done | `src/app/not-found.tsx` |
 
 _Uzupełniaj w miarę dodawania kolejnych stron._
 
@@ -47,6 +48,7 @@ _Uzupełniaj w miarę dodawania kolejnych stron._
 | ADR-004 | Google Analytics 4 (nie PostHog) — landing nie zbiera PII, GA4 wystarczy | 2026-03-14 |
 | ADR-005 | SEO-first architecture — generateMetadata(), JSON-LD, llms.txt, AI SEO | 2026-03-14 |
 | ADR-006 | Sanity cache: `no-store` w dev, ISR `revalidate:3600` + `tags:['blog']` w prod + webhook `/api/revalidate` | 2026-03-15 |
+| ADR-008 | Wszystkie CTA prowadzą do dynamicznej bramki `/[locale]/start`, nie bezpośrednio do `app.ourmoney.pl` — jedno miejsce na detekcję platformy, deep-linki i przeniesienie wybranego planu | 2026-08-02 |
 | ADR-007 | PortableText renderowany przez `ArticlePortableText` (custom components) — nie domyślny prose Tailwind | 2026-03-15 |
 
 ---
@@ -75,6 +77,10 @@ _Uzupełniaj w miarę dodawania kolejnych stron._
 | 2026-08-01 | Wdrożenie audytu: Switzer jako jedyny font body (usunięty Inter Tight + wszystkie inline `fontFamily`), 121 klas z hexem → tokeny, nowe tokeny powierzchni (`surface`, `surface-2`, `surface-cool`, `screen`, `dark-3`, `accent-light`) i promieni (`rounded-card/panel/hero`), 44 klasy odstępu dociągnięte do siatki 8px (75% → 99%), `text-[10px]` → `text-xs`, `design-system.md` przepisany na realne wartości | design-system, pages |
 | 2026-08-01 | Kalkulator: przełącznik zasady podziału (proporcjonalnie / po równo) zgodny z `SplitType` w aplikacji + nota o trybie `tracking`; donut naprawiony na orientację recharts (od godziny 3, przeciwnie do wskazówek); globalna reguła łamania tekstu (`balance` na nagłówkach, `pretty` na akapitach); klient Sanity działa bez `projectId` w dev (puste dane zamiast 500) | pages, i18n, design-system |
 | 2026-08-01 | Kalkulator: rozbicie wspólnych wydatków na typowe kategorie (kwoty per osoba z liczb użytkownika, proporcje kategorii przykładowe) + linia rozliczenia "kto komu odda na koniec miesiąca" jako pomost do produktu; nowa sekcja `AiReportSection` na homepage po Features - struktura 1:1 z `AIInsightsCard` w aplikacji, treść oznaczona jako przykładowa | pages, i18n, design-system |
+| 2026-08-02 | Kalkulator jako osobny punkt wejścia: `/kalkulator` w nawigacji głównej (Header, po "Strona główna"), homepage ma już tylko zajawkę `CalculatorTeaserSection` (dawne `SplitCalculatorSection`) z CTA do strony - koniec duplikacji narzędzia między `/` a `/kalkulator`; nowy klucz `HomePage.calculator.cta` (PL+EN); pasek nawigacji przeszedł na grid `1fr auto 1fr`, żeby linki stały na środku niezależnie od szerokości logo i CTA (kotwice linków dostały `inline-block` - jako inline z blokowym spanem rozdymały `<li>` do 68px i psuły centrowanie w osi Y) | pages, i18n, seo, design-system |
+| 2026-08-02 | `/kalkulator` pod frazy: treść z 209 do ~750 słów (PL+EN), H2 "Jak dzielić wydatki w związku przy różnych zarobkach", nowa sekcja trzech modeli podziału (po równo / proporcjonalnie / własne proporcje) z H3, FAQ z 3 do 7 pytań w `h3` (wszystkie w FAQPage JSON-LD), link wewnętrzny do bloga, keyword anchor z homepage | pages, i18n, seo |
+| 2026-08-02 | ComparisonSection: kolumna OurMoney wyróżniona pasmem `accent-deep/8` z zaokrągleniem i ciemną pigułką w nagłówku, fajki w tej kolumnie na ciemnym kółku; nowy token `--color-accent-deep` (#557300) dla zieleni na jasnym tle - `accent` na bieli ma 1.3:1, wariant deep 5.4:1; tabela na `border-separate` (promienie na komórkach) | design-system, pages |
+| 2026-08-02 | Dynamiczna strona przejścia `/[locale]/start`: wszystkie CTA (hero, features, FAQ, CTABanner, header desktop+mobile, kalkulator, blog, cennik) linkują do bramki zamiast prosto do `app.ourmoney.pl`; detekcja platformy dwuetapowa (serwer z `user-agent` → klient doprecyzowuje iPadOS), osobne targety `APP_TARGETS` per iOS/Android/web (dziś wszystkie na PWA + komunikat "już wkrótce" ze store'ów, flagi `STORE_AVAILABLE`); CTA Premium w cenniku dokłada `?plan=premium`, wersja darmowa i pozostałe CTA nie; nowy event GA4 `app_open`; namespace `StartPage` (PL+EN), usunięty `Common.appUrl` — adres aplikacji przeniesiony do `src/lib/appLinks.ts`; `InvertDotButton`/`TrackedCTALink` otwierają linki wewnętrzne w tej samej karcie | pages, i18n, analytics, seo |
 
 ---
 

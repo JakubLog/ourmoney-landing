@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
+import { SectionLead } from '@/components/ui/SectionLead';
 
 type Props = { locale: string };
 
@@ -20,10 +21,11 @@ export async function PainPointsSection({ locale }: Props) {
       <div className="max-w-6xl mx-auto">
         {/* Heading */}
         <ScrollReveal className="text-center mb-12 md:mb-16">
-          <p className="text-xs text-dark/40 uppercase tracking-[0.2em] mb-4">{t('subtitle')}</p>
+          <p className="text-xs text-dark/40 uppercase tracking-[0.2em] mb-4">{t('eyebrow')}</p>
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-dark leading-tight">
             {t('title')}
           </h2>
+          <SectionLead className="mt-6">{t('subtitle')}</SectionLead>
         </ScrollReveal>
 
         {/* Cards - staggered */}

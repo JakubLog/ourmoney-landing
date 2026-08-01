@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { X, Check } from 'lucide-react';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
+import { SectionLead } from '@/components/ui/SectionLead';
 
 type Props = { locale: string };
 
@@ -36,7 +37,7 @@ export function BeforeAfterSection({ locale }: Props) {
     <section ref={sectionRef} className="bg-surface py-20 md:py-28 px-6">
       <div className="max-w-5xl mx-auto">
         <ScrollReveal className="text-center mb-12 md:mb-16">
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-dark leading-tight mb-4">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-dark leading-tight mb-6">
             {t('title')}{' '}
             <span className="relative inline-block">
               <svg
@@ -59,6 +60,7 @@ export function BeforeAfterSection({ locale }: Props) {
             </span>{' '}
             {t('titleEnd')}
           </h2>
+          <SectionLead>{t('subtitle')}</SectionLead>
         </ScrollReveal>
 
         <div className="grid md:grid-cols-2 gap-6">

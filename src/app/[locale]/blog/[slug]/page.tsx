@@ -12,6 +12,7 @@ import { BlogPostCard } from '@/components/blog/BlogPostCard';
 import { ReadingProgressBar } from '@/components/blog/ReadingProgressBar';
 import { ShareButton } from '@/components/blog/ShareButton';
 import { TrackedCTALink } from '@/components/ui/TrackedCTALink';
+import { startHref } from '@/lib/appLinks';
 import { Link } from '@/i18n/navigation';
 import { client, fetchOptions } from '@/sanity/lib/client';
 import { POST_QUERY, POST_TRANSLATION_QUERY, RELATED_POSTS_QUERY } from '@/sanity/lib/queries';
@@ -181,7 +182,6 @@ export default async function BlogPostPage({ params }: Props) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'BlogPage' });
-  const tCommon = await getTranslations({ locale, namespace: 'Common' });
 
   const post = await client.fetch<Post | null>(
     POST_QUERY,
@@ -507,7 +507,7 @@ export default async function BlogPostPage({ params }: Props) {
                     {t('inArticleCta.subtext')}
                   </p>
                   <TrackedCTALink
-                    href={tCommon('appUrl')}
+                    href={startHref(locale)}
                     className="inline-flex items-center gap-2 bg-accent text-black font-semibold text-sm px-8 py-4 rounded-full hover:bg-accent-light transition-colors"
                     location="article_end"
                     locale={locale}

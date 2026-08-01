@@ -86,8 +86,11 @@ najpierw zaokrąglony procent udziału, dopiero z niego kwota. Donut ma tę sam�
 (innerRadius 50 / outerRadius 80 / paddingAngle 2) i te same kolory (#bbff00, #3f3f46),
 ale rysowany jest inline SVG - bez dociągania recharts na landing.
 
-Ten sam komponent `SplitCalculator` jest osadzony na homepage jako `SplitCalculatorSection`
-(sekcja 3, między PainPoints a HowItWorks), z `placement="homepage"` dla GA4.
+Samo narzędzie żyje wyłącznie na `/kalkulator` — homepage ma w tym miejscu tylko zajawkę
+(`CalculatorTeaserSection`, między PainPoints a HowItWorks): nagłówek, opis i CTA "Otwórz kalkulator"
+linkujące do strony. Dzięki temu treść nie duplikuje się między `/` a `/kalkulator`,
+a cały sygnał SEO narzędzia zbiera dedykowana strona. `/kalkulator` jest osobną pozycją
+w nawigacji głównej (Header) i w stopce.
 
 ---
 
@@ -116,9 +119,24 @@ Kolory z systemu landingu, nie z aplikacji (appka używa tam niebieskiego, landi
 | Kontakt | `/[locale]/kontakt` | Done |
 | Polityka prywatności | `/[locale]/polityka-prywatnosci` | Done |
 | Regulamin | `/[locale]/regulamin` | Done (placeholder content) |
+| Przejście do aplikacji | `/[locale]/start` | Done |
 | 404 | `app/not-found.tsx` | Done |
 | Strona features | `/features` | TBD |
 | Cennik | `/pricing` | TBD |
+
+---
+
+## `/[locale]/start` — bramka do aplikacji
+
+Dynamiczna (`force-dynamic`), `noindex`, poza sitemapą i poza layoutem Header/Footer. Cel jedynego wyjścia z landingu do produktu.
+
+| Element | Opis |
+|---------|------|
+| Detekcja platformy | Serwer czyta `user-agent` (render bez migotania), klient doprecyzowuje `detectPlatformClient()` — łapie iPadOS 13+ podszywający się pod Maca |
+| Targety | `APP_TARGETS` w `src/lib/appLinks.ts` — iOS / Android / web. Dziś wszystkie → `https://app.ourmoney.pl/`; flagi `STORE_AVAILABLE` sterują komunikatem "już wkrótce" |
+| Plan | `?plan=premium` tylko z CTA Premium w cenniku; przenoszony dalej na URL aplikacji. Pozostałe CTA bez parametru |
+| Redirect | `window.location.replace()` po 1200 ms + zawsze widoczny przycisk ręczny |
+| Analytics | GA4 `app_open` (`platform`, `plan`, `locale`) |
 
 ---
 
