@@ -35,6 +35,7 @@
 | `cta_click` | Kliknięcie CTA | `cta_location`, `cta_text`, `locale`, `post_slug?` |
 | `blog_post_read` | Scroll ≥75% artykułu | `post_slug`, `locale` |
 | `language_switch` | Zmiana języka PL/EN | `from_locale`, `to_locale` |
+| `calculator_used` | Pierwsza zmiana pola w kalkulatorze (raz na sesję, guard w sessionStorage) | `locale`, `placement` (`homepage` / `calculator_page`) |
 
 ### Lokalizacje CTA (`cta_location`)
 
@@ -45,6 +46,7 @@
 | `hero` | Przycisk w sekcji Hero |
 | `cta_banner` | Sekcja CTABanner (footer strony) |
 | `article_mid` | CTA w połowie artykułu |
+| `calculator` | CTA pod kalkulatorem (homepage + /kalkulator) |
 | `article_end` | CTA na końcu artykułu |
 
 ### User Properties
@@ -59,7 +61,7 @@
 
 | Plik | Rola |
 |------|------|
-| `src/lib/analytics.ts` | Helpery: `trackCTAClick`, `trackLanguageSwitch`, `trackBlogPostRead` |
+| `src/lib/analytics.ts` | Helpery: `trackCTAClick`, `trackLanguageSwitch`, `trackBlogPostRead`, `trackCalculatorUsed` |
 | `src/components/ui/TrackedCTALink.tsx` | Client component — `<a>` z onClick dla Server Components |
 | `src/components/layout/LocaleTracker.tsx` | Ustawia user property `locale` przy mount |
 | `src/components/blog/ReadingProgressBar.tsx` | Pasek postępu + event przy 75% |

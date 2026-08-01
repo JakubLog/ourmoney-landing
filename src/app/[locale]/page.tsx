@@ -5,7 +5,9 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { PainPointsSection } from '@/components/sections/PainPointsSection';
+import { SplitCalculatorSection } from '@/components/sections/SplitCalculatorSection';
 import { FeaturesSection } from '@/components/sections/FeaturesSection';
+import { AiReportSection } from '@/components/sections/AiReportSection';
 import { BrandPromiseSection } from '@/components/sections/BrandPromiseSection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { FAQSection } from '@/components/sections/FAQSection';
@@ -138,11 +140,13 @@ export default async function HomePage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Header />
-      <main style={{ fontFamily: '"Switzer", "Switzer Placeholder", sans-serif', fontWeight: 500 }}>
+      <main>
         <HeroSection locale={locale} />
         <PainPointsSection locale={locale} />
+        <SplitCalculatorSection locale={locale} />
         <HowItWorksSection locale={locale} />
         <FeaturesSection locale={locale} />
+        <AiReportSection locale={locale} />
         <BeforeAfterSection locale={locale} />
         <BrandPromiseSection locale={locale} />
         <TestimonialsSection locale={locale} />

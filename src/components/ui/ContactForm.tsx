@@ -41,7 +41,7 @@ export function ContactForm() {
 
   if (status === 'success') {
     return (
-      <div className="bg-[#f7f5f2] rounded-2xl p-10 text-center">
+      <div className="bg-surface rounded-2xl p-10 text-center">
         <CheckCircle className="w-10 h-10 text-accent mx-auto mb-4" />
         <p className="text-dark text-base font-medium">{t('success')}</p>
         <p className="text-dark/50 text-sm mt-2">{t('note')}</p>
@@ -50,21 +50,21 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
-      <div className="grid sm:grid-cols-2 gap-5">
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="grid sm:grid-cols-2 gap-6">
         <input
           name="name"
           type="text"
           required
           placeholder={t('namePlaceholder')}
-          className="w-full rounded-xl border border-dark/10 bg-white px-5 py-4 text-sm text-dark placeholder:text-dark/30 outline-none focus:border-dark/30 transition-colors"
+          className="w-full rounded-xl border border-dark/10 bg-white px-6 py-4 text-sm text-dark placeholder:text-dark/30 outline-none focus:border-dark/30 transition-colors"
         />
         <input
           name="email"
           type="email"
           required
           placeholder={t('emailPlaceholder')}
-          className="w-full rounded-xl border border-dark/10 bg-white px-5 py-4 text-sm text-dark placeholder:text-dark/30 outline-none focus:border-dark/30 transition-colors"
+          className="w-full rounded-xl border border-dark/10 bg-white px-6 py-4 text-sm text-dark placeholder:text-dark/30 outline-none focus:border-dark/30 transition-colors"
         />
       </div>
       <textarea
@@ -72,7 +72,7 @@ export function ContactForm() {
         required
         rows={5}
         placeholder={t('messagePlaceholder')}
-        className="w-full rounded-xl border border-dark/10 bg-white px-5 py-4 text-sm text-dark placeholder:text-dark/30 outline-none focus:border-dark/30 transition-colors resize-none"
+        className="w-full rounded-xl border border-dark/10 bg-white px-6 py-4 text-sm text-dark placeholder:text-dark/30 outline-none focus:border-dark/30 transition-colors resize-none"
       />
 
       {errorMsg && (

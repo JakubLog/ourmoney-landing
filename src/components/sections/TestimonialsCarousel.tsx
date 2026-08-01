@@ -34,7 +34,7 @@ function TestimonialCard({ item }: { item: Testimonial }) {
 
   return (
     <div
-      className="bg-white rounded-2xl p-7 flex flex-col gap-4 select-none"
+      className="bg-white rounded-2xl p-8 flex flex-col gap-4 select-none"
       style={{ width: CARD_WIDTH, flexShrink: 0 }}
     >
       <div className="flex items-center justify-between gap-3">
@@ -57,14 +57,14 @@ function TestimonialCard({ item }: { item: Testimonial }) {
               {initial}
             </div>
           )}
-          <span className="text-[#141414] font-semibold text-base">{item.name}</span>
+          <span className="text-dark font-semibold text-base">{item.name}</span>
         </div>
         <div className="flex items-center gap-1" style={{ flexShrink: 0 }}>
-          <span className="text-[#141414]/60 text-sm font-medium">{item.rating}.0</span>
+          <span className="text-dark/60 text-sm font-medium">{item.rating}.0</span>
           <StarIcon />
         </div>
       </div>
-      <p className="text-[#141414]/70 text-sm leading-relaxed">{item.quote}</p>
+      <p className="text-dark/70 text-sm leading-relaxed">{item.quote}</p>
     </div>
   );
 }

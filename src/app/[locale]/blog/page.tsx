@@ -133,9 +133,9 @@ export default async function BlogPage({ params }: Props) {
       />
       <main>
         {/* Hero */}
-        <section className="bg-[#141414] pt-36 pb-16 px-6">
+        <section className="bg-dark pt-36 pb-16 px-6">
           <div className="max-w-5xl mx-auto">
-            <span className="inline-block bg-[#bbff00] text-black text-xs font-semibold px-4 py-1.5 rounded-full mb-8">
+            <span className="inline-block bg-accent text-black text-xs font-semibold px-4 py-2 rounded-full mb-8">
               {t('badge')}
             </span>
             <h1 className="font-display text-5xl md:text-7xl text-white leading-[1.05] tracking-tight max-w-3xl">
@@ -148,7 +148,7 @@ export default async function BlogPage({ params }: Props) {
         </section>
 
         {/* Posts */}
-        <section className="bg-[#141414] pb-32 px-6">
+        <section className="bg-dark pb-32 px-6">
           <div className="max-w-5xl mx-auto">
             {posts.length === 0 ? (
               <div className="text-center py-40 border-t border-white/8">
@@ -180,7 +180,7 @@ export default async function BlogPage({ params }: Props) {
 
                 {/* Grid - remaining posts */}
                 {rest.length > 0 && (
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 pt-4">
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
                     {rest.map((post) => (
                       <BlogPostCard
                         key={post._id}

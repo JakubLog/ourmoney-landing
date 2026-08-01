@@ -12,7 +12,8 @@
     "blog": "Blog",
     "contact": "Kontakt",
     "privacy": "Polityka Prywatności",
-    "terms": "Regulamin"
+    "terms": "Regulamin",
+    "calculator": "Kalkulator"
   },
   "Footer": {
     "email": "kontakt@ourmoney.pl",
@@ -55,6 +56,11 @@
         }
       ]
     },
+    "calculator": {
+      "subtitle": "Kalkulator",
+      "title": "Ile sprawiedliwie powinno płacić każde z Was?",
+      "description": "Wpiszcie dwa dochody i wspólne wydatki. Zobaczycie podział proporcjonalny do zarobków i to, ile dopłaca osoba zarabiająca mniej, gdy dzielicie po równo."
+    },
     "features": {
       "title": "Jak OurMoney rozwiązuje Wasze problemy",
       "subtitle": "Nie kolejny arkusz Excel. Inteligentne narzędzie stworzone specjalnie dla par, które chcą razem budować przyszłość.",
@@ -81,6 +87,54 @@
           "description": "Wgraj wyciąg ze swojego banku, a OurMoney automatycznie doda i skategoryzuje wydatki. Koniec z ręcznym przepisywaniem transakcji."
         }
       ]
+    },
+    "aiReport": {
+      "subtitle": "Analiza AI",
+      "title": "Co miesiąc dostajecie raport, którego nikt nie musi pisać",
+      "description": "OurMoney analizuje Wasze wydatki i mówi wprost, co poszło dobrze, co wymyka się spod kontroli i co z tym zrobić. Bez tabelek i bez ślęczenia nad wyciągiem.",
+      "badge": "Przykładowy raport",
+      "reportTitle": "Raport AI - podsumowanie miesiąca",
+      "summary": "Wydaliście 8 640 zł przy wspólnym dochodzie 11 000 zł. Odłożyliście 1 200 zł, czyli 11% dochodu - o dwa punkty mniej niż miesiąc wcześniej, głównie przez wyższe rachunki za energię.",
+      "stats": [
+        {
+          "label": "Przychody",
+          "value": "11 000 zł"
+        },
+        {
+          "label": "Wydatki",
+          "value": "8 640 zł"
+        },
+        {
+          "label": "Oszczędności",
+          "value": "1 200 zł"
+        },
+        {
+          "label": "Stopa oszczędności",
+          "value": "11%"
+        }
+      ],
+      "insightsTitle": "Kluczowe spostrzeżenia",
+      "insights": [
+        {
+          "title": "Zakupy spożywcze pod kontrolą",
+          "description": "1 180 zł, czyli o 9% mniej niż średnia z ostatnich trzech miesięcy. Najwięcej zaoszczędziliście na dostawach jedzenia.",
+          "type": "positive"
+        },
+        {
+          "title": "Subskrypcje po cichu rosną",
+          "description": "Cztery aktywne subskrypcje to 148 zł miesięcznie. Dwie z nich nie były używane od dwóch miesięcy.",
+          "type": "warning"
+        }
+      ],
+      "recommendationsTitle": "Rekomendacja",
+      "recommendation": {
+        "title": "Podnieście wpłatę na cel Wakacje",
+        "description": "Przy obecnym tempie osiągniecie cel w marcu zamiast w styczniu. Dodatkowe 200 zł miesięcznie wyrówna opóźnienie.",
+        "priority": "wysoki",
+        "impact": "Cel szybciej o dwa miesiące"
+      },
+      "priorityLabel": "Priorytet",
+      "footnote": "Raport powstaje z Waszych realnych transakcji - pierwszy dostaniecie po pełnym miesiącu wspólnego budżetu. Powyżej przykład na danych poglądowych."
     },
     "brandPromise": {
       "title": "Jesteśmy po stronie związku",
@@ -382,5 +436,63 @@
   "AuthorPage": {
     "backToAbout": "O nas",
     "articles": "Artykuły"
+  },
+  "SplitCalculator": {
+    "yourIncome": "Twój dochód netto (miesięcznie)",
+    "partnerIncome": "Dochód partnera (miesięcznie)",
+    "sharedCosts": "Wasze wspólne wydatki (miesięcznie)",
+    "resultTitle": "Sprawiedliwy podział",
+    "you": "Ty",
+    "partner": "Partner",
+    "shareOfIncome": "{percent}% wspólnego dochodu",
+    "barLabel": "Twój udział {you} procent, udział partnera {partner} procent",
+    "insightYou": "Przy podziale po równo dopłacasz {amount} miesięcznie ponad swoją proporcję. To {yearly} rocznie.",
+    "insightPartner": "Przy podziale po równo to partner dopłaca {amount} miesięcznie ponad swoją proporcję. To {yearly} rocznie.",
+    "insightEqual": "Przy takich dochodach oba modele dają ten sam wynik.",
+    "emptyState": "Wpisz dochody i wspólne wydatki, żeby zobaczyć podział.",
+    "cta": "Zacznijcie za darmo",
+    "ctaHint": "Rejestracja zajmuje 30 sekund. Partnera zaprosisz w drugim kroku.",
+    "modeLabel": "Zasada podziału",
+    "modeProportional": "Proporcjonalnie",
+    "modeEqual": "Po równo",
+    "halfOfCosts": "Połowa wspólnych wydatków",
+    "insightModeEqualYou": "Gdybyście dzielili proporcjonalnie do dochodów, Twoja część byłaby o {amount} mniejsza miesięcznie. To {yearly} rocznie.",
+    "insightModeEqualPartner": "Gdybyście dzielili proporcjonalnie do dochodów, część partnera byłaby o {amount} mniejsza miesięcznie. To {yearly} rocznie.",
+    "trackingNote": "Wyliczenie orientacyjne. W aplikacji jest jeszcze trzeci tryb - tylko śledzenie, bez dzielenia wydatków.",
+    "breakdownTitle": "Na konkretnych rachunkach",
+    "catRent": "Czynsz i mieszkanie",
+    "catGroceries": "Zakupy spożywcze",
+    "catUtilities": "Media i subskrypcje",
+    "breakdownNote": "Rozkład kategorii jest przykładowy - proporcje podziału są Wasze.",
+    "settlementYouOwe": "A w praktyce: Ty płacisz czynsz, partner resztę. Na koniec miesiąca oddajesz partnerowi {amount}.",
+    "settlementPartnerOwes": "A w praktyce: Ty płacisz czynsz, partner resztę. Na koniec miesiąca partner oddaje Ci {amount}.",
+    "settlementEven": "A w praktyce: Ty płacisz czynsz, partner resztę - i akurat wychodzicie na zero.",
+    "settlementApp": "Tego kalkulator już nie policzy. OurMoney robi to automatycznie po każdym wydatku."
+  },
+  "CalculatorPage": {
+    "meta": {
+      "title": "Kalkulator podziału wydatków dla par | OurMoney",
+      "description": "Policzcie, ile powinno płacić każde z Was przy różnych zarobkach. Podział proporcjonalny do dochodów kontra po równo - wynik od razu, bez rejestracji."
+    },
+    "eyebrow": "Darmowe narzędzie",
+    "title": "Kalkulator podziału wydatków przy różnych zarobkach",
+    "subtitle": "Wpiszcie dochody i wspólne koszty. Zobaczycie, ile wynosi sprawiedliwa część każdego z Was i o ile więcej dopłaca osoba zarabiająca mniej, gdy dzielicie po równo.",
+    "howTitle": "Jak liczymy sprawiedliwy podział",
+    "howBody": "Każde z Was pokrywa taki procent wspólnych wydatków, jaki jego dochód stanowi w Waszym łącznym dochodzie. Przy zarobkach 6500 zł i 4500 zł łączny dochód to 11 000 zł, więc udziały wynoszą 59% i 41%. Przy wspólnych wydatkach 4000 zł daje to 2360 zł i 1640 zł zamiast 2000 zł na głowę.",
+    "faqTitle": "Częste pytania",
+    "faq": [
+      {
+        "question": "Czy podział proporcjonalny jest sprawiedliwszy niż po równo?",
+        "answer": "Przy dużej różnicy zarobków podział po równo obciąża osobę zarabiającą mniej znacznie mocniej - po opłaceniu wspólnych rachunków zostaje jej mniej wolnych pieniędzy. Podział proporcjonalny wyrównuje ten ciężar. Nie ma jednej dobrej odpowiedzi, ważne żebyście wybrali zasadę świadomie i oboje się z nią zgadzali."
+      },
+      {
+        "question": "Jak liczyć dochód, gdy jest nieregularny?",
+        "answer": "Weźcie średnią z ostatnich trzech do sześciu miesięcy. Przy dużych wahaniach (freelance, prowizje) łatwiej ustalić proporcje raz na kwartał niż przeliczać co miesiąc."
+      },
+      {
+        "question": "Czy OurMoney liczy to automatycznie?",
+        "answer": "Tak. W aplikacji ustawiacie zasadę podziału raz, a każdy wspólny wydatek jest dzielony automatycznie - proporcjonalnie do dochodów, po równo albo według własnych proporcji. Widzicie też na bieżąco, kto ile już wpłacił."
+      }
+    ]
   }
 }

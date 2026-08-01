@@ -28,17 +28,17 @@ export function ArticleCTA({
 }: Props) {
   const effectiveUrl = buttonUrl ? withLocaleParam(buttonUrl, locale) : undefined;
   return (
-    <aside className="my-12 p-8 rounded-2xl bg-[#141414] text-center not-prose" aria-label={heading}>
+    <aside className="my-12 p-8 rounded-2xl bg-dark text-center not-prose" aria-label={heading}>
       <h3 className="font-display text-2xl md:text-3xl text-white mb-3 leading-tight">
         {heading}
       </h3>
       {text && (
-        <p className="text-sm text-white/50 mb-7 max-w-sm mx-auto leading-relaxed">{text}</p>
+        <p className="text-sm text-white/50 mb-8 max-w-sm mx-auto leading-relaxed">{text}</p>
       )}
       {effectiveUrl && buttonLabel && (
         <TrackedCTALink
           href={effectiveUrl}
-          className="inline-flex items-center gap-2 bg-[#bbff00] text-black font-semibold text-sm px-7 py-3.5 rounded-full hover:bg-[#d4ff4d] transition-colors"
+          className="inline-flex items-center gap-2 bg-accent text-black font-semibold text-sm px-8 py-4 rounded-full hover:bg-accent-light transition-colors"
           location={location}
           locale={locale}
           postSlug={postSlug}

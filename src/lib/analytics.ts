@@ -32,3 +32,16 @@ export function trackBlogPostRead(slug: string, locale: string) {
     locale,
   });
 }
+
+// Kalkulator podzialu - raz na sesje, zeby nie zalewac GA4 przy kazdym wpisanym znaku
+export function trackCalculatorUsed(locale: string, placement: string) {
+  if (typeof window === 'undefined') return;
+  const key = 'om_calculator_used';
+  try {
+    if (window.sessionStorage.getItem(key)) return;
+    window.sessionStorage.setItem(key, '1');
+  } catch {
+    // sessionStorage niedostepny (tryb prywatny) - wysylamy event mimo to
+  }
+  sendGAEvent('event', 'calculator_used', { locale, placement });
+}

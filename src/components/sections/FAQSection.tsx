@@ -34,14 +34,14 @@ export async function FAQSection({ locale }: Props) {
           <ScrollReveal delay={150}>
             {items.map((item) => (
               <details key={item.question} className="group border-t border-dark/10">
-                <summary className="flex items-center justify-between py-5 cursor-pointer">
+                <summary className="flex items-center justify-between py-6 cursor-pointer">
                   <span className="font-medium text-dark text-base pr-6">{item.question}</span>
                   <span aria-hidden="true" className="shrink-0 text-dark/40">
                     <Plus size={18} className="faq-plus" />
                     <X size={18} className="faq-minus" />
                   </span>
                 </summary>
-                <div className="faq-answer pb-5">
+                <div className="faq-answer pb-6">
                   <p className="text-dark/50 text-sm leading-relaxed max-w-xl">
                     {item.answer}
                   </p>

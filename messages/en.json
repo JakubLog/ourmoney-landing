@@ -12,7 +12,8 @@
     "blog": "Blog",
     "contact": "Contact",
     "privacy": "Privacy Policy",
-    "terms": "Terms of Service"
+    "terms": "Terms of Service",
+    "calculator": "Calculator"
   },
   "Footer": {
     "email": "kontakt@ourmoney.pl",
@@ -55,6 +56,11 @@
         }
       ]
     },
+    "calculator": {
+      "subtitle": "Calculator",
+      "title": "How much should each of you actually pay?",
+      "description": "Enter two incomes and your shared expenses. You will see the income-proportional split and how much extra the lower earner pays under a 50/50 split."
+    },
     "features": {
       "title": "How OurMoney solves your problems",
       "subtitle": "Not another Excel spreadsheet. An intelligent tool built specifically for couples who want to build a future together.",
@@ -81,6 +87,54 @@
           "description": "Upload a statement from your bank and OurMoney automatically adds and categorizes expenses. No more retyping transactions by hand."
         }
       ]
+    },
+    "aiReport": {
+      "subtitle": "AI analysis",
+      "title": "A monthly report nobody has to write",
+      "description": "OurMoney analyses your spending and tells you plainly what went well, what is drifting and what to do about it. No spreadsheets, no digging through statements.",
+      "badge": "Example report",
+      "reportTitle": "AI report - monthly summary",
+      "summary": "You spent 8,640 zl on a joint income of 11,000 zl. You saved 1,200 zl, which is 11% of your income - two points less than last month, mostly due to higher energy bills.",
+      "stats": [
+        {
+          "label": "Income",
+          "value": "11,000 zl"
+        },
+        {
+          "label": "Expenses",
+          "value": "8,640 zl"
+        },
+        {
+          "label": "Savings",
+          "value": "1,200 zl"
+        },
+        {
+          "label": "Savings rate",
+          "value": "11%"
+        }
+      ],
+      "insightsTitle": "Key insights",
+      "insights": [
+        {
+          "title": "Groceries under control",
+          "description": "1,180 zl, which is 9% below your three-month average. Most of the saving came from fewer food deliveries.",
+          "type": "positive"
+        },
+        {
+          "title": "Subscriptions creeping up",
+          "description": "Four active subscriptions add up to 148 zl a month. Two of them have not been used for two months.",
+          "type": "warning"
+        }
+      ],
+      "recommendationsTitle": "Recommendation",
+      "recommendation": {
+        "title": "Increase the Holiday goal contribution",
+        "description": "At the current pace you will reach the goal in March instead of January. An extra 200 zl a month closes the gap.",
+        "priority": "high",
+        "impact": "Goal reached two months sooner"
+      },
+      "priorityLabel": "Priority",
+      "footnote": "The report is built from your real transactions - you get the first one after a full month of shared budgeting. The example above uses illustrative data."
     },
     "brandPromise": {
       "title": "We're on the relationship's side",
@@ -382,5 +436,63 @@
   "AuthorPage": {
     "backToAbout": "About us",
     "articles": "Articles"
+  },
+  "SplitCalculator": {
+    "yourIncome": "Your net income (monthly)",
+    "partnerIncome": "Partner income (monthly)",
+    "sharedCosts": "Your shared expenses (monthly)",
+    "resultTitle": "Fair split",
+    "you": "You",
+    "partner": "Partner",
+    "shareOfIncome": "{percent}% of joint income",
+    "barLabel": "Your share {you} percent, partner share {partner} percent",
+    "insightYou": "With a 50/50 split you pay {amount} more per month than your proportional share. That is {yearly} a year.",
+    "insightPartner": "With a 50/50 split your partner pays {amount} more per month than their proportional share. That is {yearly} a year.",
+    "insightEqual": "With these incomes both models give the same result.",
+    "emptyState": "Enter incomes and shared expenses to see the split.",
+    "cta": "Start for free",
+    "ctaHint": "Signing up takes 30 seconds. You can invite your partner in the second step.",
+    "modeLabel": "Splitting rule",
+    "modeProportional": "Proportional",
+    "modeEqual": "50/50",
+    "halfOfCosts": "Half of shared expenses",
+    "insightModeEqualYou": "With an income-proportional split your share would be {amount} lower per month. That is {yearly} a year.",
+    "insightModeEqualPartner": "With an income-proportional split your partner share would be {amount} lower per month. That is {yearly} a year.",
+    "trackingNote": "Indicative calculation. The app also has a third mode - tracking only, without splitting expenses.",
+    "breakdownTitle": "On real bills",
+    "catRent": "Rent and housing",
+    "catGroceries": "Groceries",
+    "catUtilities": "Utilities and subscriptions",
+    "breakdownNote": "The category split is an example - the sharing proportions are yours.",
+    "settlementYouOwe": "In practice: you pay the rent, your partner pays the rest. At the end of the month you owe your partner {amount}.",
+    "settlementPartnerOwes": "In practice: you pay the rent, your partner pays the rest. At the end of the month your partner owes you {amount}.",
+    "settlementEven": "In practice: you pay the rent, your partner pays the rest - and it happens to even out.",
+    "settlementApp": "A calculator will not track that. OurMoney does it automatically after every expense."
+  },
+  "CalculatorPage": {
+    "meta": {
+      "title": "Expense split calculator for couples | OurMoney",
+      "description": "See how much each of you should pay when you earn different amounts. Income-proportional split versus 50/50 - instant result, no signup."
+    },
+    "eyebrow": "Free tool",
+    "title": "Expense split calculator for unequal incomes",
+    "subtitle": "Enter your incomes and shared costs. You will see the fair share for each of you and how much more the lower earner pays under a 50/50 split.",
+    "howTitle": "How we calculate the fair split",
+    "howBody": "Each of you covers the same percentage of shared expenses as your income represents in your joint income. With salaries of 6500 zl and 4500 zl the joint income is 11 000 zl, so the shares are 59% and 41%. With 4000 zl of shared expenses that means 2360 zl and 1640 zl instead of 2000 zl each.",
+    "faqTitle": "Common questions",
+    "faq": [
+      {
+        "question": "Is a proportional split fairer than 50/50?",
+        "answer": "When incomes differ a lot, a 50/50 split hits the lower earner much harder - after the shared bills they have far less money left. A proportional split evens out that burden. There is no single right answer, what matters is choosing a rule deliberately and both agreeing to it."
+      },
+      {
+        "question": "How do we count income when it is irregular?",
+        "answer": "Use the average of the last three to six months. With large swings (freelance, commission) it is easier to set the proportions once a quarter than to recalculate every month."
+      },
+      {
+        "question": "Does OurMoney do this automatically?",
+        "answer": "Yes. You set the splitting rule once and every shared expense is divided automatically - proportionally to income, equally, or by your own custom proportions. You also see who has already paid how much."
+      }
+    ]
   }
 }

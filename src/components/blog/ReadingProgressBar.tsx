@@ -47,7 +47,7 @@ export function ReadingProgressBar({ slug, locale }: Props) {
     <div className="fixed top-0 left-0 right-0 z-50 h-0.5 bg-transparent pointer-events-none">
       <div
         ref={barRef}
-        className="h-full bg-[#bbff00] transition-[width] duration-150 ease-out"
+        className="h-full bg-accent transition-[width] duration-150 ease-out"
         style={{ width: '0%' }}
       />
     </div>

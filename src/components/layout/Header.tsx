@@ -104,7 +104,7 @@ export function Header() {
               href={tCommon('appUrl')}
               target="_blank"
               rel="noopener noreferrer"
-              className="sheen bg-[#bbff00] text-black text-sm font-semibold px-5 py-2 rounded-full hover:bg-[#a2e600] transition-colors"
+              className="sheen bg-accent text-black text-sm font-semibold px-6 py-2 rounded-full hover:bg-accent-dark transition-colors"
               onClick={() => trackCTAClick({ location: 'header', text: tCommon('startFree'), locale })}
             >
               {tCommon('startFree')}
@@ -143,12 +143,12 @@ export function Header() {
               ))}
             </ul>
 
-            <div className="mt-7 flex flex-col gap-3">
+            <div className="mt-8 flex flex-col gap-3">
               <a
                 href={tCommon('appUrl')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-[#bbff00] text-black text-base font-semibold py-4 rounded-full text-center"
+                className="w-full bg-accent text-black text-base font-semibold py-4 rounded-full text-center"
                 onClick={() => trackCTAClick({ location: 'header_mobile', text: tCommon('startFree'), locale })}
               >
                 {tCommon('startFree')}

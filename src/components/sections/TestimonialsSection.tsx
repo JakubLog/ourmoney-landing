@@ -28,7 +28,7 @@ export async function TestimonialsSection({ locale }: Props) {
   if (!items || items.length === 0) return null;
 
   return (
-    <section className="bg-[#E6E1D9] py-20 md:py-28 overflow-hidden">
+    <section className="bg-sand py-20 md:py-28 overflow-hidden">
       <ScrollReveal className="px-6">
         <h2 className="font-display text-4xl md:text-5xl text-dark text-center leading-tight mb-12 md:mb-16">
           {t('title')}

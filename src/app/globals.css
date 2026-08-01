@@ -32,14 +32,37 @@
   --color-muted: #9c9c9c;
   --color-beige: #e2dbd2;
 
+  /* Powierzchnie jasne */
+  --color-surface: #f7f5f2;        /* tlo sekcji na jasno, boxy na blogu */
+  --color-surface-2: #eeeceb;      /* karty na jasnym tle, inline code */
+  --color-surface-cool: #e4e9f5;   /* chlodny wariant karty (PainPoints) */
+  --color-cream: #f5f0e8;          /* cieplejsze tlo sekcji (/o-nas) */
+  --color-sand: #e6e1d9;           /* tlo sekcji Testimonials */
+  --color-screen: #f8f8f7;         /* tlo screenow produktu - musi zgadzac sie z PNG */
+
+  /* Powierzchnie ciemne */
+  --color-dark-3: #1a1a1a;         /* karty na ciemnym tle (blog) */
+
+  --color-accent-light: #d4ff4d;   /* hover na accent */
+
+  /* Promienie - trzy stopnie + rounded-full.
+     Wartosci arbitralne w px sa dozwolone tylko przy promieniach koncentrycznych
+     (promien dziecka = promien rodzica - padding) i przy rysunku telefonu. */
+  --radius-card: 16px;    /* karty, inputy, male panele */
+  --radius-panel: 24px;   /* wieksze panele, banery cookie */
+  --radius-hero: 32px;    /* duze karty szkla (CTABanner, kalkulator) */
+
   --font-display: "Instrument Serif", serif;
-  --font-body: "Inter Tight", "Inter", sans-serif;
+  --font-body: "Switzer", ui-sans-serif, system-ui, sans-serif;
 }
 
 /* Article prose overrides */
 .article-prose {
+  /* Long-form czyta sie lepiej na 400 niz na bazowych 500 */
+  font-weight: 400;
+
   & pre {
-    background: #141414;
+    background: var(--color-dark);
     color: #f0f0f0;
     border-radius: 12px;
     padding: 1.5rem;
@@ -71,9 +94,9 @@
   & th {
     text-align: left;
     font-weight: 600;
-    color: #141414;
+    color: var(--color-dark);
     padding: 0.75rem 1rem;
-    border-bottom: 2px solid #bbff00;
+    border-bottom: 2px solid var(--color-accent);
   }
 
   & td {
@@ -301,6 +324,18 @@ details[open] .faq-minus { display: block; }
   .float-a, .float-b { animation: none; }
 }
 
+/* Lamanie tekstu - globalna zasada typograficzna.
+   balance: naglowki dziela sie na rowne linie zamiast zostawiac jedno slowo
+   na koncu (przegladarki balansuja do ok. 6 linii, dluzsze zostawiaja bez zmian).
+   pretty: akapity i listy nie zostawiaja sieroty w ostatniej linii. */
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+p, li, blockquote, figcaption, dd, dt {
+  text-wrap: pretty;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -316,8 +351,11 @@ html.lenis, html.lenis-smooth {
 
 body {
   font-family: var(--font-body);
-  background-color: #141414;
-  color: #141414;
+  /* Switzer 500 to bazowa waga marki (tak wygladal landing od poczatku).
+     Dluzsze teksty czytelnicze schodza do 400 - patrz .article-prose nizej. */
+  font-weight: 500;
+  background-color: var(--color-dark);
+  color: var(--color-dark);
   -webkit-font-smoothing: antialiased;
 }
 

@@ -63,6 +63,51 @@
 
 ---
 
+## Kalkulator podziału wydatków (`/kalkulator`)
+
+Darmowe narzędzie bez rejestracji - demo wartości produktu + landing pod reklamy TOF i long-tail SEO
+("jak dzielić wydatki w związku przy różnych zarobkach").
+
+### Sekcje
+| # | Sekcja | Komponent | Treść |
+|---|--------|-----------|-------|
+| 1 | Hero + narzędzie | `SplitCalculator` (client) | H1, opis, karta kalkulatora nad zagięciem |
+| 2 | Jak liczymy | inline w page.tsx | Wyjaśnienie wzoru na konkretnych liczbach |
+| 3 | FAQ | inline w page.tsx | 3 pytania (wchodzą do FAQPage JSON-LD) |
+| 4 | CTA | `CTABanner` | Wspólny banner |
+
+Kalkulator ma przełącznik zasady podziału odpowiadający `SplitType` z aplikacji
+(`equal | proportional | tracking`). Liczalne są dwa tryby - `tracking` nic nie dzieli,
+więc jest tylko wspomniany w nocie pod CTA. Niezależnie od wybranego trybu wynik pokazuje
+różnicę względem drugiego modelu - to jest moment "aha".
+
+Logika liczenia jest 1:1 z aplikacją (`ProportionVisualizationScreen` + `partnerBalance.utils`):
+najpierw zaokrąglony procent udziału, dopiero z niego kwota. Donut ma tę samą geometrię
+(innerRadius 50 / outerRadius 80 / paddingAngle 2) i te same kolory (#bbff00, #3f3f46),
+ale rysowany jest inline SVG - bez dociągania recharts na landing.
+
+Ten sam komponent `SplitCalculator` jest osadzony na homepage jako `SplitCalculatorSection`
+(sekcja 3, między PainPoints a HowItWorks), z `placement="homepage"` dla GA4.
+
+---
+
+## Sekcja: Analiza AI (homepage)
+
+`AiReportSection` + `AiReportCard` - odwzorowanie raportu AI z aplikacji (`AIInsightsCard.tsx`
+zasilany edge functionem `generate-financial-insights`, Gemini 2.5 Flash). Struktura i nazwy sekcji
+są 1:1 z produktem: podsumowanie + cztery kafle liczb (Przychody / Wydatki / Oszczędności /
+Stopa oszczędności), "Kluczowe spostrzeżenia" z typem `positive` / `warning`, "Rekomendacja"
+z priorytetem i spodziewanym efektem.
+
+Treść jest **przykładowa** - oznaczona plakietką "Przykładowy raport" i przypisem, że raport
+powstaje z realnych transakcji po pełnym miesiącu. To celowe: realny użytkownik przez pierwsze
+tygodnie nie ma danych, z których AI mogłoby cokolwiek policzyć, a landing nie może obiecywać
+czegoś, czego produkt nie dowiezie w dniu rejestracji.
+
+Kolory z systemu landingu, nie z aplikacji (appka używa tam niebieskiego, landing ma akcent limonkowy).
+
+---
+
 ## Strony dodatkowe
 
 | Strona | Ścieżka | Status |

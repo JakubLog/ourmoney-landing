@@ -34,7 +34,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = 'https://ourmoney.pl';
   const locales = ['pl', 'en'];
 
-  const staticPages = ['', '/o-nas', '/blog', '/kontakt'];
+  const staticPages = ['', '/kalkulator', '/o-nas', '/blog', '/kontakt'];
 
   const staticEntries = staticPages.flatMap((path) =>
     locales.map((locale) => ({

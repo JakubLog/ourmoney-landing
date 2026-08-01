@@ -105,7 +105,7 @@ export default async function AuthorPage({ params }: Props) {
       <Header />
       <main>
         {/* Author hero */}
-        <section className="bg-[#141414] pt-36 pb-16 px-6">
+        <section className="bg-dark pt-36 pb-16 px-6">
           <div className="max-w-3xl mx-auto">
             <Link
               href={'/o-nas'}
@@ -127,7 +127,7 @@ export default async function AuthorPage({ params }: Props) {
                 />
               ) : (
                 <div className="w-24 h-24 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
-                  <span className="text-[#bbff00] font-bold text-3xl">
+                  <span className="text-accent font-bold text-3xl">
                     {author.name.charAt(0)}
                   </span>
                 </div>
@@ -137,7 +137,7 @@ export default async function AuthorPage({ params }: Props) {
                   {author.name}
                 </h1>
                 {author.role && (
-                  <p className="text-[#bbff00] text-sm font-medium">{author.role}</p>
+                  <p className="text-accent text-sm font-medium">{author.role}</p>
                 )}
               </div>
             </div>
@@ -152,7 +152,7 @@ export default async function AuthorPage({ params }: Props) {
         {posts.length > 0 && (
           <section className="bg-white py-20 px-6">
             <div className="max-w-3xl mx-auto">
-              <h2 className="font-display text-2xl md:text-3xl text-[#141414] mb-10">
+              <h2 className="font-display text-2xl md:text-3xl text-dark mb-10">
                 {tAuthor('articles')}
               </h2>
               <div className="flex flex-col gap-6">
@@ -162,7 +162,7 @@ export default async function AuthorPage({ params }: Props) {
                     <Link
                       key={post._id}
                       href={`/blog/${post.slug}`}
-                      className="group flex gap-5 items-start border-b border-[#e2dbd2] pb-6 last:border-0 last:pb-0"
+                      className="group flex gap-6 items-start border-b border-beige pb-6 last:border-0 last:pb-0"
                     >
                       {post.mainImageUrl && (
                         <Image
@@ -175,16 +175,16 @@ export default async function AuthorPage({ params }: Props) {
                         />
                       )}
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-[#141414] font-semibold leading-snug group-hover:text-[#bbff00] transition-colors mb-1">
+                        <h3 className="text-dark font-semibold leading-snug group-hover:text-accent transition-colors mb-1">
                           {post.title}
                         </h3>
                         {post.excerpt && (
-                          <p className="text-[#141414]/50 text-sm line-clamp-2 mb-2">
+                          <p className="text-dark/50 text-sm line-clamp-2 mb-2">
                             {post.excerpt}
                           </p>
                         )}
                         {minutes && (
-                          <span className="inline-flex items-center gap-1 text-xs text-[#141414]/40">
+                          <span className="inline-flex items-center gap-1 text-xs text-dark/40">
                             <Clock className="w-3 h-3" />
                             {t('readingTime', { minutes })}
                           </span>
