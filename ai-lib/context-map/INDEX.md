@@ -15,7 +15,8 @@
 | 5 | Kontakt | `/[locale]/kontakt` | Done | `src/app/[locale]/kontakt/page.tsx` |
 | 6 | Polityka prywatności | `/[locale]/polityka-prywatnosci` | Done | `src/app/[locale]/polityka-prywatnosci/page.tsx` |
 | 7 | Regulamin | `/[locale]/regulamin` | Done (placeholder) | `src/app/[locale]/regulamin/page.tsx` |
-| 8 | 404 | `not-found` | Done | `src/app/not-found.tsx` |
+| 8 | Kalkulator podziału | `/[locale]/kalkulator` | Done | `src/app/[locale]/kalkulator/page.tsx` |
+| 9 | 404 | `not-found` | Done | `src/app/not-found.tsx` |
 
 _Uzupełniaj w miarę dodawania kolejnych stron._
 
@@ -69,6 +70,11 @@ _Uzupełniaj w miarę dodawania kolejnych stron._
 | 2026-07-25 | Liquid Glass UI: klasy .glass/.glass-nav/.glass-light/.sheen w globals.css, Header jako floating glass pill, glass social proof w hero, cookie banner glass sheet, karty BrandPromise glass-light, CTABanner glass card z poświatą akcentu; fallbacki a11y (reduced-transparency/motion, @supports) | design-system |
 | 2026-07-25 | Audyt SEO + poprawki: naprawa JSON-LD postów (logo, URL autora, breadcrumb), og:image na /blog /kontakt /o-nas, hreflang x-default wszędzie, sitemap +autorzy +_updatedAt, robots scalone reguły, scalony SoftwareApplication JSON-LD (aggregateRating w page.tsx), WebVitalsReporter→GA4, skrócony tytuł EN home, dłuższe meta desc kontaktu, keywords w hero, usunięte *-original.avif, wszystkie długie myślniki→"-" | seo, i18n, analytics, pages |
 | 2026-07-26 | Features: realistyczny mockup iPhone 17 Pro Max (tytanowa ramka, Dynamic Island z kamerą, pasek statusu, przyciski boczne, home indicator, tło #f8f8f7 dopasowane do screenów); akordeon przebudowany na 5 itemów w nowej kolejności (pulpit, podział, zasady, moje-twoje-nasze, import z banku) z mapowaniem 1:1 na screeny; usunięty item "Wspólne cele finansowe" (PL+EN) | pages, i18n, design-system |
+| 2026-08-01 | Kalkulator podziału wydatków: komponent `SplitCalculator` + `SplitDonut` (inline SVG, geometria i kolory 1:1 z onboardingiem aplikacji) + `MoneyInput`; strona `/kalkulator` (WebApplication + FAQPage + BreadcrumbList JSON-LD, hreflang) i sekcja na homepage między PainPoints a HowItWorks; logika liczenia zsynchronizowana z aplikacją (procent zaokrąglany przed kwotą); GA4 `calculator_used`; sitemap, footer, llms.txt | pages, i18n, analytics, seo, design-system |
+| 2026-08-01 | Audyt design systemu (fonty / kolory / odstępy / 8px grid) - `ai-lib/plans/2026-08-01-audyt-design-system.md` | dokumentacja |
+| 2026-08-01 | Wdrożenie audytu: Switzer jako jedyny font body (usunięty Inter Tight + wszystkie inline `fontFamily`), 121 klas z hexem → tokeny, nowe tokeny powierzchni (`surface`, `surface-2`, `surface-cool`, `screen`, `dark-3`, `accent-light`) i promieni (`rounded-card/panel/hero`), 44 klasy odstępu dociągnięte do siatki 8px (75% → 99%), `text-[10px]` → `text-xs`, `design-system.md` przepisany na realne wartości | design-system, pages |
+| 2026-08-01 | Kalkulator: przełącznik zasady podziału (proporcjonalnie / po równo) zgodny z `SplitType` w aplikacji + nota o trybie `tracking`; donut naprawiony na orientację recharts (od godziny 3, przeciwnie do wskazówek); globalna reguła łamania tekstu (`balance` na nagłówkach, `pretty` na akapitach); klient Sanity działa bez `projectId` w dev (puste dane zamiast 500) | pages, i18n, design-system |
+| 2026-08-01 | Kalkulator: rozbicie wspólnych wydatków na typowe kategorie (kwoty per osoba z liczb użytkownika, proporcje kategorii przykładowe) + linia rozliczenia "kto komu odda na koniec miesiąca" jako pomost do produktu; nowa sekcja `AiReportSection` na homepage po Features - struktura 1:1 z `AIInsightsCard` w aplikacji, treść oznaczona jako przykładowa | pages, i18n, design-system |
 
 ---
 

@@ -1,90 +1,120 @@
 # Design System — OurMoney Landing
 
-> Tokeny, komponenty, wzorce responsywności.
-> Uzupełniaj w miarę budowania design systemu.
+> Realne tokeny i zasady, zgodne z `src/app/globals.css`.
+> Przepisane 2026-08-01 po audycie (`ai-lib/plans/2026-08-01-audyt-design-system.md`).
 
 ---
 
 ## Stack
 
-- **Tailwind CSS 4.x** — utility-first CSS
-- **Shadcn/UI** — Radix UI primitives + Tailwind styling
-- **lucide-react** — ikony (tree-shakeable SVG)
-- **next/font** — fonty bez layout shift
+- **Tailwind CSS 4.x** — tokeny w bloku `@theme` w `globals.css`, bez pliku `tailwind.config`
+- **lucide-react** — ikony
+- **next/font/google** — Instrument Serif
+- **Self-hosted woff2** — Switzer (400/500/600) w `public/fonts/`, `preload` w layoucie
+
+Shadcn/UI **nie jest używany** w landingu (jest w repo aplikacji). Komponenty w `src/components/ui/` są pisane ręcznie.
 
 ---
 
 ## Typografia
 
-> Uzupełnij po wyborze fontów.
+| Rola | Font | Zmienna | Waga | Użycie |
+|------|------|---------|------|--------|
+| Display / nagłówki | Instrument Serif | `--font-display` → `font-display` | 400 (normal + italic) | H1, H2, kwoty |
+| Body / UI | Switzer | `--font-body` → `font-body` | 400 / 500 / 600 | Wszystko inne |
 
-| Rola | Font | Weight | Użycie |
-|------|------|--------|--------|
-| Display / Nagłówki | TBD | TBD | H1, H2 |
-| Body | TBD | 400, 500 | Tekst treści |
-| UI | TBD | TBD | Przyciski, labels |
+**Jeden font body na całym serwisie.** Switzer jest ustawiony na `body` w `globals.css`.
+Nie nakładaj `style={{ fontFamily }}` na `<main>` ani nigdzie indziej — tak było przed 2026-08-01
+i powodowało, że blog renderował się innym krojem niż strona główna.
 
-### Skala nagłówków (przykład Tailwind)
-```
-H1: text-4xl md:text-6xl font-bold
-H2: text-3xl md:text-4xl font-semibold
-H3: text-xl md:text-2xl font-semibold
-Body: text-base md:text-lg
-Small: text-sm
-```
+**Wagi**: bazowa waga `body` to **500** (tak wygląda marka). Long-form (`.article-prose`) schodzi do **400**,
+bo 500 męczy przy dłuższym czytaniu. `font-semibold` (600) na przyciskach i akcentach.
+
+### Łamanie tekstu
+Globalna reguła w `globals.css` - **nie dodawaj `text-balance` / `text-pretty` punktowo**:
+- `h1-h6` → `text-wrap: balance` (nagłówki dzielą się na równe linie, żadnego samotnego słowa na końcu)
+- `p, li, blockquote, figcaption` → `text-wrap: pretty` (brak sieroty w ostatniej linii akapitu)
+
+Jeśli nagłówek ma się łamać wcześniej niż wynika z kontenera, ogranicz go `max-w-*` -
+balansowanie zajmie się resztą.
+
+### Skala
+`text-xs` 12 · `text-sm` 14 · `text-base` 16 · `text-lg` 18 · `text-xl` 20 · `text-2xl` 24 ·
+`text-3xl` 30 · `text-4xl` 36 · `text-5xl` 48 · `text-6xl` 60 · `text-7xl` 72
+
+Wartości arbitralne (`text-[13px]`, `text-[10px]`) są **zakazane** w UI.
+Wyjątek: rysunek telefonu w `FeaturesSection` (zegar 9:41 itd.) i dekoracyjne cyfry 404.
 
 ---
 
 ## Kolory
 
-> Uzupełnij po ustaleniu palety kolorów.
+Wszystkie w `@theme` w `globals.css`. **Nigdy nie wpisuj hexa w komponencie** — użyj tokenu
+(`bg-dark`, `text-accent`, `border-beige/40`). W inline `style` używaj `var(--color-*)`.
 
-Kolory definiowane przez Tailwind CSS v4 CSS variables w `globals.css`:
+| Token | Wartość | Do czego |
+|-------|---------|----------|
+| `accent` | `#bbff00` | Kolor marki, CTA |
+| `accent-dark` | `#a2e600` | Hover przycisków |
+| `accent-light` | `#d4ff4d` | Jaśniejszy hover na ciemnym |
+| `dark` | `#141414` | Tło ciemnych sekcji, tekst na jasnym |
+| `dark-2` | `#1e1e1e` | Elementy na ciemnym tle |
+| `dark-3` | `#1a1a1a` | Karty na ciemnym tle (blog) |
+| `muted` | `#9c9c9c` | Tekst drugorzędny |
+| `beige` | `#e2dbd2` | Ciepła karta (PainPoints), obramowania |
+| `surface` | `#f7f5f2` | Jasne tło sekcji, boxy na blogu |
+| `surface-2` | `#eeeceb` | Karty na jasnym tle, inline `code` |
+| `surface-cool` | `#e4e9f5` | Chłodny wariant karty (PainPoints) |
+| `cream` | `#f5f0e8` | Cieplejsze tło sekcji (`/o-nas`) |
+| `sand` | `#e6e1d9` | Tło sekcji Testimonials |
+| `screen` | `#f8f8f7` | Tło screenów produktu — **musi zgadzać się z PNG** w `public/app-screens/` |
 
-```css
-:root {
-  --primary: oklch(...);      /* Główny kolor marki */
-  --primary-foreground: oklch(...);
-  --secondary: oklch(...);
-  --background: oklch(...);
-  --foreground: oklch(...);
-  --muted: oklch(...);
-  --muted-foreground: oklch(...);
-  --border: oklch(...);
-}
-```
+Przezroczystości: `text-white/60`, `border-dark/10` itd. — zamiast kolejnych odcieni w palecie.
 
-**ZAWSZE** używaj Tailwind semantic tokens (`bg-primary`, `text-foreground`), **NIGDY** hardcoded hex.
+### Wyjątki (dozwolone hexy)
+- `manifest.ts` i `metadata.other['theme-color']` — HTML wymaga literalnego hexa
+- Gradienty i atrybuty SVG (`stopColor`, `stroke`) w `BlogPostCard`, `AuthorCard`, `not-found`
+- `SplitDonut.tsx` — `#bbff00` i `#3f3f46` skopiowane 1:1 z wykresu w aplikacji (spójność z produktem)
+- Rysunek telefonu w `FeaturesSection` (`ring-[#2c2c2e]`, `bg-neutral-*`) — to ilustracja sprzętu, nie UI
 
 ---
 
-## Komponenty
+## Odstępy — siatka 8px
 
-### Layout / Sekcje
-| Komponent | Ścieżka | Opis |
-|-----------|---------|------|
-| `Header` | `components/layout/Header.tsx` | Nawigacja top |
-| `Footer` | `components/layout/Footer.tsx` | Stopka |
-| `Section` | `components/layout/Section.tsx` | Wrapper sekcji z padding |
-| `Container` | `components/layout/Container.tsx` | Max-width wrapper |
+**Baza to 8px.** Wszystko co buduje layout — padding sekcji, padding kart, gapy siatek,
+marginesy między blokami — jest wielokrotnością 8: `2` (8) · `4` (16) · `6` (24) · `8` (32) ·
+`10` (40) · `12` (48) · `14` (56) · `16` (64) · `20` (80) · `28` (112).
 
-### Sekcje strony głównej
-| Komponent | Ścieżka | Status |
-|-----------|---------|--------|
-| `HeroSection` | `components/sections/HeroSection.tsx` | Planned |
-| `FeaturesSection` | `components/sections/FeaturesSection.tsx` | Planned |
-| `FAQSection` | `components/sections/FAQSection.tsx` | Planned |
-| `CTASection` | `components/sections/CTASection.tsx` | Planned |
+**Wewnątrz komponentu** wolno zejść do 4px (`-1`) i 12px (`-3`) — np. label ↔ wartość, ikona ↔ tekst.
 
-### Blog
-| Komponent | Ścieżka | Status |
-|-----------|---------|--------|
-| `PostCard` | `components/blog/PostCard.tsx` | Planned |
-| `PostContent` | `components/blog/PostContent.tsx` | Planned (Portable Text) |
+**Zakazane**: `-0.5` (2px), `-1.5` (6px), `-3.5` (14px), `-5` (20px), `-7` (28px)
+oraz wartości arbitralne typu `p-[9px]`.
 
-### UI Primitives (Shadcn)
-Instaluj przez: `npx shadcn@latest add [component]`
-NIE edytuj plików w `components/ui/` ręcznie bez powodu.
+Jedyny dopuszczalny 2px to optyczne wyrównanie ikony do linii tekstu (`mt-0.5` przy ikonie) —
+to korekta wzrokowa, nie odstęp.
+
+Wyjątek całościowy: rysunek telefonu w `FeaturesSection` ma własne proporcje sprzętu
+(ramka tytanowa `p-[3px]`, bezel `p-[9px]`, pasek statusu `px-7`) — siatka 8px go nie obowiązuje.
+
+### Padding sekcji
+```
+Sekcja standardowa:  px-6 py-20 md:py-28
+Sekcja z hero:       px-6 pt-36 pb-24     (miejsce na floating header)
+```
+
+---
+
+## Promienie
+
+| Token | Wartość | Użycie |
+|-------|---------|--------|
+| `rounded-card` | 16px | Karty, inputy, małe panele |
+| `rounded-panel` | 24px | Większe panele, baner cookie |
+| `rounded-hero` | 32px | Duże karty szkła (CTABanner, kalkulator) |
+| `rounded-full` | — | Przyciski, pigułki, kropki |
+
+**Promienie koncentryczne**: promień dziecka = promień rodzica − padding.
+Tu wartość arbitralna jest poprawna, np. poświata w `CTABanner`: `rounded-[40px]` = 32 + inset 8.
 
 ---
 
@@ -94,60 +124,37 @@ Wprowadzone 2026-07-25. Klasy w `globals.css`:
 
 | Klasa | Użycie | Gdzie |
 |-------|--------|-------|
-| `.glass` | Szkło na ciemnym tle / nad zdjęciami | Hero social proof pill, CTABanner card |
-| `.glass-nav` | Szkło z ciemnym tintem (gwarantowany kontrast białego tekstu) | Header (floating pill), CookieConsentBanner |
-| `.glass-light` | Jasne szkło na jasnym tle / nad zdjęciami | Karty BrandPromise |
-| `.sheen` | Błysk przesuwający się po CTA na hover | Przyciski CTA (hero, header, banner) |
+| `.glass` | Szkło na ciemnym tle / nad zdjęciami | Hero social proof pill, CTABanner, karta kalkulatora |
+| `.glass-nav` | Szkło z ciemnym tintem (kontrast białego tekstu) | Header, CookieConsentBanner |
+| `.glass-light` | Jasne szkło na jasnym tle | Karty BrandPromise |
+| `.sheen` | Błysk po CTA na hover | Przyciski CTA |
 
 ### Zasady
-- Szkło TYLKO na małych/fixed elementach - `backdrop-filter` jest drogi (Lenis + INP)
-- Tekst na szkle: min. `text-white/80` (kontrast AA)
+- Szkło TYLKO na małych/fixed elementach — `backdrop-filter` jest drogi (Lenis + INP)
+- Tekst na szkle: min. `text-white/80`
 - Specular highlight: górna krawędź 1px jaśniejsza (`border-top-color`)
-- Koncentryczne promienie: promień dziecka = promień rodzica - padding
-- Białe sekcje (FAQ, artykuły) zostają czyste - bez szkła
-- Fallbacki: `@supports not (backdrop-filter)` → solid bg; `prefers-reduced-transparency` → solid bg; `prefers-reduced-motion` → sheen/float wyłączone
+- Białe sekcje (FAQ, artykuły) zostają czyste — bez szkła
+- Fallbacki: `@supports not (backdrop-filter)`, `prefers-reduced-transparency`, `prefers-reduced-motion`
 
-### Header - floating pill (scroll-linked morph)
-Transparent na górze → glass pill, morph sterowany zmienną CSS `--nav-p` (0..1, proporcjonalnie do scrolla 0-120px, ustawiana przez rAF w `Header.tsx`). Interpolowane: padding, max-width (100%→64rem), tint, blur, border, cień, wysokość (h-16→h-14). Klasy `.nav-shell` / `.nav-pill` / `.nav-row` w globals.css. Lenis wygładza scroll → morph jest płynny; krótki transition 0.18s dosmoothowuje otwarcie menu mobilnego (wymusza `--nav-p: 1`, `rounded-[28px]`). Tekst zawsze biały.
+### Header — floating pill
+Transparent na górze → glass pill, morph sterowany zmienną `--nav-p` (0..1, scroll 0-120px, rAF w `Header.tsx`).
+Klasy `.nav-shell` / `.nav-pill` / `.nav-row`. Tekst zawsze biały.
 
 ---
 
 ## Responsywność
 
-### Breakpoints (Tailwind domyślne)
-| Prefix | Min-width | Użycie |
-|--------|-----------|--------|
-| _(base)_ | 0px | Mobile (domyślne) |
-| `sm:` | 640px | Duże mobile / małe tablet |
-| `md:` | 768px | Tablet / desktop |
-| `lg:` | 1024px | Desktop |
-| `xl:` | 1280px | Szeroki desktop |
-
-### Mobile-first — zasada
-```tsx
-// DOBRZE: mobile-first
-<div className="px-4 md:px-8 lg:px-16">
-  <h1 className="text-3xl md:text-5xl">
-
-// ŹLE: desktop-first
-<div className="px-16 md:px-8 sm:px-4">
-```
-
-### Touch targets
-Interaktywne elementy (przyciski, linki): min `44×44px`
-```tsx
-<button className="min-h-[44px] min-w-[44px] px-6">
-```
+Breakpointy Tailwind: `sm` 640 · `md` 768 · `lg` 1024 · `xl` 1280.
+Zawsze mobile-first (`px-4 md:px-8`, nie odwrotnie).
+Touch targety min. `44×44px` (w praktyce `min-h-[56px]` na inputach — 56 jest na siatce).
 
 ---
 
 ## Animacje
 
-> Uzupełnij po ustaleniu strategii animacji.
-
-- Biblioteka: TBD (Framer Motion / CSS transitions / @tailwindcss/animate)
-- Zasada: animacje nie mogą powodować CLS
-- Prefers-reduced-motion: ZAWSZE respektuj (`motion-reduce:` w Tailwind)
+- CSS + IntersectionObserver (`ScrollReveal`), Lenis do smooth scrolla. Bez Framer Motion.
+- `ScrollReveal` na mobile upraszcza się do `fade-in`, respektuje `prefers-reduced-motion`
+- Animacje nie mogą powodować CLS
 
 ---
 
@@ -155,12 +162,11 @@ Interaktywne elementy (przyciski, linki): min `44×44px`
 
 | Zasada | Dlaczego |
 |--------|---------|
-| `next/image` zawsze | Optymalizacja, lazy loading, format WebP |
-| Zawsze `width` + `height` | Eliminacja CLS |
-| `priority` na hero | LCP optymalizacja |
+| `next/image` zawsze | Optymalizacja, lazy loading, WebP/AVIF |
+| Zawsze `width` + `height` (lub `fill`) | Eliminacja CLS |
+| `priority` na hero | LCP |
 | Alt text WYMAGANY | a11y + SEO |
-| Format WebP/AVIF | Mniejszy rozmiar |
 
 ---
 
-_Ostatnia aktualizacja: 2026-03-14_
+_Ostatnia aktualizacja: 2026-08-01_
