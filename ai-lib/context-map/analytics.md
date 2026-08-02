@@ -7,7 +7,7 @@
 ## Setup
 
 ### Google Analytics 4
-- **Implementacja**: `@next/third-parties/google` (oficjalna biblioteka Next.js)
+- **Implementacja**: ręczne skrypty gtag.js w `layout.tsx` (NIE komponent `<GoogleAnalytics>` z `@next/third-parties` — dlatego `sendGAEvent` z tej biblioteki NIE działa i nie wolno go używać)
 - **GA ID**: `G-J6Z26RXMQY`
 - **Gdzie**: `app/[locale]/layout.tsx` — ładuje się tylko w `production`
 - **User property**: `locale` ustawiane przez `LocaleTracker` przy każdej sesji
@@ -73,7 +73,7 @@
 
 | Plik | Rola |
 |------|------|
-| `src/lib/analytics.ts` | Helpery `track*` + wewnętrzny `pushEvent`: każdy event idzie przez `sendGAEvent` (gtag → GA4) ORAZ `dataLayer.push({event})` (obiektowy push → triggery GTM/Meta). W kontenerze GTM NIE podpinać tagów GA4 pod te eventy — podwójne liczenie |
+| `src/lib/analytics.ts` | Helpery `track*` + wewnętrzny `pushEvent`: każdy event idzie jako komenda gtag (push obiektu `arguments` do dataLayer → GA4) ORAZ `dataLayer.push({event})` (obiektowy push → triggery GTM/Meta). NIE używać `sendGAEvent` z `@next/third-parties` — działa tylko z ich komponentem `<GoogleAnalytics>`, a my ładujemy gtag.js ręcznie (eventy po cichu ginęły). W kontenerze GTM NIE podpinać tagów GA4 pod te eventy — podwójne liczenie |
 | `src/components/layout/InteractionTracker.tsx` | Globalny tracker w layout: delegowany listener `toggle` (capture) → `faq_open` z kontenerów `[data-track-faq]`; jeden IntersectionObserver → `section_view` z elementów `[data-section-view]`; re-scan przy zmianie pathname |
 | `src/components/ui/TrackedCTALink.tsx` | Client component — `<a>` z onClick dla Server Components |
 | `src/components/layout/LocaleTracker.tsx` | Ustawia user property `locale` przy mount |

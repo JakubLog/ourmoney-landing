@@ -1,17 +1,24 @@
-import { sendGAEvent } from '@next/third-parties/google';
-
 type EventParams = Record<string, string | number | boolean>;
 
 // Kazdy event idzie dwoma kanalami:
-// 1. sendGAEvent (gtag) - trafia bezposrednio do GA4
+// 1. komenda gtag (push obiektu `arguments`) - trafia bezposrednio do GA4;
+//    nie uzywamy sendGAEvent z @next/third-parties, bo dziala tylko z ich
+//    komponentem <GoogleAnalytics>, a my ladujemy gtag.js recznie w layout.tsx
 // 2. dataLayer.push({event}) - obiektowy push, na ktory reaguja triggery GTM
 //    (Meta Pixel, Ads). gtag-owych komend GTM nie widzi, stad dwa pushe.
 // W kontenerze GTM NIE podpinac tagow GA4 pod te eventy - podwojne liczenie.
 function pushEvent(name: string, params: EventParams) {
-  sendGAEvent('event', name, params);
   if (typeof window === 'undefined') return;
-  const w = window as Window & { dataLayer?: Record<string, unknown>[] };
+  const w = window as Window & { dataLayer?: unknown[] };
   w.dataLayer = w.dataLayer || [];
+  // gtag.js rozpoznaje komendy wylacznie jako obiekt `arguments` (nie tablice,
+  // nie zwykly obiekt) - stad klasyczna funkcja zamiast arrow
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- parametry sa czytane przez `arguments`
+  function gtag(..._args: unknown[]) {
+    // eslint-disable-next-line prefer-rest-params
+    w.dataLayer!.push(arguments);
+  }
+  gtag('event', name, params);
   w.dataLayer.push({ event: name, ...params });
 }
 
