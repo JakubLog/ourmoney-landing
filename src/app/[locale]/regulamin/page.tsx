@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
+import { Link } from '@/i18n/navigation';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { CopyEmail } from '@/components/ui/CopyEmail';
+import { APP_ORIGIN, withAppLocale } from '@/lib/appLinks';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -28,6 +30,7 @@ export default async function TermsPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'TermsPage' });
+  const appHref = withAppLocale(`${APP_ORIGIN}/`, locale);
 
   return (
     <>
@@ -51,14 +54,14 @@ export default async function TermsPage({ params }: Props) {
             <h2>1. Postanowienia ogólne</h2>
             <p>
               Niniejszy Regulamin określa zasady korzystania ze strony internetowej{' '}
-              <strong>ourmoney.pl</strong> (dalej: „Strona"), prowadzonej przez{' '}
+              <strong>ourmoney.pl</strong> (dalej: „Strona”), prowadzonej przez{' '}
               <strong>Jakub Fedoszczak</strong> oraz <strong>Magda Nestorowicz</strong>, działających pod marką <strong>OurMoney</strong>
-              {' '}(dalej: „Operator"), dostępnego pod adresem e-mail:{' '}
+              {' '}(dalej: „Operator”), dostępnego pod adresem e-mail:{' '}
               <CopyEmail email="kontakt@ourmoney.pl" className="underline hover:opacity-70" />.
             </p>
             <p>
               Strona ma charakter informacyjny i prezentuje produkt - aplikację mobilną OurMoney
-              dostępną pod adresem <a href="https://app.ourmoney.pl">app.ourmoney.pl</a>.
+              dostępną pod adresem <a href={appHref}>app.ourmoney.pl</a>.
               Korzystanie ze Strony jest bezpłatne i dobrowolne.
             </p>
 
@@ -83,7 +86,7 @@ export default async function TermsPage({ params }: Props) {
               Korzystając z formularza, Użytkownik wyraża zgodę na przetwarzanie danych osobowych
               podanych w formularzu w celu udzielenia odpowiedzi na zapytanie. Szczegóły dotyczące
               przetwarzania danych zawarte są w{' '}
-              <a href="/polityka-prywatnosci">Polityce Prywatności</a>.
+              <Link href="/polityka-prywatnosci">Polityce Prywatności</Link>.
             </p>
             <p>
               Operator zastrzega sobie prawo do nieudzielenia odpowiedzi na zapytania zawierające
@@ -106,7 +109,7 @@ export default async function TermsPage({ params }: Props) {
             <h2>5. Linki zewnętrzne</h2>
             <p>
               Strona zawiera odnośniki do zewnętrznych serwisów, w tym do aplikacji OurMoney
-              (<a href="https://app.ourmoney.pl">app.ourmoney.pl</a>). Operator nie ponosi
+              (<a href={appHref}>app.ourmoney.pl</a>). Operator nie ponosi
               odpowiedzialności za treść, bezpieczeństwo ani politykę prywatności zewnętrznych stron
               internetowych, do których prowadzą zamieszczone linki.
             </p>

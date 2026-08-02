@@ -1,4 +1,5 @@
 import { TrackedCTALink } from '@/components/ui/TrackedCTALink';
+import { withAppLocale } from '@/lib/appLinks';
 
 type Props = {
   heading: string;
@@ -10,13 +11,6 @@ type Props = {
   locale?: string;
 };
 
-function withLocaleParam(url: string, locale: string): string {
-  if (locale === 'pl' || !url.includes('app.ourmoney.pl')) return url;
-  const u = new URL(url);
-  u.searchParams.set('locale', locale);
-  return u.toString();
-}
-
 export function ArticleCTA({
   heading,
   text,
@@ -26,7 +20,8 @@ export function ArticleCTA({
   location = 'article_cta',
   locale = 'pl',
 }: Props) {
-  const effectiveUrl = buttonUrl ? withLocaleParam(buttonUrl, locale) : undefined;
+  // Redaktor moze wpisac w Sanity link prosto do aplikacji - doklejamy locale
+  const effectiveUrl = buttonUrl ? withAppLocale(buttonUrl, locale) : undefined;
   return (
     <aside className="my-12 p-8 rounded-2xl bg-dark text-center not-prose" aria-label={heading}>
       <h3 className="font-display text-2xl md:text-3xl text-white mb-3 leading-tight">

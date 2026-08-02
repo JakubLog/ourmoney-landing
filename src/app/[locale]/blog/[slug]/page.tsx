@@ -434,7 +434,7 @@ export default async function BlogPostPage({ params }: Props) {
               return (
                 <>
                   <div className="article-prose">
-                    <ArticlePortableText value={first} />
+                    <ArticlePortableText value={first} locale={locale} />
                   </div>
                   {splitAt !== null && cta && (
                     <ArticleCTA
@@ -449,7 +449,7 @@ export default async function BlogPostPage({ params }: Props) {
                   )}
                   {second.length > 0 && (
                     <div className="article-prose">
-                      <ArticlePortableText value={second} />
+                      <ArticlePortableText value={second} locale={locale} />
                     </div>
                   )}
                 </>

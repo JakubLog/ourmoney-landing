@@ -135,6 +135,8 @@ Dynamiczna (`force-dynamic`), `noindex`, poza sitemapą i poza layoutem Header/F
 | Detekcja platformy | Serwer czyta `user-agent` (render bez migotania), klient doprecyzowuje `detectPlatformClient()` — łapie iPadOS 13+ podszywający się pod Maca |
 | Targety | `APP_TARGETS` w `src/lib/appLinks.ts` — iOS / Android / web. Dziś wszystkie → `https://app.ourmoney.pl/`; flagi `STORE_AVAILABLE` sterują komunikatem "już wkrótce" |
 | Plan | `?plan=premium` tylko z CTA Premium w cenniku; przenoszony dalej na URL aplikacji. Pozostałe CTA bez parametru |
+| Język | `?locale=pl|en` doklejane do **każdego** URL-a aplikacji przez `withAppLocale()`. Wartość z locale landingu, nie z `navigator.language`. Zawsze lowercase, zawsze w query (przed `#` — aplikacja trzyma w hashu tokeny auth) |
+| Atrybucja | `utm_*`, `ref`, `gclid`, `fbclid`, `msclkid` z URL-a `/start` przenoszone na aplikację (`pickForwardedParams()`) — redirect nie gubi kampanii |
 | Redirect | `window.location.replace()` po 1200 ms + zawsze widoczny przycisk ręczny |
 | Analytics | GA4 `app_open` (`platform`, `plan`, `locale`) |
 

@@ -219,7 +219,7 @@ export default async function PrivacyPage({ params }: Props) {
             <ul>
               <li><strong>Prawo dostępu</strong> - możesz zażądać kopii swoich danych.</li>
               <li><strong>Prawo do sprostowania</strong> - możesz żądać poprawienia nieprawidłowych danych.</li>
-              <li><strong>Prawo do usunięcia</strong> - możesz żądać usunięcia danych („prawo do bycia zapomnianym").</li>
+              <li><strong>Prawo do usunięcia</strong> - możesz żądać usunięcia danych („prawo do bycia zapomnianym”).</li>
               <li><strong>Prawo do ograniczenia przetwarzania</strong> - możesz żądać ograniczenia przetwarzania Twoich danych.</li>
               <li><strong>Prawo do przenoszenia danych</strong> - możesz otrzymać swoje dane w formacie nadającym się do odczytu maszynowego.</li>
               <li><strong>Prawo sprzeciwu</strong> - możesz sprzeciwić się przetwarzaniu opartemu na prawnie uzasadnionym interesie.</li>

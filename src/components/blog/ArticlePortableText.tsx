@@ -1,9 +1,10 @@
 import Image from 'next/image';
 import { PortableText, type PortableTextComponents } from 'next-sanity';
+import { withAppLocale } from '@/lib/appLinks';
 
 type PortableTextValue = Parameters<typeof PortableText>[0]['value'];
 
-const components: PortableTextComponents = {
+const createComponents = (locale: string): PortableTextComponents => ({
   types: {
     image: ({
       value,
@@ -82,9 +83,11 @@ const components: PortableTextComponents = {
   marks: {
     link: ({ children, value }) => {
       const isExternal = value?.href?.startsWith('http');
+      // Linki w tresci artykulu moga prowadzic do aplikacji - niosa locale dalej
+      const href = value?.href ? withAppLocale(value.href, locale) : undefined;
       return (
         <a
-          href={value?.href}
+          href={href}
           target={isExternal ? '_blank' : undefined}
           rel={isExternal ? 'noopener noreferrer' : undefined}
           className="text-dark font-medium underline decoration-accent decoration-2 underline-offset-[3px] hover:opacity-60 transition-opacity"
@@ -103,8 +106,26 @@ const components: PortableTextComponents = {
       </code>
     ),
   },
-};
+});
 
-export function ArticlePortableText({ value }: { value: PortableTextValue }) {
-  return <PortableText value={value} components={components} />;
+// Locale sa tylko dwa - budujemy mape komponentow raz, nie przy kazdym renderze
+const componentsByLocale = new Map<string, PortableTextComponents>();
+
+function getComponents(locale: string): PortableTextComponents {
+  let components = componentsByLocale.get(locale);
+  if (!components) {
+    components = createComponents(locale);
+    componentsByLocale.set(locale, components);
+  }
+  return components;
+}
+
+export function ArticlePortableText({
+  value,
+  locale = 'pl',
+}: {
+  value: PortableTextValue;
+  locale?: string;
+}) {
+  return <PortableText value={value} components={getComponents(locale)} />;
 }

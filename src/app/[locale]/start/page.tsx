@@ -6,7 +6,7 @@ import { routing } from '@/i18n/routing';
 import { Link } from '@/i18n/navigation';
 import { Logo } from '@/components/ui/Logo';
 import { StartRedirect } from '@/components/start/StartRedirect';
-import { detectPlatform, parsePlan } from '@/lib/appLinks';
+import { detectPlatform, parsePlan, pickForwardedParams } from '@/lib/appLinks';
 
 // Strona przejscia musi widziec User-Agent i ?plan= przy kazdym wejsciu -
 // zadnego prerenderu ani cache'u.
@@ -47,6 +47,8 @@ export default async function StartPage({ params, searchParams }: Props) {
   ]);
 
   const plan = parsePlan(query.plan);
+  // Kampanie potrafia linkowac prosto na /start - utm/ref musi przezyc redirect
+  const forwarded = pickForwardedParams(query);
   const initialPlatform = detectPlatform(headerList.get('user-agent') ?? '');
 
   return (
@@ -72,7 +74,12 @@ export default async function StartPage({ params, searchParams }: Props) {
       )}
 
       <div className="mt-12">
-        <StartRedirect locale={locale} plan={plan} initialPlatform={initialPlatform} />
+        <StartRedirect
+          locale={locale}
+          plan={plan}
+          initialPlatform={initialPlatform}
+          forwarded={forwarded}
+        />
       </div>
 
       <Link

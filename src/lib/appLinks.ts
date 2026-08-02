@@ -5,12 +5,20 @@
 
 export type AppPlatform = 'ios' | 'android' | 'web';
 export type AppPlan = 'premium';
+export type AppLocale = 'pl' | 'en';
+
+/** Origin aplikacji - jedyna domena, do ktorej doklejamy `?locale=`. */
+export const APP_ORIGIN = 'https://app.ourmoney.pl';
 
 /**
  * Docelowe adresy per platforma.
  * Android i iOS czekaja na publikacje w store - do tego czasu obie platformy
  * trafiaja na PWA. Gdy store'y ruszą, podmien wartosci na deep-linki
  * (np. `ourmoney://start` z fallbackiem) lub adresy App Store / Google Play.
+ *
+ * UWAGA: linki do App Store / Google Play NIE przyjmuja `?locale=` - aplikacja
+ * natywna bierze jezyk z systemu. `withAppLocale` pomija je automatycznie,
+ * bo sprawdza origin.
  */
 export const APP_TARGETS: Record<AppPlatform, string> = {
   web: 'https://app.ourmoney.pl/',
@@ -45,16 +53,89 @@ export function detectPlatformClient(): AppPlatform {
   return 'web';
 }
 
-/** Adres docelowy aplikacji z przeniesionym locale i wybranym planem. */
+/**
+ * Aplikacja obsluguje wylacznie `pl` i `en` (lowercase) - wszystko inne
+ * traktuje jak `pl`. Normalizujemy po naszej stronie, zeby nigdy nie wyslac
+ * `pl-PL`, `en-US` ani `PL`.
+ */
+export function normalizeAppLocale(locale: string): AppLocale {
+  // Tniemy ewentualny region ('en-US' -> 'en'), reszta leci na domyslne 'pl'
+  return locale.toLowerCase().split('-')[0] === 'en' ? 'en' : 'pl';
+}
+
+/** Czy URL prowadzi do aplikacji? Adresy wzgledne i obce domeny -> false. */
+export function isAppUrl(url: string): boolean {
+  try {
+    return new URL(url).origin === APP_ORIGIN;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Dokleja `?locale=` do linku na domene aplikacji. Jezyk bierzemy z aktualnego
+ * locale landingu, nie z `navigator.language`.
+ *
+ * - dziala tylko na URL-ach z origin aplikacji (obce domeny wraca bez zmian),
+ * - dokleja przez `URLSearchParams`, wiec istniejace utm/ref przezywaja,
+ * - parametr laduje w query, przed `#` - hash zostaje nietkniety (aplikacja
+ *   trzyma tam tokeny auth).
+ */
+export function withAppLocale(url: string, locale: string): string {
+  if (!isAppUrl(url)) return url;
+  const parsed = new URL(url);
+  parsed.searchParams.set('locale', normalizeAppLocale(locale));
+  return parsed.toString();
+}
+
+/**
+ * Parametry kampanii, ktore maja przezyc przejscie przez `/start`.
+ * Redirect gubiacy atrybucje to taki sam bug jak redirect gubiacy `locale`.
+ */
+const FORWARDED_PARAMS = ['ref', 'gclid', 'fbclid', 'msclkid'];
+const FORWARDED_PREFIXES = ['utm_'];
+
+/** Wyciaga z query strony `/start` parametry do przeniesienia na aplikacje. */
+export function pickForwardedParams(
+  query: Record<string, string | string[] | undefined>,
+): Record<string, string> {
+  const forwarded: Record<string, string> = {};
+
+  for (const [key, value] of Object.entries(query)) {
+    const raw = Array.isArray(value) ? value[0] : value;
+    if (!raw) continue;
+
+    const normalized = key.toLowerCase();
+    // `plan` i `locale` maja wlasna sciezke - nie duplikujemy ich tutaj
+    if (normalized === 'plan' || normalized === 'locale') continue;
+
+    if (
+      FORWARDED_PARAMS.includes(normalized) ||
+      FORWARDED_PREFIXES.some((prefix) => normalized.startsWith(prefix))
+    ) {
+      forwarded[key] = raw;
+    }
+  }
+
+  return forwarded;
+}
+
+/** Adres docelowy aplikacji z przeniesionym locale, planem i atrybucja. */
 export function buildAppUrl(
   platform: AppPlatform,
   locale: string,
   plan?: AppPlan | null,
+  forwarded?: Record<string, string>,
 ): string {
   const url = new URL(APP_TARGETS[platform]);
-  if (locale !== 'pl') url.searchParams.set('locale', locale);
+
+  // Najpierw atrybucja, potem nasze parametry - kolejnosc doklejania, nie nadpisywania
+  for (const [key, value] of Object.entries(forwarded ?? {})) {
+    url.searchParams.set(key, value);
+  }
   if (plan) url.searchParams.set('plan', plan);
-  return url.toString();
+
+  return withAppLocale(url.toString(), locale);
 }
 
 /**

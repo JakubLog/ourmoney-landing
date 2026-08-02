@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState, useSyncExternalStore } from 'react';
 import { useTranslations } from 'next-intl';
 import {
   STORE_AVAILABLE,
@@ -14,22 +14,43 @@ import { trackAppOpen } from '@/lib/analytics';
 // Chwila oddechu na render brandingu - bez tego przekierowanie wyglada jak blysk.
 const REDIRECT_DELAY_MS = 1200;
 
+// User-Agent nie zmienia sie w trakcie sesji - detekcja raz, wynik z cache,
+// zeby snapshot dla useSyncExternalStore byl stabilny (bez petli re-renderow)
+const subscribeNever = () => () => {};
+let detectedPlatform: AppPlatform | undefined;
+function getDetectedPlatform(): AppPlatform {
+  detectedPlatform ??= detectPlatformClient();
+  return detectedPlatform;
+}
+
 type Props = {
   locale: string;
   plan: AppPlan | null;
   /** Platforma zgadnieta na serwerze z User-Agent - klient ja doprecyzowuje. */
   initialPlatform: AppPlatform;
+  /** Parametry kampanii (utm/ref) przeniesione z URL-a strony przejscia. */
+  forwarded?: Record<string, string>;
 };
 
-export function StartRedirect({ locale, plan, initialPlatform }: Props) {
+export function StartRedirect({ locale, plan, initialPlatform, forwarded }: Props) {
   const t = useTranslations('StartPage');
-  const [platform, setPlatform] = useState<AppPlatform>(initialPlatform);
+  // SSR renderuje platforme zgadnieta z User-Agent, klient doprecyzowuje po hydracji
+  const platform = useSyncExternalStore(subscribeNever, getDetectedPlatform, () => initialPlatform);
   const [fired, setFired] = useState(false);
 
+  // Serwer oddaje swiezy obiekt przy kazdym renderze - stabilizujemy go,
+  // zeby efekt przekierowania nie odpalal sie w kolko.
+  const forwardedKey = JSON.stringify(forwarded ?? {});
+  const stableForwarded = useMemo(
+    () => JSON.parse(forwardedKey) as Record<string, string>,
+    [forwardedKey],
+  );
+
   useEffect(() => {
-    const detected = detectPlatformClient();
-    setPlatform(detected);
-    const target = buildAppUrl(detected, locale, plan);
+    // Bezposrednio z detekcji, nie z renderu - efekt odpala sie raz,
+    // niezaleznie od tego, kiedy hydracja podmieni snapshot platformy
+    const detected = getDetectedPlatform();
+    const target = buildAppUrl(detected, locale, plan, stableForwarded);
 
     trackAppOpen({ platform: detected, plan, locale });
 
@@ -40,9 +61,9 @@ export function StartRedirect({ locale, plan, initialPlatform }: Props) {
     }, REDIRECT_DELAY_MS);
 
     return () => clearTimeout(timer);
-  }, [locale, plan]);
+  }, [locale, plan, stableForwarded]);
 
-  const target = buildAppUrl(platform, locale, plan);
+  const target = buildAppUrl(platform, locale, plan, stableForwarded);
   const storeSoon = platform !== 'web' && !STORE_AVAILABLE[platform];
 
   return (
