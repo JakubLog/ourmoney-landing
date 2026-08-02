@@ -13,7 +13,10 @@ export function PageTransitionOverlay() {
   const isFirst = useRef(true);
   const isAnimating = useRef(false);
   const routerRef = useRef(router);
-  routerRef.current = router;
+
+  useEffect(() => {
+    routerRef.current = router;
+  }, [router]);
 
   // When pathname changes (navigation complete) → reveal
   useEffect(() => {
@@ -39,7 +42,6 @@ export function PageTransitionOverlay() {
     }
 
     reveal();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   // Intercept link clicks: cover first, THEN navigate
@@ -76,7 +78,6 @@ export function PageTransitionOverlay() {
 
     document.addEventListener('click', handleClick, { capture: true });
     return () => document.removeEventListener('click', handleClick, { capture: true });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

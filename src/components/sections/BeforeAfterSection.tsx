@@ -6,9 +6,7 @@ import { X, Check } from 'lucide-react';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SectionLead } from '@/components/ui/SectionLead';
 
-type Props = { locale: string };
-
-export function BeforeAfterSection({ locale }: Props) {
+export function BeforeAfterSection() {
   const t = useTranslations('HomePage.beforeAfter');
   const before = t.raw('before') as string[];
   const after = t.raw('after') as string[];

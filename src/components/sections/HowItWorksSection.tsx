@@ -6,11 +6,9 @@ import { UserPlus, ListChecks, Target } from 'lucide-react';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SectionLead } from '@/components/ui/SectionLead';
 
-type Props = { locale: string };
-
 const STEP_ICONS = [UserPlus, ListChecks, Target];
 
-export function HowItWorksSection({ locale }: Props) {
+export function HowItWorksSection() {
   const t = useTranslations('HomePage.howItWorks');
   const steps = t.raw('steps') as { title: string; description: string }[];
   const sectionRef = useRef<HTMLElement>(null);

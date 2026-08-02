@@ -174,10 +174,10 @@ export default async function HomePage({ params }: Props) {
         <HeroSection locale={locale} />
         <PainPointsSection locale={locale} />
         <CalculatorTeaserSection locale={locale} />
-        <HowItWorksSection locale={locale} />
+        <HowItWorksSection />
         <FeaturesSection locale={locale} />
         <AiReportSection locale={locale} />
-        <BeforeAfterSection locale={locale} />
+        <BeforeAfterSection />
         <BrandPromiseSection locale={locale} />
         <TestimonialsSection locale={locale} />
         <ComparisonSection locale={locale} />

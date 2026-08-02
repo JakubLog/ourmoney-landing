@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, useState, useCallback } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
 
 type Testimonial = { _id: string; name: string; rating: number; quote: string; photoUrl: string | null };
@@ -84,22 +84,21 @@ export function TestimonialsCarousel({ items }: Props) {
   // Total width of one set of items
   const setWidth = items.length * (CARD_WIDTH + GAP);
 
-  const animate = useCallback(() => {
-    if (!pausedRef.current && trackRef.current) {
-      offsetRef.current -= SPEED;
-      // Reset seamlessly when one full set has scrolled past
-      if (Math.abs(offsetRef.current) >= setWidth) {
-        offsetRef.current += setWidth;
-      }
-      trackRef.current.style.transform = `translate3d(${offsetRef.current}px, 0, 0)`;
-    }
-    rafRef.current = requestAnimationFrame(animate);
-  }, [setWidth]);
-
   useEffect(() => {
-    rafRef.current = requestAnimationFrame(animate);
+    const tick = () => {
+      if (!pausedRef.current && trackRef.current) {
+        offsetRef.current -= SPEED;
+        // Reset seamlessly when one full set has scrolled past
+        if (Math.abs(offsetRef.current) >= setWidth) {
+          offsetRef.current += setWidth;
+        }
+        trackRef.current.style.transform = `translate3d(${offsetRef.current}px, 0, 0)`;
+      }
+      rafRef.current = requestAnimationFrame(tick);
+    };
+    rafRef.current = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafRef.current);
-  }, [animate]);
+  }, [setWidth]);
 
   if (items.length === 0) return null;
 

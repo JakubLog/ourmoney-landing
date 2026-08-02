@@ -30,6 +30,15 @@ const nextConfig: NextConfig = {
   // Prevent webpack from bundling heavy Sanity Studio packages into vendor-chunks
   // (fixes corrupt .next cache on Windows due to NTFS file locking during HMR)
   serverExternalPackages: ['sanity', '@sanity/vision'],
+
+  // Automatyczna memoizacja komponentów — mniej re-renderów bez ręcznego memo
+  reactCompiler: true,
+
+
+  experimental: {
+    // Artefakty kompilatora na dysku między restartami dev servera (beta)
+    turbopackFileSystemCacheForDev: true,
+  },
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'cdn.sanity.io' },
