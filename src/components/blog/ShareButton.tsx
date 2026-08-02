@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Link2, Check } from 'lucide-react';
+import { trackShareClick } from '@/lib/analytics';
 
 type Props = {
   label: string;
@@ -18,6 +19,9 @@ export function ShareButton({ label, copiedLabel }: Props) {
       url.searchParams.set('utm_medium', 'copy_link');
       url.searchParams.set('utm_campaign', 'blog');
       await navigator.clipboard.writeText(url.toString());
+      // /pl/blog/slug -> [pl, blog, slug]
+      const [locale, , slug] = window.location.pathname.split('/').filter(Boolean);
+      trackShareClick(slug ?? '', locale ?? 'pl');
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {

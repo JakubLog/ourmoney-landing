@@ -10,6 +10,7 @@ import { SmoothScroll } from '@/components/layout/SmoothScroll';
 import { LocaleTracker } from '@/components/layout/LocaleTracker';
 import { CookieConsentBanner } from '@/components/layout/CookieConsentBanner';
 import { LazyPageTransition } from '@/components/layout/LazyPageTransition';
+import { InteractionTracker } from '@/components/layout/InteractionTracker';
 import { WebVitalsReporter } from '@/components/layout/WebVitalsReporter';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
@@ -75,6 +76,7 @@ export default async function RootLayout({ children, params }: Props) {
     <html
       lang={locale}
       className={instrumentSerif.variable}
+      data-scroll-behavior="smooth"
     >
       <head>
         <link
@@ -157,6 +159,7 @@ export default async function RootLayout({ children, params }: Props) {
             </noscript>
             {/* Meta Pixel noscript fallback */}
             <noscript>
+              {/* eslint-disable-next-line @next/next/no-img-element -- tracking pixel w <noscript>, next/image nie ma tu racji bytu */}
               <img
                 height="1"
                 width="1"
@@ -179,6 +182,7 @@ export default async function RootLayout({ children, params }: Props) {
             learnMoreLabel={t('learnMore')}
           />
           <LazyPageTransition />
+          <InteractionTracker />
           {process.env.NODE_ENV === 'production' && <WebVitalsReporter />}
           <SpeedInsights />
         </NextIntlClientProvider>

@@ -1,13 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Send, Loader2, CheckCircle } from 'lucide-react';
+import { trackContactFormSubmit } from '@/lib/analytics';
 
 const WEBHOOK_URL = 'https://srv.ourmoney.pl/webhooks/custom/contact-form';
 
 export function ContactForm() {
   const t = useTranslations('ContactPage.form');
+  const locale = useLocale();
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -32,9 +34,11 @@ export function ContactForm() {
 
       if (!res.ok) throw new Error(`${res.status}`);
       setStatus('success');
+      trackContactFormSubmit('success', locale);
       form.reset();
     } catch {
       setStatus('error');
+      trackContactFormSubmit('error', locale);
       setErrorMsg(t('error'));
     }
   }

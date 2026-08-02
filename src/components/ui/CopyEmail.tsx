@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { trackEmailCopy } from '@/lib/analytics';
 
 type Props = {
   email: string;
@@ -14,6 +15,7 @@ export function CopyEmail({ email, className = '', children }: Props) {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     navigator.clipboard.writeText(email);
+    trackEmailCopy(window.location.pathname, document.documentElement.lang || 'pl');
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };

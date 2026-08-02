@@ -10,7 +10,7 @@ export async function CTABanner({ locale }: Props) {
   const t = await getTranslations({ locale, namespace: 'CTABanner' });
 
   return (
-    <section className="bg-dark px-6 py-20 md:py-28">
+    <section data-section-view="cta_banner" className="bg-dark px-6 py-20 md:py-28">
       <ScrollReveal className="max-w-3xl mx-auto">
         <div className="relative">
           {/* Accent glow behind the glass card.

@@ -59,7 +59,7 @@ export function FeaturesSection({ locale }: Props) {
   }, []);
 
   return (
-    <section className="group/features bg-white py-20 md:py-28 px-6">
+    <section data-section-view="features" className="group/features bg-white py-20 md:py-28 px-6">
       <div className="max-w-6xl mx-auto">
         {/* Two-column: accordion + image */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">

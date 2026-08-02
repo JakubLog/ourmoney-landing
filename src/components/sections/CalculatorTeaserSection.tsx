@@ -12,7 +12,7 @@ export async function CalculatorTeaserSection({ locale }: Props) {
   const t = await getTranslations({ locale, namespace: 'HomePage.calculator' });
 
   return (
-    <section id="kalkulator" className="bg-dark px-6 py-20 md:py-28">
+    <section id="kalkulator" data-section-view="calculator_teaser" className="bg-dark px-6 py-20 md:py-28">
       <ScrollReveal className="mx-auto max-w-3xl text-center">
         <p className="mb-4 text-xs uppercase tracking-[0.2em] text-white/40">{t('eyebrow')}</p>
         <h2 className="font-display mx-auto max-w-3xl text-4xl leading-tight text-white md:text-5xl lg:text-6xl">

@@ -1,5 +1,20 @@
 import { sendGAEvent } from '@next/third-parties/google';
 
+type EventParams = Record<string, string | number | boolean>;
+
+// Kazdy event idzie dwoma kanalami:
+// 1. sendGAEvent (gtag) - trafia bezposrednio do GA4
+// 2. dataLayer.push({event}) - obiektowy push, na ktory reaguja triggery GTM
+//    (Meta Pixel, Ads). gtag-owych komend GTM nie widzi, stad dwa pushe.
+// W kontenerze GTM NIE podpinac tagow GA4 pod te eventy - podwojne liczenie.
+function pushEvent(name: string, params: EventParams) {
+  sendGAEvent('event', name, params);
+  if (typeof window === 'undefined') return;
+  const w = window as Window & { dataLayer?: Record<string, unknown>[] };
+  w.dataLayer = w.dataLayer || [];
+  w.dataLayer.push({ event: name, ...params });
+}
+
 export function trackCTAClick({
   location,
   text,
@@ -11,7 +26,7 @@ export function trackCTAClick({
   locale: string;
   postSlug?: string;
 }) {
-  sendGAEvent('event', 'cta_click', {
+  pushEvent('cta_click', {
     cta_location: location,
     cta_text: text,
     locale,
@@ -29,7 +44,7 @@ export function trackAppOpen({
   plan: 'premium' | null;
   locale: string;
 }) {
-  sendGAEvent('event', 'app_open', {
+  pushEvent('app_open', {
     platform,
     plan: plan ?? 'free',
     locale,
@@ -37,14 +52,14 @@ export function trackAppOpen({
 }
 
 export function trackLanguageSwitch(fromLocale: string, toLocale: string) {
-  sendGAEvent('event', 'language_switch', {
+  pushEvent('language_switch', {
     from_locale: fromLocale,
     to_locale: toLocale,
   });
 }
 
 export function trackBlogPostRead(slug: string, locale: string) {
-  sendGAEvent('event', 'blog_post_read', {
+  pushEvent('blog_post_read', {
     post_slug: slug,
     locale,
   });
@@ -60,5 +75,33 @@ export function trackCalculatorUsed(locale: string, placement: string) {
   } catch {
     // sessionStorage niedostepny (tryb prywatny) - wysylamy event mimo to
   }
-  sendGAEvent('event', 'calculator_used', { locale, placement });
+  pushEvent('calculator_used', { locale, placement });
+}
+
+export function trackCalculatorModeChange(mode: string, placement: string, locale: string) {
+  pushEvent('calculator_mode_change', { mode, placement, locale });
+}
+
+export function trackContactFormSubmit(status: 'success' | 'error', locale: string) {
+  pushEvent('contact_form_submit', { form_status: status, locale });
+}
+
+export function trackCookieConsent(choice: 'granted' | 'denied', locale: string) {
+  pushEvent('cookie_consent', { choice, locale });
+}
+
+export function trackFaqOpen(question: string, locale: string) {
+  pushEvent('faq_open', { question, locale });
+}
+
+export function trackShareClick(postSlug: string, locale: string) {
+  pushEvent('share_click', { post_slug: postSlug, locale });
+}
+
+export function trackEmailCopy(page: string, locale: string) {
+  pushEvent('email_copy', { page, locale });
+}
+
+export function trackSectionView(section: string, locale: string) {
+  pushEvent('section_view', { section, locale });
 }

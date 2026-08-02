@@ -8,7 +8,7 @@ import { SplitDonut } from '@/components/ui/SplitDonut';
 import { SplitBreakdown } from '@/components/ui/SplitBreakdown';
 import { SplitModeToggle, type SplitMode } from '@/components/ui/SplitModeToggle';
 import { InvertDotButton } from '@/components/ui/InvertDotButton';
-import { trackCalculatorUsed } from '@/lib/analytics';
+import { trackCalculatorModeChange, trackCalculatorUsed } from '@/lib/analytics';
 
 type Props = {
   locale: string;
@@ -130,7 +130,10 @@ export function SplitCalculator({ locale, ctaHref, placement }: Props) {
         <div className="flex flex-col gap-4">
           <SplitModeToggle
             value={mode}
-            onChange={setMode}
+            onChange={(m) => {
+              setMode(m);
+              trackCalculatorModeChange(m, placement, locale);
+            }}
             groupLabel={t('modeLabel')}
             labels={{ proportional: t('modeProportional'), equal: t('modeEqual') }}
           />

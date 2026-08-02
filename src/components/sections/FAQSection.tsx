@@ -14,7 +14,7 @@ export async function FAQSection({ locale }: Props) {
   const items = t.raw('items') as FAQItem[];
 
   return (
-    <section className="bg-white py-20 md:py-28 px-6">
+    <section data-section-view="faq" className="bg-white py-20 md:py-28 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-10 lg:gap-20">
           {/* Left column: title + CTA */}
@@ -37,6 +37,7 @@ export async function FAQSection({ locale }: Props) {
 
           {/* Right column: accordion */}
           <ScrollReveal delay={150}>
+            <div data-track-faq>
             {items.map((item) => (
               <details key={item.question} className="group border-t border-dark/10">
                 <summary className="flex items-center justify-between py-6 cursor-pointer">
@@ -54,6 +55,7 @@ export async function FAQSection({ locale }: Props) {
               </details>
             ))}
             <div className="border-t border-dark/10" />
+            </div>
           </ScrollReveal>
         </div>
       </div>

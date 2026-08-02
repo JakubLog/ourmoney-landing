@@ -1,11 +1,36 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useSyncExternalStore } from 'react';
+import { useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
+import { trackCookieConsent } from '@/lib/analytics';
 
 const CONSENT_KEY = 'ourmoney_cookie_consent';
+const CONSENT_EVENT = 'ourmoney:consent-change';
 
 type ConsentStatus = 'granted' | 'denied';
+
+// 'unknown' tylko na serwerze - baner pojawia sie dopiero po hydracji,
+// zeby nie mignal uzytkownikom, ktorzy juz podjeli decyzje
+type StoredConsent = ConsentStatus | 'unknown' | null;
+
+function subscribeToConsent(onChange: () => void) {
+  // storage: decyzja w innej karcie; custom event: decyzja w tej karcie
+  window.addEventListener('storage', onChange);
+  window.addEventListener(CONSENT_EVENT, onChange);
+  return () => {
+    window.removeEventListener('storage', onChange);
+    window.removeEventListener(CONSENT_EVENT, onChange);
+  };
+}
+
+function getConsentSnapshot(): StoredConsent {
+  return localStorage.getItem(CONSENT_KEY) as ConsentStatus | null;
+}
+
+function getConsentServerSnapshot(): StoredConsent {
+  return 'unknown';
+}
 
 function applyConsent(status: ConsentStatus) {
   if (typeof window === 'undefined') return;
@@ -32,30 +57,29 @@ type Props = {
 };
 
 export function CookieConsentBanner({ message, acceptLabel, rejectLabel, learnMoreLabel }: Props) {
-  const [visible, setVisible] = useState(false);
+  const locale = useLocale();
+  const consent = useSyncExternalStore(
+    subscribeToConsent,
+    getConsentSnapshot,
+    getConsentServerSnapshot,
+  );
 
+  // Zapisana zgoda musi wrocic do gtag/fbq przy kazdym wejsciu na strone
+  // (idempotentne - powtorka po decyzji w handlerze jest nieszkodliwa)
   useEffect(() => {
-    const stored = localStorage.getItem(CONSENT_KEY) as ConsentStatus | null;
-    if (!stored) {
-      setVisible(true);
-    } else {
-      applyConsent(stored);
-    }
-  }, []);
+    if (consent === 'granted' || consent === 'denied') applyConsent(consent);
+  }, [consent]);
 
-  const handleAccept = () => {
-    localStorage.setItem(CONSENT_KEY, 'granted');
-    applyConsent('granted');
-    setVisible(false);
+  const handleDecision = (status: ConsentStatus) => {
+    localStorage.setItem(CONSENT_KEY, status);
+    applyConsent(status);
+    // Event PO update zgody - z analytics_storage=granted trafia do GA4 z cookies;
+    // przy denied GA4 wysle cookieless ping (Consent Mode) - i tak zliczymy proporcje
+    trackCookieConsent(status, locale);
+    window.dispatchEvent(new Event(CONSENT_EVENT));
   };
 
-  const handleReject = () => {
-    localStorage.setItem(CONSENT_KEY, 'denied');
-    applyConsent('denied');
-    setVisible(false);
-  };
-
-  if (!visible) return null;
+  if (consent !== null) return null;
 
   return (
     <div
@@ -75,13 +99,13 @@ export function CookieConsentBanner({ message, acceptLabel, rejectLabel, learnMo
         </p>
         <div className="flex items-center gap-3 shrink-0">
           <button
-            onClick={handleReject}
+            onClick={() => handleDecision('denied')}
             className="text-xs text-white/50 hover:text-white/80 transition-colors"
           >
             {rejectLabel}
           </button>
           <button
-            onClick={handleAccept}
+            onClick={() => handleDecision('granted')}
             className="bg-accent text-black text-xs font-semibold px-6 py-2 rounded-full hover:bg-accent-dark transition-colors"
           >
             {acceptLabel}

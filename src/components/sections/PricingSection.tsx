@@ -16,7 +16,7 @@ export async function PricingSection({ locale }: Props) {
   const premiumFeatures = t.raw('plans.premium.features') as string[];
 
   return (
-    <section id="cennik" className="bg-surface px-6 py-20 md:py-28">
+    <section id="cennik" data-section-view="pricing" className="bg-surface px-6 py-20 md:py-28">
       <div className="mx-auto max-w-4xl">
         <ScrollReveal className="mb-12 text-center md:mb-16">
           <p className="mb-4 text-xs uppercase tracking-[0.2em] text-dark/40">{t('eyebrow')}</p>
