@@ -28,7 +28,7 @@ export async function HeroSection({ locale }: Props) {
 
   const avatars = testimonials
     .filter((t) => t.photoUrl)
-    .slice(0, 5);
+    .slice(0, 4);
 
   return (
     <section className="relative flex flex-col items-center justify-center overflow-hidden min-h-[85svh]">

@@ -110,7 +110,7 @@
       "title": "A monthly report nobody has to write",
       "subtitle": "OurMoney analyses your spending and tells you plainly what went well, what is drifting and what to do about it. No spreadsheets, no digging through statements.",
       "badge": "Example report",
-      "reportTitle": "AI report - monthly summary",
+      "reportTitle": "Financial Agent report - monthly summary",
       "summary": "You spent 8,640 zl on a joint income of 11,000 zl. You saved 1,200 zl, which is 11% of your income - two points less than last month, mostly due to higher energy bills.",
       "stats": [
         {
@@ -151,6 +151,7 @@
         "impact": "Goal reached two months sooner"
       },
       "priorityLabel": "Priority",
+      "priorityScale": ["low", "medium", "high"],
       "footnote": "The report is built from your real transactions - you get the first one after a full month of shared budgeting. The example above uses illustrative data."
     },
     "brandPromise": {

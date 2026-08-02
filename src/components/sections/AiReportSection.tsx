@@ -25,19 +25,19 @@ export async function AiReportSection({ locale }: Props) {
           </SectionLead>
         </ScrollReveal>
 
-        <ScrollReveal delay={100}>
-          <AiReportCard
-            badge={t('badge')}
-            reportTitle={t('reportTitle')}
-            summary={t('summary')}
-            stats={t.raw('stats') as Stat[]}
-            insightsTitle={t('insightsTitle')}
-            insights={t.raw('insights') as Insight[]}
-            recommendationsTitle={t('recommendationsTitle')}
-            recommendation={t.raw('recommendation') as Recommendation}
-            priorityLabel={t('priorityLabel')}
-          />
-        </ScrollReveal>
+        {/* Karta animuje sie sama - kazdy jej element ma wlasny reveal (patrz AiReportCard) */}
+        <AiReportCard
+          badge={t('badge')}
+          reportTitle={t('reportTitle')}
+          summary={t('summary')}
+          stats={t.raw('stats') as Stat[]}
+          insightsTitle={t('insightsTitle')}
+          insights={t.raw('insights') as Insight[]}
+          recommendationsTitle={t('recommendationsTitle')}
+          recommendation={t.raw('recommendation') as Recommendation}
+          priorityLabel={t('priorityLabel')}
+          priorityScale={t.raw('priorityScale') as string[]}
+        />
 
         {/* Uczciwe ustawienie oczekiwan - raport potrzebuje realnych danych */}
         <ScrollReveal delay={150}>

@@ -182,6 +182,18 @@ details[open] .faq-minus { display: block; }
   animation: fadeIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
 }
 
+/* Symulowana kwalifikacja priorytetu (raport AI) - kazdy stopien "przeskakuje" */
+@keyframes priorityStep {
+  from { opacity: 0; transform: translateY(-3px) scale(0.9); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);   }
+}
+.animate-priority-step {
+  animation: priorityStep 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-priority-step { animation: none; }
+}
+
 /* ============================================
    Liquid Glass - materialy szkla (iOS-like)
    Zasady: tylko male / fixed elementy (koszt backdrop-filter),

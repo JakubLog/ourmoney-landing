@@ -110,7 +110,7 @@
       "title": "Co miesiąc dostajecie raport, którego nikt nie musi pisać",
       "subtitle": "OurMoney analizuje Wasze wydatki i mówi wprost, co poszło dobrze, co wymyka się spod kontroli i co z tym zrobić. Bez tabelek i bez ślęczenia nad wyciągiem.",
       "badge": "Przykładowy raport",
-      "reportTitle": "Raport AI - podsumowanie miesiąca",
+      "reportTitle": "Raport Agenta Finansowego - podsumowanie miesiąca",
       "summary": "Wydaliście 8 640 zł przy wspólnym dochodzie 11 000 zł. Odłożyliście 1 200 zł, czyli 11% dochodu - o dwa punkty mniej niż miesiąc wcześniej, głównie przez wyższe rachunki za energię.",
       "stats": [
         {
@@ -151,6 +151,7 @@
         "impact": "Cel szybciej o dwa miesiące"
       },
       "priorityLabel": "Priorytet",
+      "priorityScale": ["niski", "średni", "wysoki"],
       "footnote": "Raport powstaje z Waszych realnych transakcji - pierwszy dostaniecie po pełnym miesiącu wspólnego budżetu. Powyżej przykład na danych poglądowych."
     },
     "brandPromise": {
