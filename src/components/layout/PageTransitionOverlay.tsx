@@ -54,6 +54,11 @@ export function PageTransitionOverlay() {
       if (!href.startsWith('/') || href.includes('#')) return;
       if (isAnimating.current) return;
 
+      // Same-page click → no transition (pathname won't change, reveal would never fire)
+      const targetPath = href.split('?')[0].replace(/\/+$/, '') || '/';
+      const currentPath = window.location.pathname.replace(/\/+$/, '') || '/';
+      if (targetPath === currentPath) return;
+
       const el = overlayRef.current;
       if (!el) return;
 
