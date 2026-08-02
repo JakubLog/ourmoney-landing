@@ -17,7 +17,6 @@ import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
 import { TrustSection } from '@/components/sections/TrustSection';
 import { ComparisonSection } from '@/components/sections/ComparisonSection';
 import { PricingSection } from '@/components/sections/PricingSection';
-import { LatestPostsSection } from '@/components/sections/LatestPostsSection';
 
 export const revalidate = 86400;
 
@@ -169,7 +168,6 @@ export default async function HomePage({ params }: Props) {
         <TrustSection locale={locale} />
         <PricingSection locale={locale} />
         <FAQSection locale={locale} />
-        <LatestPostsSection locale={locale} />
         <CTABanner locale={locale} />
       </main>
       <Footer />

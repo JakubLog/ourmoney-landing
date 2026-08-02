@@ -28,10 +28,13 @@
 | 10 | Zaufanie | `TrustSection` | messages/ | Done |
 | 11 | Cennik | `PricingSection` | messages/ | Done |
 | 12 | FAQ | `FAQSection` | messages/ | Done |
-| 13 | Najnowsze z bloga | `LatestPostsSection` | Sanity | Done |
-| 14 | CTA Banner | `CTABanner` | messages/ | Done |
+| 13 | CTA Banner | `CTABanner` | messages/ | Done |
 
 **Hero bg**: `public/hero-bg.webp` (para z zawiązanymi oczami)
+
+**Bez sekcji z postami bloga.** Świadoma decyzja: fetch postów z `revalidate: 3600`
+skracał okno regeneracji strony głównej z 24 h do 1 h (strona zostawała statyczna,
+ale przebudowywała się 24× częściej). Blog jest linkowany z nagłówka i stopki.
 
 **Hierarchia nagłówków**: eyebrow (`hero.eyebrow`) niesie frazę kluczową nad H1, H1
 zostaje hookiem emocjonalnym z `AnimatedWord`, subheadline jest `<h2>`. Nazwy funkcji

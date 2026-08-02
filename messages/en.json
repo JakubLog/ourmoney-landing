@@ -379,12 +379,6 @@
           "answer": "Yes. The connection to the app is encrypted with TLS, so nobody in between can read your transactions. We don't sell data and we don't show ads - OurMoney doesn't make money off your finances. We process data in line with GDPR, and either of you can delete your data from the app at any time. What exactly we collect and why is described in our Privacy Policy."
         }
       ]
-    },
-    "latestPosts": {
-      "eyebrow": "Blog",
-      "title": "Before you start a shared budget",
-      "subtitle": "Practical guides on splitting expenses, joint accounts and talking about money in a relationship.",
-      "cta": "See all articles"
     }
   },
   "AboutPage": {

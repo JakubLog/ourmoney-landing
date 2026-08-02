@@ -379,12 +379,6 @@
           "answer": "Tak. Połączenie z aplikacją jest szyfrowane protokołem TLS, więc nikt po drodze nie odczyta Waszych transakcji. Nie sprzedajemy danych i nie wyświetlamy reklam - OurMoney nie zarabia na Waszych finansach. Przetwarzamy dane zgodnie z RODO, a każde z Was może w dowolnej chwili usunąć swoje dane z aplikacji. Co dokładnie zbieramy i po co, opisaliśmy w Polityce Prywatności."
         }
       ]
-    },
-    "latestPosts": {
-      "eyebrow": "Blog",
-      "title": "Zanim założycie wspólny budżet",
-      "subtitle": "Praktyczne poradniki o dzieleniu wydatków, wspólnym koncie i rozmowach o pieniądzach w związku.",
-      "cta": "Zobacz wszystkie artykuły"
     }
   },
   "AboutPage": {
