@@ -1,5 +1,3 @@
-export const runtime = 'nodejs';
-
 import createMiddleware from 'next-intl/middleware';
 import { NextRequest } from 'next/server';
 import { routing } from '@/i18n/routing';
@@ -19,7 +17,7 @@ function getAgentMonitor() {
   return agentMonitor;
 }
 
-export default function middleware(request: NextRequest) {
+export default function proxy(request: NextRequest) {
   // Fire-and-forget tracking — never blocks the response
   try {
     getAgentMonitor()?.track({
