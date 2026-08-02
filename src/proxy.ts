@@ -35,7 +35,9 @@ export default function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/((?!_next|_vercel|.*\\..*).*)',
+    // `og` wyjete swiadomie - generator obrazkow OG nie ma wersji jezykowych,
+    // a middleware doklejalby mu prefiks locale i psul adresy
+    '/((?!_next|_vercel|og|.*\\..*).*)',
     '/([\\w-]+)?/studio(.*)',
   ],
 };
