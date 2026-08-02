@@ -10,6 +10,7 @@ type Props = { locale: string };
 type Testimonial = {
   _id: string;
   name: string;
+  context?: string | null;
   quote: string;
   rating: number;
   photoUrl: string | null;

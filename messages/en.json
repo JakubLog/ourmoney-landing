@@ -45,10 +45,11 @@
       "description": "The first financial app built specifically for couples. Shared household budget, fair expense splitting, common goals - with privacy where you want it."
     },
     "hero": {
+      "eyebrow": "Shared household budget for couples",
       "headlineL1": "Are money conversations",
       "headlinePost": "in your relationship?",
       "headlineWords": "TABOO,STRESSFUL,COMPLICATED,DIFFICULT,IGNORED",
-      "subheadline": "The first financial app built specifically for couples. Fair expense splitting, shared goals, privacy where you want it.",
+      "subheadline": "The first financial app built specifically for couples. A shared household budget, fair expense splitting and joint goals - with privacy where you want it.",
       "cta": "Start together - for free",
       "socialProof": "Join 50+ couples who already mastered their finances",
       "noCreditCard": "No credit card required"
@@ -226,8 +227,8 @@
       "subtitle": "Finances are a sensitive topic. That's why we prioritize security.",
       "items": [
         {
-          "title": "End-to-end encryption",
-          "description": "All data is transmitted over encrypted SSL/TLS connections."
+          "title": "Encrypted connection",
+          "description": "All data travels over an encrypted TLS connection - nobody in between can read it."
         },
         {
           "title": "Privacy by design",
@@ -375,9 +376,15 @@
         },
         {
           "question": "Will our data be secure?",
-          "answer": "Privacy and security are our top priority. We apply the highest standards of data protection."
+          "answer": "Yes. The connection to the app is encrypted with TLS, so nobody in between can read your transactions. We don't sell data and we don't show ads - OurMoney doesn't make money off your finances. We process data in line with GDPR, and either of you can delete your data from the app at any time. What exactly we collect and why is described in our Privacy Policy."
         }
       ]
+    },
+    "latestPosts": {
+      "eyebrow": "Blog",
+      "title": "Before you start a shared budget",
+      "subtitle": "Practical guides on splitting expenses, joint accounts and talking about money in a relationship.",
+      "cta": "See all articles"
     }
   },
   "AboutPage": {
@@ -440,6 +447,12 @@
       "note": "We usually respond within 24 hours."
     }
   },
+  "CategoryPage": {
+    "eyebrow": "Category",
+    "metaTitle": "{category} | OurMoney Blog",
+    "metaDescription": "Articles in {category} - practical guides on shared finances for couples.",
+    "empty": "There are no articles in this category yet."
+  },
   "BlogPage": {
     "meta": {
       "title": "Blog | OurMoney",
@@ -465,6 +478,11 @@
     "shareArticle": "Copy link",
     "linkCopied": "Copied!",
     "relatedPosts": "Related articles",
+    "calculatorPromo": {
+      "title": "Work out your own expense split",
+      "text": "A free calculator shows how much each of you should pay on your actual incomes - and how much extra the lower earner covers when you split it evenly.",
+      "cta": "Open the expense split calculator"
+    },
     "inArticleCta": {
       "headline": "Manage finances together with your partner",
       "subtext": "OurMoney is the first financial app built specifically for couples. Fair expense splitting, shared goals, full privacy.",

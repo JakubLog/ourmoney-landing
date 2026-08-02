@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
+import { absoluteUrl, alternatesFor } from '@/lib/urls';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { CopyEmail } from '@/components/ui/CopyEmail';
@@ -17,10 +18,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: t('title'),
     description: t('description'),
-    alternates: {
-      canonical: `https://ourmoney.pl/${locale}/polityka-prywatnosci`,
-    },
-    robots: { index: false, follow: false },
+    alternates: alternatesFor('/polityka-prywatnosci', locale),
+    // Indeksowana swiadomie: przy produkcie finansowym (YMYL) polityka
+    // prywatnosci jest sygnalem zaufania, a nie thin contentem
+    robots: { index: true, follow: true },
   };
 }
 
@@ -28,6 +29,7 @@ export default async function PrivacyPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'PrivacyPage' });
+  const canonicalHref = absoluteUrl('/polityka-prywatnosci', locale);
 
   return (
     <>
@@ -239,9 +241,8 @@ export default async function PrivacyPage({ params }: Props) {
             <p>
               Administrator zastrzega sobie prawo do zmiany niniejszej Polityki. Aktualna wersja
               zawsze dostępna jest pod adresem{' '}
-              <a href="https://ourmoney.pl/pl/polityka-prywatnosci">
-                ourmoney.pl/pl/polityka-prywatnosci
-              </a>. Data ostatniej aktualizacji widoczna jest na górze strony.
+              <a href={canonicalHref}>{canonicalHref.replace('https://', '')}</a>. Data
+              ostatniej aktualizacji widoczna jest na górze strony.
             </p>
 
             <h2>9. Kontakt</h2>

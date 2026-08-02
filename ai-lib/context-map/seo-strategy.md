@@ -6,18 +6,34 @@
 
 ## Architektura URL
 
-```
-https://ourmoney.pl/           → redirect → /pl/
-https://ourmoney.pl/pl/        → Strona główna PL
-https://ourmoney.pl/en/        → Strona główna EN
-https://ourmoney.pl/pl/blog/   → Blog PL
-https://ourmoney.pl/en/blog/   → Blog EN
-https://ourmoney.pl/pl/blog/[slug]  → Post PL
-https://ourmoney.pl/en/blog/[slug]  → Post EN
-```
+Ścieżki są lokalizowane mapą `pathnames` w `src/i18n/routing.ts` — klucz to ścieżka
+wewnętrzna (zgodna z katalogiem w `app/`), wartość to adres publiczny per locale.
 
-hreflang: każda strona PL linkuje do EN i odwrotnie.
-Canonical: `https://ourmoney.pl/[locale]/[path]`
+| Wewnętrznie | PL | EN |
+|-------------|----|----|
+| `/` | `/pl` | `/en` |
+| `/blog` | `/pl/blog` | `/en/blog` |
+| `/blog/[slug]` | `/pl/blog/[slug]` | `/en/blog/[slug]` |
+| `/blog/kategoria/[slug]` | `/pl/blog/kategoria/[slug]` | `/en/blog/category/[slug]` |
+| `/kalkulator` | `/pl/kalkulator` | `/en/calculator` |
+| `/o-nas` | `/pl/o-nas` | `/en/about` |
+| `/kontakt` | `/pl/kontakt` | `/en/contact` |
+| `/autor/[slug]` | `/pl/autor/[slug]` | `/en/author/[slug]` |
+| `/polityka-prywatnosci` | `/pl/polityka-prywatnosci` | `/en/privacy-policy` |
+| `/regulamin` | `/pl/regulamin` | `/en/terms` |
+| `/start` | `/pl/start` | `/en/start` (noindex) |
+
+`/` → 307 → `/pl` (z `src/app/page.tsx`).
+
+**Nie buduj adresów ręcznie.** `src/lib/urls.ts` (`absoluteUrl`, `alternatesFor`,
+`ogImageUrl`) jest jedynym miejscem tłumaczącym ścieżkę wewnętrzną na publiczną —
+zasila canonical, hreflang, JSON-LD i sitemapę naraz. Zmiana slugu w `routing.ts`
+przenosi się wszędzie automatycznie i wymaga tylko dołożenia 301 w `next.config.ts`.
+
+Stare, polskie adresy EN (`/en/kalkulator`, `/en/o-nas`, `/en/kontakt`, `/en/autor/*`)
+mają trwałe przekierowania w `redirects()` w `next.config.ts`.
+
+hreflang: każda strona PL linkuje do EN i odwrotnie, plus `x-default` → PL.
 
 ---
 
@@ -65,12 +81,18 @@ Do zrobienia: linki z postów blogowych do kalkulatora, dedykowany OG image.
 
 | Strona | Schema type | Wymagane pola |
 |--------|-------------|---------------|
-| Strona główna | `Organization` + `WebSite` | name, url, logo, sameAs |
+| Strona główna | `Organization` + `WebSite` + `SoftwareApplication` | name, url, logo, sameAs, description, email, contactPoint, founder |
+| Kategoria bloga | `CollectionPage` + `BreadcrumbList` | name, url, inLanguage |
 | Blog post | `Article` | headline, author, datePublished, image |
 | FAQ sekcja | `FAQPage` | question, answer |
 | Blog lista | `Blog` | name, url, description |
 
 Implementacja: patrz `.claude/rules/seo-rules.md` Reguła 3.
+
+**Bez `aggregateRating`.** Opinie zbierane na własnej stronie o własnym produkcie są
+self-serving — Google ich nie honoruje w rich resultach, a nadmiarowo deklarowane
+łapią się na structured data spam policy. Wróci dopiero przy ocenach z App Store /
+Google Play.
 
 ---
 
@@ -83,8 +105,12 @@ Plik `public/llms.txt` — indeksowany przez AI crawlerów:
 - Gemini (Google)
 - Bing Copilot
 
-**Lokalizacja**: `public/llms.txt` (statyczny)
-**Aktualizuj**: przy każdej zmianie produktu / kluczowych funkcji
+**Lokalizacja**: `public/llms.txt` + `public/llms-full.txt` (PL),
+`public/en/llms.txt` + `public/en/llms-full.txt` (EN), wzajemnie zlinkowane.
+**Aktualizuj**: przy każdej zmianie produktu, kluczowych funkcji **lub cennika**.
+
+Cennik i FAQ są w tych plikach świadomie — „ile to kosztuje" to jedno z najczęstszych
+pytań kierowanych do ChatGPT/Perplexity o narzędzie; bez tego modele zgadują.
 
 ### Struktura llms.txt
 ```
@@ -163,6 +189,10 @@ Szczegóły eventów: `analytics.md`
 | `/[locale]/start` | `robots: { index: false, follow: true }` w `generateMetadata()`, poza sitemapą | Bramka przekierowująca do aplikacji — brak treści do indeksacji. Crawl zostaje dozwolony, żeby Google widział `noindex` i przechodził dalej po linkach |
 | `/studio` | `disallow` w `app/robots.ts` | Sanity Studio |
 
+Regulamin i polityka prywatności były `{ index: false, follow: false }` — od 2026-08-02
+są indeksowane i obecne w sitemapie. Przy produkcie finansowym (YMYL) strony zaufania
+działają na korzyść, a `follow: false` dodatkowo blokował przepływ linków.
+
 ---
 
 ## SEO Checklist — Pre-launch
@@ -180,4 +210,21 @@ Szczegóły eventów: `analytics.md`
 
 ---
 
-_Ostatnia aktualizacja: 2026-03-14_
+## Open Graph — obrazki
+
+Generator: `src/app/og/route.tsx` → `/og?title=...&subtitle=...` (1200×630, `ImageResponse`).
+Trasa stoi **poza** segmentem `[locale]` i poza matcherem `proxy.ts` — adres nie zależy
+od mapy `pathnames`, więc zmiana slugu nie unieważnia URL-i w cache'u Facebooka czy Slacka.
+
+| Strona | Obrazek |
+|--------|---------|
+| Homepage, /o-nas, /kontakt | statyczny `/og-image.png` |
+| /kalkulator, /blog, kategoria | dynamiczny `/og` z tytułem i lidem strony |
+| Post bloga | `seo.ogImage` z Sanity → fallback `mainImage` |
+
+Domyślny font `ImageResponse` obsługuje polskie znaki diakrytyczne — zweryfikowane
+renderem (ą, ę, ł, ś, ż, ó).
+
+---
+
+_Ostatnia aktualizacja: 2026-08-02_

@@ -10,6 +10,7 @@ import { CTABanner } from '@/components/sections/CTABanner';
 import { client, fetchOptions } from '@/sanity/lib/client';
 import { AUTHOR_QUERY, AUTHOR_POSTS_QUERY } from '@/sanity/lib/queries';
 import { readingTime } from '@/lib/reading-time';
+import { absoluteUrl, alternatesFor } from '@/lib/urls';
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -43,18 +44,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description,
-    alternates: {
-      canonical: `https://ourmoney.pl/${locale}/autor/${slug}`,
-      languages: {
-        pl: `https://ourmoney.pl/pl/autor/${slug}`,
-        en: `https://ourmoney.pl/en/autor/${slug}`,
-        'x-default': `https://ourmoney.pl/pl/autor/${slug}`,
-      },
-    },
+    alternates: alternatesFor({ pathname: '/autor/[slug]', params: { slug } }, locale),
     openGraph: {
       title,
       description,
-      url: `https://ourmoney.pl/${locale}/autor/${slug}`,
+      url: absoluteUrl({ pathname: '/autor/[slug]', params: { slug } }, locale),
       locale: locale === 'pl' ? 'pl_PL' : 'en_US',
       type: 'profile',
       ...(author.avatarUrl && { images: [{ url: author.avatarUrl, width: 400, height: 400 }] }),
@@ -88,7 +82,7 @@ export default async function AuthorPage({ params }: Props) {
     jobTitle: author.role ?? undefined,
     description: author.bio ?? undefined,
     image: author.avatarUrl ?? undefined,
-    url: `https://ourmoney.pl/${locale}/autor/${slug}`,
+    url: absoluteUrl({ pathname: '/autor/[slug]', params: { slug } }, locale),
     worksFor: {
       '@type': 'Organization',
       name: 'OurMoney',
@@ -161,7 +155,7 @@ export default async function AuthorPage({ params }: Props) {
                   return (
                     <Link
                       key={post._id}
-                      href={`/blog/${post.slug}`}
+                      href={{ pathname: '/blog/[slug]', params: { slug: post.slug } }}
                       className="group flex gap-6 items-start border-b border-beige pb-6 last:border-0 last:pb-0"
                     >
                       {post.mainImageUrl && (

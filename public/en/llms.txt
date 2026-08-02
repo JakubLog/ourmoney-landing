@@ -1,0 +1,39 @@
+# OurMoney
+
+> The first finance app built specifically for couples. A shared household budget, fair expense splitting, privacy.
+
+OurMoney is a Progressive Web App (PWA) that lets couples track expenses together,
+manage a monthly budget and work towards shared savings goals.
+
+## Key features
+- Smart expense splitting (50/50, proportional to income, custom)
+- Mine-Yours-Ours - separate private and shared spaces
+- Shared financial goals (holidays, renovation, house deposit)
+- AI-generated monthly reports and analysis
+- PWA - works like a native app on any device
+
+## Pricing
+- Free plan: 0 PLN forever, no credit card and no trial period. Unlimited expenses and
+  income, shared budget for two people, all splitting modes, goals and envelopes.
+  Limits: shortened transaction history, limited custom categories, 1 bank statement
+  import per month, 5 receipt scans per month, no AI analysis, no bank integration.
+- Premium: 39.99 PLN per month or 399.99 PLN per year (2 months free). Removes every
+  limit of the free plan and adds monthly AI analysis with recommendations plus
+  automatic bank integration.
+
+## Positioning
+A simple alternative to spreadsheets, with real partner support.
+Broader than Splitwise (a full budget, not just debt settlement) and simpler than YNAB.
+
+## Polish version
+- [Wersja polska](https://ourmoney.pl/llms.txt)
+
+## Links
+- [App](https://app.ourmoney.pl): Access the OurMoney app
+- [Expense split calculator](https://ourmoney.pl/en/calculator): Free tool - works out a fair split of shared expenses proportional to income and compares it with an even split
+- [Blog](https://ourmoney.pl/en/blog): Articles on personal finance and money in a relationship
+- [About](https://ourmoney.pl/en/about): The team and mission behind OurMoney
+
+## Contact
+- Email: kontakt@ourmoney.pl
+- Instagram: https://www.instagram.com/ourmoneypl/

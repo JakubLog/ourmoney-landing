@@ -7,6 +7,7 @@ import { Link } from '@/i18n/navigation';
 import { Logo } from '@/components/ui/Logo';
 import { StartRedirect } from '@/components/start/StartRedirect';
 import { detectPlatform, parsePlan, pickForwardedParams } from '@/lib/appLinks';
+import { absoluteUrl } from '@/lib/urls';
 
 // Strona przejscia musi widziec User-Agent i ?plan= przy kazdym wejsciu -
 // zadnego prerenderu ani cache'u.
@@ -26,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: t('description'),
     // Bramka do aplikacji - nie ma czego indeksowac, ale linki maja dzialac
     robots: { index: false, follow: true },
-    alternates: { canonical: `https://ourmoney.pl/${locale}/start` },
+    alternates: { canonical: absoluteUrl('/start', locale) },
   };
 }
 

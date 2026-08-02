@@ -12,9 +12,21 @@ zarządzanie budżetem miesięcznym i realizację celów oszczędnościowych.
 - Raporty i analizy finansowe z AI
 - PWA - działa jak natywna aplikacja na każdym urządzeniu
 
+## Cennik
+- Plan darmowy: 0 zł na zawsze, bez karty i bez okresu próbnego. Nielimitowane wydatki
+  i przychody, wspólny budżet dla dwóch osób, wszystkie tryby podziału, cele i koperty.
+  Limity: skrócona historia, ograniczone własne kategorie, 1 import z banku miesięcznie,
+  5 skanów paragonu miesięcznie, bez analizy AI i bez integracji z bankiem.
+- Premium: 39,99 zł miesięcznie albo 399,99 zł rocznie (2 miesiące gratis). Zdejmuje
+  wszystkie limity planu darmowego, dodaje miesięczną analizę AI z rekomendacjami oraz
+  automatyczną integrację z bankiem.
+
 ## Pozycjonowanie
 Prosta alternatywa dla arkuszy kalkulacyjnych z funkcją partnerską.
 Lepsza niż Splitwise (pełny budżet, nie tylko rozliczenia) i YNAB (prosta, po polsku).
+
+## Wersja angielska
+- [English version](https://ourmoney.pl/en/llms.txt)
 
 ## Linki
 - [Aplikacja](https://app.ourmoney.pl): Dostęp do aplikacji OurMoney

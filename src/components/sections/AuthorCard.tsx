@@ -44,7 +44,7 @@ export function AuthorCard({ author }: { author: Author }) {
     >
       {/* Inner card */}
       <Link
-        href={`/autor/${author.slug}`}
+        href={{ pathname: '/autor/[slug]', params: { slug: author.slug } }}
         className="group flex flex-col bg-dark rounded-2xl p-10 h-full"
       >
         {/* Avatar */}

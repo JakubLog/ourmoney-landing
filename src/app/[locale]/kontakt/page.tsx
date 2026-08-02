@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
+import { alternatesFor, absoluteUrl } from '@/lib/urls';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { CTABanner } from '@/components/sections/CTABanner';
@@ -20,18 +21,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: t('title'),
     description: t('description'),
-    alternates: {
-      canonical: `https://ourmoney.pl/${locale}/kontakt`,
-      languages: {
-        pl: 'https://ourmoney.pl/pl/kontakt',
-        en: 'https://ourmoney.pl/en/kontakt',
-        'x-default': 'https://ourmoney.pl/pl/kontakt',
-      },
-    },
+    alternates: alternatesFor('/kontakt', locale),
     openGraph: {
       title: t('title'),
       description: t('description'),
-      url: `https://ourmoney.pl/${locale}/kontakt`,
+      url: absoluteUrl('/kontakt', locale),
       siteName: 'OurMoney',
       images: [{ url: '/og-image.png', width: 1200, height: 630 }],
       locale: locale === 'pl' ? 'pl_PL' : 'en_US',

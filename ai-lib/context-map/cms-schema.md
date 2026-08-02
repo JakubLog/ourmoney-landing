@@ -137,12 +137,32 @@ defineField({
   "mainImageUrl": mainImage.asset->url, "mainImageAlt": mainImage.alt,
   "authorName": author->name, category->{ title, "slug": slug.current }
 }
+
+// TESTIMONIALS_QUERY — opinie w danym języku
+*[_type == "testimonial" && language == $language] | order(order asc) {
+  _id, name, context, quote, rating, "photoUrl": photo.asset->url,
+}
+
+// CATEGORY_QUERY / CATEGORY_POSTS_QUERY — strona kategorii bloga
+*[_type == "category" && slug.current == $slug][0] { _id, title, "slug": slug.current }
+
+*[_type == "blogPost" && defined(slug.current) && category->slug.current == $slug
+  && (language == $language || (!(defined(language)) && $language == "pl"))]
+| order(publishedAt desc) { ... }
+
+// CATEGORIES_WITH_POSTS_QUERY — do sitemapy, pomija puste kategorie
+*[_type == "category" && defined(slug.current)
+  && count(*[_type == "blogPost" && defined(slug.current) && references(^._id)]) > 0] {
+  title, "slug": slug.current,
+}
 ```
 
 ### Uwagi implementacyjne
 - Language fallback: `!(defined(language)) && $language == "pl"` — posty bez języka traktowane jako PL
 - `_translations` może zawierać `null` items — zawsze `.filter(Boolean)` przed użyciem
 - `fetchOptions` export w `client.ts`: `cache: 'no-store'` w dev, `revalidate: 3600, tags: ['blog']` w prod
+- `category` NIE ma pola `language` — kategorie są wspólne dla PL i EN, filtrowanie
+  po języku dzieje się na poziomie postów (`CATEGORY_POSTS_QUERY`)
 
 ---
 
@@ -179,7 +199,8 @@ sanity/
 | 2026-03-15 | blogPost rozszerzony: relatedFaq, cta, aiSeo, seo.canonical/keywords | - |
 | 2026-03-15 | author rozszerzony: avatar (nie image), role | - |
 | 2026-03-15 | ISR + on-demand revalidation (`/api/revalidate` webhook, `SANITY_REVALIDATE_SECRET`) | - |
+| 2026-08-02 | `testimonial.context` — opcjonalny konkret uwiarygadniający opinię (max 60 zn., np. „Prowadzą wspólny budżet od 7 miesięcy"); renderowany pod imieniem w karuzeli | Nie (pole opcjonalne, wymaga uzupełnienia treści w Studio) |
 
 ---
 
-_Ostatnia aktualizacja: 2026-03-15_
+_Ostatnia aktualizacja: 2026-08-02_

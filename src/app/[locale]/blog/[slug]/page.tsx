@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Image from 'next/image';
 import { ArticlePortableText } from '@/components/blog/ArticlePortableText';
 import { ArticleCTA } from '@/components/blog/ArticleCTA';
+import { CalculatorPromo } from '@/components/blog/CalculatorPromo';
 import { ArrowLeft, Clock } from 'lucide-react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
@@ -17,6 +18,7 @@ import { Link } from '@/i18n/navigation';
 import { client, fetchOptions } from '@/sanity/lib/client';
 import { POST_QUERY, POST_TRANSLATION_QUERY, RELATED_POSTS_QUERY } from '@/sanity/lib/queries';
 import { readingTime } from '@/lib/reading-time';
+import { absoluteUrl } from '@/lib/urls';
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -104,13 +106,16 @@ function buildLanguageAlternates(
 ): Record<string, string> {
   const locales = ['pl', 'en'];
   const result: Record<string, string> = {
-    [currentLocale]: `https://ourmoney.pl/${currentLocale}/blog/${currentSlug}`,
+    [currentLocale]: absoluteUrl(
+      { pathname: '/blog/[slug]', params: { slug: currentSlug } },
+      currentLocale,
+    ),
   };
   for (const locale of locales) {
     if (locale === currentLocale) continue;
     const t = translations?.filter(Boolean).find((tr) => tr!.language === locale);
     if (t?.slug) {
-      result[locale] = `https://ourmoney.pl/${locale}/blog/${t.slug}`;
+      result[locale] = absoluteUrl({ pathname: '/blog/[slug]', params: { slug: t.slug } }, locale);
     }
   }
   result['x-default'] = result['pl'] ?? result[currentLocale];
@@ -134,7 +139,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = post.seo?.title ?? post.title;
   const description = post.seo?.description ?? post.excerpt;
-  const canonicalUrl = post.seo?.canonical ?? `https://ourmoney.pl/${locale}/blog/${slug}`;
+  const canonicalUrl = post.seo?.canonical ?? absoluteUrl({ pathname: '/blog/[slug]', params: { slug } }, locale);
   const ogImage = post.seo?.ogImageUrl ?? post.mainImageUrl;
 
   return {
@@ -207,7 +212,7 @@ export default async function BlogPostPage({ params }: Props) {
     fetchOptions,
   );
 
-  const canonicalUrl = post.seo?.canonical ?? `https://ourmoney.pl/${locale}/blog/${slug}`;
+  const canonicalUrl = post.seo?.canonical ?? absoluteUrl({ pathname: '/blog/[slug]', params: { slug } }, locale);
   const readingMinutes = readingTime(post.estimatedWordCount);
   const otherLanguages =
     post._translations?.filter(Boolean).filter((tr) => tr!.language !== locale) ?? [];
@@ -231,7 +236,10 @@ export default async function BlogPostPage({ params }: Props) {
           ...(post.author.role && { jobTitle: post.author.role }),
           ...(post.author.bio && { description: post.author.bio }),
           ...(post.author.avatarUrl && { image: post.author.avatarUrl }),
-          url: `https://ourmoney.pl/${locale}/autor/${post.author.slug}`,
+          url: absoluteUrl(
+            { pathname: '/autor/[slug]', params: { slug: post.author.slug } },
+            locale,
+          ),
         }
       : undefined,
     publisher: {
@@ -247,7 +255,7 @@ export default async function BlogPostPage({ params }: Props) {
       '@type': 'ListItem',
       position: 1,
       name: 'Blog',
-      item: `https://ourmoney.pl/${locale}/blog`,
+      item: absoluteUrl('/blog', locale),
     },
     { '@type': 'ListItem', position: 2, name: post.title },
   ];
@@ -308,7 +316,7 @@ export default async function BlogPostPage({ params }: Props) {
                 {otherLanguages.map((tr) => (
                   <Link
                     key={tr!.language}
-                    href={`/blog/${tr!.slug}`}
+                    href={{ pathname: '/blog/[slug]', params: { slug: tr!.slug } }}
                     locale={tr!.language as 'pl' | 'en'}
                     className="inline-flex items-center gap-2 text-xs text-white/30 hover:text-accent transition-colors border border-white/10 hover:border-accent/30 px-3 py-2 rounded-full"
                     hrefLang={tr!.language}
@@ -322,9 +330,15 @@ export default async function BlogPostPage({ params }: Props) {
             {/* Category + meta */}
             <div className="flex flex-wrap items-center gap-3 mb-6 text-white/40 text-xs">
               {post.category && (
-                <span className="inline-block bg-white/8 px-3 py-1 rounded-full text-white/50">
+                <Link
+                  href={{
+                    pathname: '/blog/kategoria/[slug]',
+                    params: { slug: post.category.slug },
+                  }}
+                  className="inline-block bg-white/8 px-3 py-1 rounded-full text-white/50 hover:bg-white/12 hover:text-white transition-colors"
+                >
                   {post.category.title}
-                </span>
+                </Link>
               )}
               <time dateTime={post.publishedAt}>{formatDate(post.publishedAt, locale)}</time>
               {post._updatedAt && post._updatedAt > post.publishedAt && (
@@ -455,6 +469,12 @@ export default async function BlogPostPage({ params }: Props) {
                 </>
               );
             })()}
+
+            <CalculatorPromo
+              title={t('calculatorPromo.title')}
+              text={t('calculatorPromo.text')}
+              cta={t('calculatorPromo.cta')}
+            />
 
             {/* Author box */}
             {post.author && (post.author.bio || post.author.avatarUrl) && (

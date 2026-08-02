@@ -1,0 +1,112 @@
+# OurMoney - Complete guide
+
+> The first finance app built specifically for couples. A shared household budget, fair expense splitting, privacy.
+
+## What is OurMoney?
+
+OurMoney is a Progressive Web App (PWA) that lets couples manage their finances together.
+It combines the simplicity of a spreadsheet with features built for two people.
+
+## The problem we solve
+
+Couples running a shared budget keep hitting the same problems:
+- Who paid how much, and for what?
+- How do you split expenses fairly when incomes differ?
+- Where does the shared budget end and the private one begin?
+- Spreadsheets are tedious, and apps like Splitwise settle debts rather than run a budget.
+
+## Key features
+
+### Smart expense splitting
+Three modes: 50/50, proportional to income, or custom shares.
+Every expense is automatically attributed to the right person.
+
+### Mine-Yours-Ours
+Three financial spaces: a private one for each partner, plus a shared one.
+Full control over what the other person can see.
+
+### Shared financial goals
+Save together for holidays, a renovation or a house deposit.
+Progress tracked in real time.
+
+### AI reports and analysis
+Automatic expense categorisation.
+Monthly summaries, trends and concrete recommendations.
+
+### PWA - works like a native app
+Installs on the phone without the App Store or Google Play.
+Works offline, fast and responsive.
+
+## Who is OurMoney for?
+
+- Couples living together and sharing costs
+- Partners on different incomes looking for a fair split
+- People tired of spreadsheets
+- Couples planning shared financial goals (wedding, home, holidays)
+
+## Pricing
+
+### Free plan - 0 PLN forever
+No credit card, no trial period, never expires.
+Includes: shared budget for two people, unlimited expenses and income,
+splitting evenly / proportionally to income / mine-yours-ours,
+shared goals and envelopes, the PWA on your phone.
+Limits: limited number of custom categories, shortened transaction history,
+1 bank statement import per month, up to 5 receipt scans per month,
+no AI analysis and no automatic bank integration.
+
+### Premium - 39.99 PLN per month or 399.99 PLN per year
+Annual billing means 2 months free. Prices in PLN, gross.
+Premium covers everything in the free plan without the limits, plus:
+unlimited custom categories, full transaction history, monthly AI analysis
+with recommendations, unlimited statement imports and receipt scans,
+and a bank integration that pulls transactions in automatically.
+Premium can be switched on and off inside the app at any time.
+
+## Frequently asked questions
+
+**Do we both need the app?**
+Not to begin with. One person can start alone and invite their partner later.
+
+**Is the app free?**
+Yes, the basic version is free forever and needs no card. Day-to-day budgeting has no
+limits. Only AI analysis, bank integration and lifting the history and import limits
+are paid.
+
+**How does expense splitting work?**
+Choose between an even split (50/50), proportional to income (e.g. 60/40), custom
+shares, or simply tracking expenses without settling them. OurMoney calculates the
+shares automatically.
+
+**Does it work on iOS and Android?**
+Yes. OurMoney is a PWA - installed straight from the browser, without the App Store or
+Google Play. On iPhone via Safari ("Add to Home Screen"), on Android via Chrome
+("Install app").
+
+**Is our data safe?**
+The connection to the app is encrypted with TLS. Data is never sold, there are no ads,
+processing follows GDPR, and data can be deleted at any time.
+
+## Comparison with alternatives
+
+| Feature | OurMoney | Splitwise | YNAB | Spreadsheet |
+|---------|----------|-----------|------|-------------|
+| Shared budget | Yes | No (debts only) | Partly | Manual |
+| Split by income | Yes | No | No | Manual |
+| Privacy (Mine/Yours) | Yes | No | No | No |
+| Polish language | Yes | Partly | No | - |
+| Free tier | Yes | Yes | No | Yes |
+
+## Links
+
+- Homepage: https://ourmoney.pl/en
+- App: https://app.ourmoney.pl
+- Expense split calculator: https://ourmoney.pl/en/calculator
+- Blog: https://ourmoney.pl/en/blog
+- About: https://ourmoney.pl/en/about
+- Polish version: https://ourmoney.pl/llms-full.txt
+
+## Contact
+
+- Email: kontakt@ourmoney.pl
+- Instagram: https://www.instagram.com/ourmoneypl/

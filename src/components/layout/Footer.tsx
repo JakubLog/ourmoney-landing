@@ -15,7 +15,7 @@ export async function Footer() {
     { href: '/kontakt', label: t('contact') },
     { href: '/regulamin', label: t('terms') },
     { href: '/polityka-prywatnosci', label: t('privacy') },
-  ];
+  ] as const;
 
   return (
     <footer className="bg-dark text-white py-12 px-6">

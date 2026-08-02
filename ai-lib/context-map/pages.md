@@ -16,15 +16,32 @@
 
 | # | Sekcja | Komponent | Treść z | Status |
 |---|--------|-----------|---------|--------|
-| 1 | Hero | `HeroSection` | messages/ | Done |
+| 1 | Hero | `HeroSection` | messages/ + Sanity (avatary) | Done |
 | 2 | Pain Points | `PainPointsSection` | messages/ | Done |
-| 3 | Funkcje | `FeaturesSection` | messages/ | Done |
-| 4 | Brand Promise | `BrandPromiseSection` | messages/ | Done |
-| 5 | Testimonials | `TestimonialsSection` | messages/ | Done |
-| 6 | FAQ | `FAQSection` | messages/ | Done |
-| 7 | CTA Banner | `CTABanner` | messages/ | Done |
+| 3 | Zajawka kalkulatora | `CalculatorTeaserSection` | messages/ | Done |
+| 4 | Jak to działa | `HowItWorksSection` | messages/ | Done |
+| 5 | Funkcje | `FeaturesSection` | messages/ | Done |
+| 6 | Analiza AI | `AiReportSection` | messages/ | Done |
+| 7 | Brand Promise | `BrandPromiseSection` | messages/ | Done |
+| 8 | Testimonials | `TestimonialsSection` | Sanity | Done |
+| 9 | Przed/po + porównanie | `ComparisonSection` | messages/ | Done |
+| 10 | Zaufanie | `TrustSection` | messages/ | Done |
+| 11 | Cennik | `PricingSection` | messages/ | Done |
+| 12 | FAQ | `FAQSection` | messages/ | Done |
+| 13 | Najnowsze z bloga | `LatestPostsSection` | Sanity | Done |
+| 14 | CTA Banner | `CTABanner` | messages/ | Done |
 
 **Hero bg**: `public/hero-bg.webp` (para z zawiązanymi oczami)
+
+**Hierarchia nagłówków**: eyebrow (`hero.eyebrow`) niesie frazę kluczową nad H1, H1
+zostaje hookiem emocjonalnym z `AnimatedWord`, subheadline jest `<h2>`. Nazwy funkcji
+w akordeonie to `<h3>` opakowujące `<button>` (odwrotnie byłoby niepoprawne — `<button>`
+przyjmuje wyłącznie treść frazową).
+
+**Sekcja 9** powstała ze scalenia `BeforeAfterSection` z `ComparisonSection` — obie
+niosły ten sam argument („z nami lepiej niż bez nas"). Karty przed/po żyją teraz
+w `BeforeAfterCards`, animowana obwódka nagłówka w `ScribbleWord` (client), sama
+sekcja pozostaje serwerowa.
 
 ---
 
@@ -41,7 +58,29 @@
 | Nagłówek | Tytuł sekcji + opis |
 | Lista postów | Grid / lista z thumbnail, tytuł, excerpt, data, czas czytania |
 | Paginacja | Lub infinite scroll (TBD) |
-| Kategorie / tagi | TBD — decyzja przy definicji schematu |
+| Kategorie / tagi | Strony kategorii — patrz niżej |
+
+---
+
+## Blog — Kategoria (`/blog/kategoria/[slug]`)
+
+**Status**: Done
+**Ścieżki**: `/pl/blog/kategoria/[slug]`, `/en/blog/category/[slug]`
+**Plik**: `src/app/[locale]/blog/kategoria/[slug]/page.tsx`
+
+Lista postów jednej kategorii, filtrowana po `language`. Dokumenty `category`
+w Sanity są wspólne dla obu locale (nie mają pola `language`), więc ta sama
+kategoria ma stronę PL i EN, ale różną zawartość.
+
+| Element | Opis |
+|---------|------|
+| Nagłówek | Nazwa kategorii jako H1 + lead z `CategoryPage.metaDescription` |
+| Lista | `BlogPostCard` w gridzie, pusty stan gdy brak postów w danym języku |
+| JSON-LD | `CollectionPage` + `BreadcrumbList` |
+| Wejście | Pigułka kategorii w nagłówku posta (wcześniej `<span>`, teraz `Link`) |
+
+Do sitemapy trafiają wyłącznie kategorie mające co najmniej jeden post
+(`CATEGORIES_WITH_POSTS_QUERY`) — pusta kategoria to thin content.
 
 ---
 

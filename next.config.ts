@@ -80,7 +80,7 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  // Redirect www → non-www
+  // Redirect www → non-www + 301 ze starych, polskich adresów EN
   async redirects() {
     return [
       {
@@ -89,6 +89,19 @@ const nextConfig: NextConfig = {
         destination: 'https://ourmoney.pl/:path*',
         permanent: true,
       },
+      // Do 08.2026 wersja EN serwowana była pod polskimi slugami (/en/kalkulator).
+      // Mapa `pathnames` w src/i18n/routing.ts zmieniła je na angielskie - te 301
+      // przenoszą zaindeksowane adresy i wszystkie linki z zewnątrz.
+      { source: '/en/kalkulator', destination: '/en/calculator', permanent: true },
+      { source: '/en/o-nas', destination: '/en/about', permanent: true },
+      { source: '/en/kontakt', destination: '/en/contact', permanent: true },
+      { source: '/en/autor/:slug', destination: '/en/author/:slug', permanent: true },
+      {
+        source: '/en/polityka-prywatnosci',
+        destination: '/en/privacy-policy',
+        permanent: true,
+      },
+      { source: '/en/regulamin', destination: '/en/terms', permanent: true },
     ];
   },
 };

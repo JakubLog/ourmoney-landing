@@ -41,6 +41,9 @@ export function FeaturesSection({ locale }: Props) {
   const [open, setOpen] = useState<number>(0);
   const [animKey, setAnimKey] = useState(0);
   const [imagesPreloaded, setImagesPreloaded] = useState(false);
+  // Autocykl leci tylko do pierwszej interakcji - hover pauzuje wylacznie na
+  // desktopie, wiec bez tego na mobile opis podmienia sie w trakcie czytania
+  const [autoplay, setAutoplay] = useState(true);
 
   const activeImage = open >= 0 && open < FEATURE_IMAGES.length
     ? FEATURE_IMAGES[open]
@@ -56,6 +59,7 @@ export function FeaturesSection({ locale }: Props) {
     setImagesPreloaded(true);
     setOpen(i);
     setAnimKey((k) => k + 1);
+    setAutoplay(false);
   }, []);
 
   return (
@@ -76,8 +80,8 @@ export function FeaturesSection({ locale }: Props) {
                 <li key={item.title} className="relative">
                   {/* Border top */}
                   <div className="h-px bg-dark/10" />
-                  {/* Progress bar - only on active item */}
-                  {open === i && (
+                  {/* Progress bar - only on active item, dopoki trwa autocykl */}
+                  {open === i && autoplay && (
                     <div
                       key={animKey}
                       className="absolute top-0 left-0 h-px bg-accent origin-left group-hover/features:[animation-play-state:paused]"
@@ -88,21 +92,31 @@ export function FeaturesSection({ locale }: Props) {
                       onAnimationEnd={goToNext}
                     />
                   )}
-                  <button
-                    className="w-full flex items-center gap-4 py-6 text-left group cursor-pointer"
-                    onClick={() => handleClick(i)}
-                    aria-expanded={open === i}
-                  >
-                    <span className="text-dark/30 text-sm font-medium tabular-nums w-8 shrink-0">
-                      {String(i + 1).padStart(2, '0')}.
-                    </span>
-                    <span className={`font-medium text-base flex-1 transition-colors ${open === i ? 'text-dark' : 'text-dark/40'}`}>
-                      {item.title}
-                    </span>
-                    {open === i && (
-                      <ArrowRight size={18} className="shrink-0 text-dark" />
-                    )}
-                  </button>
+                  {open === i && !autoplay && (
+                    <div className="absolute top-0 left-0 h-px w-full bg-accent" />
+                  )}
+                  {/* h3 opakowuje przycisk, a nie odwrotnie - <button> przyjmuje
+                      tylko tresc frazowa, wiec naglowek w srodku bylby niepoprawny */}
+                  <h3>
+                    <button
+                      className="w-full flex items-center gap-4 py-6 text-left group cursor-pointer"
+                      onClick={() => handleClick(i)}
+                      aria-expanded={open === i}
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="text-dark/30 text-sm font-medium tabular-nums w-8 shrink-0"
+                      >
+                        {String(i + 1).padStart(2, '0')}.
+                      </span>
+                      <span className={`font-medium text-base flex-1 transition-colors ${open === i ? 'text-dark' : 'text-dark/40'}`}>
+                        {item.title}
+                      </span>
+                      {open === i && (
+                        <ArrowRight size={18} className="shrink-0 text-dark" />
+                      )}
+                    </button>
+                  </h3>
                   <div
                     style={{
                       display: 'grid',

@@ -4,6 +4,7 @@ export const TESTIMONIALS_QUERY = groq`
   *[_type == "testimonial" && language == $language] | order(order asc) {
     _id,
     name,
+    context,
     quote,
     rating,
     "photoUrl": photo.asset->url,
@@ -118,6 +119,41 @@ export const AUTHOR_POSTS_QUERY = groq`
     "mainImageBlur": mainImage.asset->metadata.lqip,
     category->{ title, "slug": slug.current },
     "estimatedWordCount": length(pt::text(body)),
+  }
+`;
+
+export const CATEGORY_QUERY = groq`
+  *[_type == "category" && slug.current == $slug][0] {
+    _id,
+    title,
+    "slug": slug.current,
+  }
+`;
+
+export const CATEGORY_POSTS_QUERY = groq`
+  *[_type == "blogPost" && defined(slug.current) && category->slug.current == $slug
+    && (language == $language || (!(defined(language)) && $language == "pl"))]
+  | order(publishedAt desc) {
+    _id,
+    title,
+    "slug": slug.current,
+    publishedAt,
+    excerpt,
+    "mainImageUrl": mainImage.asset->url,
+    "mainImageAlt": mainImage.alt,
+    "mainImageBlur": mainImage.asset->metadata.lqip,
+    "authorName": author->name,
+    "estimatedWordCount": length(pt::text(body)),
+  }
+`;
+
+// Tylko kategorie, ktore maja przypisany chocby jeden post - pusta kategoria
+// w sitemapie to thin content
+export const CATEGORIES_WITH_POSTS_QUERY = groq`
+  *[_type == "category" && defined(slug.current)
+    && count(*[_type == "blogPost" && defined(slug.current) && references(^._id)]) > 0] {
+    title,
+    "slug": slug.current,
   }
 `;
 

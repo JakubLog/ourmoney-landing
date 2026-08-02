@@ -18,6 +18,12 @@
 | 8 | Kalkulator podziału | `/[locale]/kalkulator` | Done | `src/app/[locale]/kalkulator/page.tsx` |
 | 9 | Przejście do aplikacji | `/[locale]/start` | Done (dynamic, noindex) | `src/app/[locale]/start/page.tsx` |
 | 10 | 404 | `not-found` | Done | `src/app/not-found.tsx` |
+| 11 | Autor | `/[locale]/autor/[slug]` | Done | `src/app/[locale]/autor/[slug]/page.tsx` |
+| 12 | Kategoria bloga | `/[locale]/blog/kategoria/[slug]` | Done | `src/app/[locale]/blog/kategoria/[slug]/page.tsx` |
+| 13 | Generator OG | `/og?title=&subtitle=` | Done (route handler) | `src/app/og/route.tsx` |
+
+Adresy publiczne EN różnią się od ścieżek wewnętrznych — patrz mapa `pathnames`
+w [seo-strategy.md](seo-strategy.md).
 
 _Uzupełniaj w miarę dodawania kolejnych stron._
 
@@ -51,6 +57,8 @@ _Uzupełniaj w miarę dodawania kolejnych stron._
 | ADR-008 | Wszystkie CTA prowadzą do dynamicznej bramki `/[locale]/start`, nie bezpośrednio do `app.ourmoney.pl` — jedno miejsce na detekcję platformy, deep-linki i przeniesienie wybranego planu | 2026-08-02 |
 | ADR-007 | PortableText renderowany przez `ArticlePortableText` (custom components) — nie domyślny prose Tailwind | 2026-03-15 |
 | ADR-009 | Język przekazywany do aplikacji wyłącznie parametrem `?locale=pl|en` w query stringu — bez cookies, postMessage i wspólnego storage (różne domeny). Jedyne miejsce budowy: `withAppLocale()` w `src/lib/appLinks.ts` | 2026-08-02 |
+| ADR-011 | Angielskie ścieżki URL przez `pathnames` w `defineRouting` (`/en/calculator`, `/en/about`, `/en/author/[slug]`, `/en/privacy-policy`, `/en/terms`, `/en/blog/category/[slug]`) zamiast polskich slugów pod `/en`. Adresy budowane wyłącznie przez `src/lib/urls.ts`; stare adresy mają 301 w `next.config.ts` | 2026-08-02 |
+| ADR-012 | `proxy.ts` mieszka w `src/`, nie w katalogu głównym repo — projekt używa katalogu `src/`, więc Next szuka pliku tam. Wersja z rootu była po cichu ignorowana (`middleware-manifest.json` pusty): nie działała detekcja języka ani tracking AgentMonitor, a `/` → `/pl` pochodziło z `src/app/page.tsx`, co maskowało problem. Weryfikacja: build musi wypisać `ƒ Proxy (Middleware)` | 2026-08-02 |
 | ADR-010 | Next.js 16 (Turbopack jako builder dev+prod), konwencja `proxy.ts` zamiast `middleware.ts` (runtime nodejs), ESLint flat config (`eslint.config.mjs`, skrypt `eslint .` — `next lint` usunięty z frameworka). Sanity podbite do v4 + next-sanity v11 (wymóg peer deps Next 16); świadomie BEZ `cacheComponents` i React Compiler — osobne decyzje | 2026-08-02 |
 
 ---
@@ -88,9 +96,16 @@ _Uzupełniaj w miarę dodawania kolejnych stron._
 | 2026-08-02 | `/kalkulator` pod frazy: treść z 209 do ~750 słów (PL+EN), H2 "Jak dzielić wydatki w związku przy różnych zarobkach", nowa sekcja trzech modeli podziału (po równo / proporcjonalnie / własne proporcje) z H3, FAQ z 3 do 7 pytań w `h3` (wszystkie w FAQPage JSON-LD), link wewnętrzny do bloga, keyword anchor z homepage | pages, i18n, seo |
 | 2026-08-02 | ComparisonSection: kolumna OurMoney wyróżniona pasmem `accent-deep/8` z zaokrągleniem i ciemną pigułką w nagłówku, fajki w tej kolumnie na ciemnym kółku; nowy token `--color-accent-deep` (#557300) dla zieleni na jasnym tle - `accent` na bieli ma 1.3:1, wariant deep 5.4:1; tabela na `border-separate` (promienie na komórkach) | design-system, pages |
 | 2026-08-02 | Dynamiczna strona przejścia `/[locale]/start`: wszystkie CTA (hero, features, FAQ, CTABanner, header desktop+mobile, kalkulator, blog, cennik) linkują do bramki zamiast prosto do `app.ourmoney.pl`; detekcja platformy dwuetapowa (serwer z `user-agent` → klient doprecyzowuje iPadOS), osobne targety `APP_TARGETS` per iOS/Android/web (dziś wszystkie na PWA + komunikat "już wkrótce" ze store'ów, flagi `STORE_AVAILABLE`); CTA Premium w cenniku dokłada `?plan=premium`, wersja darmowa i pozostałe CTA nie; nowy event GA4 `app_open`; namespace `StartPage` (PL+EN), usunięty `Common.appUrl` — adres aplikacji przeniesiony do `src/lib/appLinks.ts`; `InvertDotButton`/`TrackedCTALink` otwierają linki wewnętrzne w tej samej karcie | pages, i18n, analytics, seo |
+| 2026-08-02 | **Fix: `proxy.ts` przeniesiony z rootu do `src/`** — przy katalogu `src/` Next nie rejestrował middleware z rootu (`middleware-manifest.json` pusty), więc detekcja locale z `Accept-Language` i tracking AgentMonitor nie działały także na produkcji; przekierowanie `/` → `/pl` szło z `src/app/page.tsx` i maskowało problem. Build potwierdza `ƒ Proxy (Middleware)` | architektura |
+| 2026-08-02 | Angielskie ścieżki URL (`pathnames` w `routing.ts`): `/en/calculator`, `/en/about`, `/en/contact`, `/en/author/[slug]`, `/en/privacy-policy`, `/en/terms`; nowy `src/lib/urls.ts` (`absoluteUrl`/`alternatesFor`/`ogImageUrl`) jako jedyne źródło adresów dla canonical, hreflang, JSON-LD i sitemapy; 301 ze starych adresów w `next.config.ts`; `Link` dla tras dynamicznych przechodzi na formę `{ pathname, params }`, przełącznik języka w Header używa `usePathname()` + `useParams()` | seo, architektura |
+| 2026-08-02 | SEO homepage: eyebrow z frazą „Wspólny budżet domowy dla par" nad H1, subheadline podniesiony do `<h2>`, nazwy funkcji w akordeonie jako `<h3>` opakowujące `<button>`; nowa sekcja `LatestPostsSection` (3 najnowsze posty przed CTABanner) — homepage nie miała dotąd żadnego linku do treści bloga; `CalculatorPromo` w szablonie posta domyka brakujący link blog → `/kalkulator` | pages, i18n, seo |
+| 2026-08-02 | Strony kategorii bloga `/blog/kategoria/[slug]` (EN `/blog/category/[slug]`) z `CollectionPage` + `BreadcrumbList`, pigułka kategorii w poście stała się linkiem; do sitemapy trafiają tylko kategorie z co najmniej jednym postem | pages, i18n, seo, cms-schema |
+| 2026-08-02 | Dynamiczne OG images: `src/app/og/route.tsx` (poza `[locale]` i poza matcherem proxy, żeby adres nie zależał od slugów) podpięty pod `/kalkulator`, `/blog` i strony kategorii; `Organization` rozszerzone o description, email, contactPoint, founder; usunięty `aggregateRating` (self-serving reviews) wraz z osieroconym fetchem opinii na homepage; regulamin i polityka prywatności przestają być `noindex` i wchodzą do sitemapy | seo |
+| 2026-08-02 | `llms.txt` i `llms-full.txt` uzupełnione o cennik i FAQ, dołożone wersje EN w `public/en/`; treści zaufania: „Szyfrowanie end-to-end" (opisane jako SSL/TLS) → „Szyfrowane połączenie"/TLS, rozbudowana odpowiedź FAQ o bezpieczeństwie na bazie twierdzeń już obecnych na stronie | seo, i18n |
+| 2026-08-02 | Scalenie `BeforeAfterSection` z `ComparisonSection` w jedną sekcję (obie niosły ten sam argument); wydzielone `BeforeAfterCards` i `ScribbleWord` — sekcja zostaje serwerowa; akordeon funkcji: kliknięcie zatrzymuje autocykl na stałe (hover pauzował tylko na desktopie); pole `testimonial.context` + render pod imieniem w karuzeli | pages, design-system, cms-schema, i18n |
 | 2026-08-02 | Przekazywanie języka do aplikacji: `withAppLocale()` dokleja `?locale=pl|en` (przez `URLSearchParams`, przed `#`, bez nadpisywania istniejących parametrów) do każdego linku na `app.ourmoney.pl` — bramka `/start`, CTA z Sanity (`ArticleCTA`), linki w treści artykułów (`ArticlePortableText`) i dwa odnośniki w regulaminie; `normalizeAppLocale()` tnie region (`en-US`→`en`) i sprowadza nieznane wartości do `pl`; linki do store'ów i adresy względne nietknięte (sprawdzany origin); `/start` przenosi dalej `utm_*`/`ref`/`gclid`/`fbclid`/`msclkid` (`pickForwardedParams()`), żeby redirect nie gubił atrybucji | pages, analytics, i18n |
 
 ---
 
-_Ostatnia aktualizacja: 2026-03-14_
+_Ostatnia aktualizacja: 2026-08-02_
 _Wersja: 1.0.0 — OurMoney Landing_

@@ -3,7 +3,14 @@
 import { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
 
-type Testimonial = { _id: string; name: string; rating: number; quote: string; photoUrl: string | null };
+type Testimonial = {
+  _id: string;
+  name: string;
+  context?: string | null;
+  rating: number;
+  quote: string;
+  photoUrl: string | null;
+};
 type Props = { items: Testimonial[] };
 
 const CARD_WIDTH = 320;
@@ -57,7 +64,14 @@ function TestimonialCard({ item }: { item: Testimonial }) {
               {initial}
             </div>
           )}
-          <span className="text-dark font-semibold text-base">{item.name}</span>
+          {/* Kontekst pod imieniem - konkret ("od 7 miesiecy") waży w opinii
+              wiecej niz samo imie, zwlaszcza przy produkcie finansowym */}
+          <div className="flex flex-col min-w-0">
+            <span className="text-dark font-semibold text-base">{item.name}</span>
+            {item.context && (
+              <span className="text-dark/45 text-xs leading-snug">{item.context}</span>
+            )}
+          </div>
         </div>
         <div className="flex items-center gap-1" style={{ flexShrink: 0 }}>
           <span className="text-dark/60 text-sm font-medium">{item.rating}.0</span>

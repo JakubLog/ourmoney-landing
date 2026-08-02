@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, type ComponentProps } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
+import { useParams } from 'next/navigation';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { Link, usePathname } from '@/i18n/navigation';
 import { Logo } from '@/components/ui/Logo';
@@ -13,6 +14,7 @@ export function Header() {
   const tCommon = useTranslations('Common');
   const locale = useLocale();
   const pathname = usePathname();
+  const params = useParams();
   const [open, setOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
 
@@ -45,6 +47,13 @@ export function Header() {
   ];
 
   const altLocale = locale === 'pl' ? 'en' : 'pl';
+
+  // Przelacznik jezyka celuje w te sama strone w drugim locale. usePathname()
+  // zwraca sciezke wewnetrzna wyliczona w runtime, wiec nie da sie jej dopasowac
+  // do literalowego typu href - stad jedno jawne rzutowanie zamiast `any`.
+  const switcherHref = { pathname, params } as unknown as ComponentProps<
+    typeof Link
+  >['href'];
 
   return (
     <header ref={headerRef} className="nav-shell fixed top-0 left-0 right-0 z-50">
@@ -89,7 +98,7 @@ export function Header() {
           {/* Right: Lang + CTA */}
           <div className="hidden md:flex items-center gap-4 md:justify-self-end">
             <Link
-              href={pathname}
+              href={switcherHref}
               locale={altLocale}
               className="text-xs uppercase tracking-widest group px-1 py-2 text-white/40 hover:text-white/70"
               onClick={() => trackLanguageSwitch(locale, altLocale)}
@@ -157,7 +166,7 @@ export function Header() {
                 {tCommon('startFree')}
               </a>
               <Link
-                href={pathname}
+                href={switcherHref}
                 locale={altLocale}
                 className="text-center text-xs text-white/35 uppercase tracking-widest py-3"
                 hrefLang={altLocale}

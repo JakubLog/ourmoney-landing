@@ -70,7 +70,7 @@ export function BlogPostCard({
   return (
     <article className="group flex flex-col bg-dark-3 rounded-2xl overflow-hidden border border-white/5 hover:border-accent/25 transition-all duration-400 hover:-translate-y-1">
       <Link
-        href={`/blog/${slug}`}
+        href={{ pathname: '/blog/[slug]', params: { slug } }}
         className="flex flex-col flex-1"
       >
         {/* Image */}
@@ -136,7 +136,7 @@ export function FeaturedPostCard({
   return (
     <article className="group relative flex flex-col md:flex-row rounded-3xl overflow-hidden border border-white/5 hover:border-accent/20 transition-all duration-500 bg-dark-3 min-h-[380px] md:min-h-[420px]">
       <Link
-        href={`/blog/${slug}`}
+        href={{ pathname: '/blog/[slug]', params: { slug } }}
         className="flex flex-col md:flex-row flex-1"
       >
         {/* Image - 55% width on desktop */}

@@ -19,6 +19,14 @@ export const testimonial = defineType({
       validation: (Rule) => Rule.required().max(400),
     }),
     defineField({
+      name: 'context',
+      title: 'Kontekst',
+      type: 'string',
+      description:
+        'Konkret uwiarygadniający opinię, np. "Prowadzą wspólny budżet od 7 miesięcy" albo "Para z Wrocławia, różne zarobki". Max 60 znaków.',
+      validation: (Rule) => Rule.max(60),
+    }),
+    defineField({
       name: 'rating',
       title: 'Ocena (1-5)',
       type: 'number',

@@ -45,6 +45,7 @@
       "description": "Pierwsza aplikacja finansowa stworzona specjalnie dla par. Sprawiedliwy podział wydatków, wspólne cele, zachowanie prywatności tam, gdzie tego chcesz."
     },
     "hero": {
+      "eyebrow": "Wspólny budżet domowy dla par",
       "headlineL1": "Czy pieniądze są źródłem",
       "headlinePost": "w Waszym związku?",
       "headlineWords": "TABU,STRESU,KONFLIKTÓW,PROBLEMÓW,NAPIĘCIA",
@@ -226,8 +227,8 @@
       "subtitle": "Finanse to delikatny temat. Dlatego bezpieczeństwo traktujemy priorytetowo.",
       "items": [
         {
-          "title": "Szyfrowanie end-to-end",
-          "description": "Wszystkie dane przesyłane są szyfrowanym połączeniem SSL/TLS."
+          "title": "Szyfrowane połączenie",
+          "description": "Wszystkie dane przesyłane są szyfrowanym połączeniem TLS - nikt po drodze ich nie odczyta."
         },
         {
           "title": "Prywatność by design",
@@ -375,9 +376,15 @@
         },
         {
           "question": "Czy nasze dane będą bezpieczne?",
-          "answer": "Prywatność i bezpieczeństwo to nasz priorytet. Stosujemy najwyższe standardy ochrony danych."
+          "answer": "Tak. Połączenie z aplikacją jest szyfrowane protokołem TLS, więc nikt po drodze nie odczyta Waszych transakcji. Nie sprzedajemy danych i nie wyświetlamy reklam - OurMoney nie zarabia na Waszych finansach. Przetwarzamy dane zgodnie z RODO, a każde z Was może w dowolnej chwili usunąć swoje dane z aplikacji. Co dokładnie zbieramy i po co, opisaliśmy w Polityce Prywatności."
         }
       ]
+    },
+    "latestPosts": {
+      "eyebrow": "Blog",
+      "title": "Zanim założycie wspólny budżet",
+      "subtitle": "Praktyczne poradniki o dzieleniu wydatków, wspólnym koncie i rozmowach o pieniądzach w związku.",
+      "cta": "Zobacz wszystkie artykuły"
     }
   },
   "AboutPage": {
@@ -440,6 +447,12 @@
       "note": "Odpowiadamy zazwyczaj w ciągu 24 godzin."
     }
   },
+  "CategoryPage": {
+    "eyebrow": "Kategoria",
+    "metaTitle": "{category} | OurMoney Blog",
+    "metaDescription": "Artykuły z kategorii {category} - praktyczne poradniki o wspólnych finansach dla par.",
+    "empty": "W tej kategorii nie ma jeszcze artykułów."
+  },
   "BlogPage": {
     "meta": {
       "title": "Blog | OurMoney",
@@ -465,6 +478,11 @@
     "shareArticle": "Kopiuj link",
     "linkCopied": "Skopiowano!",
     "relatedPosts": "Podobne artykuły",
+    "calculatorPromo": {
+      "title": "Policzcie swój podział wydatków",
+      "text": "Darmowy kalkulator pokaże, ile powinno płacić każde z Was przy Waszych zarobkach - i ile dopłaca osoba zarabiająca mniej, gdy dzielicie po równo.",
+      "cta": "Otwórz kalkulator podziału wydatków"
+    },
     "inArticleCta": {
       "headline": "Zarządzaj finansami razem z partnerem",
       "subtext": "OurMoney to pierwsza aplikacja finansowa stworzona specjalnie dla par. Sprawiedliwy podział wydatków, wspólne cele, pełna prywatność.",

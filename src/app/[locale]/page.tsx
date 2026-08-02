@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
+import { absoluteUrl, alternatesFor } from '@/lib/urls';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { HeroSection } from '@/components/sections/HeroSection';
@@ -13,12 +14,10 @@ import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { FAQSection } from '@/components/sections/FAQSection';
 import { CTABanner } from '@/components/sections/CTABanner';
 import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
-import { BeforeAfterSection } from '@/components/sections/BeforeAfterSection';
 import { TrustSection } from '@/components/sections/TrustSection';
 import { ComparisonSection } from '@/components/sections/ComparisonSection';
 import { PricingSection } from '@/components/sections/PricingSection';
-import { client } from '@/sanity/lib/client';
-import { TESTIMONIALS_QUERY } from '@/sanity/lib/queries';
+import { LatestPostsSection } from '@/components/sections/LatestPostsSection';
 
 export const revalidate = 86400;
 
@@ -28,7 +27,6 @@ export function generateStaticParams() {
 
 type Props = { params: Promise<{ locale: string }> };
 type FAQItem = { question: string; answer: string };
-type Testimonial = { _id: string; name: string; rating: number; photoUrl: string | null };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -37,18 +35,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: t('title'),
     description: t('description'),
-    alternates: {
-      canonical: `https://ourmoney.pl/${locale}`,
-      languages: {
-        pl: 'https://ourmoney.pl/pl',
-        en: 'https://ourmoney.pl/en',
-        'x-default': 'https://ourmoney.pl/pl',
-      },
-    },
+    alternates: alternatesFor('/', locale),
     openGraph: {
       title: t('title'),
       description: t('description'),
-      url: `https://ourmoney.pl/${locale}`,
+      url: absoluteUrl('/', locale),
       siteName: 'OurMoney',
       images: [{ url: '/og-image.png', width: 1200, height: 630 }],
       locale: locale === 'pl' ? 'pl_PL' : 'en_US',
@@ -69,19 +60,6 @@ export default async function HomePage({ params }: Props) {
   const tFaq = await getTranslations({ locale, namespace: 'HomePage.faq' });
   const faqItems = tFaq.raw('items') as FAQItem[];
 
-  // Ten sam fetch co w HeroSection — Next dedupuje żądanie w ramach renderu
-  const testimonials = await client.fetch<Testimonial[]>(
-    TESTIMONIALS_QUERY,
-    { language: locale },
-    process.env.NODE_ENV === 'production'
-      ? { next: { revalidate: 86400, tags: ['landing'] } }
-      : { cache: 'no-store' as const },
-  );
-  const avgRating =
-    testimonials.length > 0
-      ? testimonials.reduce((sum, t) => sum + (t.rating ?? 5), 0) / testimonials.length
-      : null;
-
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -91,7 +69,21 @@ export default async function HomePage({ params }: Props) {
         name: 'OurMoney',
         url: 'https://ourmoney.pl',
         logo: 'https://ourmoney.pl/ourmoney-logo-hero.svg',
+        description: locale === 'pl'
+          ? 'Twórcy OurMoney - aplikacji do wspólnego budżetu domowego dla par.'
+          : 'Makers of OurMoney - a shared household budget app for couples.',
+        email: 'kontakt@ourmoney.pl',
         sameAs: ['https://www.instagram.com/ourmoneypl/'],
+        founder: [
+          { '@type': 'Person', name: 'Jakub M. Fedoszczak' },
+          { '@type': 'Person', name: 'Magdalena Nestorowicz' },
+        ],
+        contactPoint: {
+          '@type': 'ContactPoint',
+          contactType: 'customer support',
+          email: 'kontakt@ourmoney.pl',
+          availableLanguage: ['pl', 'en'],
+        },
       },
       {
         '@type': 'WebSite',
@@ -143,14 +135,8 @@ export default async function HomePage({ params }: Props) {
         description: locale === 'pl'
           ? 'Aplikacja do wspólnego zarządzania budżetem domowym dla par'
           : 'Shared budget management app for couples',
-        ...(avgRating !== null && {
-          aggregateRating: {
-            '@type': 'AggregateRating',
-            ratingValue: avgRating.toFixed(1),
-            bestRating: '5',
-            ratingCount: testimonials.length,
-          },
-        }),
+        // Bez aggregateRating: opinie zbierane na wlasnej stronie o wlasnym
+        // produkcie sa self-serving i nie kwalifikuja sie do rich resultow
       },
       {
         '@type': 'FAQPage',
@@ -177,13 +163,13 @@ export default async function HomePage({ params }: Props) {
         <HowItWorksSection />
         <FeaturesSection locale={locale} />
         <AiReportSection locale={locale} />
-        <BeforeAfterSection />
         <BrandPromiseSection locale={locale} />
         <TestimonialsSection locale={locale} />
         <ComparisonSection locale={locale} />
         <TrustSection locale={locale} />
         <PricingSection locale={locale} />
         <FAQSection locale={locale} />
+        <LatestPostsSection locale={locale} />
         <CTABanner locale={locale} />
       </main>
       <Footer />

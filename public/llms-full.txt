@@ -44,6 +44,49 @@ Działa offline, szybka, responsywna.
 - Osoby zmęczone arkuszami kalkulacyjnymi
 - Pary planujące wspólne cele finansowe (ślub, mieszkanie, wakacje)
 
+## Cennik
+
+### Plan darmowy - 0 zł na zawsze
+Bez karty kredytowej, bez okresu próbnego, nie wygasa.
+Zawiera: wspólny budżet dla dwóch osób, nielimitowane wydatki i przychody,
+podział po równo / proporcjonalnie do dochodów / moje-twoje-nasze,
+wspólne cele i koperty, aplikację PWA na telefon.
+Limity: ograniczona liczba własnych kategorii, skrócona historia transakcji,
+1 import wyciągu bankowego miesięcznie, do 5 skanów paragonu miesięcznie,
+bez analizy AI i bez automatycznej integracji z bankiem.
+
+### Premium - 39,99 zł miesięcznie albo 399,99 zł rocznie
+Rozliczenie roczne oznacza 2 miesiące gratis. Ceny brutto, w złotówkach.
+Premium to ten sam zakres co plan darmowy, tylko bez limitów, plus:
+nielimitowane własne kategorie, pełna historia transakcji, miesięczna analiza AI
+z rekomendacjami, nielimitowane importy wyciągów i skany paragonów,
+integracja z bankiem pobierająca transakcje automatycznie.
+Premium włącza się i wyłącza w aplikacji w dowolnym momencie.
+
+## Najczęstsze pytania
+
+**Czy oboje musimy mieć aplikację?**
+Nie na start. Jedna osoba może zacząć sama i zaprosić partnera później.
+
+**Czy aplikacja jest darmowa?**
+Tak, podstawowa wersja jest darmowa na zawsze i nie wymaga karty. Codzienne prowadzenie
+budżetu nie ma limitów. Płatne są tylko analiza AI, integracja z bankiem i zdjęcie
+limitów historii oraz importów.
+
+**Jak działa podział wydatków?**
+Do wyboru: po równo (50/50), proporcjonalnie do dochodów (np. 60/40), własne proporcje
+albo samo śledzenie wydatków bez rozliczania. OurMoney liczy udziały automatycznie.
+
+**Czy aplikacja działa na iOS i Android?**
+Tak. OurMoney to PWA - instaluje się prosto z przeglądarki, bez App Store i Google Play.
+Na iPhonie przez Safari ("Do ekranu początkowego"), na Androidzie przez Chrome
+("Zainstaluj aplikację").
+
+**Czy dane są bezpieczne?**
+Połączenie z aplikacją jest szyfrowane protokołem TLS. Dane nie są sprzedawane,
+w aplikacji nie ma reklam, przetwarzanie odbywa się zgodnie z RODO, a dane można
+usunąć w dowolnej chwili.
+
 ## Porównanie z alternatywami
 
 | Cecha | OurMoney | Splitwise | YNAB | Arkusz |
@@ -58,8 +101,10 @@ Działa offline, szybka, responsywna.
 
 - Strona główna: https://ourmoney.pl
 - Aplikacja: https://app.ourmoney.pl
+- Kalkulator podziału wydatków: https://ourmoney.pl/pl/kalkulator
 - Blog: https://ourmoney.pl/pl/blog
 - O nas: https://ourmoney.pl/pl/o-nas
+- Wersja angielska: https://ourmoney.pl/en/llms-full.txt
 
 ## Kontakt
 

@@ -48,6 +48,11 @@ export async function HeroSection({ locale }: Props) {
 
       {/* Content */}
       <div className="hero-stagger relative z-10 max-w-6xl mx-auto px-6 text-center py-24 md:py-32">
+        {/* Eyebrow niesie fraze kluczowa - H1 zostaje hookiem emocjonalnym,
+            ale nazwa kategorii produktu stoi nad nim, nad linia zgiecia */}
+        <p className="text-xs text-white/60 uppercase tracking-[0.2em] mb-4">
+          {t('eyebrow')}
+        </p>
         <h1 className="font-display text-5xl md:text-7xl lg:text-[5.25rem] text-white leading-[1.05] tracking-tight mb-6">
           {t('headlineL1')}
           <br />
@@ -57,9 +62,11 @@ export async function HeroSection({ locale }: Props) {
           />{' '}
           {t('headlinePost')}
         </h1>
-        <p className="text-base md:text-lg text-white/80 max-w-xl mx-auto mb-8 leading-relaxed">
+        {/* h2, nie p - to zdanie niesie fraze "wspolny budzet domowy" i jest
+            jedynym tekstem opisowym w hero */}
+        <h2 className="text-base md:text-lg text-white/80 max-w-xl mx-auto mb-8 leading-relaxed">
           {t('subheadline')}
-        </p>
+        </h2>
 
         {/* Social proof with avatars */}
         <aside aria-label={t('socialProof')} className="mb-6 flex flex-col items-center gap-3">

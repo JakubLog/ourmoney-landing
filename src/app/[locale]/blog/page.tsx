@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
+import { absoluteUrl, alternatesFor, ogImageUrl } from '@/lib/urls';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { CTABanner } from '@/components/sections/CTABanner';
@@ -34,23 +35,17 @@ type Post = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'BlogPage.meta' });
+  const ogImage = ogImageUrl(t('title'), t('description'));
   return {
     title: t('title'),
     description: t('description'),
-    alternates: {
-      canonical: `https://ourmoney.pl/${locale}/blog`,
-      languages: {
-        pl: 'https://ourmoney.pl/pl/blog',
-        en: 'https://ourmoney.pl/en/blog',
-        'x-default': 'https://ourmoney.pl/pl/blog',
-      },
-    },
+    alternates: alternatesFor('/blog', locale),
     openGraph: {
       title: t('title'),
       description: t('description'),
-      url: `https://ourmoney.pl/${locale}/blog`,
+      url: absoluteUrl('/blog', locale),
       siteName: 'OurMoney',
-      images: [{ url: '/og-image.png', width: 1200, height: 630 }],
+      images: [{ url: ogImage, width: 1200, height: 630 }],
       locale: locale === 'pl' ? 'pl_PL' : 'en_US',
       type: 'website',
     },
@@ -58,7 +53,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: 'summary_large_image',
       title: t('title'),
       description: t('description'),
-      images: ['/og-image.png'],
+      images: [ogImage],
     },
   };
 }
@@ -81,7 +76,7 @@ export default async function BlogPage({ params }: Props) {
     '@type': 'CollectionPage',
     name: t('title'),
     description: t('description'),
-    url: `https://ourmoney.pl/${locale}/blog`,
+    url: absoluteUrl('/blog', locale),
     inLanguage: locale === 'pl' ? 'pl-PL' : 'en-US',
     isPartOf: {
       '@type': 'WebSite',
@@ -92,7 +87,7 @@ export default async function BlogPage({ params }: Props) {
       hasPart: posts.map((p) => ({
         '@type': 'BlogPosting',
         headline: p.title,
-        url: `https://ourmoney.pl/${locale}/blog/${p.slug}`,
+        url: absoluteUrl({ pathname: '/blog/[slug]', params: { slug: p.slug } }, locale),
         datePublished: p.publishedAt,
         ...(p.mainImageUrl && { image: p.mainImageUrl }),
         ...(p.authorName && {
@@ -110,7 +105,7 @@ export default async function BlogPage({ params }: Props) {
         '@type': 'ListItem',
         position: 1,
         name: locale === 'pl' ? 'Strona główna' : 'Home',
-        item: `https://ourmoney.pl/${locale}`,
+        item: absoluteUrl('/', locale),
       },
       {
         '@type': 'ListItem',

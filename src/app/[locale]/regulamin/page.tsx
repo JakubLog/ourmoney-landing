@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
+import { absoluteUrl, alternatesFor } from '@/lib/urls';
 import { Link } from '@/i18n/navigation';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
@@ -19,10 +20,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: t('title'),
     description: t('description'),
-    alternates: {
-      canonical: `https://ourmoney.pl/${locale}/regulamin`,
-    },
-    robots: { index: false, follow: false },
+    alternates: alternatesFor('/regulamin', locale),
+    // Jak przy polityce prywatnosci - strona zaufania, warta indeksacji
+    robots: { index: true, follow: true },
   };
 }
 
@@ -31,6 +31,7 @@ export default async function TermsPage({ params }: Props) {
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'TermsPage' });
   const appHref = withAppLocale(`${APP_ORIGIN}/`, locale);
+  const canonicalHref = absoluteUrl('/regulamin', locale);
 
   return (
     <>
@@ -138,7 +139,7 @@ export default async function TermsPage({ params }: Props) {
             <p>
               Operator zastrzega sobie prawo do zmiany niniejszego Regulaminu. Aktualna wersja
               Regulaminu zawsze dostępna jest pod adresem{' '}
-              <a href="https://ourmoney.pl/pl/regulamin">ourmoney.pl/pl/regulamin</a>.
+              <a href={canonicalHref}>{canonicalHref.replace('https://', '')}</a>.
               Data ostatniej aktualizacji widoczna jest na górze strony.
             </p>
             <p>
