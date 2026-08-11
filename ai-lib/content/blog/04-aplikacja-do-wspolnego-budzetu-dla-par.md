@@ -3,6 +3,8 @@
 - **title:** Aplikacja do wspólnego budżetu dla par: jak wybrać dobrą?
 - **slug:** aplikacja-do-wspolnego-budzetu-dla-par
 - **language:** pl
+- **mainImage:** images/aplikacja-budzet-para-z-telefonem.jpg
+- **mainImage.alt:** Para na kanapie wspólnie przegląda budżet w telefonie
 - **excerpt:** Arkusz, Splitwise, aplikacja bankowa czy budżetówka dla par? Porównujemy cztery sposoby prowadzenia wspólnych finansów i pokazujemy, na co patrzeć przy wyborze.
 - **seo.title:** Aplikacja do wspólnego budżetu dla par: jak wybrać
 - **seo.description:** Arkusz, Splitwise, aplikacja banku czy budżet dla par? Porównanie czterech rozwiązań i lista cech, które decydują o tym, czy będziecie z niej korzystać.

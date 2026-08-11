@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "import:blog": "node scripts/import-blog-posts.mjs"
   },
   "dependencies": {
     "@agentmonitor/sdk": "^0.2.4",

@@ -3,6 +3,8 @@
 - **title:** Jak zarządzać wspólnym budżetem domowym? 7 kroków dla par
 - **slug:** jak-zarzadzac-wspolnym-budzetem-domowym
 - **language:** pl
+- **mainImage:** images/budzet-domowy-para-przy-stole.jpg
+- **mainImage.alt:** Para przy kuchennym stole zapisuje wspólny budżet domowy w notesie
 - **excerpt:** Wspólny budżet domowy nie musi być arkuszem, którego nikt nie otwiera. Oto siedem kroków, dzięki którym ustalicie budżet we dwoje i dowieziecie go do końca miesiąca.
 - **seo.title:** Jak zarządzać wspólnym budżetem domowym: 7 kroków
 - **seo.description:** Jak ustalić wspólny budżet domowy, podzielić wydatki i pilnować ich bez kłótni. Praktyczny poradnik dla par z przykładowymi kwotami.

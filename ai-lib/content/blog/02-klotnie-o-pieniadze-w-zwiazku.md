@@ -3,6 +3,8 @@
 - **title:** Kłótnie o pieniądze w związku: skąd się biorą i jak je wyciszyć
 - **slug:** klotnie-o-pieniadze-w-zwiazku
 - **language:** pl
+- **mainImage:** images/klotnie-o-pieniadze-para-na-kanapie.jpg
+- **mainImage.alt:** Para siedzi na przeciwnych końcach kanapy po kłótni o pieniądze
 - **excerpt:** Kłótnie o pieniądze rzadko dotyczą pieniędzy. Zwykle chodzi o kontrolę, poczucie niesprawiedliwości albo zaskoczenie. Oto pięć mechanizmów i konkretne sposoby, żeby je rozbroić.
 - **seo.title:** Kłótnie o pieniądze w związku: przyczyny i rozwiązania
 - **seo.description:** Dlaczego pary kłócą się o wydatki i jak to zatrzymać. Pięć najczęstszych mechanizmów konfliktu o pieniądze i praktyczne sposoby na każdy z nich.

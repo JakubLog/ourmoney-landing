@@ -3,9 +3,11 @@
 - **title:** Jak oszczędzać pieniądze we dwoje? Wspólny cel zamiast wyrzeczeń
 - **slug:** jak-oszczedzac-pieniadze-w-zwiazku
 - **language:** pl
+- **mainImage:** images/oszczedzanie-wspolny-cel-mapa.jpg
+- **mainImage.alt:** Para planuje wspólny cel oszczędnościowy nad rozłożoną mapą i słoikiem z monetami
 - **excerpt:** Oszczędzanie z resztek nie działa, bo resztek nie ma. Sprawdź metodę wspólnego celu: konkretna kwota, konkretna data i przelew w dniu wypłaty zamiast codziennych wyrzeczeń.
 - **seo.title:** Jak oszczędzać pieniądze we dwoje: metoda wspólnego celu
-- **seo.description:** Jak para może realnie odkładać pieniądze co miesiąc. Metoda wspólnego celu, gotowe wyliczenia i sposób na to, by oszczędzanie przetrwało dłużej niż miesiąc.
+- **seo.description:** Jak para może realnie odkładać co miesiąc. Metoda wspólnego celu, gotowe wyliczenia i sposób na to, by oszczędzanie przetrwało dłużej niż miesiąc.
 - **seo.keywords:** jak oszczędzać pieniądze, oszczędzanie w związku, cel oszczędnościowy, wspólne oszczędzanie, poduszka finansowa dla pary
 - **aiSeo.aiSummary:** Metoda oszczędzania dla par oparta na nazwanym celu z kwotą i datą, przelewie w dniu wypłaty, podziale wpłat proporcjonalnym do dochodów oraz kolejności celów: poduszka finansowa, potem cele marzeniowe. Zawiera przykładowe wyliczenia miesięcznych wpłat.
 - **aiSeo.keyTakeaways:**
