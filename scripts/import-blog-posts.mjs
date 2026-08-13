@@ -55,7 +55,9 @@ const key = () => crypto.randomBytes(6).toString('hex');
  * Plik ma dwie czesci rozdzielone linia `---`: blok pol (lista `- **klucz:** wartosc`)
  * i tresc w markdown. Zwraca { fields, markdown }.
  */
-function splitFile(raw) {
+function splitFile(input) {
+  // Checkout na Windows (core.autocrlf) daje CRLF - normalizujemy do LF.
+  const raw = input.replace(/\r\n/g, '\n');
   const separator = raw.indexOf('\n---\n');
   if (separator === -1) {
     throw new Error('Brak separatora `---` miedzy blokiem pol a trescia');
