@@ -37,7 +37,7 @@ export const config = {
   matcher: [
     // `og` wyjete swiadomie - generator obrazkow OG nie ma wersji jezykowych,
     // a middleware doklejalby mu prefiks locale i psul adresy
-    '/((?!_next|_vercel|og|.*\\..*).*)',
+    '/((?!api|_next|_vercel|og|.*\\..*).*)',
     '/([\\w-]+)?/studio(.*)',
   ],
 };
