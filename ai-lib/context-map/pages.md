@@ -52,8 +52,9 @@ sekcja pozostaje serwerowa.
 → zdanie o koszcie. Pod siatką „most" do kalkulatora: zdanie + link `#kalkulator` z `ArrowDown`.
 Sekcja ma kotwicę `#wyzwania`, `aria-labelledby`, `role="list"`, `data-section-view="pain_points"`.
 Server Component, bez obrazów i nowego JS (tylko `ScrollReveal`). Kolejność kart celowa:
-podział → kłótnie → plany (karta 1 jest zawiasem do kalkulatora). Bez ikon w kartach (HowItWorks
-i BrandPromise mają już ikony). Pełny audyt UX: `ai-lib/plans/2026-09-13-audyt-sekcji-pain-points.md`.
+podział → kłótnie → plany (karta 1 jest zawiasem do kalkulatora). Zamiast ikon lucide (HowItWorks i BrandPromise
+mają już ikony) każda karta ma autorską spot-illustration inline SVG w prawym górnym rogu
+(`PainPointIllustration`, `kind` z `messages/`: `split` waga / `argument` dymki z iskrą / `plans` flaga na wzgórzu). Pełny audyt UX: `ai-lib/plans/2026-09-13-audyt-sekcji-pain-points.md`.
 
 ---
 

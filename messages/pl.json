@@ -63,6 +63,7 @@
         {
           "title": "Płacicie po równo, choć zarabiacie różnie",
           "description": "Po równo nie zawsze znaczy sprawiedliwie. Przy różnych zarobkach ten sam rachunek waży dla każdego z Was inaczej.",
+          "kind": "split",
           "dialogue": [
             { "speaker": "Agnieszka", "line": "Zapłaciłam wczoraj za zakupy. Znowu." },
             { "speaker": "Rafał", "line": "A ja wziąłem czynsz i prąd. Chyba wychodzi na to samo?" }
@@ -71,6 +72,7 @@
         {
           "title": "Rozmowa o pieniądzach kończy się kłótnią",
           "description": "Kiedy żadne z Was nie ma pełnego obrazu, zostaje domysł. A domysł szybko zamienia się w zarzut.",
+          "kind": "argument",
           "dialogue": [
             { "speaker": "Rafał", "line": "Ile w sumie wydaliśmy w tym miesiącu?" },
             { "speaker": "Agnieszka", "line": "Nie wiem. Nie liczyłam." }
@@ -79,6 +81,7 @@
         {
           "title": "Wspólne plany utknęły na „kiedyś”",
           "description": "Mieszkanie, ślub, dziecko. Bez wspólnego licznika każdy plan zostaje w sferze rozmów.",
+          "kind": "plans",
           "dialogue": [
             { "speaker": "Agnieszka", "line": "Zbieramy na wkład własny czy nie?" },
             { "speaker": "Rafał", "line": "Od czegoś trzeba by zacząć." }

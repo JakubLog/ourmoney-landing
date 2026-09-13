@@ -63,6 +63,7 @@
         {
           "title": "You split 50/50, but you don’t earn 50/50",
           "description": "Equal is not always fair. When you earn differently, the same bill weighs differently on each of you.",
+          "kind": "split",
           "dialogue": [
             { "speaker": "Anna", "line": "I paid for the groceries yesterday. Again." },
             { "speaker": "Mark", "line": "And I covered rent and electricity. Roughly even, right?" }
@@ -71,6 +72,7 @@
         {
           "title": "Every money talk turns into an argument",
           "description": "When neither of you has the full picture, all that is left is guessing. And guessing quickly turns into blame.",
+          "kind": "argument",
           "dialogue": [
             { "speaker": "Mark", "line": "How much did we actually spend this month?" },
             { "speaker": "Anna", "line": "No idea. I didn’t count." }
@@ -79,6 +81,7 @@
         {
           "title": "Your plans are stuck at “someday”",
           "description": "A flat, a wedding, a child. Without a shared counter, every plan stays a conversation.",
+          "kind": "plans",
           "dialogue": [
             { "speaker": "Anna", "line": "Are we saving for the deposit or not?" },
             { "speaker": "Mark", "line": "We’d have to start somewhere." }

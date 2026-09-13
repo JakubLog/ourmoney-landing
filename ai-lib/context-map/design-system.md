@@ -141,6 +141,16 @@ przełącza `chat--pending` → `chat--play`, resztę robi CSS w `globals.css` (
 dymka 1 wskakuje (`chatPop`, 380 ms, +200 ms), wskaźnik „pisze…" (3 kropki, `aria-hidden`, pozycja absolutna
 na górze slotu odpowiedzi — nie zajmuje miejsca, CLS 0) widoczny 650–1550 ms, dymka 2 wskakuje +1500 ms;
 karty przesunięte o `--chat-delay` = i × 120 ms. Reduced-motion: bez animacji i bez wskaźnika. Bez JS: wszystko widoczne.
+Spot-illustration karty (`src/components/ui/PainPointIllustration.tsx`, Server Component): inline SVG `viewBox 0 0 64 64`,
+kreska `currentColor` 1.75 z zaokrąglonymi końcami, jeden akcent `fill: var(--color-accent)` z obrysem `--color-dark`
+(limonka bez obrysu ma na jasnym tle 1,3:1). Rozmiar `size-16 md:size-20` (64/80 px), `aria-hidden`, w osobnym
+wierszu nad `h3` wyrównana do prawej (`-mt-2 -mr-1`) — nie w wierszu z `h3`, bo przy 1024 px zabierała miejsce
+i łamała każdy nagłówek na 3 linie. Motywy: `split` (waga z monetą), `argument` (dwie dymki + iskra), `plans` (flaga na wzgórzu).
+Animacja „Messenger" (`ChatDialogue`, client, `src/components/ui/ChatDialogue.tsx`): współdzielony IntersectionObserver
+przełącza `chat--pending` → `chat--play`, resztę robi CSS w `globals.css` (blok `PainPoints — dymki rozmowy`):
+dymka 1 wskakuje (`chatPop`, 380 ms, +200 ms), wskaźnik „pisze…" (3 kropki, `aria-hidden`, pozycja absolutna
+na górze slotu odpowiedzi — nie zajmuje miejsca, CLS 0) widoczny 650–1550 ms, dymka 2 wskakuje +1500 ms;
+karty przesunięte o `--chat-delay` = i × 120 ms. Reduced-motion: bez animacji i bez wskaźnika. Bez JS: wszystko widoczne.
 | `.sheen` | Błysk po CTA na hover | Przyciski CTA |
 
 ### Zasady

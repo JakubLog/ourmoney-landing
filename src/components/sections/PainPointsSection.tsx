@@ -3,10 +3,12 @@ import { ArrowDown } from 'lucide-react';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SectionLead } from '@/components/ui/SectionLead';
 import { ChatDialogue } from '@/components/ui/ChatDialogue';
+import { PainPointIllustration } from '@/components/ui/PainPointIllustration';
 
 type Props = { locale: string };
 
 type PainItem = {
+  kind: 'split' | 'argument' | 'plans';
   title: string;
   description: string;
   dialogue: { speaker: string; line: string }[];
@@ -36,10 +38,17 @@ export async function PainPointsSection({ locale }: Props) {
         {/* Cards - micro-dialogue between partners */}
         <ul role="list" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 list-none p-0 m-0">
           {items.map((item, i) => (
-            <li key={item.title} className={i === 2 ? 'md:col-span-2 lg:col-span-1' : undefined}>
+            <li key={item.kind} className={i === 2 ? 'md:col-span-2 lg:col-span-1' : undefined}>
               <ScrollReveal delay={i * 90} className="h-full">
                 <article className="h-full rounded-panel border border-dark/8 bg-surface-2 p-6 md:p-8">
-                  <h3 className="text-lg md:text-xl font-medium text-dark leading-snug">
+                  {/* Ilustracja w osobnym wierszu (znacznik w prawym gornym rogu karty):
+                      w wierszu z h3 zabierala 56-72 px miary i na 1024 px lamala KAZDY
+                      naglowek na 3 linie, a na 768 px tylko srodkowy - dialogi w rzedzie
+                      przestawaly sie wyrownywac. */}
+                  <div className="flex justify-end">
+                    <PainPointIllustration kind={item.kind} className="-mt-2 -mr-1 text-dark" />
+                  </div>
+                  <h3 className="mt-1 text-lg md:text-xl font-medium text-dark leading-snug">
                     {item.title}
                   </h3>
 

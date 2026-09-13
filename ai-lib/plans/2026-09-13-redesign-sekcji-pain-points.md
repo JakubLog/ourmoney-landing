@@ -239,6 +239,15 @@ w efekcie) i blok CSS w `globals.css`: dymka 1 `chatPop` +200 ms → wskaźnik �
 Dymki `rounded-card` (mniej „pigułkowe"), `gap-3` między wiadomościami. Odstępy kart/sekcji/mostu bez zmian
 po przeglądzie screenshotów 390/768/1440 (Playwright na zainstalowanym Chrome — skrypt w scratchpadzie sesji).
 
+### Faza 5 — spot-illustrations SVG (2026-09-13, Opus effort wysoki + review architekta)
+Życzenie właściciela: „jakieś SVG tematyczne dla każdego kafelka". Zamiast ikon lucide w kółkach (katalog ikon)
+trzy autorskie rysunki inline w `src/components/ui/PainPointIllustration.tsx` (viewBox 64, kreska `currentColor`
+1.75, jeden akcent `--color-accent` z obrysem): waga z monetą na cięższej szalce, dwie rozminięte dymki z iskrą,
+flaga celu na wzgórzu z przerywaną ścieżką. Trzy rundy iteracji na arkuszu 48/56/96/220 px. Umiejscowienie:
+osobny wiersz nad `h3`, do prawej — wariant „obok h3" odrzucony po pomiarze (przy 1024 px każdy nagłówek łamał się
+na 3 linie). Rozmiar podbity przez architekta z 48/56 do 64/80 px, bo przy 56 px rysunek ginął na tle dymek.
+Mapowanie przez nowe pole `items[].kind` w `messages/*.json` (`split`/`argument`/`plans`), używane też jako `key`.
+
 ## Pomiar
 
 Lejek na istniejących eventach (bez nowych):
