@@ -55,23 +55,38 @@
       "noCreditCard": "Nie wymaga karty kredytowej"
     },
     "painPoints": {
-      "eyebrow": "Wasze wyzwania finansowe jako pary",
+      "eyebrow": "Znamy te rozmowy",
       "title": "Czy te wyzwania brzmią znajomo?",
-      "subtitle": "Nierówne zarobki, wydatki ustalane w biegu i rozmowy o pieniądzach odkładane na później - tak wygląda wspólny budżet domowy w większości związków.",
+      "subtitle": "Nierówne zarobki, wydatki ustalane w biegu, temat pieniędzy przekładany na weekend. Tak wygląda wspólny budżet domowy w większości związków — i tak zaczyna się większość kłótni.",
+      "dialogueLabel": "Przykładowa rozmowa pary o wspólnych wydatkach",
       "items": [
         {
-          "title": "Kto powinien płacić za co?",
-          "description": "I jak sprawiedliwie podzielić wydatki, gdy zarabiacie różnie? Ciągłe kalkulacje i napięcia przy każdym rachunku."
+          "title": "Płacicie po równo, choć zarabiacie różnie",
+          "description": "Po równo nie zawsze znaczy sprawiedliwie. Przy różnych zarobkach ten sam rachunek waży dla każdego z Was inaczej.",
+          "dialogue": [
+            { "speaker": "Agnieszka", "line": "Zapłaciłam wczoraj za zakupy. Znowu." },
+            { "speaker": "Rafał", "line": "A ja wziąłem czynsz i prąd. Chyba wychodzi na to samo?" }
+          ]
         },
         {
-          "title": "Jak uniknąć kłótni o pieniądze?",
-          "description": "Pieniądze to jeden z najczęstszych powodów konfliktów w związkach. Brak transparentności prowadzi do nieufności."
+          "title": "Rozmowa o pieniądzach kończy się kłótnią",
+          "description": "Kiedy żadne z Was nie ma pełnego obrazu, zostaje domysł. A domysł szybko zamienia się w zarzut.",
+          "dialogue": [
+            { "speaker": "Rafał", "line": "Ile w sumie wydaliśmy w tym miesiącu?" },
+            { "speaker": "Agnieszka", "line": "Nie wiem. Nie liczyłam." }
+          ]
         },
         {
-          "title": "Jak planować wspólną przyszłość bez stresu?",
-          "description": "Mieszkanie, ślub, dzieci, jak finansowo przygotować się na kolejne kroki?"
+          "title": "Wspólne plany utknęły na „kiedyś”",
+          "description": "Mieszkanie, ślub, dziecko. Bez wspólnego licznika każdy plan zostaje w sferze rozmów.",
+          "dialogue": [
+            { "speaker": "Agnieszka", "line": "Zbieramy na wkład własny czy nie?" },
+            { "speaker": "Rafał", "line": "Od czegoś trzeba by zacząć." }
+          ]
         }
-      ]
+      ],
+      "bridgeLead": "Pierwsza z tych rozmów ma konkretną odpowiedź.",
+      "bridgeCta": "Policzcie sprawiedliwy podział"
     },
     "calculator": {
       "eyebrow": "Kalkulator",

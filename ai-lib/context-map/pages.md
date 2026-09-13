@@ -46,6 +46,15 @@ niosły ten sam argument („z nami lepiej niż bez nas"). Karty przed/po żyją
 w `BeforeAfterCards`, animowana obwódka nagłówka w `ScribbleWord` (client), sama
 sekcja pozostaje serwerowa.
 
+**Sekcja 2 (Pain Points)** — redesign 2026-09-13 (plan `ai-lib/plans/2026-09-13-redesign-sekcji-pain-points.md`):
+„karty rozmowy". Każda karta = `h3` (twierdzenie, nie pytanie) → `<figure>` z mikro-dialogiem pary
+(dwie dymki: jasna po lewej, ciemna po prawej; imiona Agnieszka/Rafał, EN Anna/Mark — w `messages/`)
+→ zdanie o koszcie. Pod siatką „most" do kalkulatora: zdanie + link `#kalkulator` z `ArrowDown`.
+Sekcja ma kotwicę `#wyzwania`, `aria-labelledby`, `role="list"`, `data-section-view="pain_points"`.
+Server Component, bez obrazów i nowego JS (tylko `ScrollReveal`). Kolejność kart celowa:
+podział → kłótnie → plany (karta 1 jest zawiasem do kalkulatora). Bez ikon w kartach (HowItWorks
+i BrandPromise mają już ikony). Pełny audyt UX: `ai-lib/plans/2026-09-13-audyt-sekcji-pain-points.md`.
+
 ---
 
 ## Blog — Lista postów (`/blog`)

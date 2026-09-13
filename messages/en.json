@@ -55,23 +55,38 @@
       "noCreditCard": "No credit card required"
     },
     "painPoints": {
-      "eyebrow": "Your financial challenges as a couple",
+      "eyebrow": "We know these conversations",
       "title": "Do these challenges sound familiar?",
-      "subtitle": "Unequal incomes, spending decided on the fly and money talks pushed to next week - that is what a shared household budget looks like in most relationships.",
+      "subtitle": "Unequal incomes, spending decided on the fly, the money talk pushed to the weekend. That is what a shared household budget looks like in most relationships — and where most arguments start.",
+      "dialogueLabel": "A sample conversation between partners about shared expenses",
       "items": [
         {
-          "title": "Who should pay for what?",
-          "description": "And how to split expenses fairly when you earn differently? Constant calculations and tension at every bill."
+          "title": "You split 50/50, but you don’t earn 50/50",
+          "description": "Equal is not always fair. When you earn differently, the same bill weighs differently on each of you.",
+          "dialogue": [
+            { "speaker": "Anna", "line": "I paid for the groceries yesterday. Again." },
+            { "speaker": "Mark", "line": "And I covered rent and electricity. Roughly even, right?" }
+          ]
         },
         {
-          "title": "How to avoid arguments about money?",
-          "description": "Money is one of the most common sources of conflict in relationships. Lack of transparency leads to mistrust."
+          "title": "Every money talk turns into an argument",
+          "description": "When neither of you has the full picture, all that is left is guessing. And guessing quickly turns into blame.",
+          "dialogue": [
+            { "speaker": "Mark", "line": "How much did we actually spend this month?" },
+            { "speaker": "Anna", "line": "No idea. I didn’t count." }
+          ]
         },
         {
-          "title": "How to plan a shared future without stress?",
-          "description": "An apartment, wedding, children - how to financially prepare for each next step?"
+          "title": "Your plans are stuck at “someday”",
+          "description": "A flat, a wedding, a child. Without a shared counter, every plan stays a conversation.",
+          "dialogue": [
+            { "speaker": "Anna", "line": "Are we saving for the deposit or not?" },
+            { "speaker": "Mark", "line": "We’d have to start somewhere." }
+          ]
         }
-      ]
+      ],
+      "bridgeLead": "The first of those conversations has a concrete answer.",
+      "bridgeCta": "Calculate a fair split"
     },
     "calculator": {
       "eyebrow": "Calculator",

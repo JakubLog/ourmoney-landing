@@ -43,7 +43,7 @@
 | `share_click` | Kopiowanie linku artykułu (ShareButton) | `post_slug`, `locale` |
 | `email_copy` | Kopiowanie adresu e-mail (CopyEmail) | `page` (pathname), `locale` |
 | `calculator_mode_change` | Przełączenie trybu podziału 50/50 ↔ proporcjonalny | `mode`, `placement`, `locale` |
-| `section_view` | Sekcja homepage wchodzi w viewport (raz na pageview; próg: górna krawędź mija 60% wysokości okna) | `section` (`calculator_teaser`/`features`/`pricing`/`faq`/`cta_banner`), `locale` |
+| `section_view` | Sekcja homepage wchodzi w viewport (raz na pageview; próg: górna krawędź mija 60% wysokości okna) | `section` (`pain_points`/`calculator_teaser`/`features`/`pricing`/`faq`/`cta_banner`), `locale` |
 
 ### Lokalizacje CTA (`cta_location`)
 
@@ -81,8 +81,13 @@
 
 ### Deklaratywne atrybuty (server components, zero JS)
 
-- `data-section-view="nazwa"` na `<section>` → event `section_view` (obecnie: PricingSection, CalculatorTeaserSection, FeaturesSection, FAQSection, CTABanner)
+- `data-section-view="nazwa"` na `<section>` → event `section_view` (obecnie: PainPointsSection, PricingSection, CalculatorTeaserSection, FeaturesSection, FAQSection, CTABanner)
 - `data-track-faq` na kontenerze akordeonu `<details>` → event `faq_open` (FAQSection)
+
+Lejek sekcji Pain Points (bez nowych eventów): `section_view: pain_points` → `section_view: calculator_teaser`
+→ `calculator_used` → `cta_click`/`app_open`. Wskaźnik główny redesignu 2026-09-13:
+`section_view(calculator_teaser) / section_view(pain_points)`. Kliknięcie linku-mostu `#kalkulator`
+nie jest trackowane (opcjonalnie w 2. iteracji przez `trackCTAClick({ location: 'pain_points_bridge' })`).
 
 ### Konfiguracja po stronie GTM (ręcznie, bez kodu)
 

@@ -116,6 +116,15 @@ Sekcja z hero:       px-6 pt-36 pb-24     (miejsce na floating header)
 **Promienie koncentryczne**: promień dziecka = promień rodzica − padding.
 Tu wartość arbitralna jest poprawna, np. poświata w `CTABanner`: `rounded-[40px]` = 32 + inset 8.
 
+### Dymka dialogowa (PainPointsSection)
+
+Wzorzec „czat" bez SVG i trójkątów: `rounded-panel` z jednym wyzerowanym rogiem jako ogonkiem
+(`rounded-bl-none` dla dymki lewej, `rounded-br-none` dla prawej), `px-4 py-3`, `max-w-[88%]`.
+Dymki dopasowują się do treści (`self-start` / `self-end`), na md dodatkowo `md:max-w-sm`.
+Dymka jasna: `bg-white border border-dark/10 text-dark/80`; dymka ciemna: `bg-dark text-white/90`,
+wyrównana `self-end`. Imię mówiącego nad dymką: `text-xs uppercase tracking-[0.1em] text-dark/70` (nad ciemną `text-right`).
+Karta-kontener: `rounded-panel border border-dark/8 bg-surface-2` (nie `bg-surface` — biała dymka na `#f7f5f2` miała kontrast tła 1,09:1 i czytała się jak pole formularza), bez hovera (nie jest linkiem).
+
 ---
 
 ## Liquid Glass (materiały szkła)
