@@ -136,6 +136,11 @@ Wprowadzone 2026-07-25. Klasy w `globals.css`:
 | `.glass` | Szkło na ciemnym tle / nad zdjęciami | Hero social proof pill, CTABanner, karta kalkulatora |
 | `.glass-nav` | Szkło z ciemnym tintem (kontrast białego tekstu) | Header, CookieConsentBanner |
 | `.glass-light` | Jasne szkło na jasnym tle | Karty BrandPromise |
+Animacja „Messenger" (`ChatDialogue`, client, `src/components/ui/ChatDialogue.tsx`): współdzielony IntersectionObserver
+przełącza `chat--pending` → `chat--play`, resztę robi CSS w `globals.css` (blok `PainPoints — dymki rozmowy`):
+dymka 1 wskakuje (`chatPop`, 380 ms, +200 ms), wskaźnik „pisze…" (3 kropki, `aria-hidden`, pozycja absolutna
+na górze slotu odpowiedzi — nie zajmuje miejsca, CLS 0) widoczny 650–1550 ms, dymka 2 wskakuje +1500 ms;
+karty przesunięte o `--chat-delay` = i × 120 ms. Reduced-motion: bez animacji i bez wskaźnika. Bez JS: wszystko widoczne.
 | `.sheen` | Błysk po CTA na hover | Przyciski CTA |
 
 ### Zasady

@@ -373,3 +373,45 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* PainPoints — dymki rozmowy (chat) */
+.chat__typing {
+  /* na gorze slotu odpowiedzi (tam, gdzie zaraz wskoczy dymka 2), nie na dole -
+     inaczej przy 2-liniowej odpowiedzi kropki wisza w pustce daleko pod dymka 1 */
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 14px 16px;
+  background: var(--color-dark);
+  border-radius: var(--radius-card);
+  border-bottom-right-radius: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.chat__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, .8);
+}
+.chat--pending .chat__msg { opacity: 0; }
+.chat--play .chat__msg--left  { animation: chatPop 380ms cubic-bezier(0.22,1,0.36,1) calc(var(--chat-delay,0ms) + 200ms) both; transform-origin: bottom left; }
+/* dymka 2: animujemy tylko widoczna tresc (imie + blockquote), NIE caly .chat__msg--right -
+   ten kontener jest rodzicem wskaznika pisania (position:absolute w srodku), a fill-mode
+   "both" trzymalby go na opacity:0 przez caly czas opoznienia, chowajac kropki razem z dymka. */
+.chat--play .chat__msg--right > p,
+.chat--play .chat__msg--right > blockquote {
+  animation: chatPop 380ms cubic-bezier(0.22,1,0.36,1) calc(var(--chat-delay,0ms) + 1500ms) both;
+  transform-origin: bottom right;
+}
+.chat--play .chat__typing { animation: chatTyping 900ms linear calc(var(--chat-delay,0ms) + 650ms) both; }
+.chat--play .chat__dot { animation: chatDot 600ms ease-in-out calc(var(--chat-delay,0ms) + 650ms) 2 both; }
+.chat--play .chat__dot:nth-child(2) { animation-delay: calc(var(--chat-delay,0ms) + 750ms); }
+.chat--play .chat__dot:nth-child(3) { animation-delay: calc(var(--chat-delay,0ms) + 850ms); }
+@keyframes chatPop { from { opacity: 0; transform: translateY(6px) scale(0.92); } to { opacity: 1; transform: none; } }
+@keyframes chatTyping { 0% { opacity: 0; } 12% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes chatDot { 0%, 100% { transform: translateY(0); opacity: .6; } 50% { transform: translateY(-3px); opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .chat__msg, .chat__typing, .chat__dot { animation: none !important; } .chat--pending .chat__msg { opacity: 1; } .chat__typing { display: none; } }
+

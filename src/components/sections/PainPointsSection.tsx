@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import { ArrowDown } from 'lucide-react';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SectionLead } from '@/components/ui/SectionLead';
+import { ChatDialogue } from '@/components/ui/ChatDialogue';
 
 type Props = { locale: string };
 
@@ -43,31 +44,7 @@ export async function PainPointsSection({ locale }: Props) {
                   </h3>
 
                   {item.dialogue?.length >= 2 && (
-                    <figure className="mt-6 flex flex-col gap-2">
-                      <figcaption className="sr-only">{t('dialogueLabel')}</figcaption>
-
-                      <div className="self-start max-w-[88%] md:max-w-sm">
-                        <p className="text-xs uppercase tracking-[0.1em] text-dark/70">
-                          {item.dialogue[0].speaker}
-                        </p>
-                        <blockquote className="mt-1 rounded-panel rounded-bl-none border border-dark/10 bg-white px-4 py-3">
-                          <p className="text-sm leading-relaxed text-dark/80">
-                            {item.dialogue[0].line}
-                          </p>
-                        </blockquote>
-                      </div>
-
-                      <ScrollReveal delay={i * 90 + 180} className="self-end max-w-[88%] md:max-w-sm text-right">
-                        <p className="text-xs uppercase tracking-[0.1em] text-dark/70">
-                          {item.dialogue[1].speaker}
-                        </p>
-                        <blockquote className="mt-1 rounded-panel rounded-br-none bg-dark px-4 py-3 text-left">
-                          <p className="text-sm leading-relaxed text-white/90">
-                            {item.dialogue[1].line}
-                          </p>
-                        </blockquote>
-                      </ScrollReveal>
-                    </figure>
+                    <ChatDialogue label={t('dialogueLabel')} lines={item.dialogue} delay={i * 120} />
                   )}
 
                   <p className="mt-6 text-sm leading-relaxed text-dark/70">

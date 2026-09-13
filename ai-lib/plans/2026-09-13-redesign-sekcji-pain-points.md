@@ -230,6 +230,15 @@ Poprawki z review wdraża Sonnet z Fazy 1 (kontynuacja tego samego agenta — ma
    `trackCTAClick({ location: 'pain_points_bridge' })` — dopiero gdy baseline pokaże, że zasięg
    jest, a przejście dalej nie rośnie.
 
+### Faza 4 — animacja „Messenger" (2026-09-13, Sonnet effort wysoki + review architekta)
+Zamiast zagnieżdżonego `ScrollReveal` na dymce 2: client component `src/components/ui/ChatDialogue.tsx`
+(fire-once, współdzielony IntersectionObserver, `chat--pending` → `chat--play` przez `classList`, bez setState
+w efekcie) i blok CSS w `globals.css`: dymka 1 `chatPop` +200 ms → wskaźnik „pisze…" (3 kropki, `aria-hidden`,
+`position:absolute` na górze slotu odpowiedzi, więc bez wpływu na layout) 650–1550 ms → dymka 2 `chatPop`
++1500 ms; `--chat-delay` = i × 120 ms. Reduced-motion: wszystko statyczne, wskaźnik `display:none`.
+Dymki `rounded-card` (mniej „pigułkowe"), `gap-3` między wiadomościami. Odstępy kart/sekcji/mostu bez zmian
+po przeglądzie screenshotów 390/768/1440 (Playwright na zainstalowanym Chrome — skrypt w scratchpadzie sesji).
+
 ## Pomiar
 
 Lejek na istniejących eventach (bez nowych):
