@@ -1,11 +1,11 @@
 'use client';
 
 import { useEffect } from 'react';
-import { sendGAEvent } from '@next/third-parties/google';
+import { setLocaleUserProperty } from '@/lib/analytics';
 
 export function LocaleTracker({ locale }: { locale: string }) {
   useEffect(() => {
-    sendGAEvent('set', 'user_properties', { locale });
+    setLocaleUserProperty(locale);
   }, [locale]);
   return null;
 }

@@ -10,6 +10,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 
     let lenis: InstanceType<typeof import('lenis').default> | null = null;
     let rafId: number;
+    let anchorClickHandler: ((event: MouseEvent) => void) | null = null;
 
     async function init() {
       const { default: Lenis } = await import('lenis');
@@ -19,6 +20,32 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
       });
+
+      // Lenis ustawia scroll-behavior:auto, dlatego linki kotwicowe trzeba
+      // przekazac mu jawnie. Delegacja obejmuje tez CTA renderowane pozniej.
+      anchorClickHandler = (event: MouseEvent) => {
+        const anchor = (event.target as Element | null)?.closest<HTMLAnchorElement>('a[href]');
+        if (!anchor || !lenis) return;
+
+        const url = new URL(anchor.href, window.location.href);
+        if (!url.hash || url.origin !== window.location.origin || url.pathname !== window.location.pathname) {
+          return;
+        }
+
+        let id: string;
+        try {
+          id = decodeURIComponent(url.hash.slice(1));
+        } catch {
+          id = url.hash.slice(1);
+        }
+        const target = document.getElementById(id);
+        if (!target) return;
+
+        event.preventDefault();
+        window.history.pushState(null, '', url.hash);
+        lenis.scrollTo(target, { offset: -24, duration: 1.2 });
+      };
+      document.addEventListener('click', anchorClickHandler);
 
       function raf(time: number) {
         lenis!.raf(time);
@@ -42,6 +69,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       if (idleHandle !== undefined) window.cancelIdleCallback(idleHandle);
       if (timeoutHandle !== undefined) clearTimeout(timeoutHandle);
       if (rafId) cancelAnimationFrame(rafId);
+      if (anchorClickHandler) document.removeEventListener('click', anchorClickHandler);
       lenis?.destroy();
     };
   }, []);

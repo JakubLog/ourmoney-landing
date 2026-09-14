@@ -7,7 +7,7 @@
 ## Setup
 
 ### Google Analytics 4
-- **Implementacja**: ręczne skrypty gtag.js w `layout.tsx` (NIE komponent `<GoogleAnalytics>` z `@next/third-parties` — dlatego `sendGAEvent` z tej biblioteki NIE działa i nie wolno go używać)
+- **Implementacja**: gtag.js ładowany przez kontener GTM (`GTM-WTS9NS7J`, tag Google z `G-J6Z26RXMQY`); w `layout.tsx` zostaje tylko inline Consent Mode + snippet GTM. NIE komponent `<GoogleAnalytics>` z `@next/third-parties` — dlatego `sendGAEvent` z tej biblioteki NIE działa i nie wolno go używać; jedyny kanał to `gtagCommand()` z `analytics.ts`
 - **GA ID**: `G-J6Z26RXMQY`
 - **Gdzie**: `app/[locale]/layout.tsx` — ładuje się tylko w `production`
 - **User property**: `locale` ustawiane przez `LocaleTracker` przy każdej sesji
@@ -109,6 +109,29 @@ nie jest trackowane (opcjonalnie w 2. iteracji przez `trackCTAClick({ location: 
 
 ---
 
+## Meta Pixel (od 2026-09-13)
+
+`fbevents.js` ładuje się WYŁĄCZNIE po zgodzie na cookies - komponent `src/components/layout/MetaPixel.tsx`
+(montowany w layout tylko na produkcji). Stan zgody trzyma wspólny sklep w `src/lib/analytics.ts`
+(`CONSENT_KEY`, `CONSENT_EVENT`, `subscribeToConsent`, `getConsentSnapshot`) - ten sam, z którego
+korzysta `CookieConsentBanner`. Kolejność po zgodzie: `consent grant → init → PageView`. Zgoda
+z wcześniejszej wizyty (localStorage) → pixel od razu po hydracji. Zero utraty danych: do momentu
+zgody pixel i tak stał na `revoke`, a kosztował 108 KB i ~520 ms CPU przy każdym wejściu.
+Fallback `<noscript>` został w layoucie.
+
+**Kanał do GA4.** `gtagCommand()` w `analytics.ts` to jedyny poprawny sposób wysyłki komend gtag
+(push obiektu `arguments`). `LocaleTracker` (`setLocaleUserProperty`) i `WebVitalsReporter`
+(`trackWebVital`) używały `sendGAEvent` z `@next/third-parties` - te dane NIE docierały do GA4,
+a import ciągnął `GoogleMapsEmbed`/`YouTubeEmbed` do bundla. Naprawione 2026-09-13.
+
+**GA4 ładuje się wyłącznie przez kontener GTM (decyzja 2026-09-13).** Do tej pory `gtag/js` szedł
+dwa razy - bezpośrednio z `layout.tsx` i przez tag Google w kontenerze (`...&cx=c&gtm=`): 171 + 171 +
+115 KB, ~790 ms bootup na mobile, ten sam pomiar. Usunięty bezpośredni `<Script>`; komendy `gtag()`
+z `analytics.ts` trafiają do `dataLayer` i przetwarza je biblioteka załadowana przez GTM (ta sama
+`gtag.js`). Domyślne ustawienia Consent Mode nadal idą inline `beforeInteractive` w layoucie.
+**Po deployu sprawdź w GA4 Realtime/DebugView, że `page_view` i `cta_click` docierają** - jeśli nie,
+tag Google w kontenerze GTM ma zły trigger albo zły identyfikator i trzeba go poprawić w GTM, nie w kodzie.
+
 ## Privacy / GDPR
 
 - Cookies GA4: `_ga`, `_ga_G-J6Z26RXMQY` — wymagana zgoda w EU
@@ -126,4 +149,4 @@ nie jest trackowane (opcjonalnie w 2. iteracji przez `trackCTAClick({ location: 
 
 ---
 
-_Ostatnia aktualizacja: 2026-08-02_
+_Ostatnia aktualizacja: 2026-09-13_

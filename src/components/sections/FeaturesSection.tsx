@@ -105,11 +105,11 @@ export function FeaturesSection({ locale }: Props) {
                     >
                       <span
                         aria-hidden="true"
-                        className="text-dark/30 text-sm font-medium tabular-nums w-8 shrink-0"
+                        className="text-dark/60 text-sm font-medium tabular-nums w-8 shrink-0"
                       >
                         {String(i + 1).padStart(2, '0')}.
                       </span>
-                      <span className={`font-medium text-base flex-1 transition-colors ${open === i ? 'text-dark' : 'text-dark/40'}`}>
+                      <span className={`font-medium text-base flex-1 transition-colors ${open === i ? 'text-dark' : 'text-dark/60'}`}>
                         {item.title}
                       </span>
                       {open === i && (
@@ -125,7 +125,7 @@ export function FeaturesSection({ locale }: Props) {
                     }}
                   >
                     <div style={{ overflow: 'hidden' }}>
-                      <p className="pb-6 pl-12 text-sm text-dark/50 leading-relaxed max-w-md">
+                      <p className="pb-6 pl-12 text-sm text-dark/60 leading-relaxed max-w-md">
                         {item.description}
                       </p>
                     </div>
@@ -210,8 +210,10 @@ export function FeaturesSection({ locale }: Props) {
                             className="object-cover object-top transition-opacity duration-300"
                             style={{ opacity: isActive ? 1 : 0 }}
                             sizes="(max-width: 640px) 280px, 310px"
-                            loading={i === 0 ? undefined : 'lazy'}
-                            priority={i === 0}
+                            // Sekcja stoi 5 ekranow nizej - `priority` na
+                            // pierwszym screenie wstawial <link rel=preload>
+                            // do <head> PRZED obrazem hero i odbieral mu pasmo
+                            loading="lazy"
                             placeholder="blur"
                             blurDataURL={FEATURE_BLUR[src]}
                           />

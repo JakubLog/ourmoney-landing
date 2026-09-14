@@ -38,6 +38,9 @@ export async function HeroSection({ locale }: Props) {
         alt=""
         fill
         priority
+        // Samo `priority` w Next 16 dokleja tylko <link rel=preload>; bez tego
+        // atrybutu przegladarka pobiera obraz LCP z priorytetem Low
+        fetchPriority="high"
         placeholder="blur"
         blurDataURL="data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAACQAwCdASoUAA0APm0skkWkIqGYBABABsSygF2ADO64MI1TsWQAAP7HDgl1sgHPkqougshD1xuX2uqraK2xIgw0+ZAropQAAAA="
         className="object-cover object-center"
@@ -70,7 +73,7 @@ export async function HeroSection({ locale }: Props) {
 
         {/* Social proof with avatars */}
         <aside aria-label={t('socialProof')} className="mb-6 flex flex-col items-center gap-3">
-          <div className="glass rounded-full pl-3 pr-6 py-2 flex items-center justify-center gap-3">
+          <div className="glass rounded-full pl-3 pr-5 sm:pr-6 py-2 flex items-center justify-center gap-3 whitespace-nowrap">
             {avatars.length > 0 && (
               <div className="flex -space-x-2" aria-hidden="true">
                 {avatars.map((person) => (
@@ -85,7 +88,9 @@ export async function HeroSection({ locale }: Props) {
                 ))}
               </div>
             )}
-            <span className="text-sm text-white/80">{t('socialProof')}</span>
+            {/* Pelny tekst nie miesci sie w jednej linii na mobile - krotsza wersja < sm */}
+            <span className="text-sm text-white/80 sm:hidden">{t('socialProofShort')}</span>
+            <span className="text-sm text-white/80 hidden sm:inline">{t('socialProof')}</span>
           </div>
         </aside>
 
@@ -97,7 +102,7 @@ export async function HeroSection({ locale }: Props) {
         >
           {t('cta')}
         </InvertDotButton>
-        <p className="mt-3 text-xs text-white/40">{t('noCreditCard')}</p>
+        <p className="mt-3 text-xs text-white/50">{t('noCreditCard')}</p>
       </div>
 
     </section>

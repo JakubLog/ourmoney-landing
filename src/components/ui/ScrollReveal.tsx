@@ -38,6 +38,22 @@ type RevealEntry = {
 const registry = new Map<Element, RevealEntry>();
 let sharedObserver: IntersectionObserver | null = null;
 
+// Warunki srodowiska czytane RAZ na strone, nie w kazdej instancji.
+// Wczesniej kazdy ScrollReveal (86 uzyc, ~20 na stronie glownej) robil
+// matchMedia + window.innerWidth tuz przed zapisem do style.cssText -
+// przeplot odczyt/zapis layoutu w petli = forced reflow.
+let env: { reduced: boolean; mobile: boolean } | null = null;
+
+function getEnv() {
+  if (!env) {
+    env = {
+      reduced: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+      mobile: window.matchMedia('(max-width: 767px)').matches,
+    };
+  }
+  return env;
+}
+
 function getObserver(): IntersectionObserver {
   if (sharedObserver) return sharedObserver;
   sharedObserver = new IntersectionObserver(
@@ -73,15 +89,14 @@ export function ScrollReveal({
     if (!el) return;
 
     // Respect reduced motion
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) {
+    const { reduced, mobile } = getEnv();
+    if (reduced) {
       el.style.cssText = REVEALED_STYLES[animation];
       return;
     }
 
     // Mobile: simpler fade only
-    const isMobile = window.innerWidth < 768;
-    const anim = isMobile ? 'fade-in' : animation;
+    const anim = mobile ? 'fade-in' : animation;
 
     el.style.cssText = `${INITIAL_STYLES[anim]};transition:opacity ${duration}ms cubic-bezier(0.22,1,0.36,1) ${delay}ms,transform ${duration}ms cubic-bezier(0.22,1,0.36,1) ${delay}ms;will-change:opacity,transform`;
 

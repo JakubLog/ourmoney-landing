@@ -44,6 +44,11 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'cdn.sanity.io' },
     ],
     formats: ['image/avif', 'image/webp'],
+    // Domyslne 60 s oznaczalo Cache-Control max-age=60 na /_next/image, a na
+    // Vercelu 1 dzien - kazdy powrot uzytkownika pobieral obraz LCP od nowa.
+    // 31 dni: adres /_next/image zawiera url+w+q, wiec podmiana pliku zrodlowego
+    // pod tym samym adresem jest jedynym przypadkiem, kiedy cache trzeba przeczekac.
+    minimumCacheTTL: 2678400,
   },
 
   // Compress responses
@@ -68,12 +73,14 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        // Cache static images
+        // Cache static images. Bez `immutable` - pliki w /public nie maja hasha
+        // w nazwie, wiec podmiana (np. og-image.png) musi byc mozliwa; SWR
+        // pozwala serwowac stara kopie i odswiezyc w tle.
         source: '/:path*.(webp|avif|png|svg|ico)',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=86400, stale-while-revalidate=604800',
+            value: 'public, max-age=2592000, stale-while-revalidate=2592000',
           },
         ],
       },

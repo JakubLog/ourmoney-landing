@@ -9,6 +9,7 @@ import '@/app/globals.css';
 import { SmoothScroll } from '@/components/layout/SmoothScroll';
 import { LocaleTracker } from '@/components/layout/LocaleTracker';
 import { CookieConsentBanner } from '@/components/layout/CookieConsentBanner';
+import { MetaPixel } from '@/components/layout/MetaPixel';
 import { LazyPageTransition } from '@/components/layout/LazyPageTransition';
 import { InteractionTracker } from '@/components/layout/InteractionTracker';
 import { WebVitalsReporter } from '@/components/layout/WebVitalsReporter';
@@ -184,29 +185,19 @@ export default async function RootLayout({ children, params }: Props) {
           <LazyPageTransition />
           <InteractionTracker />
           {process.env.NODE_ENV === 'production' && <WebVitalsReporter />}
+          {process.env.NODE_ENV === 'production' && <MetaPixel />}
           <SpeedInsights />
         </NextIntlClientProvider>
       </body>
       {process.env.NODE_ENV === 'production' && (
         <>
-          {/* GA4 */}
-          <Script
-            id="_next-ga-init"
-            strategy="lazyOnload"
-            dangerouslySetInnerHTML={{
-              __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){window.dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', 'G-J6Z26RXMQY');
-              `,
-            }}
-          />
-          <Script
-            id="_next-ga"
-            strategy="lazyOnload"
-            src="https://www.googletagmanager.com/gtag/js?id=G-J6Z26RXMQY"
-          />
+          {/* GA4 laduje sie WYLACZNIE przez kontener GTM (tag Google z ID
+              G-J6Z26RXMQY jest w kontenerze - widac to po requescie
+              gtag/js?...&cx=c&gtm=). Do 2026-09-13 gtag.js byl ladowany
+              tu drugi raz bezposrednio: +171 KB i ~490 ms main thread na
+              mobile, przy tym samym pomiarze. Komendy gtag() z analytics.ts
+              trafiaja do dataLayer i sa przetwarzane przez biblioteke
+              zaladowana z GTM. */}
           {/* GTM */}
           <Script
             id="_next-gtm"
@@ -221,23 +212,8 @@ export default async function RootLayout({ children, params }: Props) {
               `,
             }}
           />
-          {/* Meta Pixel - respects Consent Mode, fires only after consent granted */}
-          <Script
-            id="_next-fbq-init"
-            strategy="lazyOnload"
-            dangerouslySetInnerHTML={{
-              __html: `
-                !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-                n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-                n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-                t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-                document,'script','https://connect.facebook.net/en_US/fbevents.js');
-                fbq('consent','revoke');
-                fbq('init','1930936670874838');
-                fbq('track','PageView');
-              `,
-            }}
-          />
+          {/* Meta Pixel: fbevents.js laduje sie dopiero po zgodzie - patrz
+              components/layout/MetaPixel.tsx */}
         </>
       )}
     </html>
