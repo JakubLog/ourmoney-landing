@@ -18,7 +18,7 @@ export function ResultCell({ color, name, amount, share }: Props) {
         {name}
       </span>
       <span className="font-display text-3xl leading-none text-white">{amount}</span>
-      <span className="text-xs text-white/40">{share}</span>
+      <span className="text-xs text-white/50">{share}</span>
     </div>
   );
 }

@@ -28,7 +28,7 @@ export function MoneyInput({ id, label, value, onChange, currency }: Props) {
         />
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sm text-white/40"
+          className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sm text-white/50"
         >
           {currency}
         </span>

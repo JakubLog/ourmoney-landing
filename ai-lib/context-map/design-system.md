@@ -71,6 +71,19 @@ Wszystkie w `@theme` w `globals.css`. **Nigdy nie wpisuj hexa w komponencie** �
 
 Przezroczystości: `text-white/60`, `border-dark/10` itd. — zamiast kolejnych odcieni w palecie.
 
+### Kontrast tekstu (reguła od 2026-09-13)
+Minimalne przezroczystości tekstu, żeby spełnić WCAG AA 4.5:1 na tłach projektu:
+
+| Tło | Tekst wyciszony | Zakazane |
+|-----|-----------------|----------|
+| biel, `surface`, `surface-2` | `text-dark/60` (na `surface-2` 4.6:1 - dolna granica) | `text-dark/30`, `/40`, `/50` |
+| `dark`, `dark-2`, `dark-3` | `text-white/50` (6:1 na `dark`) | `text-white/25`, `/30`, `/35`, `/40` |
+| glass nad jasnym tłem (baner cookies: `.glass-sheet`, alfa 0.85) | `text-white/80`, treść `/90` | `text-white/70` i niżej; `.glass-nav` (alfa 0.55) nad jasną sekcją nie przepuści żadnej bieli |
+| akcent na ciemnym | `text-accent/70` | `text-accent/40`, `/50` |
+
+Hierarchia wyciszenia idzie przez rozmiar i wagę, nie przez schodki alfa poniżej progu.
+Codemod 2026-09-13 podniósł 82 wystąpienia w 32 plikach; Lighthouse Accessibility 92 → cel 100.
+
 ### Wyjątki (dozwolone hexy)
 - `manifest.ts` i `metadata.other['theme-color']` — HTML wymaga literalnego hexa
 - Gradienty i atrybuty SVG (`stopColor`, `stroke`) w `BlogPostCard`, `AuthorCard`, `not-found`
@@ -118,12 +131,32 @@ Tu wartość arbitralna jest poprawna, np. poświata w `CTABanner`: `rounded-[40
 
 ### Dymka dialogowa (PainPointsSection)
 
-Wzorzec „czat" bez SVG i trójkątów: `rounded-panel` z jednym wyzerowanym rogiem jako ogonkiem
+Wzorzec „czat" bez SVG i trójkątów: `rounded-card` (16 px, koncentrycznie w karcie `rounded-panel`) z jednym wyzerowanym rogiem jako ogonkiem
 (`rounded-bl-none` dla dymki lewej, `rounded-br-none` dla prawej), `px-4 py-3`, `max-w-[88%]`.
 Dymki dopasowują się do treści (`self-start` / `self-end`), na md dodatkowo `md:max-w-sm`.
 Dymka jasna: `bg-white border border-dark/10 text-dark/80`; dymka ciemna: `bg-dark text-white/90`,
 wyrównana `self-end`. Imię mówiącego nad dymką: `text-xs uppercase tracking-[0.1em] text-dark/70` (nad ciemną `text-right`).
-Karta-kontener: `rounded-panel border border-dark/8 bg-surface-2` (nie `bg-surface` — biała dymka na `#f7f5f2` miała kontrast tła 1,09:1 i czytała się jak pole formularza), bez hovera (nie jest linkiem).
+Animacja „Messenger" (`ChatDialogue`, client, `src/components/ui/ChatDialogue.tsx`): współdzielony IntersectionObserver
+przełącza `chat--pending` → `chat--play`, resztę robi CSS w `globals.css` (blok `PainPoints — dymki rozmowy`):
+dymka 1 wskakuje (`chatPop`, 380 ms, +200 ms), wskaźnik „pisze…" (3 kropki, `aria-hidden`, pozycja absolutna
+na górze slotu odpowiedzi — nie zajmuje miejsca, CLS 0) widoczny 650–1550 ms, dymka 2 wskakuje +1500 ms;
+karty przesunięte o `--chat-delay` = i × 120 ms. Reduced-motion: bez animacji i bez wskaźnika. Bez JS: wszystko widoczne.
+Spot-illustration karty (`src/components/ui/PainPointIllustration.tsx`, Server Component): inline SVG `viewBox 0 0 64 64`,
+kreska `currentColor` 1.75 z zaokrąglonymi końcami, jeden akcent `fill: var(--color-accent)` z obrysem `--color-dark`
+(limonka bez obrysu ma na jasnym tle 1,3:1). Rozmiar `size-16 md:size-20` (64/80 px), `aria-hidden`, w osobnym
+wierszu nad `h3` wyrównana do prawej (`-mt-2 -mr-1`) — nie w wierszu z `h3`, bo przy 1024 px zabierała miejsce
+i łamała każdy nagłówek na 3 linie. Motywy: `split` (waga z monetą), `argument` (dwie dymki + iskra), `plans` (flaga na wzgórzu).
+Karta-kontener: `rounded-panel border border-dark/8 bg-surface-2` (nie `bg-surface` — biała dymka na `#f7f5f2` miała kontrast tła 1,09:1 i czytała się jak pole formularza), bez hovera tła/cienia (nie jest linkiem).
+Reveal karty (`PainPointCard`, client, `src/components/ui/PainPointCard.tsx`) — własny wrapper zamiast `ScrollReveal`, bo ten steruje inline-stylem
+i nie zostawia klasy, od której mogłoby zależeć SVG w środku: współdzielony IntersectionObserver (threshold 0.15, rootMargin −10 %) przełącza
+`pain-card--pending` → `pain-card--in`; CSS w `globals.css` (blok `PainPoints - karty + ilustracje`): karta `painCardIn` (fade + 28 px w górę + scale 0.98→1,
+720 ms, `--card-delay` = i × 120 ms), a ilustracja rysuje się kreską — każdy `path`/`rect`/`circle` ma `pathLength={1}` + klasę `il-line`
+(`stroke-dasharray: 1`, `illoDraw` dashoffset 1→0, 560 ms) z własnym `--d` (kolejność: konstrukcja → detale → akcent `il-pop` wyskakuje na końcu,
+`illoPop` z overshoot); przerywana ścieżka flagi (`il-fade il-dash`, dasharray w jednostkach pathLength `0.14 0.16`) tylko fade.
+Hover karty (`@media (hover: hover) and (prefers-reduced-motion: no-preference)`): SVG unosi się 3 px, a grupa tematyczna animuje się w pętli —
+`split`: belka z szalkami kołysze się wokół osi (32,23) `illoRock`; `argument`: dymki rozchodzą się po przekątnej `illoNudgeA/B`, iskra pulsuje `illoZap`;
+`plans`: proporzec faluje wokół masztu `illoWave`, kreski ścieżki idą do celu `illoMarch`. Reduced-motion: JS nie dodaje klas → wszystko statycznie, bez hovera.
+Detale rysunku dodane 2026-09-14: gałka osi wagi, linie tekstu w dymkach, pinezka „tu jesteście" u podnóża ścieżki.
 
 ---
 
@@ -136,21 +169,6 @@ Wprowadzone 2026-07-25. Klasy w `globals.css`:
 | `.glass` | Szkło na ciemnym tle / nad zdjęciami | Hero social proof pill, CTABanner, karta kalkulatora |
 | `.glass-nav` | Szkło z ciemnym tintem (kontrast białego tekstu) | Header, CookieConsentBanner |
 | `.glass-light` | Jasne szkło na jasnym tle | Karty BrandPromise |
-Animacja „Messenger" (`ChatDialogue`, client, `src/components/ui/ChatDialogue.tsx`): współdzielony IntersectionObserver
-przełącza `chat--pending` → `chat--play`, resztę robi CSS w `globals.css` (blok `PainPoints — dymki rozmowy`):
-dymka 1 wskakuje (`chatPop`, 380 ms, +200 ms), wskaźnik „pisze…" (3 kropki, `aria-hidden`, pozycja absolutna
-na górze slotu odpowiedzi — nie zajmuje miejsca, CLS 0) widoczny 650–1550 ms, dymka 2 wskakuje +1500 ms;
-karty przesunięte o `--chat-delay` = i × 120 ms. Reduced-motion: bez animacji i bez wskaźnika. Bez JS: wszystko widoczne.
-Spot-illustration karty (`src/components/ui/PainPointIllustration.tsx`, Server Component): inline SVG `viewBox 0 0 64 64`,
-kreska `currentColor` 1.75 z zaokrąglonymi końcami, jeden akcent `fill: var(--color-accent)` z obrysem `--color-dark`
-(limonka bez obrysu ma na jasnym tle 1,3:1). Rozmiar `size-16 md:size-20` (64/80 px), `aria-hidden`, w osobnym
-wierszu nad `h3` wyrównana do prawej (`-mt-2 -mr-1`) — nie w wierszu z `h3`, bo przy 1024 px zabierała miejsce
-i łamała każdy nagłówek na 3 linie. Motywy: `split` (waga z monetą), `argument` (dwie dymki + iskra), `plans` (flaga na wzgórzu).
-Animacja „Messenger" (`ChatDialogue`, client, `src/components/ui/ChatDialogue.tsx`): współdzielony IntersectionObserver
-przełącza `chat--pending` → `chat--play`, resztę robi CSS w `globals.css` (blok `PainPoints — dymki rozmowy`):
-dymka 1 wskakuje (`chatPop`, 380 ms, +200 ms), wskaźnik „pisze…" (3 kropki, `aria-hidden`, pozycja absolutna
-na górze slotu odpowiedzi — nie zajmuje miejsca, CLS 0) widoczny 650–1550 ms, dymka 2 wskakuje +1500 ms;
-karty przesunięte o `--chat-delay` = i × 120 ms. Reduced-motion: bez animacji i bez wskaźnika. Bez JS: wszystko widoczne.
 | `.sheen` | Błysk po CTA na hover | Przyciski CTA |
 
 ### Zasady
@@ -182,7 +200,23 @@ Touch targety min. `44×44px` (w praktyce `min-h-[56px]` na inputach — 56 jest
 
 ---
 
+### Animacje a LCP (2026-09-13)
+- `@keyframes fadeIn` (wejście strony w `template.tsx`) startuje od `opacity: 0.001`, nie `0`.
+  Chrome nie uznaje elementu za kandydata na LCP, dopóki on lub przodek ma opacity dokładnie 0 -
+  obraz hero wypadał z pomiaru, a LCP łapało się na późniejszym H1. **Nie wracać do `from { opacity: 0 }`.**
+- `ScrollReveal`: `prefers-reduced-motion` i breakpoint mobile czytane raz na stronę (cache w module
+  `getEnv()`), nie w każdej instancji - odczyt layoutu przed zapisem `style.cssText` w ~20 instancjach
+  dawał forced reflow ~150 ms.
+- `HowItWorksSection` jest serwerowy; obwódka pod słowem to `ScribbleWord` (wspólny z `ComparisonSection`).
+
 ## Obrazy
+
+- Obraz LCP (hero) ma `priority` **i** `fetchPriority="high"` - w Next 16 samo `priority` dokleja
+  tylko `<link rel=preload>`, przeglądarka pobierała obraz z priorytetem Low (703 ms opóźnienia odkrycia).
+- `priority` tylko na obrazach nad linią zgięcia: na screenie w `FeaturesSection` wstawiał preload
+  do `<head>` przed obrazem hero i odbierał mu pasmo. Reszta `loading="lazy"`.
+- Cache: `images.minimumCacheTTL` 31 dni, statyki `/public` 30 dni + SWR (bez `immutable`, bo nazwy
+  plików nie mają hasha i `og-image.png` bywa podmieniany).
 
 | Zasada | Dlaczego |
 |--------|---------|
@@ -193,4 +227,4 @@ Touch targety min. `44×44px` (w praktyce `min-h-[56px]` na inputach — 56 jest
 
 ---
 
-_Ostatnia aktualizacja: 2026-08-01_
+_Ostatnia aktualizacja: 2026-09-13_

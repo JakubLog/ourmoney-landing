@@ -7,9 +7,11 @@ type Props = {
   email: string;
   className?: string;
   children?: React.ReactNode;
+  /** Nazwa dostepna - wymagana, gdy widoczna tresc przycisku to sama ikona. */
+  'aria-label'?: string;
 };
 
-export function CopyEmail({ email, className = '', children }: Props) {
+export function CopyEmail({ email, className = '', children, 'aria-label': ariaLabel }: Props) {
   const [copied, setCopied] = useState(false);
 
   const handleClick = (e: React.MouseEvent) => {
@@ -21,7 +23,12 @@ export function CopyEmail({ email, className = '', children }: Props) {
   };
 
   return (
-    <button type="button" onClick={handleClick} className={`relative cursor-pointer ${className}`}>
+    <button
+      type="button"
+      onClick={handleClick}
+      aria-label={ariaLabel}
+      className={`relative cursor-pointer ${className}`}
+    >
       {children ?? (copied ? 'Skopiowano!' : email)}
       {copied && children && (
         <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-accent text-dark text-xs font-medium px-2 py-1 rounded whitespace-nowrap pointer-events-none">

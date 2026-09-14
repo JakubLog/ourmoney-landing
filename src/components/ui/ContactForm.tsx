@@ -48,7 +48,7 @@ export function ContactForm() {
       <div className="bg-surface rounded-2xl p-10 text-center">
         <CheckCircle className="w-10 h-10 text-accent mx-auto mb-4" />
         <p className="text-dark text-base font-medium">{t('success')}</p>
-        <p className="text-dark/50 text-sm mt-2">{t('note')}</p>
+        <p className="text-dark/60 text-sm mt-2">{t('note')}</p>
       </div>
     );
   }
@@ -61,14 +61,14 @@ export function ContactForm() {
           type="text"
           required
           placeholder={t('namePlaceholder')}
-          className="w-full rounded-xl border border-dark/10 bg-white px-6 py-4 text-sm text-dark placeholder:text-dark/30 outline-none focus:border-dark/30 transition-colors"
+          className="w-full rounded-xl border border-dark/10 bg-white px-6 py-4 text-sm text-dark placeholder:text-dark/60 outline-none focus:border-dark/30 transition-colors"
         />
         <input
           name="email"
           type="email"
           required
           placeholder={t('emailPlaceholder')}
-          className="w-full rounded-xl border border-dark/10 bg-white px-6 py-4 text-sm text-dark placeholder:text-dark/30 outline-none focus:border-dark/30 transition-colors"
+          className="w-full rounded-xl border border-dark/10 bg-white px-6 py-4 text-sm text-dark placeholder:text-dark/60 outline-none focus:border-dark/30 transition-colors"
         />
       </div>
       <textarea
@@ -76,7 +76,7 @@ export function ContactForm() {
         required
         rows={5}
         placeholder={t('messagePlaceholder')}
-        className="w-full rounded-xl border border-dark/10 bg-white px-6 py-4 text-sm text-dark placeholder:text-dark/30 outline-none focus:border-dark/30 transition-colors resize-none"
+        className="w-full rounded-xl border border-dark/10 bg-white px-6 py-4 text-sm text-dark placeholder:text-dark/60 outline-none focus:border-dark/30 transition-colors resize-none"
       />
 
       {errorMsg && (
@@ -84,7 +84,7 @@ export function ContactForm() {
       )}
 
       <div className="flex items-center justify-between gap-4">
-        <p className="text-dark/40 text-xs">{t('note')}</p>
+        <p className="text-dark/60 text-xs">{t('note')}</p>
         <button
           type="submit"
           disabled={status === 'sending'}

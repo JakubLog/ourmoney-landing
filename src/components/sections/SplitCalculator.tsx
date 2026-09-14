@@ -164,7 +164,7 @@ export function SplitCalculator({ locale, ctaHref, placement }: Props) {
         <div className="flex flex-col gap-6" aria-live="polite">
           {result ? (
             <div className="flex flex-col gap-4">
-              <p className="text-xs uppercase tracking-[0.2em] text-white/40">{t('resultTitle')}</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-white/50">{t('resultTitle')}</p>
 
               {/* Donut - ten sam obraz podzialu co w onboardingu aplikacji */}
               <div className="flex justify-center py-2">
@@ -254,7 +254,7 @@ export function SplitCalculator({ locale, ctaHref, placement }: Props) {
           {t('cta')}
         </InvertDotButton>
         <p className="text-center text-sm text-white/60">{t('ctaHint')}</p>
-        <p className="text-center text-xs text-white/40">{t('trackingNote')}</p>
+        <p className="text-center text-xs text-white/50">{t('trackingNote')}</p>
       </div>
     </div>
   );

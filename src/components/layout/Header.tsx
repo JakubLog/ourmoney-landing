@@ -96,7 +96,10 @@ export function Header() {
           </nav>
 
           {/* Right: Lang + CTA */}
-          <div className="hidden md:flex items-center gap-4 md:justify-self-end">
+          {/* max-w-full: justify-self-end zdejmuje stretch, wiec bez tego blok
+              rosnie do max-content i wystaje poza swoj track 1fr zamiast
+              pozwolic CTA sie przyciac */}
+          <div className="hidden md:flex items-center gap-4 md:justify-self-end min-w-0 max-w-full">
             <Link
               href={switcherHref}
               locale={altLocale}
@@ -118,7 +121,7 @@ export function Header() {
             </Link>
             <a
               href={startHref(locale)}
-              className="sheen bg-accent text-black text-sm font-semibold px-6 py-2 rounded-full hover:bg-accent-dark transition-colors"
+              className="sheen bg-accent text-black text-sm font-semibold px-6 py-2 rounded-full hover:bg-accent-dark transition-colors truncate"
               onClick={() => trackCTAClick({ location: 'header', text: tCommon('startFree'), locale })}
             >
               {tCommon('startFree')}

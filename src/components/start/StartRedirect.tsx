@@ -86,7 +86,7 @@ export function StartRedirect({ locale, plan, initialPlatform, forwarded }: Prop
       </a>
 
       {storeSoon && (
-        <p className="mt-8 max-w-sm text-center text-xs leading-relaxed text-white/40">
+        <p className="mt-8 max-w-sm text-center text-xs leading-relaxed text-white/50">
           {t(platform === 'ios' ? 'storeSoonIos' : 'storeSoonAndroid')}
         </p>
       )}

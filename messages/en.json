@@ -32,6 +32,7 @@
   "Footer": {
     "email": "kontakt@ourmoney.pl",
     "instagram": "https://www.instagram.com/ourmoneypl/",
+    "copyEmailLabel": "Copy the email address {email}",
     "copyright": "© 2026 OurMoney. All rights reserved."
   },
   "CTABanner": {
@@ -52,6 +53,7 @@
       "subheadline": "The first financial app built specifically for couples. A shared household budget, fair expense splitting and joint goals - with privacy where you want it.",
       "cta": "Start together - for free",
       "socialProof": "Join 50+ couples who already mastered their finances",
+      "socialProofShort": "Join 50+ couples",
       "noCreditCard": "No credit card required"
     },
     "painPoints": {
@@ -61,27 +63,27 @@
       "dialogueLabel": "A sample conversation between partners about shared expenses",
       "items": [
         {
+          "kind": "split",
           "title": "You split 50/50, but you don’t earn 50/50",
           "description": "Equal is not always fair. When you earn differently, the same bill weighs differently on each of you.",
-          "kind": "split",
           "dialogue": [
             { "speaker": "Anna", "line": "I paid for the groceries yesterday. Again." },
             { "speaker": "Mark", "line": "And I covered rent and electricity. Roughly even, right?" }
           ]
         },
         {
+          "kind": "argument",
           "title": "Every money talk turns into an argument",
           "description": "When neither of you has the full picture, all that is left is guessing. And guessing quickly turns into blame.",
-          "kind": "argument",
           "dialogue": [
             { "speaker": "Mark", "line": "How much did we actually spend this month?" },
             { "speaker": "Anna", "line": "No idea. I didn’t count." }
           ]
         },
         {
+          "kind": "plans",
           "title": "Your plans are stuck at “someday”",
           "description": "A flat, a wedding, a child. Without a shared counter, every plan stays a conversation.",
-          "kind": "plans",
           "dialogue": [
             { "speaker": "Anna", "line": "Are we saving for the deposit or not?" },
             { "speaker": "Mark", "line": "We’d have to start somewhere." }
@@ -95,7 +97,22 @@
       "eyebrow": "Calculator",
       "title": "How much should each of you actually pay?",
       "subtitle": "Enter two incomes and your shared expenses. You will see the income-proportional split and how much extra the lower earner pays under a 50/50 split.",
-      "cta": "Expense split calculator"
+      "cta": "Expense split calculator",
+      "mockupLabel": "Calculator preview: a sample split of 4,000 zł shared costs with incomes of 6,500 zł and 4,500 zł, proportionally and 50/50",
+      "expenseAnimation": {
+        "label": "Animation of automatic shared expense splitting: housing, groceries and utilities are split between you and your partner in a 59 to 41 percent ratio",
+        "eyebrow": "The split in practice",
+        "title": "Every expense instantly lands in the right proportions",
+        "sharedExpense": "Shared expense",
+        "you": "You · {percent}%",
+        "partner": "Partner · {percent}%",
+        "totalLabel": "Total split this month",
+        "items": {
+          "rent": "Rent and housing",
+          "groceries": "Groceries",
+          "utilities": "Utilities and subscriptions"
+        }
+      }
     },
     "features": {
       "title": "How OurMoney solves your problems",
@@ -170,7 +187,11 @@
         "impact": "Goal reached two months sooner"
       },
       "priorityLabel": "Priority",
-      "priorityScale": ["low", "medium", "high"],
+      "priorityScale": [
+        "low",
+        "medium",
+        "high"
+      ],
       "footnote": "The report is built from your real transactions - you get the first one after a full month of shared budgeting. The example above uses illustrative data."
     },
     "brandPromise": {
@@ -203,20 +224,26 @@
       "title": "Get started in",
       "titleHighlight": "3 simple steps",
       "subtitle": "You can set up a shared budget in under a minute. No complicated forms, no credit card, no need for both of you to sign up on day one.",
+      "stepsLabel": "Three steps to a shared budget",
       "steps": [
         {
+          "kind": "account",
           "title": "Create an account",
           "description": "Registration takes 30 seconds. Enter your email, set a password - done. You can start on your own."
         },
         {
+          "kind": "expenses",
           "title": "Add expenses",
           "description": "Enter shared bills, groceries, subscriptions. OurMoney automatically calculates who should contribute what."
         },
         {
+          "kind": "invite",
           "title": "Invite your partner",
           "description": "Send an invite with one click. From now on you both have shared visibility into finances and goals."
         }
-      ]
+      ],
+      "cta": "Take the first step - for free",
+      "ctaNote": "No credit card · Account ready in 30 seconds"
     },
     "beforeAfter": {
       "title": "Finances",
@@ -513,7 +540,7 @@
   "PrivacyPage": {
     "meta": {
       "title": "Privacy Policy | OurMoney",
-      "description": "OurMoney privacy policy - how we collect and protect your data."
+      "description": "What data the ourmoney.pl website collects, why and on what basis. Cookies, Google Analytics, your rights under GDPR and how to contact the controller."
     },
     "title": "Privacy Policy",
     "lastUpdated": "Last updated: March 15, 2026",
@@ -522,7 +549,7 @@
   "TermsPage": {
     "meta": {
       "title": "Terms of Service | OurMoney",
-      "description": "Terms of service for using OurMoney."
+      "description": "The rules for using the ourmoney.pl website: user rights and obligations, copyright in the content, the operator's liability and how to file a complaint."
     },
     "title": "Terms of Service",
     "lastUpdated": "Last updated: March 15, 2026",

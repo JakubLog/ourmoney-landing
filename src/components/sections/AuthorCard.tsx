@@ -74,7 +74,7 @@ export function AuthorCard({ author }: { author: Author }) {
           <p className="text-white/55 text-base leading-relaxed flex-1">{author.bio}</p>
         )}
 
-        <div className="mt-6 flex items-center gap-2 text-sm text-white/30 group-hover:text-accent transition-colors duration-300">
+        <div className="mt-6 flex items-center gap-2 text-sm text-white/50 group-hover:text-accent transition-colors duration-300">
           <span>{t('viewStory')}</span>
           <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
         </div>

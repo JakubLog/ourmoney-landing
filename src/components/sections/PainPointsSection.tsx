@@ -4,6 +4,7 @@ import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SectionLead } from '@/components/ui/SectionLead';
 import { ChatDialogue } from '@/components/ui/ChatDialogue';
 import { PainPointIllustration } from '@/components/ui/PainPointIllustration';
+import { PainPointCard } from '@/components/ui/PainPointCard';
 
 type Props = { locale: string };
 
@@ -39,28 +40,31 @@ export async function PainPointsSection({ locale }: Props) {
         <ul role="list" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 list-none p-0 m-0">
           {items.map((item, i) => (
             <li key={item.kind} className={i === 2 ? 'md:col-span-2 lg:col-span-1' : undefined}>
-              <ScrollReveal delay={i * 90} className="h-full">
-                <article className="h-full rounded-panel border border-dark/8 bg-surface-2 p-6 md:p-8">
-                  {/* Ilustracja w osobnym wierszu (znacznik w prawym gornym rogu karty):
-                      w wierszu z h3 zabierala 56-72 px miary i na 1024 px lamala KAZDY
-                      naglowek na 3 linie, a na 768 px tylko srodkowy - dialogi w rzedzie
-                      przestawaly sie wyrownywac. */}
-                  <div className="flex justify-end">
-                    <PainPointIllustration kind={item.kind} className="-mt-2 -mr-1 text-dark" />
-                  </div>
-                  <h3 className="mt-1 text-lg md:text-xl font-medium text-dark leading-snug">
-                    {item.title}
-                  </h3>
+              {/* Wlasny reveal (nie ScrollReveal): karta wjezdza z fade + uniesieniem,
+                  a od tej samej klasy zalezy draw-in ilustracji w rogu. */}
+              <PainPointCard
+                delay={i * 120}
+                className="h-full rounded-panel border border-dark/8 bg-surface-2 p-6 md:p-8"
+              >
+                {/* Ilustracja w osobnym wierszu (znacznik w prawym gornym rogu karty):
+                    w wierszu z h3 zabierala 56-72 px miary i na 1024 px lamala KAZDY
+                    naglowek na 3 linie, a na 768 px tylko srodkowy - dialogi w rzedzie
+                    przestawaly sie wyrownywac. */}
+                <div className="flex justify-end">
+                  <PainPointIllustration kind={item.kind} className="-mt-2 -mr-1 text-dark" />
+                </div>
+                <h3 className="mt-1 text-lg md:text-xl font-medium text-dark leading-snug">
+                  {item.title}
+                </h3>
 
-                  {item.dialogue?.length >= 2 && (
-                    <ChatDialogue label={t('dialogueLabel')} lines={item.dialogue} delay={i * 120} />
-                  )}
+                {item.dialogue?.length >= 2 && (
+                  <ChatDialogue label={t('dialogueLabel')} lines={item.dialogue} delay={i * 120} />
+                )}
 
-                  <p className="mt-6 text-sm leading-relaxed text-dark/70">
-                    {item.description}
-                  </p>
-                </article>
-              </ScrollReveal>
+                <p className="mt-6 text-sm leading-relaxed text-dark/70">
+                  {item.description}
+                </p>
+              </PainPointCard>
             </li>
           ))}
         </ul>

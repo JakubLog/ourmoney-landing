@@ -42,13 +42,13 @@ export async function FAQSection({ locale }: Props) {
               <details key={item.question} className="group border-t border-dark/10">
                 <summary className="flex items-center justify-between py-6 cursor-pointer">
                   <span className="font-medium text-dark text-base pr-6">{item.question}</span>
-                  <span aria-hidden="true" className="shrink-0 text-dark/40">
+                  <span aria-hidden="true" className="shrink-0 text-dark/60">
                     <Plus size={18} className="faq-plus" />
                     <X size={18} className="faq-minus" />
                   </span>
                 </summary>
                 <div className="faq-answer pb-6">
-                  <p className="text-dark/50 text-sm leading-relaxed max-w-xl">
+                  <p className="text-dark/60 text-sm leading-relaxed max-w-xl">
                     {item.answer}
                   </p>
                 </div>

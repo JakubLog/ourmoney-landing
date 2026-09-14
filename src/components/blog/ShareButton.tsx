@@ -33,7 +33,7 @@ export function ShareButton({ label, copiedLabel }: Props) {
     <button
       onClick={handleCopy}
       aria-label={copied ? copiedLabel : label}
-      className="inline-flex items-center gap-2 text-xs text-white/30 hover:text-accent transition-colors border border-white/10 hover:border-accent/30 px-3 py-2 rounded-full"
+      className="inline-flex items-center gap-2 text-xs text-white/50 hover:text-accent transition-colors border border-white/10 hover:border-accent/30 px-3 py-2 rounded-full"
     >
       {copied ? <Check size={12} /> : <Link2 size={12} />}
       {copied ? copiedLabel : label}

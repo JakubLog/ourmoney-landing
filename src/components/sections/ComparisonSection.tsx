@@ -33,7 +33,7 @@ function CellIcon({ value, highlight }: { value: CellValue; highlight?: boolean 
     );
   return (
     <div className="mx-auto flex h-7 w-7 items-center justify-center rounded-full bg-dark/10">
-      <Minus className="h-4 w-4 text-dark/40" />
+      <Minus className="h-4 w-4 text-dark/60" />
     </div>
   );
 }
@@ -90,7 +90,7 @@ export async function ComparisonSection({ locale }: Props) {
             <table className="w-full min-w-[640px] table-fixed border-separate border-spacing-0 text-sm">
               <thead>
                 <tr>
-                  <th className="text-left text-dark/40 font-medium py-3 pr-4 w-[32%]" />
+                  <th className="text-left text-dark/60 font-medium py-3 pr-4 w-[32%]" />
                   {competitors.map((name, i) => (
                     <th
                       key={name}

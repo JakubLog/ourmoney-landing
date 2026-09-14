@@ -175,7 +175,11 @@ details[open] .faq-minus { display: block; }
 /* NOTE: Do NOT use transform here - it creates a containing block
    that breaks position:fixed on the Header (and any other fixed child). */
 @keyframes fadeIn {
-  from { opacity: 0; }
+  /* 0.001, nie 0: Chrome nie uznaje elementu za kandydata na LCP, dopoki on
+     albo jego przodek ma opacity DOKLADNIE 0. Przy zerze obraz hero wypadal
+     z pomiaru i LCP lapalo sie dopiero na H1 (mniejszym, pojawiajacym sie
+     pozniej). Roznica 0 vs 0.001 przy 0.4 s przejscia jest niewidoczna. */
+  from { opacity: 0.001; }
   to   { opacity: 1; }
 }
 .animate-fadeIn {
@@ -212,6 +216,17 @@ details[open] .faq-minus { display: block; }
 
 /* Szklo nawigacji - ciemny tint gwarantujacy kontrast bialego tekstu
    niezaleznie od tresci pod spodem (biale sekcje bloga itp.) */
+.glass-sheet {
+  /* Baner cookies lezy nad jasnymi sekcjami - przy 0.55 alfa tlo blendowalo sie
+     do ~#7e7e7e i zaden bialy tekst nie mial 4.5:1. 0.85 daje ~#373737 na bieli. */
+  background: rgba(20, 20, 20, 0.85);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top-color: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
 .glass-nav {
   background: rgba(20, 20, 20, 0.55);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -320,6 +335,81 @@ details[open] .faq-minus { display: block; }
   from { opacity: 0; transform: translateY(18px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* Kalkulator teaser - rachunki wpadaja kolejno, a podzial 59/41 rysuje sie
+   dopiero po pojawieniu sie danego wydatku. */
+.expense-animation__glow {
+  position: absolute;
+  width: 18rem;
+  height: 18rem;
+  right: -8rem;
+  top: -9rem;
+  border-radius: 9999px;
+  background: rgba(187, 255, 0, 0.13);
+  filter: blur(55px);
+  pointer-events: none;
+}
+
+.expense-row {
+  opacity: 0;
+  transform: translateY(16px) scale(0.98);
+}
+
+.expense-animation--running .expense-row {
+  animation: expenseRowIn 0.58s cubic-bezier(0.22, 1, 0.36, 1) var(--expense-delay) both;
+}
+
+.expense-row__bar {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.expense-animation--running .expense-row__bar {
+  animation: expenseBarIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--expense-delay) + 180ms) both;
+}
+
+.expense-row__check {
+  opacity: 0;
+  transform: scale(0.6) rotate(-12deg);
+}
+
+.expense-animation--running .expense-row__check {
+  animation: expenseCheckIn 0.38s cubic-bezier(0.34, 1.56, 0.64, 1) calc(var(--expense-delay) + 430ms) both;
+}
+
+.expense-summary {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.expense-animation--running .expense-summary {
+  animation: expenseRowIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) 850ms both;
+}
+
+.expense-split-chip {
+  animation: expenseSplitChip 0.42s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes expenseRowIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes expenseBarIn {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes expenseCheckIn {
+  from { opacity: 0; transform: scale(0.6) rotate(-12deg); }
+  to { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+@keyframes expenseSplitChip {
+  from { opacity: 0.4; transform: scale(0.82); }
+  to { opacity: 1; transform: scale(1); }
+}
 @media (prefers-reduced-motion: no-preference) {
   .hero-stagger > * {
     opacity: 0;
@@ -336,6 +426,15 @@ details[open] .faq-minus { display: block; }
 @media (prefers-reduced-motion: reduce) {
   .sheen:hover::after { animation: none; }
   .float-a, .float-b { animation: none; }
+  .expense-row,
+  .expense-row__bar,
+  .expense-row__check,
+  .expense-summary,
+  .expense-split-chip {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* Lamanie tekstu - globalna zasada typograficzna.
@@ -415,3 +514,132 @@ body {
 @keyframes chatDot { 0%, 100% { transform: translateY(0); opacity: .6; } 50% { transform: translateY(-3px); opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .chat__msg, .chat__typing, .chat__dot { animation: none !important; } .chat--pending .chat__msg { opacity: 1; } .chat__typing { display: none; } }
 
+
+/* PainPoints - karty + ilustracje
+   Karta (.pain-card, PainPointCard.tsx) po wejsciu w viewport dostaje .pain-card--in:
+   sama wjezdza z fade + uniesieniem, a ilustracja w rogu (PainPointIllustration.tsx)
+   rysuje sie kreska (stroke-dashoffset 1 -> 0 dzieki pathLength=1), akcent wyskakuje
+   na koncu. Kolejnosc elementow SVG steruje zmienna --d na kazdym elemencie,
+   stagger kart - --card-delay na karcie. Hover karty ozywia grupy .il-*. */
+.pain-card--pending { opacity: 0; transform: translateY(28px) scale(0.98); }
+.pain-card--in {
+  animation: painCardIn 720ms cubic-bezier(0.22, 1, 0.36, 1) var(--card-delay, 0ms) both;
+}
+@keyframes painCardIn {
+  from { opacity: 0; transform: translateY(28px) scale(0.98); }
+  to   { opacity: 1; transform: none; }
+}
+
+.pain-illo { transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1); }
+.pain-illo .il-line { stroke-dasharray: 1; }
+.pain-illo .il-pop,
+.pain-illo .il-zap { transform-box: fill-box; transform-origin: center; }
+
+.pain-card--pending .il-line { stroke-dashoffset: 1; }
+.pain-card--pending .il-pop  { opacity: 0; transform: scale(0.4); }
+.pain-card--pending .il-fade { opacity: 0; }
+
+.pain-card--in .il-line {
+  animation: illoDraw 560ms cubic-bezier(0.33, 1, 0.68, 1) calc(var(--card-delay, 0ms) + 220ms + var(--d, 0ms)) both;
+}
+.pain-card--in .il-pop {
+  animation: illoPop 460ms cubic-bezier(0.34, 1.56, 0.64, 1) calc(var(--card-delay, 0ms) + 220ms + var(--d, 0ms)) both;
+}
+.pain-card--in .il-fade {
+  animation: illoFade 500ms ease-out calc(var(--card-delay, 0ms) + 220ms + var(--d, 0ms)) both;
+}
+@keyframes illoDraw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes illoPop  { from { opacity: 0; transform: scale(0.4); } to { opacity: 1; transform: scale(1); } }
+@keyframes illoFade { from { opacity: 0; } to { opacity: 1; } }
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .pain-card:hover .pain-illo { transform: translateY(-3px); }
+
+  /* waga: belka z szalkami kolysze sie wokol osi (32,23) */
+  .pain-card:hover .il-scales__beam {
+    transform-origin: 32px 23px;
+    animation: illoRock 1.6s ease-in-out infinite;
+  }
+  /* dymki: rozchodza sie po przekatnej, iskra pulsuje */
+  .pain-card:hover .il-bubble--a { animation: illoNudgeA 900ms ease-in-out infinite alternate; }
+  .pain-card:hover .il-bubble--b { animation: illoNudgeB 900ms ease-in-out infinite alternate; }
+  .pain-card:hover .il-zap { animation: illoZap 700ms ease-in-out infinite; }
+  /* flaga: proporzec faluje wokol masztu, kreski sciezki ida w strone celu */
+  .pain-card:hover .il-pennant {
+    transform-origin: 32px 19.5px;
+    animation: illoWave 900ms ease-in-out infinite;
+  }
+  .pain-card:hover .il-dash { animation: illoMarch 900ms linear infinite; }
+}
+@keyframes illoRock {
+  0%, 100% { transform: rotate(0); }
+  30%      { transform: rotate(-4deg); }
+  70%      { transform: rotate(2.5deg); }
+}
+@keyframes illoNudgeA { from { transform: translate(0, 0); } to { transform: translate(-1.5px, -1.5px); } }
+@keyframes illoNudgeB { from { transform: translate(0, 0); } to { transform: translate(1.5px, 1.5px); } }
+@keyframes illoZap {
+  0%, 100% { transform: scale(1) rotate(0); opacity: 1; }
+  50%      { transform: scale(1.18) rotate(-6deg); opacity: 0.85; }
+}
+@keyframes illoWave {
+  0%, 100% { transform: scaleX(1) skewY(0); }
+  50%      { transform: scaleX(0.8) skewY(-7deg); }
+}
+@keyframes illoMarch { to { stroke-dashoffset: -0.3; } }
+
+/* HowItWorks — pozioma sciezka trzech krokow.
+   Zegar auto-przejscia to pierscien rysowany wokol wezla aktywnego kroku: jedna animacja
+   CSS mierzy czas i pokazuje postep naraz. Pauza = animation-play-state, koniec kroku =
+   zdarzenie animationend (handler w HowItWorksStepper). Dzieki temu prefers-reduced-motion
+   wylacza auto-play bez ani jednej linijki JS - bez animacji nie ma zdarzenia, wiec petla
+   nie startuje, a klikanie krokow dziala dalej. */
+@keyframes hiwRing {
+  from { stroke-dashoffset: 100; }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* pathLength=100 na <circle> normalizuje obwod, wiec te same wartosci dzialaja
+   w obu rozmiarach wezla (64 px na mobile, 96 px od md). */
+.hiw-ring {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: hiwRing 5500ms linear forwards;
+}
+
+/* Pauza: sekcja poza viewportem lub ukryta karta (klasa z JS) oraz focus w liscie */
+.hiw--paused .hiw-ring,
+.hiw-list:focus-within .hiw-ring {
+  animation-play-state: paused;
+}
+
+/* Hover pauzuje tylko tam, gdzie hover istnieje - na dotyku :hover potrafi sie zaciac */
+@media (hover: hover) {
+  .hiw-list:hover .hiw-ring {
+    animation-play-state: paused;
+  }
+}
+
+/* Wezel sciezki: animujemy wylacznie transform, cien i obrys - zero wplywu na layout. */
+.hiw-node {
+  transition:
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Segment linii miedzy wezlami - "zapala sie" dla krokow przebytych w biezacym cyklu. */
+.hiw-seg {
+  transition: background-color 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hiw-ring {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .hiw-node,
+  .hiw-seg {
+    transition: none;
+  }
+}

@@ -35,8 +35,11 @@ export async function Footer() {
           </Link>
 
           <div className="flex items-center gap-4">
+            {/* Na mobile adres jest ukryty (sm:inline) i w przycisku zostaje sama
+                ikona - bez aria-label przycisk nie ma nazwy dostepnej */}
             <CopyEmail
               email={tFooter('email')}
+              aria-label={tFooter('copyEmailLabel', { email: tFooter('email') })}
               className="flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors"
             >
               <Mail size={15} />
@@ -68,7 +71,7 @@ export async function Footer() {
         </nav>
 
         {/* Bottom */}
-        <p className="mt-6 text-xs text-white/40">{tFooter('copyright')}</p>
+        <p className="mt-6 text-xs text-white/50">{tFooter('copyright')}</p>
       </div>
     </footer>
   );

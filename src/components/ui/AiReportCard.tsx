@@ -64,7 +64,7 @@ export function AiReportCard({
           />
           <h3 className="text-lg font-semibold">{reportTitle}</h3>
         </div>
-        <span className="self-start rounded-full border border-dark/10 bg-surface px-3 py-1 text-xs text-dark/50 sm:shrink-0 sm:self-auto">
+        <span className="self-start rounded-full border border-dark/10 bg-surface px-3 py-1 text-xs text-dark/60 sm:shrink-0 sm:self-auto">
           {badge}
         </span>
       </ScrollReveal>
@@ -83,7 +83,7 @@ export function AiReportCard({
             delay={380 + index * 90}
             className="rounded-card bg-surface p-4"
           >
-            <dt className="text-xs text-dark/50">{stat.label}</dt>
+            <dt className="text-xs text-dark/60">{stat.label}</dt>
             <dd className="mt-1 text-xl font-semibold tabular-nums">
               {/* Licznik startuje razem z wjazdem kafla */}
               <CountUpValue value={stat.value} delay={380 + index * 90} />
@@ -98,7 +98,7 @@ export function AiReportCard({
           <ScrollReveal
             as="h4"
             delay={120}
-            className="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-dark/40"
+            className="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-dark/60"
           >
             {insightsTitle}
           </ScrollReveal>
@@ -131,7 +131,7 @@ export function AiReportCard({
           <ScrollReveal
             as="h4"
             delay={120}
-            className="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-dark/40"
+            className="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-dark/60"
           >
             {recommendationsTitle}
           </ScrollReveal>

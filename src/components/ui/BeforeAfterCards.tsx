@@ -13,7 +13,7 @@ export function BeforeAfterCards({ before, after, beforeLabel, afterLabel }: Pro
     <div className="grid md:grid-cols-2 gap-6">
       <ScrollReveal>
         <div className="rounded-2xl bg-white border border-dark/10 p-8 md:p-10 h-full">
-          <h3 className="text-dark/40 text-sm font-semibold uppercase tracking-wider mb-6">
+          <h3 className="text-dark/60 text-sm font-semibold uppercase tracking-wider mb-6">
             {beforeLabel}
           </h3>
           <ul className="space-y-4 list-none p-0 m-0">

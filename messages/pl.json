@@ -32,6 +32,7 @@
   "Footer": {
     "email": "kontakt@ourmoney.pl",
     "instagram": "https://www.instagram.com/ourmoneypl/",
+    "copyEmailLabel": "Skopiuj adres e-mail {email}",
     "copyright": "© 2026 OurMoney. Wszelkie prawa zastrzeżone."
   },
   "CTABanner": {
@@ -52,6 +53,7 @@
       "subheadline": "Pierwsza aplikacja finansowa stworzona specjalnie dla par. Wspólny budżet domowy, sprawiedliwy podział wydatków, wspólne cele - z zachowaniem prywatności.",
       "cta": "Zacznijcie razem - za darmo",
       "socialProof": "Dołącz do 50+ par, które już opanowały finanse",
+      "socialProofShort": "Dołącz do 50+ par",
       "noCreditCard": "Nie wymaga karty kredytowej"
     },
     "painPoints": {
@@ -61,27 +63,27 @@
       "dialogueLabel": "Przykładowa rozmowa pary o wspólnych wydatkach",
       "items": [
         {
+          "kind": "split",
           "title": "Płacicie po równo, choć zarabiacie różnie",
           "description": "Po równo nie zawsze znaczy sprawiedliwie. Przy różnych zarobkach ten sam rachunek waży dla każdego z Was inaczej.",
-          "kind": "split",
           "dialogue": [
             { "speaker": "Agnieszka", "line": "Zapłaciłam wczoraj za zakupy. Znowu." },
             { "speaker": "Rafał", "line": "A ja wziąłem czynsz i prąd. Chyba wychodzi na to samo?" }
           ]
         },
         {
+          "kind": "argument",
           "title": "Rozmowa o pieniądzach kończy się kłótnią",
           "description": "Kiedy żadne z Was nie ma pełnego obrazu, zostaje domysł. A domysł szybko zamienia się w zarzut.",
-          "kind": "argument",
           "dialogue": [
             { "speaker": "Rafał", "line": "Ile w sumie wydaliśmy w tym miesiącu?" },
             { "speaker": "Agnieszka", "line": "Nie wiem. Nie liczyłam." }
           ]
         },
         {
+          "kind": "plans",
           "title": "Wspólne plany utknęły na „kiedyś”",
           "description": "Mieszkanie, ślub, dziecko. Bez wspólnego licznika każdy plan zostaje w sferze rozmów.",
-          "kind": "plans",
           "dialogue": [
             { "speaker": "Agnieszka", "line": "Zbieramy na wkład własny czy nie?" },
             { "speaker": "Rafał", "line": "Od czegoś trzeba by zacząć." }
@@ -95,7 +97,22 @@
       "eyebrow": "Kalkulator",
       "title": "Ile sprawiedliwie powinno płacić każde z Was?",
       "subtitle": "Wpiszcie dwa dochody i wspólne wydatki. Zobaczycie podział proporcjonalny do zarobków i to, ile dopłaca osoba zarabiająca mniej, gdy dzielicie po równo.",
-      "cta": "Kalkulator podziału wydatków"
+      "cta": "Kalkulator podziału wydatków",
+      "mockupLabel": "Podgląd kalkulatora: przykładowy podział 4 000 zł wspólnych kosztów przy dochodach 6 500 zł i 4 500 zł, proporcjonalnie i po równo",
+      "expenseAnimation": {
+        "label": "Animacja automatycznego podziału wspólnych wydatków: mieszkanie, zakupy i media są dzielone między Ciebie i partnera w proporcji 59 do 41 procent",
+        "eyebrow": "Podział w praktyce",
+        "title": "Każdy wydatek od razu trafia we właściwe proporcje",
+        "sharedExpense": "Wspólny wydatek",
+        "you": "Ty · {percent}%",
+        "partner": "Partner · {percent}%",
+        "totalLabel": "Razem podzielone w tym miesiącu",
+        "items": {
+          "rent": "Czynsz i mieszkanie",
+          "groceries": "Zakupy spożywcze",
+          "utilities": "Media i subskrypcje"
+        }
+      }
     },
     "features": {
       "title": "Jak OurMoney rozwiązuje Wasze problemy",
@@ -170,7 +187,11 @@
         "impact": "Cel szybciej o dwa miesiące"
       },
       "priorityLabel": "Priorytet",
-      "priorityScale": ["niski", "średni", "wysoki"],
+      "priorityScale": [
+        "niski",
+        "średni",
+        "wysoki"
+      ],
       "footnote": "Raport powstaje z Waszych realnych transakcji - pierwszy dostaniecie po pełnym miesiącu wspólnego budżetu. Powyżej przykład na danych poglądowych."
     },
     "brandPromise": {
@@ -203,20 +224,26 @@
       "title": "Zacznij w",
       "titleHighlight": "3 prostych krokach",
       "subtitle": "Wspólny budżet skonfigurujecie w mniej niż minutę. Bez skomplikowanych formularzy, bez karty kredytowej, bez zgody obojga na start.",
+      "stepsLabel": "Trzy kroki do wspólnego budżetu",
       "steps": [
         {
+          "kind": "account",
           "title": "Załóż konto",
           "description": "Rejestracja trwa 30 sekund. Podaj e-mail, ustaw hasło - gotowe. Możesz zacząć sam/sama."
         },
         {
+          "kind": "expenses",
           "title": "Dodaj wydatki",
           "description": "Wpisz wspólne rachunki, zakupy, subskrypcje. OurMoney automatycznie policzy, kto ile powinien wpłacić."
         },
         {
+          "kind": "invite",
           "title": "Zaproś partnera",
           "description": "Wyślij zaproszenie jednym klikiem. Od teraz macie wspólny wgląd w finanse i wspólne cele."
         }
-      ]
+      ],
+      "cta": "Zróbcie pierwszy krok - za darmo",
+      "ctaNote": "Bez karty kredytowej · Konto gotowe w 30 sekund"
     },
     "beforeAfter": {
       "title": "Finanse",
@@ -513,7 +540,7 @@
   "PrivacyPage": {
     "meta": {
       "title": "Polityka Prywatności | OurMoney",
-      "description": "Polityka prywatności aplikacji OurMoney."
+      "description": "Jakie dane zbiera strona ourmoney.pl, w jakim celu i na jakiej podstawie. Cookies, Google Analytics, Twoje prawa z RODO i kontakt do administratora."
     },
     "title": "Polityka Prywatności",
     "lastUpdated": "Ostatnia aktualizacja: 15 marca 2026",
@@ -522,7 +549,7 @@
   "TermsPage": {
     "meta": {
       "title": "Regulamin | OurMoney",
-      "description": "Regulamin korzystania z aplikacji OurMoney."
+      "description": "Zasady korzystania ze strony ourmoney.pl: prawa i obowiązki użytkownika, prawa autorskie, odpowiedzialność operatora oraz tryb zgłaszania reklamacji."
     },
     "title": "Regulamin",
     "lastUpdated": "Ostatnia aktualizacja: 15 marca 2026",

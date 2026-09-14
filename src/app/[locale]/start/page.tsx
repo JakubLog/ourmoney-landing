@@ -85,7 +85,7 @@ export default async function StartPage({ params, searchParams }: Props) {
 
       <Link
         href="/"
-        className="mt-12 text-xs uppercase tracking-widest text-white/30 transition-colors hover:text-white/60"
+        className="mt-12 text-xs uppercase tracking-widest text-white/50 transition-colors hover:text-white/60"
       >
         {tCommon('backToHome')}
       </Link>

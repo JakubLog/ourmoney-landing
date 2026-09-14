@@ -19,11 +19,11 @@ export async function PricingSection({ locale }: Props) {
     <section id="cennik" data-section-view="pricing" className="bg-surface px-6 py-20 md:py-28">
       <div className="mx-auto max-w-4xl">
         <ScrollReveal className="mb-12 text-center md:mb-16">
-          <p className="mb-4 text-xs uppercase tracking-[0.2em] text-dark/40">{t('eyebrow')}</p>
+          <p className="mb-4 text-xs uppercase tracking-[0.2em] text-dark/60">{t('eyebrow')}</p>
           <h2 className="font-display mx-auto max-w-2xl text-4xl leading-tight text-dark md:text-5xl">
             {t('title')}
           </h2>
-          <p className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-dark/50">
+          <p className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-dark/60">
             {t('subtitle')}
           </p>
         </ScrollReveal>
@@ -32,20 +32,20 @@ export async function PricingSection({ locale }: Props) {
           {/* Plan darmowy */}
           <ScrollReveal className="h-full">
             <div className="flex h-full flex-col rounded-hero border border-dark/8 bg-white p-8 md:p-10">
-              <h3 className="text-sm font-semibold uppercase tracking-widest text-dark/40">
+              <h3 className="text-sm font-semibold uppercase tracking-widest text-dark/60">
                 {t('plans.free.name')}
               </h3>
               <p className="mt-6 flex items-baseline gap-2">
                 <span className="font-display text-5xl leading-none text-dark">
                   {t('plans.free.price')}
                 </span>
-                <span className="text-sm text-dark/40">{t('plans.free.period')}</span>
+                <span className="text-sm text-dark/60">{t('plans.free.period')}</span>
               </p>
               <p className="mt-4 text-sm leading-relaxed text-dark/60">
                 {t('plans.free.description')}
               </p>
 
-              <p className="mt-8 text-xs font-semibold uppercase tracking-widest text-dark/40">
+              <p className="mt-8 text-xs font-semibold uppercase tracking-widest text-dark/60">
                 {t('includedLabel')}
               </p>
               <ul className="mt-4 list-none space-y-3 p-0 text-sm text-dark/70">
@@ -59,14 +59,14 @@ export async function PricingSection({ locale }: Props) {
                 ))}
               </ul>
 
-              <p className="mt-8 text-xs font-semibold uppercase tracking-widest text-dark/40">
+              <p className="mt-8 text-xs font-semibold uppercase tracking-widest text-dark/60">
                 {t('limitsLabel')}
               </p>
               <ul className="mt-4 list-none space-y-3 p-0 text-sm text-dark/45">
                 {freeLimits.map((limit) => (
                   <li key={limit} className="flex items-start gap-3">
                     <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-dark/8">
-                      <Minus className="h-3 w-3 text-dark/40" aria-hidden="true" />
+                      <Minus className="h-3 w-3 text-dark/60" aria-hidden="true" />
                     </span>
                     {limit}
                   </li>
@@ -113,14 +113,14 @@ export async function PricingSection({ locale }: Props) {
                   <span className="font-display text-5xl leading-none text-white">
                     {t('plans.premium.price')}
                   </span>
-                  <span className="text-sm text-white/40">{t('plans.premium.period')}</span>
+                  <span className="text-sm text-white/50">{t('plans.premium.period')}</span>
                 </p>
                 <p className="mt-2 text-sm font-medium text-accent">{t('plans.premium.yearly')}</p>
                 <p className="mt-4 text-sm leading-relaxed text-white/60">
                   {t('plans.premium.description')}
                 </p>
 
-                <p className="mt-8 text-xs font-semibold uppercase tracking-widest text-white/40">
+                <p className="mt-8 text-xs font-semibold uppercase tracking-widest text-white/50">
                   {t('includedLabel')}
                 </p>
                 <ul className="mt-4 list-none space-y-3 p-0 text-sm text-white/80">
@@ -150,7 +150,7 @@ export async function PricingSection({ locale }: Props) {
         </div>
 
         <ScrollReveal>
-          <p className="mx-auto mt-10 max-w-xl text-center text-xs leading-relaxed text-dark/40">
+          <p className="mx-auto mt-10 max-w-xl text-center text-xs leading-relaxed text-dark/60">
             {t('note')}
           </p>
         </ScrollReveal>

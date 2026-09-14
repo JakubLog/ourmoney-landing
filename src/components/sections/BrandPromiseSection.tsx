@@ -46,11 +46,11 @@ export async function BrandPromiseSection({ locale }: Props) {
               </div>
               <div className="text-left min-w-0">
                 <p className="text-xs md:text-sm font-semibold text-dark">Biedronka</p>
-                <p className="text-xs text-dark/50">Zakupy spożywcze</p>
+                <p className="text-xs text-dark/60">Zakupy spożywcze</p>
               </div>
               <div className="text-right ml-auto md:ml-4 shrink-0">
                 <p className="text-xs md:text-sm font-semibold text-dark">129,89 zł</p>
-                <p className="hidden md:block text-xs text-dark/50">23.02.2026</p>
+                <p className="hidden md:block text-xs text-dark/60">23.02.2026</p>
               </div>
               <span className="absolute -top-2 -right-2 bg-accent text-xs font-semibold text-dark px-2 py-1 rounded-full">
                 Agnieszka
@@ -64,11 +64,11 @@ export async function BrandPromiseSection({ locale }: Props) {
               </div>
               <div className="text-left min-w-0">
                 <p className="text-xs md:text-sm font-semibold text-dark">Paliwo</p>
-                <p className="text-xs text-dark/50">Samochód</p>
+                <p className="text-xs text-dark/60">Samochód</p>
               </div>
               <div className="text-right ml-auto md:ml-4 shrink-0">
                 <p className="text-xs md:text-sm font-semibold text-dark">312,23 zł</p>
-                <p className="hidden md:block text-xs text-dark/50">28.02.2026</p>
+                <p className="hidden md:block text-xs text-dark/60">28.02.2026</p>
               </div>
               <span className="absolute -top-2 -right-2 bg-accent text-xs font-semibold text-dark px-2 py-1 rounded-full">
                 Rafał

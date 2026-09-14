@@ -78,7 +78,7 @@ export default function NotFound() {
           Zabłądziłeś? Nawet najlepszy budżet nie przewidzi tego.
         </h1>
         <p
-          className="text-white/35 text-sm md:text-base max-w-md mb-12 leading-relaxed"
+          className="text-white/50 text-sm md:text-base max-w-md mb-12 leading-relaxed"
         >
           Ta strona nie istnieje - ale Twoje finanse mogą wyglądać lepiej.
         </p>

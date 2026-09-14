@@ -150,7 +150,7 @@ export default async function BlogPage({ params }: Props) {
                 <p className="font-display text-6xl md:text-8xl text-white/5 mb-6 select-none">
                   Blog
                 </p>
-                <p className="text-white/30 text-base">{t('empty')}</p>
+                <p className="text-white/50 text-base">{t('empty')}</p>
               </div>
             ) : (
               <div className="space-y-8">
