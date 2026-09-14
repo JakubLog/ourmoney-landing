@@ -1,0 +1,37 @@
+{
+  "projectId": "34d88f5f-8d41-4f5e-aaaf-9fe6313e0656",
+  "shape": "package",
+  "pkg": "ourmoney-landing",
+  "globalName": "OurMoneyDS",
+  "srcDir": "src/components",
+  "tsconfig": ".design-sync/tsconfig.paths.json",
+  "buildCmd": "npx --yes @tailwindcss/cli@4 -i src/app/globals.css -o .design-sync/.cache/tailwind-compiled.css",
+  "cssEntry": ".design-sync/.cache/tailwind-compiled.css",
+  "extraFonts": [
+    "public/fonts/switzer-400.woff2",
+    "public/fonts/switzer-500.woff2",
+    "public/fonts/switzer-600.woff2"
+  ],
+  "extraEntries": ["./.design-sync/provider-entry.tsx"],
+  "provider": { "component": "DSProvider" },
+  "componentSrcMap": {
+    "AiReportSection": null,
+    "BrandPromiseSection": null,
+    "CalculatorTeaserSection": null,
+    "ComparisonSection": null,
+    "CTABanner": null,
+    "FAQSection": null,
+    "HeroSection": null,
+    "PainPointsSection": null,
+    "PricingSection": null,
+    "TestimonialsSection": null,
+    "TrustSection": null,
+    "Footer": null,
+    "InteractionTracker": null,
+    "LocaleTracker": null,
+    "WebVitalsReporter": null,
+    "SmoothScroll": null,
+    "LazyPageTransition": null,
+    "StartRedirect": null
+  }
+}
