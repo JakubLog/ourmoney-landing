@@ -104,7 +104,25 @@ processing follows GDPR, and data can be deleted at any time.
 - Expense split calculator: https://ourmoney.pl/en/calculator
 - Blog: https://ourmoney.pl/en/blog
 - About: https://ourmoney.pl/en/about
+- Contact: https://ourmoney.pl/en/contact
+- Privacy policy: https://ourmoney.pl/en/privacy-policy
+- Terms of service: https://ourmoney.pl/en/terms
 - Polish version: https://ourmoney.pl/llms-full.txt
+
+## Blog articles
+
+- How to Split Expenses in a Relationship? 4 Proven Models for Every Couple:
+  https://ourmoney.pl/en/blog/how-to-split-expenses-in-a-relationship-4-proven-models-for-every-couple
+- How to Manage a Shared Household Budget? 7 Steps for Couples:
+  https://ourmoney.pl/en/blog/how-to-manage-a-shared-household-budget
+- How to Save Money as a Couple? One Shared Goal Beats Willpower:
+  https://ourmoney.pl/en/blog/how-to-save-money-as-a-couple
+- Money Arguments in a Relationship: Where They Come From:
+  https://ourmoney.pl/en/blog/money-arguments-in-a-relationship
+- Joint Account for Couples - Is It Worth It? Pros, Cons and a Better Alternative:
+  https://ourmoney.pl/en/blog/joint-account-for-couples-is-it-worth-it
+- How to Choose a Budget App for Couples? A Practical Comparison:
+  https://ourmoney.pl/en/blog/how-to-choose-a-budget-app-for-couples
 
 ## Contact
 

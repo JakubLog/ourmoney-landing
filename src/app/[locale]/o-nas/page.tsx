@@ -57,10 +57,66 @@ export default async function AboutPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'AboutPage' });
-  const authors = await client.fetch<Author[]>(AUTHORS_QUERY, { language: locale }, fetchOptions);
+  const tNav = await getTranslations({ locale, namespace: 'Navigation' });
+  // Autorzy istnieja w CMS tylko po polsku - bez fallbacku angielska wersja
+  // /about renderowala pusta sekcje zespolu i traciła linki do stron autorow
+  const localeAuthors = await client.fetch<Author[]>(
+    AUTHORS_QUERY,
+    { language: locale },
+    fetchOptions,
+  );
+  const authors =
+    localeAuthors.length > 0
+      ? localeAuthors
+      : await client.fetch<Author[]>(AUTHORS_QUERY, { language: 'pl' }, fetchOptions);
+
+  const aboutUrl = absoluteUrl('/o-nas', locale);
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'AboutPage',
+        '@id': `${aboutUrl}#about`,
+        url: aboutUrl,
+        name: t('meta.title'),
+        description: t('meta.description'),
+        inLanguage: locale === 'pl' ? 'pl-PL' : 'en-US',
+        isPartOf: { '@id': 'https://ourmoney.pl/#website' },
+        about: { '@id': 'https://ourmoney.pl/#organization' },
+      },
+      {
+        '@type': 'Organization',
+        '@id': 'https://ourmoney.pl/#organization',
+        name: 'OurMoney',
+        url: 'https://ourmoney.pl',
+        logo: 'https://ourmoney.pl/ourmoney-logo-hero.svg',
+        email: 'kontakt@ourmoney.pl',
+        sameAs: ['https://www.instagram.com/ourmoneypl/'],
+        employee: authors.map((author) => ({
+          '@type': 'Person',
+          name: author.name,
+          ...(author.role && { jobTitle: author.role }),
+          ...(author.bio && { description: author.bio }),
+          ...(author.avatarUrl && { image: author.avatarUrl }),
+          url: absoluteUrl({ pathname: '/autor/[slug]', params: { slug: author.slug } }, locale),
+        })),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'OurMoney', item: absoluteUrl('/', locale) },
+          { '@type': 'ListItem', position: 2, name: tNav('about'), item: aboutUrl },
+        ],
+      },
+    ],
+  };
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header />
       <main>
         {/* Hero - full-bleed image with text overlay */}

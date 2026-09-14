@@ -122,6 +122,20 @@ function buildLanguageAlternates(
   return result;
 }
 
+const TITLE_LIMIT = 60;
+
+/**
+ * Sufiks marki dokladany tylko wtedy, gdy tytul nadal miesci sie w limicie
+ * ~60 znakow - inaczej Google i tak utnie go w SERP-ie i zamiast nazwy marki
+ * pokaze wielokropek. Kolejnosc: pelny sufiks, skrocony, sam tytul.
+ */
+function postTitle(title: string): string {
+  for (const suffix of [' | OurMoney Blog', ' | OurMoney']) {
+    if (title.length + suffix.length <= TITLE_LIMIT) return `${title}${suffix}`;
+  }
+  return title;
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const post = await client.fetch<Post | null>(POST_QUERY, { slug, language: locale }, fetchOptions);
@@ -143,7 +157,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const ogImage = post.seo?.ogImageUrl ?? post.mainImageUrl;
 
   return {
-    title: `${title} | OurMoney Blog`,
+    title: postTitle(title),
     description,
     keywords: post.seo?.keywords,
     robots: post.seo?.noIndex ? { index: false } : undefined,
@@ -155,8 +169,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description,
       type: 'article',
+      url: canonicalUrl,
+      siteName: 'OurMoney',
       publishedTime: post.publishedAt,
       modifiedTime: post._updatedAt,
+      ...(post.author?.name && { authors: [post.author.name] }),
+      ...(post.category?.title && { section: post.category.title.trim() }),
       locale: locale === 'pl' ? 'pl_PL' : 'en_US',
       ...(ogImage && { images: [{ url: ogImage, width: 1200, height: 630 }] }),
     },
@@ -226,7 +244,9 @@ export default async function BlogPostPage({ params }: Props) {
     datePublished: post.publishedAt,
     dateModified: post._updatedAt ?? post.publishedAt,
     url: canonicalUrl,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
     inLanguage: post.language,
+    ...(post.category?.title && { articleSection: post.category.title.trim() }),
     ...(post.estimatedWordCount && { wordCount: post.estimatedWordCount }),
     ...(post.seo?.keywords?.length && { keywords: post.seo.keywords.join(', ') }),
     author: post.author
@@ -243,6 +263,7 @@ export default async function BlogPostPage({ params }: Props) {
         }
       : undefined,
     publisher: {
+      '@id': 'https://ourmoney.pl/#organization',
       '@type': 'Organization',
       name: 'OurMoney',
       url: 'https://ourmoney.pl',
@@ -250,14 +271,40 @@ export default async function BlogPostPage({ params }: Props) {
     },
   };
 
+  // Sciezka okruszkow musi zaczynac sie od strony glownej - inaczej Google
+  // dostaje fragment sciezki i nie sklada jej z pozostalymi stronami serwisu
   const breadcrumbItems = [
     {
       '@type': 'ListItem',
       position: 1,
+      name: 'OurMoney',
+      item: absoluteUrl('/', locale),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
       name: 'Blog',
       item: absoluteUrl('/blog', locale),
     },
-    { '@type': 'ListItem', position: 2, name: post.title },
+    ...(post.category
+      ? [
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: post.category.title.trim(),
+            item: absoluteUrl(
+              { pathname: '/blog/kategoria/[slug]', params: { slug: post.category.slug } },
+              locale,
+            ),
+          },
+        ]
+      : []),
+    {
+      '@type': 'ListItem',
+      position: post.category ? 4 : 3,
+      name: post.title,
+      item: canonicalUrl,
+    },
   ];
 
   const jsonLdBreadcrumb = {
@@ -306,7 +353,7 @@ export default async function BlogPostPage({ params }: Props) {
             <nav className="flex items-center justify-between mb-10 flex-wrap gap-3" aria-label="Blog navigation">
               <Link
                 href="/blog"
-                className="inline-flex items-center gap-2 text-white/30 hover:text-white text-xs transition-colors"
+                className="inline-flex items-center gap-2 text-white/50 hover:text-white text-xs transition-colors"
               >
                 <ArrowLeft size={14} />
                 {t('backToBlog')}
@@ -318,7 +365,7 @@ export default async function BlogPostPage({ params }: Props) {
                     key={tr!.language}
                     href={{ pathname: '/blog/[slug]', params: { slug: tr!.slug } }}
                     locale={tr!.language as 'pl' | 'en'}
-                    className="inline-flex items-center gap-2 text-xs text-white/30 hover:text-accent transition-colors border border-white/10 hover:border-accent/30 px-3 py-2 rounded-full"
+                    className="inline-flex items-center gap-2 text-xs text-white/50 hover:text-accent transition-colors border border-white/10 hover:border-accent/30 px-3 py-2 rounded-full"
                     hrefLang={tr!.language}
                   >
                     {tr!.language === 'pl' ? t('langLabel.pl') : t('langLabel.en')}
@@ -328,7 +375,7 @@ export default async function BlogPostPage({ params }: Props) {
             </nav>
 
             {/* Category + meta */}
-            <div className="flex flex-wrap items-center gap-3 mb-6 text-white/40 text-xs">
+            <div className="flex flex-wrap items-center gap-3 mb-6 text-white/50 text-xs">
               {post.category && (
                 <Link
                   href={{
@@ -353,7 +400,7 @@ export default async function BlogPostPage({ params }: Props) {
                     <span itemProp="name">{post.author.name}</span>
                   </span>
                   {post.author.role && (
-                    <span className="text-white/25">- {post.author.role}</span>
+                    <span className="text-white/50">- {post.author.role}</span>
                   )}
                 </>
               )}
@@ -490,12 +537,26 @@ export default async function BlogPostPage({ params }: Props) {
                   />
                 )}
                 <address className="not-italic">
-                  <p className="text-xs text-dark/40 mb-1 uppercase tracking-wider">
+                  <p className="text-xs text-dark/60 mb-1 uppercase tracking-wider">
                     {t('authorSection')}
                   </p>
-                  <p className="font-semibold text-dark text-sm">{post.author.name}</p>
+                  {/* Strony autorow nie mialy zadnego linku przychodzacego z bloga -
+                      bez niego E-E-A-T nie ma sie po czym przeniesc na artykul */}
+                  <p className="font-semibold text-dark text-sm">
+                    {post.author.slug ? (
+                      <Link
+                        href={{ pathname: '/autor/[slug]', params: { slug: post.author.slug } }}
+                        className="underline underline-offset-4 decoration-dark/20 hover:decoration-dark"
+                        rel="author"
+                      >
+                        {post.author.name}
+                      </Link>
+                    ) : (
+                      post.author.name
+                    )}
+                  </p>
                   {post.author.role && (
-                    <p className="text-xs text-dark/50 mt-1">{post.author.role}</p>
+                    <p className="text-xs text-dark/60 mt-1">{post.author.role}</p>
                   )}
                   {post.author.bio && (
                     <p className="text-sm text-dark/60 mt-3 leading-relaxed">
@@ -557,7 +618,7 @@ export default async function BlogPostPage({ params }: Props) {
                       <summary className="cursor-pointer flex items-center justify-between p-6 text-sm font-medium text-dark list-none hover:bg-surface transition-colors">
                         {faq.question}
                         <span
-                          className="text-dark/30 group-open:rotate-45 transition-transform duration-200 shrink-0 ml-4 text-lg"
+                          className="text-dark/60 group-open:rotate-45 transition-transform duration-200 shrink-0 ml-4 text-lg"
                           aria-hidden="true"
                         >
                           +

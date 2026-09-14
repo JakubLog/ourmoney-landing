@@ -24,6 +24,7 @@ const SITEMAP_CATEGORIES_QUERY = groq`
   *[_type == "category" && defined(slug.current)
     && count(*[_type == "blogPost" && defined(slug.current) && references(^._id)]) > 0] {
     "slug": slug.current,
+    language,
     _updatedAt
   }
 `;
@@ -37,6 +38,12 @@ type SitemapPost = {
 
 type SitemapAuthor = {
   slug: string;
+  _updatedAt: string | null;
+};
+
+type SitemapCategory = {
+  slug: string;
+  language: string | null;
   _updatedAt: string | null;
 };
 
@@ -63,7 +70,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [posts, authors, categories] = await Promise.all([
     client.fetch<SitemapPost[]>(SITEMAP_POSTS_QUERY, {}, { cache: 'no-store' as const }),
     client.fetch<SitemapAuthor[]>(SITEMAP_AUTHORS_QUERY, {}, { cache: 'no-store' as const }),
-    client.fetch<SitemapAuthor[]>(SITEMAP_CATEGORIES_QUERY, {}, { cache: 'no-store' as const }),
+    client.fetch<SitemapCategory[]>(SITEMAP_CATEGORIES_QUERY, {}, { cache: 'no-store' as const }),
   ]);
 
   const blogEntries = posts.map((post) => ({
@@ -85,17 +92,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   );
 
-  const categoryEntries = categories.flatMap((category) =>
-    routing.locales.map((locale) => ({
-      url: absoluteUrl(
-        { pathname: '/blog/kategoria/[slug]', params: { slug: category.slug } },
-        locale,
-      ),
-      lastModified: new Date(category._updatedAt ?? Date.now()),
-      priority: 0.5,
-      changeFrequency: 'weekly' as const,
-    })),
-  );
+  // Kategoria istnieje osobno per jezyk (wlasny dokument i wlasny slug), wiec
+  // trafia do sitemapy tylko pod swoim locale. Emitowanie jej pod oboma dawalo
+  // dwie thin strony z naglowkiem w obcym jezyku - te adresy teraz przekierowuja.
+  const categoryEntries = categories.map((category) => ({
+    url: absoluteUrl(
+      { pathname: '/blog/kategoria/[slug]', params: { slug: category.slug } },
+      category.language || 'pl',
+    ),
+    lastModified: new Date(category._updatedAt ?? Date.now()),
+    priority: 0.5,
+    changeFrequency: 'weekly' as const,
+  }));
 
   return [...staticEntries, ...blogEntries, ...authorEntries, ...categoryEntries];
 }

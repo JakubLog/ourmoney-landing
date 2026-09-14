@@ -59,16 +59,21 @@ export default async function CalculatorPage({ params }: Props) {
     '@graph': [
       {
         '@type': 'WebApplication',
+        '@id': `${absoluteUrl('/kalkulator', locale)}#app`,
         name: t('title'),
         url: absoluteUrl('/kalkulator', locale),
         applicationCategory: 'FinanceApplication',
         operatingSystem: 'Web',
+        inLanguage: locale === 'pl' ? 'pl-PL' : 'en-US',
         description: t('subtitle'),
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'PLN' },
         publisher: { '@id': 'https://ourmoney.pl/#organization' },
+        isPartOf: { '@id': 'https://ourmoney.pl/#website' },
       },
       {
         '@type': 'FAQPage',
+        '@id': `${absoluteUrl('/kalkulator', locale)}#faq`,
+        inLanguage: locale === 'pl' ? 'pl-PL' : 'en-US',
         mainEntity: faqItems.map((item) => ({
           '@type': 'Question',
           name: item.question,
@@ -107,7 +112,7 @@ export default async function CalculatorPage({ params }: Props) {
         <section className="bg-dark px-6 pt-36 pb-24">
           <div className="mx-auto max-w-5xl">
             <div className="mb-12 text-center md:mb-16">
-              <p className="mb-4 text-xs uppercase tracking-[0.2em] text-white/40">{t('eyebrow')}</p>
+              <p className="mb-4 text-xs uppercase tracking-[0.2em] text-white/50">{t('eyebrow')}</p>
               {/* max-w wymusza lamanie na dwie linie juz na desktopie;
                   o rowny podzial linii dba globalna regula text-wrap: balance */}
               <h1 className="font-display mx-auto max-w-4xl text-4xl leading-tight text-white md:text-6xl">
@@ -150,7 +155,7 @@ export default async function CalculatorPage({ params }: Props) {
                   <li key={model.name} className="rounded-card border border-dark/10 p-6">
                     <h3 className="mb-2 text-lg font-medium text-dark">{model.name}</h3>
                     <p className="text-sm leading-relaxed text-dark/60">{model.description}</p>
-                    <p className="mt-3 text-sm leading-relaxed text-dark/40">{model.forWho}</p>
+                    <p className="mt-3 text-sm leading-relaxed text-dark/60">{model.forWho}</p>
                   </li>
                 ))}
               </ul>
@@ -162,13 +167,13 @@ export default async function CalculatorPage({ params }: Props) {
                 <details key={item.question} className="group border-t border-dark/10">
                   <summary className="flex cursor-pointer items-center justify-between py-6">
                     <h3 className="pr-6 text-base font-medium text-dark">{item.question}</h3>
-                    <span aria-hidden="true" className="shrink-0 text-dark/40">
+                    <span aria-hidden="true" className="shrink-0 text-dark/60">
                       <Plus size={18} className="faq-plus" />
                       <X size={18} className="faq-minus" />
                     </span>
                   </summary>
                   <div className="faq-answer pb-6">
-                    <p className="max-w-xl text-sm leading-relaxed text-dark/50">{item.answer}</p>
+                    <p className="max-w-xl text-sm leading-relaxed text-dark/60">{item.answer}</p>
                   </div>
                 </details>
               ))}

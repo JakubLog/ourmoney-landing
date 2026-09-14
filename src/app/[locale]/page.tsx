@@ -57,6 +57,7 @@ export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const tFaq = await getTranslations({ locale, namespace: 'HomePage.faq' });
+  const tMeta = await getTranslations({ locale, namespace: 'HomePage.meta' });
   const faqItems = tFaq.raw('items') as FAQItem[];
 
   const jsonLd = {
@@ -89,11 +90,24 @@ export default async function HomePage({ params }: Props) {
         '@id': 'https://ourmoney.pl/#website',
         url: 'https://ourmoney.pl',
         name: 'OurMoney',
+        inLanguage: locale === 'pl' ? 'pl-PL' : 'en-US',
         publisher: { '@id': 'https://ourmoney.pl/#organization' },
       },
       {
+        '@type': 'WebPage',
+        '@id': `${absoluteUrl('/', locale)}#webpage`,
+        url: absoluteUrl('/', locale),
+        name: tMeta('title'),
+        description: tMeta('description'),
+        inLanguage: locale === 'pl' ? 'pl-PL' : 'en-US',
+        isPartOf: { '@id': 'https://ourmoney.pl/#website' },
+        about: { '@id': 'https://ourmoney.pl/#software' },
+      },
+      {
         '@type': 'SoftwareApplication',
+        '@id': 'https://ourmoney.pl/#software',
         name: 'OurMoney',
+        publisher: { '@id': 'https://ourmoney.pl/#organization' },
         applicationCategory: 'FinanceApplication',
         operatingSystem: 'Web',
         url: 'https://ourmoney.pl',
@@ -139,6 +153,9 @@ export default async function HomePage({ params }: Props) {
       },
       {
         '@type': 'FAQPage',
+        '@id': `${absoluteUrl('/', locale)}#faq`,
+        inLanguage: locale === 'pl' ? 'pl-PL' : 'en-US',
+        isPartOf: { '@id': `${absoluteUrl('/', locale)}#webpage` },
         mainEntity: faqItems.map((item) => ({
           '@type': 'Question',
           name: item.question,
@@ -159,7 +176,7 @@ export default async function HomePage({ params }: Props) {
         <HeroSection locale={locale} />
         <PainPointsSection locale={locale} />
         <CalculatorTeaserSection locale={locale} />
-        <HowItWorksSection />
+        <HowItWorksSection locale={locale} />
         <FeaturesSection locale={locale} />
         <AiReportSection locale={locale} />
         <BrandPromiseSection locale={locale} />

@@ -37,7 +37,11 @@ type Post = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
-  const author = await client.fetch<AuthorData | null>(AUTHOR_QUERY, { slug }, fetchOptions);
+  const author = await client.fetch<AuthorData | null>(
+    AUTHOR_QUERY,
+    { slug, language: locale },
+    fetchOptions,
+  );
   if (!author) return {};
   const title = `${author.name} | OurMoney`;
   const description = author.bio ?? undefined;
@@ -54,6 +58,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ...(author.avatarUrl && { images: [{ url: author.avatarUrl, width: 400, height: 400 }] }),
     },
     twitter: {
+      // Avatar jest kwadratowy (400x400) - w karcie summary_large_image
+      // dziedziczonej z layoutu zostalby przyciety do paska
+      card: 'summary',
       title,
       description,
       ...(author.avatarUrl && { images: [author.avatarUrl] }),
@@ -69,25 +76,47 @@ export default async function AuthorPage({ params }: Props) {
   const tAuthor = await getTranslations({ locale, namespace: 'AuthorPage' });
 
   const [author, posts] = await Promise.all([
-    client.fetch<AuthorData | null>(AUTHOR_QUERY, { slug }, fetchOptions),
+    client.fetch<AuthorData | null>(AUTHOR_QUERY, { slug, language: locale }, fetchOptions),
     client.fetch<Post[]>(AUTHOR_POSTS_QUERY, { slug, language: locale }, fetchOptions),
   ]);
 
   if (!author) notFound();
 
+  const authorUrl = absoluteUrl({ pathname: '/autor/[slug]', params: { slug } }, locale);
+
+  // ProfilePage + Person: Google czyta strone autora jako profil dopiero, gdy
+  // dostanie oba typy i `mainEntity` miedzy nimi
   const personJsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: author.name,
-    jobTitle: author.role ?? undefined,
-    description: author.bio ?? undefined,
-    image: author.avatarUrl ?? undefined,
-    url: absoluteUrl({ pathname: '/autor/[slug]', params: { slug } }, locale),
-    worksFor: {
-      '@type': 'Organization',
-      name: 'OurMoney',
-      url: 'https://ourmoney.pl',
-    },
+    '@graph': [
+      {
+        '@type': 'ProfilePage',
+        '@id': `${authorUrl}#profile`,
+        url: authorUrl,
+        name: author.name,
+        inLanguage: locale === 'pl' ? 'pl-PL' : 'en-US',
+        isPartOf: { '@id': 'https://ourmoney.pl/#website' },
+        mainEntity: { '@id': `${authorUrl}#person` },
+      },
+      {
+        '@type': 'Person',
+        '@id': `${authorUrl}#person`,
+        name: author.name,
+        jobTitle: author.role ?? undefined,
+        description: author.bio ?? undefined,
+        image: author.avatarUrl ?? undefined,
+        url: authorUrl,
+        worksFor: { '@id': 'https://ourmoney.pl/#organization' },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'OurMoney', item: absoluteUrl('/', locale) },
+          { '@type': 'ListItem', position: 2, name: 'Blog', item: absoluteUrl('/blog', locale) },
+          { '@type': 'ListItem', position: 3, name: author.name, item: authorUrl },
+        ],
+      },
+    ],
   };
 
   return (
@@ -173,12 +202,12 @@ export default async function AuthorPage({ params }: Props) {
                           {post.title}
                         </h3>
                         {post.excerpt && (
-                          <p className="text-dark/50 text-sm line-clamp-2 mb-2">
+                          <p className="text-dark/60 text-sm line-clamp-2 mb-2">
                             {post.excerpt}
                           </p>
                         )}
                         {minutes && (
-                          <span className="inline-flex items-center gap-1 text-xs text-dark/40">
+                          <span className="inline-flex items-center gap-1 text-xs text-dark/60">
                             <Clock className="w-3 h-3" />
                             {t('readingTime', { minutes })}
                           </span>

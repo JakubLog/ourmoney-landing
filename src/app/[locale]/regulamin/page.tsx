@@ -23,6 +23,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: alternatesFor('/regulamin', locale),
     // Jak przy polityce prywatnosci - strona zaufania, warta indeksacji
     robots: { index: true, follow: true },
+    // Bez wlasnego openGraph strona dziedziczyla z layoutu obrazek i site_name,
+    // ale zostawala bez og:url i og:locale
+    openGraph: {
+      title: t('title'),
+      description: t('description'),
+      url: absoluteUrl('/regulamin', locale),
+      siteName: 'OurMoney',
+      images: [{ url: '/og-image.png', width: 1200, height: 630 }],
+      locale: locale === 'pl' ? 'pl_PL' : 'en_US',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('title'),
+      description: t('description'),
+      images: ['/og-image.png'],
+    },
   };
 }
 
@@ -33,14 +50,40 @@ export default async function TermsPage({ params }: Props) {
   const appHref = withAppLocale(`${APP_ORIGIN}/`, locale);
   const canonicalHref = absoluteUrl('/regulamin', locale);
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebPage',
+        '@id': `${canonicalHref}#webpage`,
+        url: canonicalHref,
+        name: t('title'),
+        inLanguage: locale === 'pl' ? 'pl-PL' : 'en-US',
+        isPartOf: { '@id': 'https://ourmoney.pl/#website' },
+        publisher: { '@id': 'https://ourmoney.pl/#organization' },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'OurMoney', item: absoluteUrl('/', locale) },
+          { '@type': 'ListItem', position: 2, name: t('title'), item: canonicalHref },
+        ],
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header />
       <main>
         <section className="bg-dark pt-36 pb-16 px-6">
           <div className="max-w-3xl mx-auto">
             <h1 className="font-display text-4xl md:text-5xl text-white">{t('title')}</h1>
-            <p className="text-white/40 text-sm mt-4">{t('lastUpdated')}</p>
+            <p className="text-white/50 text-sm mt-4">{t('lastUpdated')}</p>
           </div>
         </section>
 

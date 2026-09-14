@@ -25,7 +25,7 @@ const createComponents = (locale: string): PortableTextComponents => ({
             />
           </div>
           {value.caption && (
-            <figcaption className="text-center text-xs text-dark/40 mt-3 italic">
+            <figcaption className="text-center text-xs text-dark/60 mt-3 italic">
               {value.caption}
             </figcaption>
           )}
@@ -35,6 +35,14 @@ const createComponents = (locale: string): PortableTextComponents => ({
   },
 
   block: {
+    // H1 nalezy do tytulu artykulu. Blok `h1` z CMS-u (zdarza sie po imporcie
+    // tresci) renderujemy jako H2 - drugi H1 na stronie lamie hierarchie
+    // naglowkow i myli parsery wyszukiwarek co do tematu strony.
+    h1: ({ children }) => (
+      <h2 className="font-display text-[2rem] text-dark mt-12 mb-6 leading-tight not-prose">
+        {children}
+      </h2>
+    ),
     h2: ({ children }) => (
       <h2 className="font-display text-[2rem] text-dark mt-12 mb-6 leading-tight not-prose">
         {children}

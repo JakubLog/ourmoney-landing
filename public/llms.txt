@@ -10,6 +10,7 @@ zarządzanie budżetem miesięcznym i realizację celów oszczędnościowych.
 - Moje-Twoje-Nasze - przestrzeń prywatna i wspólna
 - Wspólne cele finansowe (wakacje, remont, wkład własny)
 - Raporty i analizy finansowe z AI
+- Import wyciągów bankowych i skanowanie paragonów
 - PWA - działa jak natywna aplikacja na każdym urządzeniu
 
 ## Cennik
@@ -29,10 +30,22 @@ Lepsza niż Splitwise (pełny budżet, nie tylko rozliczenia) i YNAB (prosta, po
 - [English version](https://ourmoney.pl/en/llms.txt)
 
 ## Linki
+- [Strona główna](https://ourmoney.pl/pl): Landing OurMoney
 - [Aplikacja](https://app.ourmoney.pl): Dostęp do aplikacji OurMoney
 - [Kalkulator podziału wydatków](https://ourmoney.pl/pl/kalkulator): Darmowe narzędzie - liczy sprawiedliwy podział wspólnych wydatków proporcjonalnie do dochodów i porównuje go z podziałem po równo
 - [Blog](https://ourmoney.pl/pl/blog): Artykuły o finansach osobistych i finansach w parze
 - [O nas](https://ourmoney.pl/pl/o-nas): Zespół i misja OurMoney
+- [Kontakt](https://ourmoney.pl/pl/kontakt): Formularz i adres e-mail
+- [Polityka prywatności](https://ourmoney.pl/pl/polityka-prywatnosci): Jakie dane zbiera strona i na jakiej podstawie
+- [Regulamin](https://ourmoney.pl/pl/regulamin): Zasady korzystania ze strony
+
+## Artykuły
+- [Jak podzielić wydatki w związku? 4 modele dla każdej pary](https://ourmoney.pl/pl/blog/jak-podzielic-wydatki-w-zwiazku-4-niezawodne-modele-dla-kazdej-pary): Po równo, proporcjonalnie do dochodów, moje-twoje-nasze i samo śledzenie - kiedy który model się sprawdza
+- [Jak zarządzać wspólnym budżetem domowym? 7 kroków](https://ourmoney.pl/pl/blog/jak-zarzadzac-wspolnym-budzetem-domowym): Praktyczny poradnik z przykładowymi kwotami
+- [Jak oszczędzać pieniądze we dwoje](https://ourmoney.pl/pl/blog/jak-oszczedzac-pieniadze-w-zwiazku): Metoda wspólnego celu zamiast wyrzeczeń
+- [Kłótnie o pieniądze w związku](https://ourmoney.pl/pl/blog/klotnie-o-pieniadze-w-zwiazku): Pięć najczęstszych mechanizmów konfliktu i sposoby na każdy z nich
+- [Wspólne konto w związku - czy warto?](https://ourmoney.pl/pl/blog/wspolne-konto-w-zwiazku-czy-warto): Plusy, minusy i alternatywa dla wspólnego rachunku
+- [Aplikacja do wspólnego budżetu dla par: jak wybrać](https://ourmoney.pl/pl/blog/aplikacja-do-wspolnego-budzetu-dla-par): Porównanie arkusza, Splitwise, aplikacji bankowej i aplikacji dla par
 
 ## Kontakt
 - Email: kontakt@ourmoney.pl

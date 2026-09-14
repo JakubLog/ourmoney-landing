@@ -95,8 +95,12 @@ export const AUTHORS_QUERY = groq`
   }
 `;
 
+// Autor ma dokument per jezyk (plugin document-internationalization) z tym
+// samym slugiem - bierzemy wersje w jezyku strony, a gdy jej nie ma, dowolna
+// (w praktyce PL). Bez tego /en/author/* serwowalo polskie bio.
 export const AUTHOR_QUERY = groq`
-  *[_type == "author" && slug.current == $slug][0] {
+  *[_type == "author" && slug.current == $slug]
+  | order(select(language == $language => 0, 1) asc)[0] {
     _id,
     name,
     "slug": slug.current,
@@ -122,16 +126,28 @@ export const AUTHOR_POSTS_QUERY = groq`
   }
 `;
 
+// Kategorie sa tlumaczone tak jak posty (translation.metadata), a slug jest
+// jezykowy - dlatego projekcja zwraca `language` i `_translations`. Strona
+// kategorii uzywa ich, zeby przekierowac wejscie na obcojezyczny slug i zeby
+// hreflang wskazywal realne tlumaczenie, a nie ten sam dokument pod dwoma locale.
 export const CATEGORY_QUERY = groq`
   *[_type == "category" && slug.current == $slug][0] {
     _id,
     title,
     "slug": slug.current,
+    language,
+    "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{
+      "slug": slug.current,
+      language,
+    },
   }
 `;
 
+// $categorySlugs to slug kategorii razem ze slugami jej tlumaczen. Post bywa
+// przypisany do kategorii w drugim jezyku (ta sama kategoria, inny dokument) -
+// dopasowanie po calej grupie tlumaczen nie gubi go na liscie.
 export const CATEGORY_POSTS_QUERY = groq`
-  *[_type == "blogPost" && defined(slug.current) && category->slug.current == $slug
+  *[_type == "blogPost" && defined(slug.current) && category->slug.current in $categorySlugs
     && (language == $language || (!(defined(language)) && $language == "pl"))]
   | order(publishedAt desc) {
     _id,
@@ -154,6 +170,7 @@ export const CATEGORIES_WITH_POSTS_QUERY = groq`
     && count(*[_type == "blogPost" && defined(slug.current) && references(^._id)]) > 0] {
     title,
     "slug": slug.current,
+    language,
   }
 `;
 

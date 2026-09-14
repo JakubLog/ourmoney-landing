@@ -99,12 +99,30 @@ usunąć w dowolnej chwili.
 
 ## Linki
 
-- Strona główna: https://ourmoney.pl
+- Strona główna: https://ourmoney.pl/pl
 - Aplikacja: https://app.ourmoney.pl
 - Kalkulator podziału wydatków: https://ourmoney.pl/pl/kalkulator
 - Blog: https://ourmoney.pl/pl/blog
 - O nas: https://ourmoney.pl/pl/o-nas
+- Kontakt: https://ourmoney.pl/pl/kontakt
+- Polityka prywatności: https://ourmoney.pl/pl/polityka-prywatnosci
+- Regulamin: https://ourmoney.pl/pl/regulamin
 - Wersja angielska: https://ourmoney.pl/en/llms-full.txt
+
+## Artykuły na blogu
+
+- Jak podzielić wydatki w związku? 4 modele dla każdej pary:
+  https://ourmoney.pl/pl/blog/jak-podzielic-wydatki-w-zwiazku-4-niezawodne-modele-dla-kazdej-pary
+- Jak zarządzać wspólnym budżetem domowym? 7 kroków dla par:
+  https://ourmoney.pl/pl/blog/jak-zarzadzac-wspolnym-budzetem-domowym
+- Jak oszczędzać pieniądze we dwoje? Wspólny cel zamiast wyrzeczeń:
+  https://ourmoney.pl/pl/blog/jak-oszczedzac-pieniadze-w-zwiazku
+- Kłótnie o pieniądze w związku: skąd się biorą i jak je wyciszyć:
+  https://ourmoney.pl/pl/blog/klotnie-o-pieniadze-w-zwiazku
+- Wspólne konto w związku - czy warto? Plusy, minusy i lepsza alternatywa:
+  https://ourmoney.pl/pl/blog/wspolne-konto-w-zwiazku-czy-warto
+- Aplikacja do wspólnego budżetu dla par: jak wybrać:
+  https://ourmoney.pl/pl/blog/aplikacja-do-wspolnego-budzetu-dla-par
 
 ## Kontakt
 

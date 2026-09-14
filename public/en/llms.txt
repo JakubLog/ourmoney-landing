@@ -10,6 +10,7 @@ manage a monthly budget and work towards shared savings goals.
 - Mine-Yours-Ours - separate private and shared spaces
 - Shared financial goals (holidays, renovation, house deposit)
 - AI-generated monthly reports and analysis
+- Bank statement import and receipt scanning
 - PWA - works like a native app on any device
 
 ## Pricing
@@ -29,10 +30,22 @@ Broader than Splitwise (a full budget, not just debt settlement) and simpler tha
 - [Wersja polska](https://ourmoney.pl/llms.txt)
 
 ## Links
+- [Homepage](https://ourmoney.pl/en): The OurMoney landing page
 - [App](https://app.ourmoney.pl): Access the OurMoney app
 - [Expense split calculator](https://ourmoney.pl/en/calculator): Free tool - works out a fair split of shared expenses proportional to income and compares it with an even split
 - [Blog](https://ourmoney.pl/en/blog): Articles on personal finance and money in a relationship
 - [About](https://ourmoney.pl/en/about): The team and mission behind OurMoney
+- [Contact](https://ourmoney.pl/en/contact): Contact form and email address
+- [Privacy policy](https://ourmoney.pl/en/privacy-policy): What data the site collects and on what legal basis
+- [Terms of service](https://ourmoney.pl/en/terms): The rules for using the site
+
+## Articles
+- [How to Split Expenses in a Relationship? 4 Proven Models](https://ourmoney.pl/en/blog/how-to-split-expenses-in-a-relationship-4-proven-models-for-every-couple): 50/50, proportional to income, mine-yours-ours and tracking only - when each model works
+- [How to Manage a Shared Household Budget? 7 Steps](https://ourmoney.pl/en/blog/how-to-manage-a-shared-household-budget): A practical guide with real numbers
+- [How to Save Money as a Couple](https://ourmoney.pl/en/blog/how-to-save-money-as-a-couple): One shared goal beats willpower
+- [Money Arguments in a Relationship](https://ourmoney.pl/en/blog/money-arguments-in-a-relationship): Five common mechanisms behind money fights, each with a fix
+- [Joint Account for Couples - Is It Worth It?](https://ourmoney.pl/en/blog/joint-account-for-couples-is-it-worth-it): Pros, cons and a better alternative
+- [How to Choose a Budget App for Couples](https://ourmoney.pl/en/blog/how-to-choose-a-budget-app-for-couples): Spreadsheet, Splitwise, banking app or a couples app compared
 
 ## Contact
 - Email: kontakt@ourmoney.pl

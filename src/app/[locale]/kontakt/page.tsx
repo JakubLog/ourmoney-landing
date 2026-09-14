@@ -45,9 +45,52 @@ export default async function ContactPage({ params }: Props) {
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'ContactPage' });
   const tFooter = await getTranslations({ locale, namespace: 'Footer' });
+  const tNav = await getTranslations({ locale, namespace: 'Navigation' });
+
+  const contactUrl = absoluteUrl('/kontakt', locale);
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'ContactPage',
+        '@id': `${contactUrl}#contact`,
+        url: contactUrl,
+        name: t('meta.title'),
+        description: t('meta.description'),
+        inLanguage: locale === 'pl' ? 'pl-PL' : 'en-US',
+        isPartOf: { '@id': 'https://ourmoney.pl/#website' },
+        about: { '@id': 'https://ourmoney.pl/#organization' },
+      },
+      {
+        '@type': 'Organization',
+        '@id': 'https://ourmoney.pl/#organization',
+        name: 'OurMoney',
+        url: 'https://ourmoney.pl',
+        email: 'kontakt@ourmoney.pl',
+        sameAs: ['https://www.instagram.com/ourmoneypl/'],
+        contactPoint: {
+          '@type': 'ContactPoint',
+          contactType: 'customer support',
+          email: 'kontakt@ourmoney.pl',
+          availableLanguage: ['pl', 'en'],
+        },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'OurMoney', item: absoluteUrl('/', locale) },
+          { '@type': 'ListItem', position: 2, name: tNav('contact'), item: contactUrl },
+        ],
+      },
+    ],
+  };
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header />
       <main>
         {/* Hero */}
@@ -75,7 +118,7 @@ export default async function ContactPage({ params }: Props) {
                   <Mail size={20} className="text-accent" />
                 </div>
                 <div>
-                  <p className="text-xs text-dark/50 uppercase tracking-wide mb-1">{t('email.label')}</p>
+                  <p className="text-xs text-dark/60 uppercase tracking-wide mb-1">{t('email.label')}</p>
                   <p className="text-dark font-medium text-sm group-hover:text-black">
                     {tFooter('email')}
                   </p>
@@ -93,7 +136,7 @@ export default async function ContactPage({ params }: Props) {
                   <Instagram size={20} className="text-accent" />
                 </div>
                 <div>
-                  <p className="text-xs text-dark/50 uppercase tracking-wide mb-1">{t('instagram.label')}</p>
+                  <p className="text-xs text-dark/60 uppercase tracking-wide mb-1">{t('instagram.label')}</p>
                   <p className="text-dark font-medium text-sm group-hover:text-black">
                     {t('instagram.value')}
                   </p>
