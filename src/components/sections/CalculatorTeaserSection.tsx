@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import { ArrowRight } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
+import { CalculatorAnimationShowcase } from '@/components/sections/CalculatorAnimationShowcase';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SectionLead } from '@/components/ui/SectionLead';
 
@@ -21,6 +22,16 @@ export async function CalculatorTeaserSection({ locale }: Props) {
         <SectionLead tone="dark" className="mt-6">
           {t('subtitle')}
         </SectionLead>
+      </ScrollReveal>
+
+      <ScrollReveal animation="scale" delay={100} className="mx-auto mt-12 max-w-6xl">
+        <CalculatorAnimationShowcase
+          calculatorLabel={t('mockupLabel')}
+          expenseLabel={t('expenseAnimation.label')}
+        />
+      </ScrollReveal>
+
+      <div className="text-center">
         <Link
           href="/kalkulator"
           className="sheen mt-10 inline-flex items-center gap-2 rounded-full bg-accent px-8 py-4 text-sm font-semibold text-black transition-colors hover:bg-accent-dark"
@@ -28,7 +39,7 @@ export async function CalculatorTeaserSection({ locale }: Props) {
           {t('cta')}
           <ArrowRight size={16} aria-hidden="true" />
         </Link>
-      </ScrollReveal>
+      </div>
     </section>
   );
 }
