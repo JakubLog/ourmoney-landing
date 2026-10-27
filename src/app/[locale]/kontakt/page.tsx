@@ -112,7 +112,7 @@ export default async function ContactPage({ params }: Props) {
               {/* Email */}
               <CopyEmail
                 email={tFooter('email')}
-                className="flex items-center gap-4 p-6 rounded-2xl border border-beige hover:border-dark transition-colors group"
+                className="flex items-center gap-4 p-6 rounded-2xl border border-beige hover:border-dark transition-colors group text-left"
               >
                 <div className="w-12 h-12 bg-dark rounded-xl flex items-center justify-center shrink-0">
                   <Mail size={20} className="text-accent" />

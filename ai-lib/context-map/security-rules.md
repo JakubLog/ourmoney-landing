@@ -43,6 +43,9 @@ const securityHeaders = [
 | `NEXT_PUBLIC_SANITY_DATASET` | NEXT_PUBLIC_ | Frontend (OK — publiczne) |
 | `SANITY_API_TOKEN` | _(brak)_ | Server-only (NIGDY w bundlu) |
 | `SANITY_WEBHOOK_SECRET` | _(brak)_ | Server-only (NIGDY w bundlu) |
+| `RESEND_API_KEY` | _(brak)_ | Server-only, `app/api/contact` (NIGDY w bundlu) |
+| `CONTACT_EMAIL_FROM` | _(brak)_ | Server-only, nadawca z domeny zweryfikowanej w Resend |
+| `CONTACT_EMAIL_TO` | _(brak)_ | Server-only, skrzynka odbierająca formularz |
 
 **Zasada**: `NEXT_PUBLIC_` tylko dla danych które mogą być w publicznym JS bundlu.
 Tokeny z uprawnieniami write → ZAWSZE bez prefixu (dostępne tylko w Server Components / Route Handlers).

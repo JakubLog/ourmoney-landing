@@ -24,7 +24,9 @@
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-is": "^19.2.8",
-    "sanity": "^4.22.0"
+    "resend": "^6.34.1",
+    "sanity": "^4.22.0",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@sanity/vision": "^4.22.0",

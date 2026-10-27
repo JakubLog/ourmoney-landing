@@ -5,8 +5,6 @@ import { useLocale, useTranslations } from 'next-intl';
 import { Send, Loader2, CheckCircle } from 'lucide-react';
 import { trackContactFormSubmit } from '@/lib/analytics';
 
-const WEBHOOK_URL = 'https://srv.ourmoney.pl/webhooks/custom/contact-form';
-
 export function ContactForm() {
   const t = useTranslations('ContactPage.form');
   const locale = useLocale();
@@ -23,10 +21,11 @@ export function ContactForm() {
       name: (form.elements.namedItem('name') as HTMLInputElement).value.trim(),
       email: (form.elements.namedItem('email') as HTMLInputElement).value.trim(),
       message: (form.elements.namedItem('message') as HTMLTextAreaElement).value.trim(),
+      locale,
     };
 
     try {
-      const res = await fetch(WEBHOOK_URL, {
+      const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
@@ -60,6 +59,7 @@ export function ContactForm() {
           name="name"
           type="text"
           required
+          maxLength={100}
           placeholder={t('namePlaceholder')}
           className="w-full rounded-xl border border-dark/10 bg-white px-6 py-4 text-sm text-dark placeholder:text-dark/60 outline-none focus:border-dark/30 transition-colors"
         />
@@ -67,6 +67,7 @@ export function ContactForm() {
           name="email"
           type="email"
           required
+          maxLength={254}
           placeholder={t('emailPlaceholder')}
           className="w-full rounded-xl border border-dark/10 bg-white px-6 py-4 text-sm text-dark placeholder:text-dark/60 outline-none focus:border-dark/30 transition-colors"
         />
@@ -74,6 +75,7 @@ export function ContactForm() {
       <textarea
         name="message"
         required
+        maxLength={5000}
         rows={5}
         placeholder={t('messagePlaceholder')}
         className="w-full rounded-xl border border-dark/10 bg-white px-6 py-4 text-sm text-dark placeholder:text-dark/60 outline-none focus:border-dark/30 transition-colors resize-none"
