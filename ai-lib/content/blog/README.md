@@ -10,7 +10,7 @@ dla importu i dla historii zmian.
 ## Import
 
 ```bash
-SANITY_API_WRITE_TOKEN=<token> npm run import:blog
+SANITY_API_WRITE_TOKEN=<token> pnpm run import:blog
 ```
 
 Token: `sanity.io/manage` → projekt → API → Tokens → uprawnienia **Editor**.
@@ -18,13 +18,13 @@ Token: `sanity.io/manage` → projekt → API → Tokens → uprawnienia **Edito
 Bez tokenu można odpalić samą walidację:
 
 ```bash
-npm run import:blog -- --dry-run
+pnpm run import:blog -- --dry-run
 ```
 
 Podgląd gotowego dokumentu (w tym Portable Text) dla jednego posta:
 
 ```bash
-npm run import:blog -- --print jak-zarzadzac-wspolnym-budzetem-domowym
+pnpm run import:blog -- --print jak-zarzadzac-wspolnym-budzetem-domowym
 ```
 
 Skrypt jest idempotentny. Każdy post ma stałe `_id` zbudowane ze sluga, więc ponowne

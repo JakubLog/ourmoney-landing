@@ -39,3 +39,9 @@ ds-bundle/
 .design-sync/.cache/
 .design-sync/learnings/
 .design-sync/node_modules
+
+# Jeden menedżer pakietów: pnpm. Nie dopuszczamy innych lockfile'i (np. po przypadkowym npm/bun install).
+package-lock.json
+bun.lock
+bun.lockb
+yarn.lock
