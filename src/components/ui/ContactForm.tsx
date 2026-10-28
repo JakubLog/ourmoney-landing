@@ -85,7 +85,7 @@ export function ContactForm() {
         <p className="text-red-500 text-sm">{errorMsg}</p>
       )}
 
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex flex-wrap items-center justify-between gap-4">
         <p className="text-dark/60 text-xs">{t('note')}</p>
         <button
           type="submit"

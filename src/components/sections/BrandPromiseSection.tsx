@@ -36,8 +36,9 @@ export async function BrandPromiseSection({ locale }: Props) {
             </div>
           </div>
 
-          {/* Cards: absolute on desktop, flex row below image on mobile */}
-          <div className="flex gap-3 mt-4 md:block md:mt-0">
+          {/* Cards: absolute on desktop; below the image on mobile - stacked under sm,
+              because two cards side by side need ~370px and overflow narrow phones */}
+          <div className="flex flex-col gap-3 mt-4 sm:flex-row md:block md:mt-0">
 
             {/* Card: Biedronka */}
             <div className="float-a glass-light flex-1 md:flex-none relative md:absolute md:bottom-10 md:left-6 rounded-2xl px-3 py-2 md:px-4 md:py-3 flex items-center gap-2 md:gap-3 z-10">

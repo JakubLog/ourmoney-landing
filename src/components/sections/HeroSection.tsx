@@ -75,15 +75,17 @@ export async function HeroSection({ locale }: Props) {
         <aside aria-label={t('socialProof')} className="mb-6 flex flex-col items-center gap-3">
           <div className="glass rounded-full pl-3 pr-5 sm:pr-6 py-2 flex items-center justify-center gap-3 whitespace-nowrap">
             {avatars.length > 0 && (
-              <div className="flex -space-x-2" aria-hidden="true">
-                {avatars.map((person) => (
+              <div className="flex shrink-0 -space-x-2" aria-hidden="true">
+                {avatars.map((person, i) => (
                   <Image
                     key={person._id}
                     src={person.photoUrl!}
                     alt={person.name}
                     width={36}
                     height={36}
-                    className="w-9 h-9 rounded-full object-cover ring-2 ring-accent/70"
+                    // Ponizej 360px (iPhone SE 1. gen, male Androidy) cztery avatary + tekst
+                    // nie mieszcza sie w pigulce - czwarty znika, zamiast nachodzic na tekst
+                    className={`w-9 h-9 rounded-full object-cover ring-2 ring-accent/70${i === 3 ? ' max-[359px]:hidden' : ''}`}
                   />
                 ))}
               </div>

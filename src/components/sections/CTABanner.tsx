@@ -10,11 +10,12 @@ export async function CTABanner({ locale }: Props) {
   const t = await getTranslations({ locale, namespace: 'CTABanner' });
 
   return (
-    <section data-section-view="cta_banner" className="bg-dark px-6 py-20 md:py-28">
+    <section data-section-view="cta_banner" className="bg-dark overflow-x-clip px-6 py-20 md:py-28">
       <ScrollReveal className="max-w-3xl mx-auto">
         <div className="relative">
           {/* Accent glow behind the glass card.
-              40px = radius-hero (32) + inset (8) - promien koncentryczny, nie token */}
+              40px = radius-hero (32) + inset (8) - promien koncentryczny, nie token.
+              Inset 32px > px-6 sekcji, stad overflow-x-clip na sekcji (bez poziomego scrolla na mobile) */}
           <div
             aria-hidden="true"
             className="absolute -inset-8 rounded-[40px] blur-2xl"
