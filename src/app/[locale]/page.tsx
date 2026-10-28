@@ -123,11 +123,11 @@ export default async function HomePage({ params }: Props) {
           {
             '@type': 'Offer',
             name: locale === 'pl' ? 'Premium (miesięcznie)' : 'Premium (monthly)',
-            price: '39.99',
+            price: '29.99',
             priceCurrency: 'PLN',
             priceSpecification: {
               '@type': 'UnitPriceSpecification',
-              price: '39.99',
+              price: '29.99',
               priceCurrency: 'PLN',
               unitText: locale === 'pl' ? 'miesiąc' : 'month',
             },
@@ -135,11 +135,11 @@ export default async function HomePage({ params }: Props) {
           {
             '@type': 'Offer',
             name: locale === 'pl' ? 'Premium (rocznie)' : 'Premium (yearly)',
-            price: '399.99',
+            price: '299.99',
             priceCurrency: 'PLN',
             priceSpecification: {
               '@type': 'UnitPriceSpecification',
-              price: '399.99',
+              price: '299.99',
               priceCurrency: 'PLN',
               unitText: locale === 'pl' ? 'rok' : 'year',
             },

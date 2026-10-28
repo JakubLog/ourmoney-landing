@@ -55,8 +55,10 @@ Limity: ograniczona liczba własnych kategorii, skrócona historia transakcji,
 1 import wyciągu bankowego miesięcznie, do 5 skanów paragonu miesięcznie,
 bez analizy AI i bez automatycznej integracji z bankiem.
 
-### Premium - 39,99 zł miesięcznie albo 399,99 zł rocznie
-Rozliczenie roczne oznacza 2 miesiące gratis. Ceny brutto, w złotówkach.
+### Premium - 29,99 zł miesięcznie albo 299,99 zł rocznie
+Cena obejmuje oboje partnerów: płaci jedna osoba, Premium działa u obojga,
+czyli 15 zł miesięcznie na osobę. Rozliczenie roczne oznacza 2 miesiące gratis.
+Ceny brutto, w złotówkach.
 Premium to ten sam zakres co plan darmowy, tylko bez limitów, plus:
 nielimitowane własne kategorie, pełna historia transakcji, miesięczna analiza AI
 z rekomendacjami, nielimitowane importy wyciągów i skany paragonów,

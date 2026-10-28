@@ -1,5 +1,5 @@
 import { getTranslations } from 'next-intl/server';
-import { Check, Minus } from 'lucide-react';
+import { Check, Coffee, Minus, Users } from 'lucide-react';
 import { InvertDotButton } from '@/components/ui/InvertDotButton';
 import { startHref } from '@/lib/appLinks';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
@@ -109,13 +109,24 @@ export async function PricingSection({ locale }: Props) {
                     {t('badge')}
                   </span>
                 </div>
-                <p className="mt-6 flex items-baseline gap-2">
-                  <span className="font-display text-5xl leading-none text-white">
+                <p className="mt-6 flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                  <span className="font-display whitespace-nowrap text-5xl leading-none text-white">
                     {t('plans.premium.price')}
                   </span>
                   <span className="text-sm text-white/50">{t('plans.premium.period')}</span>
                 </p>
+                <p className="mt-3 flex items-start gap-2 text-sm text-white/60">
+                  <Coffee className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
+                  {t('plans.premium.coffee')}
+                </p>
                 <p className="mt-2 text-sm font-medium text-accent">{t('plans.premium.yearly')}</p>
+                <p className="mt-5 flex items-start gap-3 rounded-card bg-white/5 px-4 py-3 text-sm leading-relaxed text-white/80 ring-1 ring-white/10">
+                  <Users className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
+                  <span>
+                    <strong className="font-semibold text-white">{t('plans.premium.perPersonHighlight')}</strong>{' '}
+                    {t('plans.premium.perPerson')}
+                  </span>
+                </p>
                 <p className="mt-4 text-sm leading-relaxed text-white/60">
                   {t('plans.premium.description')}
                 </p>

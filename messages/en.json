@@ -378,9 +378,12 @@
         },
         "premium": {
           "name": "Premium",
-          "price": "39.99 PLN",
-          "period": "/mo",
-          "yearly": "or 399.99 PLN per year - 2 months free",
+          "price": "29.99 PLN",
+          "period": "/mo for both of you",
+          "coffee": "About what you'd pay for coffee and cake out.",
+          "yearly": "or 299.99 PLN per year - 2 months free",
+          "perPersonHighlight": "15 PLN a month per person",
+          "perPerson": "- only one of you pays, and you both get Premium.",
           "description": "The same as the free plan, only without any limits.",
           "cta": "Get Premium",
           "features": [
@@ -405,7 +408,7 @@
         },
         {
           "question": "Is the app free?",
-          "answer": "Yes - the basic plan is free forever and needs no credit card. Day-to-day budgeting has no limits: add as many expenses as you want and split them between you. The free plan only caps custom categories, history length, bank imports (1 per month) and receipt scans (5 per month). AI analysis and bank integration are part of Premium - 39.99 PLN per month or 399.99 PLN per year."
+          "answer": "Yes - the basic plan is free forever and needs no credit card. Day-to-day budgeting has no limits: add as many expenses as you want and split them between you. The free plan only caps custom categories, history length, bank imports (1 per month) and receipt scans (5 per month). AI analysis and bank integration are part of Premium - 29.99 PLN per month or 299.99 PLN per year. That price covers both of you, which is 15 PLN a month per person: one of you pays, and Premium works for you both."
         },
         {
           "question": "How does expense splitting work?",
