@@ -4,7 +4,12 @@
     "learnMore": "Learn more",
     "readMore": "Read more",
     "backToHome": "Back to homepage",
-    "appStoreBadge": "Download on the App Store"
+    "appStoreBadge": "Download on the App Store",
+    "aiImage": {
+      "dot": "AI",
+      "label": "AI information",
+      "tooltip": "This content was generated using Artificial Intelligence"
+    }
   },
   "StartPage": {
     "meta": {

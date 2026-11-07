@@ -7,6 +7,7 @@ import { ArrowLeft, Clock } from 'lucide-react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { CTABanner } from '@/components/sections/CTABanner';
+import { AiImageLabel } from '@/components/ui/AiImageLabel';
 import { client, fetchOptions } from '@/sanity/lib/client';
 import { AUTHOR_QUERY, AUTHOR_POSTS_QUERY } from '@/sanity/lib/queries';
 import { readingTime } from '@/lib/reading-time';
@@ -188,14 +189,17 @@ export default async function AuthorPage({ params }: Props) {
                       className="group flex gap-6 items-start border-b border-beige pb-6 last:border-0 last:pb-0"
                     >
                       {post.mainImageUrl && (
-                        <Image
-                          src={post.mainImageUrl}
-                          alt={post.mainImageAlt ?? post.title}
-                          title={post.mainImageAlt ?? post.title}
-                          width={100}
-                          height={70}
-                          className="rounded-lg object-cover flex-shrink-0 w-[100px] h-[70px]"
-                        />
+                        <span className="relative flex-shrink-0">
+                          <Image
+                            src={post.mainImageUrl}
+                            alt={post.mainImageAlt ?? post.title}
+                            title={post.mainImageAlt ?? post.title}
+                            width={100}
+                            height={70}
+                            className="rounded-lg object-cover w-[100px] h-[70px]"
+                          />
+                          <AiImageLabel variant="dot" className="absolute top-1 left-1" />
+                        </span>
                       )}
                       <div className="flex-1 min-w-0">
                         <h3 className="text-dark font-semibold leading-snug group-hover:text-accent transition-colors mb-1">

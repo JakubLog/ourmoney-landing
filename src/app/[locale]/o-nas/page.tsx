@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { alternatesFor, absoluteUrl } from '@/lib/urls';
+import { AiImageLabel } from '@/components/ui/AiImageLabel';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { CTABanner } from '@/components/sections/CTABanner';
@@ -131,6 +132,7 @@ export default async function AboutPage({ params }: Props) {
             blurDataURL="data:image/avif;base64,AAAAHGZ0eXBhdmlmAAAAAG1pZjFhdmlmbWlhZgAAANZtZXRhAAAAAAAAACFoZGxyAAAAAAAAAABwaWN0AAAAAAAAAAAAAAAAAAAAAA5waXRtAAAAAAABAAAAImlsb2MAAAAAREAAAQABAAAAAAD6AAEAAAAAAAAALgAAACNpaW5mAAAAAAABAAAAFWluZmUCAAAAAAEAAGF2MDEAAAAAVmlwcnAAAAA4aXBjbwAAAAxhdjFDgSACAAAAABRpc3BlAAAAAAAAABQAAAANAAAAEHBpeGkAAAAAAwgICAAAABZpcG1hAAAAAAAAAAEAAQOBAgMAAAA2bWRhdBIACgg4EOeMICGg0jIgGAAAAEC3MfOOgAF0IHjkaOdRs1WtyBE6/swN4UkAoKw="
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+          <AiImageLabel variant="label" className="absolute bottom-4 right-4" />
           <div className="relative z-10 w-full px-6 pb-16 pt-32">
             <div className="max-w-5xl mx-auto">
               <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-6 max-w-2xl">

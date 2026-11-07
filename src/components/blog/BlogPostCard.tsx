@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
+import { AiImageLabel } from '@/components/ui/AiImageLabel';
 
 type PostCardProps = {
   slug: string;
@@ -76,15 +77,18 @@ export function BlogPostCard({
         {/* Image */}
         <div className="relative aspect-[16/9] overflow-hidden shrink-0">
           {mainImageUrl ? (
-            <Image
-              src={mainImageUrl}
-              alt={mainImageAlt ?? title}
-              title={mainImageAlt ?? title}
-              fill
-              {...(mainImageBlur && { placeholder: 'blur' as const, blurDataURL: mainImageBlur })}
-              className="object-cover group-hover:scale-105 transition-transform duration-700"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
+            <>
+              <Image
+                src={mainImageUrl}
+                alt={mainImageAlt ?? title}
+                title={mainImageAlt ?? title}
+                fill
+                {...(mainImageBlur && { placeholder: 'blur' as const, blurDataURL: mainImageBlur })}
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
+              <AiImageLabel variant="dot" className="absolute top-3 left-3" />
+            </>
           ) : (
             <ImagePlaceholder />
           )}
@@ -142,16 +146,19 @@ export function FeaturedPostCard({
         {/* Image - 55% width on desktop */}
         <div className="relative w-full md:w-[55%] aspect-[4/3] md:aspect-auto overflow-hidden shrink-0">
           {mainImageUrl ? (
-            <Image
-              src={mainImageUrl}
-              alt={mainImageAlt ?? title}
-              title={mainImageAlt ?? title}
-              fill
-              priority
-              {...(mainImageBlur && { placeholder: 'blur' as const, blurDataURL: mainImageBlur })}
-              className="object-cover group-hover:scale-105 transition-transform duration-700"
-              sizes="(max-width: 768px) 100vw, 55vw"
-            />
+            <>
+              <Image
+                src={mainImageUrl}
+                alt={mainImageAlt ?? title}
+                title={mainImageAlt ?? title}
+                fill
+                priority
+                {...(mainImageBlur && { placeholder: 'blur' as const, blurDataURL: mainImageBlur })}
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                sizes="(max-width: 768px) 100vw, 55vw"
+              />
+              <AiImageLabel variant="dot" className="absolute top-4 left-4" />
+            </>
           ) : (
             <div className="w-full h-full">
               <svg width="100%" height="100%" viewBox="0 0 600 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">

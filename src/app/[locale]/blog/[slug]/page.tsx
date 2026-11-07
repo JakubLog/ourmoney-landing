@@ -13,6 +13,7 @@ import { BlogPostCard } from '@/components/blog/BlogPostCard';
 import { ReadingProgressBar } from '@/components/blog/ReadingProgressBar';
 import { ShareButton } from '@/components/blog/ShareButton';
 import { TrackedCTALink } from '@/components/ui/TrackedCTALink';
+import { AiImageLabel } from '@/components/ui/AiImageLabel';
 import { startHref } from '@/lib/appLinks';
 import { Link } from '@/i18n/navigation';
 import { client, fetchOptions } from '@/sanity/lib/client';
@@ -429,6 +430,7 @@ export default async function BlogPostPage({ params }: Props) {
               className="object-cover"
               sizes="100vw"
             />
+            <AiImageLabel variant="label" className="absolute bottom-4 right-4" />
           </figure>
         )}
 

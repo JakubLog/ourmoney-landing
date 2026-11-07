@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import { InvertDotButton } from '@/components/ui/InvertDotButton';
+import { AiImageLabel } from '@/components/ui/AiImageLabel';
 import { AppStoreBadge } from '@/components/ui/AppStoreBadge';
 import { startHref } from '@/lib/appLinks';
 import { AnimatedWord } from '@/components/ui/AnimatedWord';
@@ -49,6 +50,7 @@ export async function HeroSection({ locale }: Props) {
       />
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/45" aria-hidden="true" />
+      <AiImageLabel variant="label" className="absolute bottom-4 right-4" />
 
       {/* Content */}
       <div className="hero-stagger relative z-10 max-w-6xl mx-auto px-6 text-center py-24 md:py-32">

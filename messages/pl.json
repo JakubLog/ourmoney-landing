@@ -4,7 +4,12 @@
     "learnMore": "Dowiedz się więcej",
     "readMore": "Czytaj więcej",
     "backToHome": "Wróć na stronę główną",
-    "appStoreBadge": "Pobierz w App Store"
+    "appStoreBadge": "Pobierz w App Store",
+    "aiImage": {
+      "dot": "AI",
+      "label": "Informacja o SI",
+      "tooltip": "Ten materiał został wygenerowany z użyciem Sztucznej Inteligencji"
+    }
   },
   "StartPage": {
     "meta": {

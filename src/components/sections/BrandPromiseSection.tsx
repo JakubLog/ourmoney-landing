@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { ShoppingBasket, Fuel } from 'lucide-react';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SectionLead } from '@/components/ui/SectionLead';
+import { AiImageLabel } from '@/components/ui/AiImageLabel';
 
 type Props = { locale: string };
 
@@ -34,6 +35,7 @@ export async function BrandPromiseSection({ locale }: Props) {
                 className="object-cover object-center"
                 sizes="(max-width: 1024px) 100vw, 900px"
               />
+              <AiImageLabel variant="label" tooltipSide="bottom" className="absolute top-4 right-4" />
             </div>
           </div>
 
