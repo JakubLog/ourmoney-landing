@@ -85,17 +85,14 @@ export function HowItWorksStepper({ steps, stepsLabel, locale }: Props) {
 
           return (
             <li key={step.kind} className="group/step flex gap-4 md:flex-col md:gap-0">
-              {/* Wezel na sciezce. Mobile: kolumna po lewej, linia biegnie w dol.
-                  Od md: rzad na pelnej szerokosci karty, linia biegnie w bok.
-                  Segmenty skrajne sa przezroczyste, wiec sciezka zaczyna sie i konczy
-                  dokladnie w srodku pierwszego i ostatniego wezla. */}
+              {/* Wezel na sciezce. Mobile: kolumna po lewej, kreska ponizej wezla.
+                  Od md: rzad na pelnej szerokosci karty, kreska w bok.
+                  Miedzy wezlami stoi krotka kreska odsunieta od obu kol, nie ciagla linia:
+                  od md wysrodkowana na granicy kolumn (translate-x-1/2 wchodzi w sasiednia
+                  kolumne), na mobile na srodku odstepu do nastepnego wezla. Lewy odstep
+                  istnieje tylko po to, zeby wezel stal w srodku kolumny. */}
               <div className="flex shrink-0 flex-col items-center md:w-full md:flex-row">
-                <span
-                  aria-hidden="true"
-                  className={`hiw-seg hidden w-px flex-1 md:block md:h-px md:w-auto ${
-                    index === 0 ? 'bg-transparent' : isVisited || isActive ? 'bg-accent-deep' : 'bg-dark/10'
-                  }`}
-                />
+                <span aria-hidden="true" className="hidden flex-1 md:block" />
 
                 {/* Skalowanie siedzi na kontenerze, nie na samym kole - pierscien
                     musi rosnac razem z wezlem, inaczej odstep miedzy nimi zniknie. */}
@@ -140,10 +137,16 @@ export function HowItWorksStepper({ steps, stepsLabel, locale }: Props) {
 
                 <span
                   aria-hidden="true"
-                  className={`hiw-seg w-px flex-1 md:h-px md:w-auto ${
-                    isLast ? 'bg-transparent' : isVisited ? 'bg-accent-deep' : 'bg-dark/10'
-                  }`}
-                />
+                  className="relative flex w-0.5 flex-1 flex-col items-center justify-center md:h-0.5 md:w-auto"
+                >
+                  {!isLast && (
+                    <span
+                      className={`hiw-seg block h-8 w-0.5 rounded-full md:absolute md:top-0 md:right-0 md:h-0.5 md:w-12 md:translate-x-1/2 ${
+                        isVisited ? 'bg-accent-deep' : 'bg-dark/15'
+                      }`}
+                    />
+                  )}
+                </span>
               </div>
 
               {/* Opisy wszystkich krokow sa zawsze widoczne (D1 planu): przelaczenie

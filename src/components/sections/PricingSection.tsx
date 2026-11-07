@@ -146,6 +146,8 @@ export async function PricingSection({ locale }: Props) {
                 </ul>
 
                 <div className="mt-auto pt-10">
+                  {/* Nad przyciskiem, nie pod - przyciski obu kart zostaja w jednej linii */}
+                  <p className="mb-3 text-center text-xs text-white/50">{t('plans.premium.trial')}</p>
                   <InvertDotButton
                     href={startHref(locale, 'premium')}
                     className="sheen block w-full rounded-full bg-accent px-8 py-4 text-center text-sm font-semibold text-black"

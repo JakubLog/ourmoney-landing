@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { absoluteUrl, alternatesFor } from '@/lib/urls';
+import { APP_STORE_URL } from '@/lib/appLinks';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { HeroSection } from '@/components/sections/HeroSection';
@@ -109,8 +110,10 @@ export default async function HomePage({ params }: Props) {
         name: 'OurMoney',
         publisher: { '@id': 'https://ourmoney.pl/#organization' },
         applicationCategory: 'FinanceApplication',
-        operatingSystem: 'Web',
+        // iPhone z App Store, Android i komputer przez PWA w przegladarce
+        operatingSystem: APP_STORE_URL ? 'iOS, Web' : 'Web',
         url: 'https://ourmoney.pl',
+        ...(APP_STORE_URL && { installUrl: APP_STORE_URL }),
         // Trzy oferty odpowiadaja sekcji cennika: plan darmowy + Premium
         // w rozliczeniu miesiecznym i rocznym
         offers: [
@@ -123,11 +126,11 @@ export default async function HomePage({ params }: Props) {
           {
             '@type': 'Offer',
             name: locale === 'pl' ? 'Premium (miesięcznie)' : 'Premium (monthly)',
-            price: '36.99',
+            price: '29.99',
             priceCurrency: 'PLN',
             priceSpecification: {
               '@type': 'UnitPriceSpecification',
-              price: '36.99',
+              price: '29.99',
               priceCurrency: 'PLN',
               unitText: locale === 'pl' ? 'miesiąc' : 'month',
             },
@@ -135,11 +138,11 @@ export default async function HomePage({ params }: Props) {
           {
             '@type': 'Offer',
             name: locale === 'pl' ? 'Premium (rocznie)' : 'Premium (yearly)',
-            price: '369.99',
+            price: '299.99',
             priceCurrency: 'PLN',
             priceSpecification: {
               '@type': 'UnitPriceSpecification',
-              price: '369.99',
+              price: '299.99',
               priceCurrency: 'PLN',
               unitText: locale === 'pl' ? 'rok' : 'year',
             },

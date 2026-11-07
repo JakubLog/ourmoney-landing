@@ -3,7 +3,8 @@
     "startFree": "Zacznijcie razem - za darmo",
     "learnMore": "Dowiedz się więcej",
     "readMore": "Czytaj więcej",
-    "backToHome": "Wróć na stronę główną"
+    "backToHome": "Wróć na stronę główną",
+    "appStoreBadge": "Pobierz w App Store"
   },
   "StartPage": {
     "meta": {
@@ -19,7 +20,8 @@
     "storeSoonIos": "Wersja z App Store - już wkrótce. Na razie otwieramy aplikację webową (PWA), którą dodasz do ekranu początkowego prosto z Safari.",
     "storeSoonAndroid": "Wersja z Google Play - już wkrótce. Na razie otwieramy aplikację webową (PWA), którą zainstalujesz prosto z Chrome.",
     "planPremiumLabel": "Wybrany plan: Premium",
-    "planPremiumNote": "Zapamiętaliśmy Wasz wybór - plan włączycie w aplikacji po założeniu konta."
+    "planPremiumNoteAppStore": "Zapamiętaliśmy Wasz wybór. Premium kupicie w aplikacji po instalacji z App Store - pierwsze 14 dni za darmo.",
+    "planPremiumNoteWeb": "Zapamiętaliśmy Wasz wybór. Premium kupuje się w aplikacji na iPhone'a - pierwsze 14 dni za darmo. Kupione przez jedno z Was działa u obojga, także na Androidzie i w przeglądarce."
   },
   "Navigation": {
     "home": "Strona główna",
@@ -379,14 +381,15 @@
         },
         "premium": {
           "name": "Premium",
-          "price": "36,99 zł",
+          "price": "29,99 zł",
           "period": "/mies. za Was dwoje",
           "coffee": "Tyle co kawa i ciastko na mieście.",
-          "yearly": "albo 369,99 zł rocznie - 2 miesiące gratis",
-          "perPersonHighlight": "18,50 zł miesięcznie na osobę",
+          "yearly": "albo 299,99 zł rocznie - 2 miesiące gratis",
+          "perPersonHighlight": "15 zł miesięcznie na osobę",
           "perPerson": "- płaci tylko jedno z Was, a Premium macie oboje.",
           "description": "To samo co w planie darmowym, tylko bez żadnych limitów.",
           "cta": "Wybierzcie Premium",
+          "trial": "14 dni za darmo przy zakupie w App Store",
           "features": [
             "Wszystko z planu darmowego",
             "Nielimitowane własne kategorie",
@@ -409,7 +412,7 @@
         },
         {
           "question": "Czy aplikacja jest darmowa?",
-          "answer": "Tak - podstawowa wersja jest darmowa na zawsze i nie wymaga karty. Codzienne prowadzenie budżetu nie ma limitów: dodajecie tyle wydatków, ile chcecie, i dzielicie je między sobą. Darmowy plan ogranicza tylko liczbę własnych kategorii, długość historii, import z banku (1 miesięcznie) i skany paragonów (5 miesięcznie). Analiza AI i integracja z bankiem są w Premium - 36,99 zł miesięcznie albo 369,99 zł rocznie. To cena za Was dwoje, czyli 18,50 zł miesięcznie na osobę: płaci jedno z Was, a Premium działa u obojga."
+          "answer": "Tak - podstawowa wersja jest darmowa na zawsze i nie wymaga karty. Codzienne prowadzenie budżetu nie ma limitów: dodajecie tyle wydatków, ile chcecie, i dzielicie je między sobą. Darmowy plan ogranicza tylko liczbę własnych kategorii, długość historii, import z banku (1 miesięcznie) i skany paragonów (5 miesięcznie). Analiza AI i integracja z bankiem są w Premium - 29,99 zł miesięcznie albo 299,99 zł rocznie. To cena za Was dwoje, czyli 15 zł miesięcznie na osobę: płaci jedno z Was, a Premium działa u obojga. Premium kupione w App Store zaczyna się od 14 dni za darmo."
         },
         {
           "question": "Jak działa podział wydatków?",

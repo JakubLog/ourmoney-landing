@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { Instagram, Mail } from 'lucide-react';
 import { CopyEmail } from '@/components/ui/CopyEmail';
+import { AppStoreBadge } from '@/components/ui/AppStoreBadge';
 
 export async function Footer() {
   const t = await getTranslations('Navigation');
@@ -70,8 +71,11 @@ export async function Footer() {
           ))}
         </nav>
 
-        {/* Bottom */}
-        <p className="mt-6 text-xs text-white/50">{tFooter('copyright')}</p>
+        {/* Bottom: na mobile odznaka nad copyrightem, od sm w jednym rzedzie */}
+        <div className="mt-6 flex flex-col-reverse items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs text-white/50">{tFooter('copyright')}</p>
+          <AppStoreBadge location="footer_app_store" className="inline-block shrink-0" />
+        </div>
       </div>
     </footer>
   );

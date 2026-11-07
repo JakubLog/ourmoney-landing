@@ -6,7 +6,7 @@ import { Link } from '@/i18n/navigation';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { CopyEmail } from '@/components/ui/CopyEmail';
-import { APP_ORIGIN, withAppLocale } from '@/lib/appLinks';
+import { APP_ORIGIN, APP_STORE_URL, withAppLocale } from '@/lib/appLinks';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -105,7 +105,13 @@ export default async function TermsPage({ params }: Props) {
             </p>
             <p>
               Strona ma charakter informacyjny i prezentuje produkt - aplikację mobilną OurMoney
-              dostępną pod adresem <a href={appHref}>app.ourmoney.pl</a>.
+              dostępną pod adresem <a href={appHref}>app.ourmoney.pl</a>
+              {APP_STORE_URL && (
+                <>
+                  {' '}oraz na iPhone&apos;a w <a href={APP_STORE_URL}>App Store</a>
+                </>
+              )}
+              .
               Korzystanie ze Strony jest bezpłatne i dobrowolne.
             </p>
 
@@ -153,7 +159,13 @@ export default async function TermsPage({ params }: Props) {
             <h2>5. Linki zewnętrzne</h2>
             <p>
               Strona zawiera odnośniki do zewnętrznych serwisów, w tym do aplikacji OurMoney
-              (<a href={appHref}>app.ourmoney.pl</a>). Operator nie ponosi
+              (<a href={appHref}>app.ourmoney.pl</a>
+              {APP_STORE_URL && (
+                <>
+                  , <a href={APP_STORE_URL}>App Store</a>
+                </>
+              )}
+              ). Operator nie ponosi
               odpowiedzialności za treść, bezpieczeństwo ani politykę prywatności zewnętrznych stron
               internetowych, do których prowadzą zamieszczone linki.
             </p>

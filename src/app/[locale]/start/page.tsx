@@ -5,7 +5,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { Link } from '@/i18n/navigation';
 import { Logo } from '@/components/ui/Logo';
-import { StartRedirect } from '@/components/start/StartRedirect';
+import { PremiumPlanNote, StartRedirect } from '@/components/start/StartRedirect';
 import { detectPlatform, parsePlan, pickForwardedParams } from '@/lib/appLinks';
 import { absoluteUrl } from '@/lib/urls';
 
@@ -68,9 +68,7 @@ export default async function StartPage({ params, searchParams }: Props) {
           <p className="text-xs font-semibold uppercase tracking-widest text-accent">
             {t('planPremiumLabel')}
           </p>
-          <p className="mt-2 max-w-xs text-xs leading-relaxed text-white/60">
-            {t('planPremiumNote')}
-          </p>
+          <PremiumPlanNote initialPlatform={initialPlatform} />
         </div>
       )}
 

@@ -1,5 +1,5 @@
 import { TrackedCTALink } from '@/components/ui/TrackedCTALink';
-import { withAppLocale } from '@/lib/appLinks';
+import { isAppUrl, startHref, withAppLocale } from '@/lib/appLinks';
 
 type Props = {
   heading: string;
@@ -20,8 +20,13 @@ export function ArticleCTA({
   location = 'article_cta',
   locale = 'pl',
 }: Props) {
-  // Redaktor moze wpisac w Sanity link prosto do aplikacji - doklejamy locale
-  const effectiveUrl = buttonUrl ? withAppLocale(buttonUrl, locale) : undefined;
+  // Redaktor moze wpisac w Sanity link prosto do aplikacji - kierujemy go przez
+  // strone przejscia /start, zeby iPhone trafil do App Store, a nie do PWA
+  const effectiveUrl = buttonUrl
+    ? isAppUrl(buttonUrl)
+      ? startHref(locale)
+      : withAppLocale(buttonUrl, locale)
+    : undefined;
   return (
     <aside className="my-12 p-8 rounded-2xl bg-dark text-center not-prose" aria-label={heading}>
       <h3 className="font-display text-2xl md:text-3xl text-white mb-3 leading-tight">

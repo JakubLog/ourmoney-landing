@@ -56,10 +56,12 @@ Limits: limited number of custom categories, shortened transaction history,
 1 bank statement import per month, up to 5 receipt scans per month,
 no AI analysis and no automatic bank integration.
 
-### Premium - 36.99 PLN per month or 369.99 PLN per year
+### Premium - 29.99 PLN per month or 299.99 PLN per year
 The price covers both partners: one person pays and Premium works for both,
-which is 18.50 PLN per person per month. Annual billing means 2 months free.
-Prices in PLN, gross.
+which is 15 PLN per person per month. Annual billing means 2 months free.
+Prices in PLN, gross. Premium is bought in the iPhone app (App Store), and the
+first 14 days are free. Once one partner buys it, it works for both, on Android
+and in the browser too.
 Premium covers everything in the free plan without the limits, plus:
 unlimited custom categories, full transaction history, monthly AI analysis
 with recommendations, unlimited statement imports and receipt scans,

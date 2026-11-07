@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import { InvertDotButton } from '@/components/ui/InvertDotButton';
+import { AppStoreBadge } from '@/components/ui/AppStoreBadge';
 import { startHref } from '@/lib/appLinks';
 import { AnimatedWord } from '@/components/ui/AnimatedWord';
 import { client } from '@/sanity/lib/client';
@@ -104,7 +105,11 @@ export async function HeroSection({ locale }: Props) {
         >
           {t('cta')}
         </InvertDotButton>
-        <p className="mt-3 text-xs text-white/50">{t('noCreditCard')}</p>
+        {/* Notka i odznaka w jednym wezle - hero-stagger animuje kolejne dzieci */}
+        <div className="mt-3">
+          <p className="text-xs text-white/50">{t('noCreditCard')}</p>
+          <AppStoreBadge location="hero_app_store" className="mt-6 inline-block" />
+        </div>
       </div>
 
     </section>

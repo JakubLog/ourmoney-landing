@@ -19,10 +19,11 @@ manage a monthly budget and work towards shared savings goals.
   income, shared budget for two people, all splitting modes, goals and envelopes.
   Limits: shortened transaction history, limited custom categories, 1 bank statement
   import per month, 5 receipt scans per month, no AI analysis, no bank integration.
-- Premium: 36.99 PLN per month or 369.99 PLN per year (2 months free). The price is
-  per couple: one person pays and Premium works for both, i.e. 18.50 PLN per person
+- Premium: 29.99 PLN per month or 299.99 PLN per year (2 months free). The price is
+  per couple: one person pays and Premium works for both, i.e. 15 PLN per person
   per month. Removes every limit of the free plan and adds monthly AI analysis with
-  recommendations plus automatic bank integration.
+  recommendations plus automatic bank integration. Premium is bought in the iPhone
+  app (App Store) - the first 14 days are free.
 
 ## Positioning
 A simple alternative to spreadsheets, with real partner support.

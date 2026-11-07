@@ -94,3 +94,20 @@ export function StartRedirect({ locale, plan, initialPlatform, forwarded }: Prop
     </div>
   );
 }
+
+/**
+ * Notka przy wybranym planie Premium. Premium kupuje sie wylacznie w aplikacji
+ * iOS (z 14-dniowym okresem probnym), wiec Android i komputer dostaja
+ * informacje, gdzie zrobic zakup, zamiast obietnicy "wlaczycie w aplikacji".
+ */
+export function PremiumPlanNote({ initialPlatform }: { initialPlatform: AppPlatform }) {
+  const t = useTranslations('StartPage');
+  const platform = useSyncExternalStore(subscribeNever, getDetectedPlatform, () => initialPlatform);
+  const opensAppStore = platform === 'ios' && STORE_AVAILABLE.ios;
+
+  return (
+    <p className="mt-2 max-w-xs text-xs leading-relaxed text-white/60">
+      {t(opensAppStore ? 'planPremiumNoteAppStore' : 'planPremiumNoteWeb')}
+    </p>
+  );
+}
