@@ -27,6 +27,15 @@ Podgląd gotowego dokumentu (w tym Portable Text) dla jednego posta:
 pnpm run import:blog -- --print jak-zarzadzac-wspolnym-budzetem-domowym
 ```
 
+Wysłanie tylko jednego posta (reszta zostaje nietknięta):
+
+```bash
+SANITY_API_WRITE_TOKEN=<token> pnpm run import:blog -- --only jak-zarzadzac-wspolnym-budzetem-domowym
+```
+
+Pełny import nadpisuje wszystkie posty z katalogu (`createOrReplace`), a posty bez
+`publishedAt` dostają datę importu. Przy poprawce jednego tekstu używajcie `--only`.
+
 Skrypt jest idempotentny. Każdy post ma stałe `_id` zbudowane ze sluga, więc ponowne
 uruchomienie aktualizuje ten sam dokument zamiast tworzyć duplikat. Po imporcie warto
 odświeżyć cache landingu przez `POST /api/revalidate` (tag `blog`).
@@ -37,9 +46,13 @@ Dwie części rozdzielone linią `---`:
 
 1. **Blok pól** na górze, `- **nazwa:** wartość`. Nazwy odpowiadają 1:1 schematowi
    `src/sanity/schemas/blogPost.ts` (`title`, `slug`, `language`, `excerpt`, `seo.*`,
-   `aiSeo.*`, `cta.*`) plus dwa pola techniczne importu:
+   `aiSeo.*`, `cta.*`) plus trzy pola techniczne importu:
    - `mainImage` — ścieżka do pliku w `images/`
    - `translationOf` — slug wersji PL, po którym wiążemy tłumaczenie
+   - `sanityId` — `_id` posta założonego wcześniej w Studio. Import nie tworzy wtedy
+     nowego dokumentu, tylko nadpisuje w istniejącym tytuł, excerpt, treść, `seo.title`,
+     `seo.description`, `seo.keywords`, `aiSeo` i `cta`. Obraz, autor, kategoria, data
+     i powiązanie tłumaczeń zostają bez zmian.
 2. **Treść posta** w Markdown. Skrypt zamienia ją na Portable Text: `##`/`###`/`####`,
    akapity, listy punktowane i numerowane, `**pogrubienie**`, `[linki](/pl/...)` i cytaty.
    Pierwszy nagłówek `#` jest pomijany, bo tytuł renderuje strona.

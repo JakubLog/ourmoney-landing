@@ -14,7 +14,9 @@
  * uruchomienie nadpisuje ten sam dokument zamiast tworzyc duplikat.
  */
 
-import { createClient } from '@sanity/client';
+// next-sanity re-eksportuje createClient z @sanity/client - sam @sanity/client nie jest
+// bezposrednia zaleznoscia, wiec pnpm nie pozwala go zaimportowac wprost
+import { createClient } from 'next-sanity';
 import { createReadStream } from 'node:fs';
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
@@ -30,6 +32,11 @@ const TOKEN = process.env.SANITY_API_WRITE_TOKEN;
 const DRY_RUN = process.argv.includes('--dry-run');
 // --print <slug> wypisuje gotowy dokument w JSON, do podejrzenia Portable Text
 const PRINT_SLUG = process.argv[process.argv.indexOf('--print') + 1];
+// --only <slug> wysyla tylko jeden post. Bez tego import nadpisuje wszystkie pliki
+// (createOrReplace), a posty bez publishedAt dostaja date importu.
+const ONLY_SLUG = process.argv.includes('--only')
+  ? process.argv[process.argv.indexOf('--only') + 1]
+  : null;
 
 // Kategorie i autor istnieja juz w datasecie - dowiazujemy po slugu.
 const DEFAULT_AUTHOR_SLUG = 'magda-nestorowicz';
@@ -224,8 +231,12 @@ function buildPost(file, raw) {
 
   if (!slug) throw new Error(`${file}: brak pola slug`);
 
+  // sanityId: post zalozony wczesniej w Studio (losowe _id). Zamiast tworzyc nowy
+  // dokument pod blogPost-<slug> (duplikat sluga) patchujemy istniejacy - patrz main().
+  const sanityId = fields.sanityId ?? null;
+
   const doc = {
-    _id: `blogPost-${slug}`,
+    _id: sanityId ?? `blogPost-${slug}`,
     _type: 'blogPost',
     title: fields.title,
     slug: { _type: 'slug', current: slug },
@@ -253,6 +264,7 @@ function buildPost(file, raw) {
 
   return {
     file,
+    sanityId,
     markdown,
     doc,
     language,
@@ -269,14 +281,22 @@ async function main() {
     .filter((f) => f.endsWith('.md') && f !== 'README.md')
     .sort();
 
-  const posts = [];
+  const allPosts = [];
   for (const file of files) {
     const raw = await readFile(path.join(CONTENT_DIR, file), 'utf8');
-    posts.push(buildPost(file, raw));
+    allPosts.push(buildPost(file, raw));
+  }
+
+  const posts = ONLY_SLUG
+    ? allPosts.filter((p) => p.doc.slug.current === ONLY_SLUG)
+    : allPosts;
+  if (ONLY_SLUG && posts.length === 0) {
+    console.error(`Nie znaleziono posta o slugu ${ONLY_SLUG}`);
+    process.exit(1);
   }
 
   if (process.argv.includes('--print')) {
-    const wanted = posts.find((p) => p.doc.slug.current === PRINT_SLUG);
+    const wanted = allPosts.find((p) => p.doc.slug.current === PRINT_SLUG);
     if (!wanted) {
       console.error(`Nie znaleziono posta o slugu ${PRINT_SLUG}`);
       process.exit(1);
@@ -339,6 +359,26 @@ async function main() {
   const transaction = client.transaction();
 
   for (const post of posts) {
+    // Post z Studio: nadpisujemy tylko tekst i pola SEO. Obraz glowny (z alt i
+    // ogImage), autor, kategoria, data publikacji i powiazanie tlumaczen zostaja
+    // takie, jakie sa w datasecie.
+    if (post.sanityId) {
+      const { title, excerpt, body, seo, aiSeo, cta } = post.doc;
+      transaction.patch(post.sanityId, (patch) =>
+        patch.set({
+          title,
+          excerpt,
+          body,
+          'seo.title': seo.title,
+          'seo.description': seo.description,
+          'seo.keywords': seo.keywords,
+          aiSeo,
+          cta,
+        }),
+      );
+      continue;
+    }
+
     const doc = { ...post.doc };
 
     if (post.image) {
@@ -362,7 +402,7 @@ async function main() {
   // Powiazanie tlumaczen w formacie wtyczki document-internationalization,
   // zgodnym z dokumentami translation.metadata, ktore juz sa w datasecie.
   for (const post of posts.filter((p) => p.translationOf)) {
-    const source = posts.find((p) => p.doc.slug.current === post.translationOf);
+    const source = allPosts.find((p) => p.doc.slug.current === post.translationOf);
     if (!source) {
       console.warn(`  pominieto powiazanie tlumaczen: brak ${post.translationOf}`);
       continue;
