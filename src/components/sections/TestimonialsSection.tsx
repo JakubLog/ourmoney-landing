@@ -32,6 +32,7 @@ export async function TestimonialsSection({ locale }: Props) {
   return (
     <section className="bg-sand py-20 md:py-28 overflow-hidden">
       <ScrollReveal className="px-6">
+        <p className="mb-4 text-center text-xs uppercase tracking-[0.2em] text-dark/60">{t('eyebrow')}</p>
         <h2 className="font-display text-4xl md:text-5xl text-dark text-center leading-tight mb-6">
           {t('title')}
         </h2>

@@ -96,7 +96,7 @@ export function HowItWorksStepper({ steps, stepsLabel, locale }: Props) {
 
                 {/* Skalowanie siedzi na kontenerze, nie na samym kole - pierscien
                     musi rosnac razem z wezlem, inaczej odstep miedzy nimi zniknie. */}
-                <div className={`hiw-node relative ${isActive ? 'scale-105' : ''}`}>
+                <div className={`hiw-node relative ${isActive ? 'hiw-node--active' : ''}`}>
                   <div
                     className={`hiw-node grid size-16 place-items-center rounded-full border bg-white md:size-24 ${
                       isActive
@@ -109,40 +109,42 @@ export function HowItWorksStepper({ steps, stepsLabel, locale }: Props) {
                     <HowItWorksIllustration kind={step.kind} size="node" className="text-dark" />
                   </div>
 
-                  {/* Zegar: pierscien zyje TYLKO pod aktywnym krokiem - zmiana kroku
-                      odmontowuje go i montuje na nowo, wiec animacja startuje od zera.
+                  {/* Zegar: pierscien jest pod kazdym wezlem, widoczny tylko pod aktywnym.
+                      Zmiana kroku nie odmontowuje go, tylko wygasza (opacity w hiw-ring-wrap),
+                      wiec domkniety pierscien nie znika skokowo. Animacje restartuje dopiero
+                      ponowne dodanie klasy hiw-ring przy nastepnej aktywacji wezla.
                       pathLength=100 normalizuje obwod, wiec ten sam keyframe dziala
                       w obu rozmiarach wezla. */}
-                  {isActive && (
-                    <svg
-                      viewBox="0 0 100 100"
-                      aria-hidden="true"
-                      focusable="false"
-                      className="pointer-events-none absolute -inset-2 -rotate-90"
-                    >
-                      <circle
-                        cx="50"
-                        cy="50"
-                        r="47"
-                        pathLength={100}
-                        fill="none"
-                        strokeWidth={3.5}
-                        strokeLinecap="round"
-                        className={auto ? 'hiw-ring stroke-accent-deep' : 'stroke-accent-deep'}
-                        onAnimationEnd={auto ? goToNext : undefined}
-                      />
-                    </svg>
-                  )}
+                  <svg
+                    viewBox="0 0 100 100"
+                    aria-hidden="true"
+                    focusable="false"
+                    className={`hiw-ring-wrap pointer-events-none absolute -inset-2 -rotate-90 ${
+                      isActive ? 'opacity-100' : 'opacity-0'
+                    }`}
+                  >
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="47"
+                      pathLength={100}
+                      fill="none"
+                      strokeWidth={3.5}
+                      strokeLinecap="round"
+                      className={isActive && auto ? 'hiw-ring stroke-accent-deep' : 'stroke-accent-deep'}
+                      onAnimationEnd={isActive && auto ? goToNext : undefined}
+                    />
+                  </svg>
                 </div>
 
                 <span
                   aria-hidden="true"
-                  className="relative flex w-0.5 flex-1 flex-col items-center justify-center md:h-0.5 md:w-auto"
+                  className="relative flex w-[1.5px] flex-1 flex-col items-center justify-center md:h-[1.5px] md:w-auto"
                 >
                   {!isLast && (
                     <span
-                      className={`hiw-seg block h-8 w-0.5 rounded-full md:absolute md:top-0 md:right-0 md:h-0.5 md:w-12 md:translate-x-1/2 ${
-                        isVisited ? 'bg-accent-deep' : 'bg-dark/15'
+                      className={`hiw-seg block h-12 w-[1.5px] rounded-full md:absolute md:top-0 md:right-0 md:h-[1.5px] md:w-20 md:translate-x-1/2 ${
+                        isVisited ? 'bg-accent-deep/60' : 'bg-dark/10'
                       }`}
                     />
                   )}
@@ -158,7 +160,7 @@ export function HowItWorksStepper({ steps, stepsLabel, locale }: Props) {
               >
                 <span
                   aria-hidden="true"
-                  className={`font-display block text-2xl leading-none tabular-nums transition-colors duration-300 ${
+                  className={`font-display block text-2xl leading-none tabular-nums transition-colors duration-500 ease-out ${
                     isActive ? 'text-accent-deep' : 'text-dark/60'
                   }`}
                 >
@@ -173,7 +175,7 @@ export function HowItWorksStepper({ steps, stepsLabel, locale }: Props) {
                     onClick={() => selectStep(index)}
                     aria-current={isActive ? 'step' : undefined}
                     aria-describedby={`hiw-step-${index}`}
-                    className={`mt-2 w-full cursor-pointer rounded-card text-left text-lg leading-snug font-medium transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-deep md:text-center md:text-xl ${
+                    className={`mt-2 w-full cursor-pointer rounded-card text-left text-lg leading-snug font-medium transition-colors duration-500 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-deep md:text-center md:text-xl ${
                       isActive ? 'text-dark' : 'text-dark/60'
                     }`}
                   >
@@ -183,7 +185,7 @@ export function HowItWorksStepper({ steps, stepsLabel, locale }: Props) {
 
                 <p
                   id={`hiw-step-${index}`}
-                  className={`mt-3 text-sm leading-relaxed transition-colors duration-300 md:mx-auto md:max-w-xs ${
+                  className={`mt-3 text-sm leading-relaxed transition-colors duration-500 ease-out md:mx-auto md:max-w-xs ${
                     isActive ? 'text-dark/80' : 'text-dark/60'
                   }`}
                 >

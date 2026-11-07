@@ -21,6 +21,7 @@ export async function HowItWorksSection({ locale }: Props) {
     >
       <div className="mx-auto max-w-6xl">
         <ScrollReveal className="mb-12 text-center md:mb-16">
+          <p className="mb-4 text-xs uppercase tracking-[0.2em] text-dark/60">{t('eyebrow')}</p>
           <h2 id="howitworks-title" className="font-display text-4xl leading-tight text-dark md:text-5xl lg:text-6xl">
             {t('title')} <ScribbleWord>{t('titleHighlight')}</ScribbleWord>
           </h2>

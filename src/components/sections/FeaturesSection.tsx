@@ -70,6 +70,7 @@ export function FeaturesSection({ locale }: Props) {
           {/* Left: header + accordion */}
           <div>
             <ScrollReveal className="mb-12 md:mb-16">
+              <p className="mb-4 text-xs uppercase tracking-[0.2em] text-dark/60">{t('eyebrow')}</p>
               <h2 className="font-display text-4xl md:text-5xl text-dark leading-tight mb-6">
                 {t('title')}
               </h2>

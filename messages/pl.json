@@ -39,6 +39,7 @@
     "copyright": "© 2026 OurMoney. Wszelkie prawa zastrzeżone."
   },
   "CTABanner": {
+    "eyebrow": "Zacznijcie razem",
     "text": "Sprawdź, jak proste mogą być wspólne finanse. Zacznijcie budować sprawiedliwą relację już dziś.",
     "subtitle": "Wspólny budżet domowy założycie w kilka minut - za darmo i bez karty kredytowej.",
     "button": "Zacznij od siebie - dodaj partnera później"
@@ -118,6 +119,7 @@
       }
     },
     "features": {
+      "eyebrow": "Funkcje",
       "title": "Jak OurMoney rozwiązuje Wasze problemy",
       "subtitle": "Nie kolejny arkusz Excel. Aplikacja do wspólnego budżetu domowego z podziałem wydatków, kopertami i importem z banku - stworzona specjalnie dla par.",
       "cta": "Zacznij od siebie - dodaj partnera później",
@@ -198,11 +200,13 @@
       "footnote": "Raport powstaje z Waszych realnych transakcji - pierwszy dostaniecie po pełnym miesiącu wspólnego budżetu. Powyżej przykład na danych poglądowych."
     },
     "brandPromise": {
+      "eyebrow": "Nasze podejście",
       "title": "Jesteśmy po stronie związku",
       "subtitle": "OurMoney nie ocenia, kto wydał więcej. Pokazuje wspólne finanse tak, żeby oboje widzieli ten sam obraz i mogli się dogadać bez kłótni o pieniądze.",
       "cta": "Zacznij bezpłatnie"
     },
     "testimonials": {
+      "eyebrow": "Opinie",
       "title": "Osoby, które wzięły finanse w swoje ręce",
       "subtitle": "Opinie par korzystających z OurMoney na co dzień - o podziale wydatków, wspólnych celach i rozmowach o pieniądzach bez napięcia.",
       "items": [
@@ -224,6 +228,7 @@
       ]
     },
     "howItWorks": {
+      "eyebrow": "Jak zacząć",
       "title": "Zacznij w",
       "titleHighlight": "3 prostych krokach",
       "subtitle": "Wspólny budżet skonfigurujecie w mniej niż minutę. Bez skomplikowanych formularzy, bez karty kredytowej, bez zgody obojga na start.",
@@ -271,6 +276,7 @@
       ]
     },
     "trust": {
+      "eyebrow": "Bezpieczeństwo",
       "title": "Wasze dane są bezpieczne",
       "subtitle": "Finanse to delikatny temat. Dlatego bezpieczeństwo traktujemy priorytetowo.",
       "items": [
@@ -293,6 +299,7 @@
       ]
     },
     "comparison": {
+      "eyebrow": "Porównanie",
       "title": "Dlaczego nie Excel, Splitwise czy notatki?",
       "subtitle": "OurMoney to jedyne narzędzie zaprojektowane specjalnie dla par - nie dla współlokatorów, nie dla grup.",
       "competitors": [
@@ -403,6 +410,7 @@
       }
     },
     "faq": {
+      "eyebrow": "Pytania i odpowiedzi",
       "title": "FAQ",
       "subtitle": "Najczęstsze pytania o wspólny budżet dla par - podział wydatków, prywatność, bezpieczeństwo danych i korzystanie z aplikacji bez partnera.",
       "items": [

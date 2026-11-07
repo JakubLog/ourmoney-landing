@@ -39,6 +39,7 @@
     "copyright": "© 2026 OurMoney. All rights reserved."
   },
   "CTABanner": {
+    "eyebrow": "Start together",
     "text": "See how simple shared finances can be. Start building a fair relationship today.",
     "subtitle": "Set up a shared household budget in minutes - free, no credit card required.",
     "button": "Start on your own - add your partner later"
@@ -118,6 +119,7 @@
       }
     },
     "features": {
+      "eyebrow": "Features",
       "title": "How OurMoney solves your problems",
       "subtitle": "Not another Excel spreadsheet. A shared household budget app with expense splitting, envelopes and bank import - built specifically for couples.",
       "cta": "Start on your own - add your partner later",
@@ -198,11 +200,13 @@
       "footnote": "The report is built from your real transactions - you get the first one after a full month of shared budgeting. The example above uses illustrative data."
     },
     "brandPromise": {
+      "eyebrow": "Our approach",
       "title": "We're on the relationship's side",
       "subtitle": "OurMoney never judges who spent more. It shows your shared finances so both of you see the same picture and can agree without arguing about money.",
       "cta": "Start for free"
     },
     "testimonials": {
+      "eyebrow": "Reviews",
       "title": "People who took their finances into their own hands",
       "subtitle": "Reviews from couples using OurMoney every day - on splitting expenses, shared goals and talking about money without tension.",
       "items": [
@@ -224,6 +228,7 @@
       ]
     },
     "howItWorks": {
+      "eyebrow": "How to start",
       "title": "Get started in",
       "titleHighlight": "3 simple steps",
       "subtitle": "You can set up a shared budget in under a minute. No complicated forms, no credit card, no need for both of you to sign up on day one.",
@@ -271,6 +276,7 @@
       ]
     },
     "trust": {
+      "eyebrow": "Security",
       "title": "Your data is safe",
       "subtitle": "Finances are a sensitive topic. That's why we prioritize security.",
       "items": [
@@ -293,6 +299,7 @@
       ]
     },
     "comparison": {
+      "eyebrow": "Comparison",
       "title": "Why not Excel, Splitwise, or notes?",
       "subtitle": "OurMoney is the only tool designed specifically for couples - not roommates, not groups.",
       "competitors": [
@@ -403,6 +410,7 @@
       }
     },
     "faq": {
+      "eyebrow": "Questions and answers",
       "title": "FAQ",
       "subtitle": "The most common questions about a shared budget for couples - expense splitting, privacy, data security and using the app without your partner.",
       "items": [

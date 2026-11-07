@@ -19,6 +19,7 @@ export async function FAQSection({ locale }: Props) {
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-10 lg:gap-20">
           {/* Left column: title + CTA */}
           <ScrollReveal>
+            <p className="mb-4 text-xs uppercase tracking-[0.2em] text-dark/60">{t('eyebrow')}</p>
             <h2 className="font-display text-5xl md:text-6xl text-dark mb-6">
               {t('title')}
             </h2>

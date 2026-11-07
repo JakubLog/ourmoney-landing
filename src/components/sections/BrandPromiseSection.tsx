@@ -13,6 +13,7 @@ export async function BrandPromiseSection({ locale }: Props) {
     <section className="bg-white py-20 md:py-28 px-6">
       <div className="max-w-4xl mx-auto text-center">
         <ScrollReveal>
+          <p className="mb-4 text-xs uppercase tracking-[0.2em] text-dark/60">{t('eyebrow')}</p>
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-dark leading-tight mb-6">
             {t('title')}
           </h2>
