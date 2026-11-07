@@ -9,6 +9,8 @@ type Props = {
   label: string;
   lines: ChatLine[];
   delay?: number;
+  /** Odstepy i umiejscowienie w ukladzie rodzica (np. komorka siatki karty). */
+  className?: string;
 };
 
 // Shared IntersectionObserver - fire-once, wzorem ScrollReveal
@@ -39,7 +41,7 @@ function getObserver(): IntersectionObserver {
  * lezy w CSS (globals.css, klasy .chat--pending / .chat--play) - komponent
  * tylko przelacza klase po wejsciu w viewport (jak ScrollReveal).
  */
-export function ChatDialogue({ label, lines, delay = 0 }: Props) {
+export function ChatDialogue({ label, lines, delay = 0, className = '' }: Props) {
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -63,7 +65,7 @@ export function ChatDialogue({ label, lines, delay = 0 }: Props) {
   return (
     <figure
       ref={ref}
-      className="chat mt-6 flex flex-col gap-3"
+      className={`chat flex flex-col gap-3 ${className}`}
       style={{ '--chat-delay': `${delay}ms` } as CSSProperties}
     >
       <figcaption className="sr-only">{label}</figcaption>
