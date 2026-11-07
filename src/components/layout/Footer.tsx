@@ -35,22 +35,23 @@ export async function Footer() {
             />
           </Link>
 
-          <div className="flex items-center gap-4">
+          {/* Pole klikniecia min. 44px (h-11) - wczesniej sama ikona 15-18px */}
+          <div className="flex items-center gap-2">
             {/* Na mobile adres jest ukryty (sm:inline) i w przycisku zostaje sama
                 ikona - bez aria-label przycisk nie ma nazwy dostepnej */}
             <CopyEmail
               email={tFooter('email')}
               aria-label={tFooter('copyEmailLabel', { email: tFooter('email') })}
-              className="flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors"
+              className="flex h-11 min-w-11 items-center justify-center gap-2 rounded-full border border-white/10 text-sm text-white/70 transition-colors hover:border-white/25 hover:bg-white/5 hover:text-white sm:px-4"
             >
-              <Mail size={15} />
+              <Mail size={16} />
               <span className="hidden sm:inline">{tFooter('email')}</span>
             </CopyEmail>
             <a
               href={tFooter('instagram')}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white/60 hover:text-white transition-colors"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-white/70 transition-colors hover:border-white/25 hover:bg-white/5 hover:text-white"
               aria-label="Instagram"
             >
               <Instagram size={18} />

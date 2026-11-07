@@ -302,7 +302,8 @@ export function FeaturesSection({ locale }: Props) {
             <div className="mt-12 text-center lg:mt-6 lg:text-left">
               <InvertDotButton
                 href={startHref(locale)}
-                className="inline-block bg-accent text-black font-semibold px-8 py-4 rounded-full text-sm"
+                // px-6 < sm: dlugi tekst + strzalka miesci sie w jednej linii od 390px
+                className="inline-block bg-accent text-black font-semibold px-6 py-4 rounded-full text-sm sm:px-8"
                 location="features"
                 locale={locale}
               >

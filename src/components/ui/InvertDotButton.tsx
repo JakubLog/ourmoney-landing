@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useCallback } from 'react';
+import { ArrowRight } from 'lucide-react';
 import { trackCTAClick } from '@/lib/analytics';
 
 type Props = {
@@ -78,7 +79,7 @@ export function InvertDotButton({
       ref={linkRef}
       href={href}
       {...(isInternal ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
-      className={`relative overflow-hidden cursor-pointer ${className}`}
+      className={`group/cta relative overflow-hidden cursor-pointer ${className}`}
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -90,17 +91,29 @@ export function InvertDotButton({
         })
       }
     >
-      {/* Default text */}
-      <span className="relative z-10">{children}</span>
+      {/* Default text. Strzalka jest tu, a nie w children - tracking bierze
+          children jako tekst CTA, wiec musi zostac sam string */}
+      <span className="relative z-10 inline-flex items-center justify-center gap-2">
+        {children}
+        <ArrowRight
+          className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover/cta:translate-x-0.5"
+          strokeWidth={2.25}
+          aria-hidden="true"
+        />
+      </span>
 
       {/* White text clipped to dot area */}
       <span
         ref={whiteTextRef}
         aria-hidden="true"
-        className="absolute inset-0 z-20 flex items-center justify-center text-white pointer-events-none"
+        className="absolute inset-0 z-20 flex items-center justify-center gap-2 text-white pointer-events-none"
         style={{ clipPath: 'circle(0px at 0px 0px)', opacity: 0 }}
       >
         {children}
+        <ArrowRight
+          className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover/cta:translate-x-0.5"
+          strokeWidth={2.25}
+        />
       </span>
 
       {/* Dark dot */}

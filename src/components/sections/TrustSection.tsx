@@ -23,17 +23,21 @@ export async function TrustSection({ locale }: Props) {
           <SectionLead tone="dark">{t('subtitle')}</SectionLead>
         </ScrollReveal>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Ponizej sm kompaktowe wiersze (ikona z lewej, tekst do lewej) zamiast
+            czterech wysokich, wysrodkowanych kart po ~180px jedna pod druga */}
+        <div className="grid gap-3 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
           {items.map((item, i) => {
             const Icon = ICONS[i];
             return (
               <ScrollReveal key={i} delay={i * 80}>
-                <div className="rounded-2xl bg-white/5 border border-white/10 p-6 md:p-8 text-center h-full">
-                  <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
-                    <Icon className="w-5 h-5 text-accent" aria-hidden="true" />
+                <div className="flex h-full items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p-5 text-left sm:block sm:p-6 sm:text-center md:p-8">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent/10 sm:mx-auto sm:mb-4 sm:h-12 sm:w-12">
+                    <Icon className="h-5 w-5 text-accent" aria-hidden="true" />
                   </div>
-                  <h3 className="text-white text-sm font-semibold mb-2">{item.title}</h3>
-                  <p className="text-white/50 text-xs leading-relaxed">{item.description}</p>
+                  <div>
+                    <h3 className="mb-1 text-sm font-semibold text-white sm:mb-2">{item.title}</h3>
+                    <p className="text-xs leading-relaxed text-white/50">{item.description}</p>
+                  </div>
                 </div>
               </ScrollReveal>
             );
