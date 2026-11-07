@@ -353,7 +353,7 @@
       "badge": "Pełna moc",
       "includedLabel": "W tym planie:",
       "limitsLabel": "Czego tu nie ma:",
-      "note": "Ceny w złotówkach, brutto. Plan darmowy nie wymaga karty i nie wygasa - Premium włączacie i wyłączacie w aplikacji, kiedy chcecie.",
+      "note": "Ceny w złotówkach, brutto. Plan darmowy nie wymaga karty i nie wygasa. Premium kupujecie w aplikacji na iPhone'a, a działa u Was obojga, także na Androidzie i w przeglądarce.",
       "plans": {
         "free": {
           "name": "Darmowy",
@@ -379,11 +379,11 @@
         },
         "premium": {
           "name": "Premium",
-          "price": "29,99 zł",
+          "price": "36,99 zł",
           "period": "/mies. za Was dwoje",
           "coffee": "Tyle co kawa i ciastko na mieście.",
-          "yearly": "albo 299,99 zł rocznie - 2 miesiące gratis",
-          "perPersonHighlight": "15 zł miesięcznie na osobę",
+          "yearly": "albo 369,99 zł rocznie - 2 miesiące gratis",
+          "perPersonHighlight": "18,50 zł miesięcznie na osobę",
           "perPerson": "- płaci tylko jedno z Was, a Premium macie oboje.",
           "description": "To samo co w planie darmowym, tylko bez żadnych limitów.",
           "cta": "Wybierzcie Premium",
@@ -409,7 +409,7 @@
         },
         {
           "question": "Czy aplikacja jest darmowa?",
-          "answer": "Tak - podstawowa wersja jest darmowa na zawsze i nie wymaga karty. Codzienne prowadzenie budżetu nie ma limitów: dodajecie tyle wydatków, ile chcecie, i dzielicie je między sobą. Darmowy plan ogranicza tylko liczbę własnych kategorii, długość historii, import z banku (1 miesięcznie) i skany paragonów (5 miesięcznie). Analiza AI i integracja z bankiem są w Premium - 29,99 zł miesięcznie albo 299,99 zł rocznie. To cena za Was dwoje, czyli 15 zł miesięcznie na osobę: płaci jedno z Was, a Premium działa u obojga."
+          "answer": "Tak - podstawowa wersja jest darmowa na zawsze i nie wymaga karty. Codzienne prowadzenie budżetu nie ma limitów: dodajecie tyle wydatków, ile chcecie, i dzielicie je między sobą. Darmowy plan ogranicza tylko liczbę własnych kategorii, długość historii, import z banku (1 miesięcznie) i skany paragonów (5 miesięcznie). Analiza AI i integracja z bankiem są w Premium - 36,99 zł miesięcznie albo 369,99 zł rocznie. To cena za Was dwoje, czyli 18,50 zł miesięcznie na osobę: płaci jedno z Was, a Premium działa u obojga."
         },
         {
           "question": "Jak działa podział wydatków?",

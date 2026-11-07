@@ -15,7 +15,7 @@ export const APP_ORIGIN = 'https://app.ourmoney.pl';
  * Ten sam numer co `VITE_APP_STORE_ID` w repo aplikacji. Pusty = iOS trafia na PWA
  * z komunikatem "juz wkrotce", tak jak przed publikacja w App Store.
  */
-export const APP_STORE_ID = '';
+export const APP_STORE_ID = '6762495102';
 
 /**
  * Provider token z App Store Connect (App Analytics -> Campaigns, parametr `pt`

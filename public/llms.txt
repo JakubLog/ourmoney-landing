@@ -19,8 +19,8 @@ zarządzanie budżetem miesięcznym i realizację celów oszczędnościowych.
   i przychody, wspólny budżet dla dwóch osób, wszystkie tryby podziału, cele i koperty.
   Limity: skrócona historia, ograniczone własne kategorie, 1 import z banku miesięcznie,
   5 skanów paragonu miesięcznie, bez analizy AI i bez integracji z bankiem.
-- Premium: 29,99 zł miesięcznie albo 299,99 zł rocznie (2 miesiące gratis). Cena za
-  parę: płaci jedna osoba, Premium działa u obojga, czyli 15 zł miesięcznie na osobę.
+- Premium: 36,99 zł miesięcznie albo 369,99 zł rocznie (2 miesiące gratis). Cena za
+  parę: płaci jedna osoba, Premium działa u obojga, czyli 18,50 zł miesięcznie na osobę.
   Zdejmuje wszystkie limity planu darmowego, dodaje miesięczną analizę AI
   z rekomendacjami oraz automatyczną integrację z bankiem.
 
