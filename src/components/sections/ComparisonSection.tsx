@@ -88,20 +88,22 @@ export async function ComparisonSection({ locale }: Props) {
           <div className="overflow-x-auto -mx-6 px-6">
             {/* border-separate, bo przy collapse promienie na komorkach nie sa renderowane */}
             {/* table-fixed + jawne szerokosci: kolumny konkurentow maja rowna szerokosc
-                niezalenie od dlugosci nazwy (pigulka "OurMoney" vs "Excel") */}
-            <table className="w-full min-w-[640px] table-fixed border-separate border-spacing-0 text-sm">
+                niezalenie od dlugosci nazwy (pigulka "OurMoney" vs "Excel").
+                min-w 760px przy 5 kolumnach: kolumna ~106px miesci pigulke (~92px) */}
+            <table className="compare-table w-full min-w-[760px] table-fixed border-separate border-spacing-0 text-sm">
               <thead>
                 <tr>
-                  <th className="text-left text-dark/60 font-medium py-3 pr-4 w-[32%]" />
+                  <th className="text-left text-dark/60 font-medium py-3 pr-4 w-[30%]" />
                   {competitors.map((name, i) => (
                     <th
                       key={name}
                       scope="col"
-                      // Przy min-w 640px kolumna ma ~109px, a pigulka z px-4 ~100px
-                      // wystawala poza pasmo. Ponizej sm ciasniejsze paddingi komorki
-                      // i pigulki (tylko w poziomie), zeby miescila sie w srodku
-                      className={`w-[17%] px-1.5 pb-4 pt-3 text-center align-bottom sm:px-3 ${
-                        i === 0 ? `${ownColumn} rounded-t-card` : ''
+                      // Ponizej sm ciasniejsze paddingi komorki i pigulki (tylko
+                      // w poziomie), zeby pigulka miescila sie w pasmie kolumny
+                      // rounded-t/b-card na kazdej kolumnie - obrys po najechaniu
+                      // (.compare-table w globals.css) ma zaokraglone rogi jak pasmo OurMoney
+                      className={`w-[14%] rounded-t-card px-1.5 pb-4 pt-3 text-center align-bottom sm:px-3 ${
+                        i === 0 ? ownColumn : ''
                       }`}
                     >
                       {i === 0 ? (
@@ -127,10 +129,8 @@ export async function ComparisonSection({ locale }: Props) {
                     {grid[row].map((val, col) => (
                       <td
                         key={competitors[col]}
-                        className={`border-t px-3 py-4 text-center ${
-                          col === 0
-                            ? `${ownColumn} border-accent-deep/10 ${row === lastRow ? 'rounded-b-card' : ''}`
-                            : 'border-dark/5'
+                        className={`border-t px-3 py-4 text-center ${row === lastRow ? 'rounded-b-card' : ''} ${
+                          col === 0 ? `${ownColumn} border-accent-deep/10` : 'border-dark/5'
                         }`}
                       >
                         <CellIcon value={val} highlight={col === 0} />

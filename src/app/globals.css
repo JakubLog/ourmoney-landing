@@ -171,6 +171,34 @@ details[open] .faq-minus { display: block; }
 .float-a { animation: float-a 4s ease-in-out infinite; }
 .float-b { animation: float-b 5s ease-in-out infinite; }
 
+/* Comparison table - przerywany obrys kolumny pod kursorem, bez JS (:has).
+   Kolumny konkurentow to dzieci 2..6 wiersza (1 = etykieta cechy). Box-shadow nie
+   umie linii przerywanej, wiec obrys to przezroczyste dashed bordery na kazdej
+   komorce kolumny (boki; naglowek dodatkowo gora, ostatni wiersz dol). Kolor siedzi
+   w --col-outline i wlacza sie tylko w kolumnie pod kursorem. Gornych borderow td
+   nie ruszamy - to linie miedzy wierszami. */
+.compare-table :is(th, td):nth-child(n + 2) {
+  --col-outline: transparent;
+  border-left: 1px dashed var(--col-outline);
+  border-right: 1px dashed var(--col-outline);
+  transition: border-color 0.2s ease;
+}
+.compare-table thead th:nth-child(n + 2) {
+  border-top: 1px dashed var(--col-outline);
+}
+.compare-table tbody tr:last-child td {
+  border-bottom: 1px dashed var(--col-outline);
+}
+@media (hover: hover) {
+  .compare-table:has(:is(th, td):nth-child(2):hover) :is(th, td):nth-child(2),
+  .compare-table:has(:is(th, td):nth-child(3):hover) :is(th, td):nth-child(3),
+  .compare-table:has(:is(th, td):nth-child(4):hover) :is(th, td):nth-child(4),
+  .compare-table:has(:is(th, td):nth-child(5):hover) :is(th, td):nth-child(5),
+  .compare-table:has(:is(th, td):nth-child(6):hover) :is(th, td):nth-child(6) {
+    --col-outline: color-mix(in srgb, var(--color-dark) 35%, transparent);
+  }
+}
+
 /* Page entrance - CSS replacement for framer-motion template */
 /* NOTE: Do NOT use transform here - it creates a containing block
    that breaks position:fixed on the Header (and any other fixed child). */

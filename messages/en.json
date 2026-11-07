@@ -313,6 +313,7 @@
       "subtitle": "OurMoney is the only tool designed specifically for couples - not roommates, not groups.",
       "competitors": [
         "OurMoney",
+        "Claude for finances",
         "Excel",
         "Splitwise",
         "Notes"
@@ -330,23 +331,6 @@
           "yes",
           "no",
           "no",
-          "no"
-        ],
-        [
-          "yes",
-          "partial",
-          "no",
-          "no"
-        ],
-        [
-          "yes",
-          "no",
-          "no",
-          "no"
-        ],
-        [
-          "yes",
-          "no",
           "no",
           "no"
         ],
@@ -354,9 +338,32 @@
           "yes",
           "partial",
           "partial",
+          "no",
           "no"
         ],
         [
+          "yes",
+          "no",
+          "no",
+          "no",
+          "no"
+        ],
+        [
+          "yes",
+          "no",
+          "no",
+          "no",
+          "no"
+        ],
+        [
+          "yes",
+          "partial",
+          "partial",
+          "partial",
+          "no"
+        ],
+        [
+          "yes",
           "yes",
           "yes",
           "yes",
