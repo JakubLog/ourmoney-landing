@@ -2,7 +2,8 @@
 
 > The first finance app built specifically for couples. A shared household budget, fair expense splitting, privacy.
 
-OurMoney is a Progressive Web App (PWA) that lets couples track expenses together,
+OurMoney is an iPhone app (App Store) and, on Android and desktop, a web app (PWA)
+that lets couples track expenses together,
 manage a monthly budget and work towards shared savings goals.
 
 ## Key features
@@ -11,7 +12,7 @@ manage a monthly budget and work towards shared savings goals.
 - Shared financial goals (holidays, renovation, house deposit)
 - AI-generated monthly reports and analysis
 - Bank statement import and receipt scanning
-- PWA - works like a native app on any device
+- iPhone: app on the App Store; Android and desktop: PWA in the browser
 
 ## Pricing
 - Free plan: 0 PLN forever, no credit card and no trial period. Unlimited expenses and

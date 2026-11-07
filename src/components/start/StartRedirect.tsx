@@ -65,6 +65,7 @@ export function StartRedirect({ locale, plan, initialPlatform, forwarded }: Prop
 
   const target = buildAppUrl(platform, locale, plan, stableForwarded);
   const storeSoon = platform !== 'web' && !STORE_AVAILABLE[platform];
+  const opensAppStore = platform === 'ios' && STORE_AVAILABLE.ios;
 
   return (
     <div className="flex flex-col items-center">
@@ -82,7 +83,7 @@ export function StartRedirect({ locale, plan, initialPlatform, forwarded }: Prop
         rel="noopener"
         className="sheen mt-6 inline-block rounded-full bg-accent px-10 py-4 text-sm font-semibold text-black transition-colors hover:bg-accent-light"
       >
-        {t('manualCta')}
+        {t(opensAppStore ? 'manualCtaAppStore' : 'manualCta')}
       </a>
 
       {storeSoon && (

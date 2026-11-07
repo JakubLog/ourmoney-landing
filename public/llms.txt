@@ -2,7 +2,8 @@
 
 > Pierwsza aplikacja finansowa stworzona specjalnie dla par. Wspólny budżet, sprawiedliwy podział wydatków, prywatność.
 
-OurMoney to Progressive Web App (PWA) umożliwiająca parom wspólne śledzenie wydatków,
+OurMoney to aplikacja na iPhone'a (App Store), a na Androidzie i komputerze aplikacja
+webowa (PWA), umożliwiająca parom wspólne śledzenie wydatków,
 zarządzanie budżetem miesięcznym i realizację celów oszczędnościowych.
 
 ## Kluczowe funkcje
@@ -11,7 +12,7 @@ zarządzanie budżetem miesięcznym i realizację celów oszczędnościowych.
 - Wspólne cele finansowe (wakacje, remont, wkład własny)
 - Raporty i analizy finansowe z AI
 - Import wyciągów bankowych i skanowanie paragonów
-- PWA - działa jak natywna aplikacja na każdym urządzeniu
+- iPhone: aplikacja w App Store; Android i komputer: PWA w przeglądarce
 
 ## Cennik
 - Plan darmowy: 0 zł na zawsze, bez karty i bez okresu próbnego. Nielimitowane wydatki

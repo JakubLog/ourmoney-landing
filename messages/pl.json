@@ -15,6 +15,7 @@
     "statusPending": "Przygotowujemy przekierowanie...",
     "statusFired": "Nic się nie stało? Otwórz aplikację ręcznie.",
     "manualCta": "Otwórz OurMoney",
+    "manualCtaAppStore": "Pobierz z App Store",
     "storeSoonIos": "Wersja z App Store - już wkrótce. Na razie otwieramy aplikację webową (PWA), którą dodasz do ekranu początkowego prosto z Safari.",
     "storeSoonAndroid": "Wersja z Google Play - już wkrótce. Na razie otwieramy aplikację webową (PWA), którą zainstalujesz prosto z Chrome.",
     "planPremiumLabel": "Wybrany plan: Premium",
@@ -365,7 +366,7 @@
             "Nielimitowane wydatki i przychody",
             "Podział po równo, proporcjonalnie albo moje/twoje/nasze",
             "Wspólne cele i koperty",
-            "Aplikacja na telefon (PWA) i pulpit z podsumowaniem"
+            "Aplikacja na iPhone'a (App Store), Androida (PWA) i pulpit z podsumowaniem"
           ],
           "limits": [
             "Ograniczona liczba własnych kategorii",
@@ -416,11 +417,11 @@
         },
         {
           "question": "Czy aplikacja działa na iOS i Android?",
-          "answer": "OurMoney to Progressive Web App (PWA) - działa na każdym urządzeniu przez przeglądarkę. Możecie dodać ją do ekranu głównego jak zwykłą aplikację. Jedno konto, wszędzie dostęp!"
+          "answer": "Tak. Na iPhonie pobierzecie OurMoney z App Store. Na Androidzie i na komputerze działa w przeglądarce jako aplikacja webowa (PWA), którą dodacie do ekranu głównego jak zwykłą aplikację. Jedno konto, wszędzie dostęp!"
         },
         {
           "question": "Jak zainstalować OurMoney na telefonie?",
-          "answer": "OurMoney to aplikacja PWA - instalujesz ją prosto z przeglądarki, bez App Store czy Google Play. Na iPhonie: otwórz app.ourmoney.pl w Safari, stuknij ikonę udostępniania i wybierz 'Do ekranu początkowego'. Na Androidzie: otwórz stronę w Chrome i wybierz z menu 'Zainstaluj aplikację'. Po instalacji OurMoney działa jak zwykła aplikacja - z własną ikoną i trybem offline."
+          "answer": "Na iPhonie: pobierz OurMoney z App Store. Na Androidzie: otwórz app.ourmoney.pl w Chrome i wybierz z menu 'Zainstaluj aplikację' - po instalacji OurMoney działa jak zwykła aplikacja, z własną ikoną i trybem offline."
         },
         {
           "question": "Czy nasze dane będą bezpieczne?",

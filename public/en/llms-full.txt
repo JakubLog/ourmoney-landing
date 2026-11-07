@@ -4,7 +4,8 @@
 
 ## What is OurMoney?
 
-OurMoney is a Progressive Web App (PWA) that lets couples manage their finances together.
+OurMoney is an iPhone app (App Store) and, on Android and desktop, a web app (PWA)
+that lets couples manage their finances together.
 It combines the simplicity of a spreadsheet with features built for two people.
 
 ## The problem we solve
@@ -33,8 +34,8 @@ Progress tracked in real time.
 Automatic expense categorisation.
 Monthly summaries, trends and concrete recommendations.
 
-### PWA - works like a native app
-Installs on the phone without the App Store or Google Play.
+### iPhone from the App Store, Android and desktop in the browser
+On iPhone it is an App Store app. On Android and desktop it is a PWA installed from the browser.
 Works offline, fast and responsive.
 
 ## Who is OurMoney for?
@@ -50,7 +51,7 @@ Works offline, fast and responsive.
 No credit card, no trial period, never expires.
 Includes: shared budget for two people, unlimited expenses and income,
 splitting evenly / proportionally to income / mine-yours-ours,
-shared goals and envelopes, the PWA on your phone.
+shared goals and envelopes, the iPhone app (App Store) and Android (PWA).
 Limits: limited number of custom categories, shortened transaction history,
 1 bank statement import per month, up to 5 receipt scans per month,
 no AI analysis and no automatic bank integration.
@@ -81,9 +82,8 @@ shares, or simply tracking expenses without settling them. OurMoney calculates t
 shares automatically.
 
 **Does it work on iOS and Android?**
-Yes. OurMoney is a PWA - installed straight from the browser, without the App Store or
-Google Play. On iPhone via Safari ("Add to Home Screen"), on Android via Chrome
-("Install app").
+Yes. On iPhone, OurMoney is downloaded from the App Store. On Android it installs
+straight from Chrome ("Install app").
 
 **Is our data safe?**
 The connection to the app is encrypted with TLS. Data is never sold, there are no ads,

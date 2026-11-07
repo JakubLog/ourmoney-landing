@@ -11,10 +11,31 @@ export type AppLocale = 'pl' | 'en';
 export const APP_ORIGIN = 'https://app.ourmoney.pl';
 
 /**
+ * Numeryczne Apple ID aplikacji z App Store Connect (App Information -> Apple ID).
+ * Ten sam numer co `VITE_APP_STORE_ID` w repo aplikacji. Pusty = iOS trafia na PWA
+ * z komunikatem "juz wkrotce", tak jak przed publikacja w App Store.
+ */
+export const APP_STORE_ID = '';
+
+/**
+ * Provider token z App Store Connect (App Analytics -> Campaigns, parametr `pt`
+ * w wygenerowanym linku kampanii). Bez niego App Store Connect nie przypisze
+ * pobran do kampanii `ct`, ale link do sklepu dziala normalnie.
+ */
+export const APP_STORE_PROVIDER_TOKEN = '';
+
+const APP_STORE_ORIGIN = 'https://apps.apple.com';
+
+/** Strona aplikacji w App Store albo null, dopoki nie znamy Apple ID. */
+export const APP_STORE_URL: string | null = APP_STORE_ID
+  ? `${APP_STORE_ORIGIN}/app/id${APP_STORE_ID}`
+  : null;
+
+/**
  * Docelowe adresy per platforma.
- * Android i iOS czekaja na publikacje w store - do tego czasu obie platformy
- * trafiaja na PWA. Gdy store'y ruszą, podmien wartosci na deep-linki
- * (np. `ourmoney://start` z fallbackiem) lub adresy App Store / Google Play.
+ * iOS: App Store, gdy jest APP_STORE_ID (od 2026-11-06 aplikacja jest w sklepie,
+ * a zakup Premium dziala wylacznie w aplikacji iOS - w PWA nie da sie kupic).
+ * Android: PWA, dopoki aplikacja nie wejdzie do Google Play.
  *
  * UWAGA: linki do App Store / Google Play NIE przyjmuja `?locale=` - aplikacja
  * natywna bierze jezyk z systemu. `withAppLocale` pomija je automatycznie,
@@ -22,15 +43,50 @@ export const APP_ORIGIN = 'https://app.ourmoney.pl';
  */
 export const APP_TARGETS: Record<AppPlatform, string> = {
   web: 'https://app.ourmoney.pl/',
-  ios: 'https://app.ourmoney.pl/',
+  ios: APP_STORE_URL ?? 'https://app.ourmoney.pl/',
   android: 'https://app.ourmoney.pl/',
 };
 
 /** Flagi store'ow - steruja komunikatem "juz wkrotce" na stronie przejscia. */
 export const STORE_AVAILABLE: Record<Exclude<AppPlatform, 'web'>, boolean> = {
-  ios: false,
+  ios: APP_STORE_URL !== null,
   android: false,
 };
+
+/** Czy URL prowadzi do App Store? */
+export function isAppStoreUrl(url: string): boolean {
+  try {
+    return new URL(url).origin === APP_STORE_ORIGIN;
+  } catch {
+    return false;
+  }
+}
+
+/** Limit dlugosci tokenu kampanii `ct` w App Store Connect. */
+const APP_STORE_CAMPAIGN_MAX = 40;
+
+function forwardedValue(forwarded: Record<string, string> | undefined, key: string): string | null {
+  for (const [name, value] of Object.entries(forwarded ?? {})) {
+    if (name.toLowerCase() === key && value.trim()) return value.trim();
+  }
+  return null;
+}
+
+/**
+ * Link do App Store z tokenem kampanii App Store Connect, zeby pobrania z reklam
+ * i z landingu bylo widac w App Analytics -> Campaigns. `ct` bierzemy z
+ * utm_campaign, potem utm_source; bez UTM-ow `landing` (ruch z ourmoney.pl).
+ * Inne parametry (utm, fbclid, plan) App Store ignoruje, wiec ich nie doklejamy.
+ */
+export function buildAppStoreUrl(target: string, forwarded?: Record<string, string>): string {
+  const url = new URL(target);
+  const campaign =
+    forwardedValue(forwarded, 'utm_campaign') ?? forwardedValue(forwarded, 'utm_source') ?? 'landing';
+  url.searchParams.set('ct', campaign.slice(0, APP_STORE_CAMPAIGN_MAX));
+  if (APP_STORE_PROVIDER_TOKEN) url.searchParams.set('pt', APP_STORE_PROVIDER_TOKEN);
+  url.searchParams.set('mt', '8');
+  return url.toString();
+}
 
 /** Detekcja po User-Agent - dziala tak samo po stronie serwera i klienta. */
 export function detectPlatform(userAgent: string): AppPlatform {
@@ -127,7 +183,10 @@ export function buildAppUrl(
   plan?: AppPlan | null,
   forwarded?: Record<string, string>,
 ): string {
-  const url = new URL(APP_TARGETS[platform]);
+  const target = APP_TARGETS[platform];
+  if (isAppStoreUrl(target)) return buildAppStoreUrl(target, forwarded);
+
+  const url = new URL(target);
 
   // Najpierw atrybucja, potem nasze parametry - kolejnosc doklejania, nie nadpisywania
   for (const [key, value] of Object.entries(forwarded ?? {})) {
