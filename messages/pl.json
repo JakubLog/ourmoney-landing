@@ -15,6 +15,7 @@
     "statusPending": "Przygotowujemy przekierowanie...",
     "statusFired": "Nic się nie stało? Otwórz aplikację ręcznie.",
     "manualCta": "Otwórz OurMoney",
+    "manualCtaAppStore": "Pobierz z App Store",
     "storeSoonIos": "Wersja z App Store - już wkrótce. Na razie otwieramy aplikację webową (PWA), którą dodasz do ekranu początkowego prosto z Safari.",
     "storeSoonAndroid": "Wersja z Google Play - już wkrótce. Na razie otwieramy aplikację webową (PWA), którą zainstalujesz prosto z Chrome.",
     "planPremiumLabel": "Wybrany plan: Premium",
@@ -352,7 +353,7 @@
       "badge": "Pełna moc",
       "includedLabel": "W tym planie:",
       "limitsLabel": "Czego tu nie ma:",
-      "note": "Ceny w złotówkach, brutto. Plan darmowy nie wymaga karty i nie wygasa - Premium włączacie i wyłączacie w aplikacji, kiedy chcecie.",
+      "note": "Ceny w złotówkach, brutto. Plan darmowy nie wymaga karty i nie wygasa. Premium kupujecie w aplikacji na iPhone'a, a działa u Was obojga, także na Androidzie i w przeglądarce.",
       "plans": {
         "free": {
           "name": "Darmowy",
@@ -365,7 +366,7 @@
             "Nielimitowane wydatki i przychody",
             "Podział po równo, proporcjonalnie albo moje/twoje/nasze",
             "Wspólne cele i koperty",
-            "Aplikacja na telefon (PWA) i pulpit z podsumowaniem"
+            "Aplikacja na iPhone'a (App Store), Androida (PWA) i pulpit z podsumowaniem"
           ],
           "limits": [
             "Ograniczona liczba własnych kategorii",
@@ -378,11 +379,11 @@
         },
         "premium": {
           "name": "Premium",
-          "price": "29,99 zł",
+          "price": "36,99 zł",
           "period": "/mies. za Was dwoje",
           "coffee": "Tyle co kawa i ciastko na mieście.",
-          "yearly": "albo 299,99 zł rocznie - 2 miesiące gratis",
-          "perPersonHighlight": "15 zł miesięcznie na osobę",
+          "yearly": "albo 369,99 zł rocznie - 2 miesiące gratis",
+          "perPersonHighlight": "18,50 zł miesięcznie na osobę",
           "perPerson": "- płaci tylko jedno z Was, a Premium macie oboje.",
           "description": "To samo co w planie darmowym, tylko bez żadnych limitów.",
           "cta": "Wybierzcie Premium",
@@ -408,7 +409,7 @@
         },
         {
           "question": "Czy aplikacja jest darmowa?",
-          "answer": "Tak - podstawowa wersja jest darmowa na zawsze i nie wymaga karty. Codzienne prowadzenie budżetu nie ma limitów: dodajecie tyle wydatków, ile chcecie, i dzielicie je między sobą. Darmowy plan ogranicza tylko liczbę własnych kategorii, długość historii, import z banku (1 miesięcznie) i skany paragonów (5 miesięcznie). Analiza AI i integracja z bankiem są w Premium - 29,99 zł miesięcznie albo 299,99 zł rocznie. To cena za Was dwoje, czyli 15 zł miesięcznie na osobę: płaci jedno z Was, a Premium działa u obojga."
+          "answer": "Tak - podstawowa wersja jest darmowa na zawsze i nie wymaga karty. Codzienne prowadzenie budżetu nie ma limitów: dodajecie tyle wydatków, ile chcecie, i dzielicie je między sobą. Darmowy plan ogranicza tylko liczbę własnych kategorii, długość historii, import z banku (1 miesięcznie) i skany paragonów (5 miesięcznie). Analiza AI i integracja z bankiem są w Premium - 36,99 zł miesięcznie albo 369,99 zł rocznie. To cena za Was dwoje, czyli 18,50 zł miesięcznie na osobę: płaci jedno z Was, a Premium działa u obojga."
         },
         {
           "question": "Jak działa podział wydatków?",
@@ -416,11 +417,11 @@
         },
         {
           "question": "Czy aplikacja działa na iOS i Android?",
-          "answer": "OurMoney to Progressive Web App (PWA) - działa na każdym urządzeniu przez przeglądarkę. Możecie dodać ją do ekranu głównego jak zwykłą aplikację. Jedno konto, wszędzie dostęp!"
+          "answer": "Tak. Na iPhonie pobierzecie OurMoney z App Store. Na Androidzie i na komputerze działa w przeglądarce jako aplikacja webowa (PWA), którą dodacie do ekranu głównego jak zwykłą aplikację. Jedno konto, wszędzie dostęp!"
         },
         {
           "question": "Jak zainstalować OurMoney na telefonie?",
-          "answer": "OurMoney to aplikacja PWA - instalujesz ją prosto z przeglądarki, bez App Store czy Google Play. Na iPhonie: otwórz app.ourmoney.pl w Safari, stuknij ikonę udostępniania i wybierz 'Do ekranu początkowego'. Na Androidzie: otwórz stronę w Chrome i wybierz z menu 'Zainstaluj aplikację'. Po instalacji OurMoney działa jak zwykła aplikacja - z własną ikoną i trybem offline."
+          "answer": "Na iPhonie: pobierz OurMoney z App Store. Na Androidzie: otwórz app.ourmoney.pl w Chrome i wybierz z menu 'Zainstaluj aplikację' - po instalacji OurMoney działa jak zwykła aplikacja, z własną ikoną i trybem offline."
         },
         {
           "question": "Czy nasze dane będą bezpieczne?",

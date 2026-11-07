@@ -15,6 +15,7 @@
     "statusPending": "Preparing your redirect...",
     "statusFired": "Nothing happened? Open the app manually.",
     "manualCta": "Open OurMoney",
+    "manualCtaAppStore": "Get it on the App Store",
     "storeSoonIos": "The App Store version is coming soon. For now we are opening the web app (PWA) - add it to your Home Screen straight from Safari.",
     "storeSoonAndroid": "The Google Play version is coming soon. For now we are opening the web app (PWA) - install it straight from Chrome.",
     "planPremiumLabel": "Selected plan: Premium",
@@ -352,7 +353,7 @@
       "badge": "Full power",
       "includedLabel": "In this plan:",
       "limitsLabel": "What is not included:",
-      "note": "Prices in PLN, VAT included. The free plan needs no card and never expires - you can turn Premium on and off in the app whenever you want.",
+      "note": "Prices in PLN, VAT included. The free plan needs no card and never expires. You buy Premium in the iPhone app, and it works for both of you, on Android and in the browser too.",
       "plans": {
         "free": {
           "name": "Free",
@@ -365,7 +366,7 @@
             "Unlimited expenses and income",
             "Equal, income-proportional or mine/yours/ours split",
             "Shared goals and envelopes",
-            "Phone app (PWA) and dashboard overview"
+            "iPhone app (App Store), Android (PWA) and dashboard overview"
           ],
           "limits": [
             "Limited number of custom categories",
@@ -378,11 +379,11 @@
         },
         "premium": {
           "name": "Premium",
-          "price": "29.99 PLN",
+          "price": "36.99 PLN",
           "period": "/mo for both of you",
           "coffee": "About what you'd pay for coffee and cake out.",
-          "yearly": "or 299.99 PLN per year - 2 months free",
-          "perPersonHighlight": "15 PLN a month per person",
+          "yearly": "or 369.99 PLN per year - 2 months free",
+          "perPersonHighlight": "18.50 PLN a month per person",
           "perPerson": "- only one of you pays, and you both get Premium.",
           "description": "The same as the free plan, only without any limits.",
           "cta": "Get Premium",
@@ -408,7 +409,7 @@
         },
         {
           "question": "Is the app free?",
-          "answer": "Yes - the basic plan is free forever and needs no credit card. Day-to-day budgeting has no limits: add as many expenses as you want and split them between you. The free plan only caps custom categories, history length, bank imports (1 per month) and receipt scans (5 per month). AI analysis and bank integration are part of Premium - 29.99 PLN per month or 299.99 PLN per year. That price covers both of you, which is 15 PLN a month per person: one of you pays, and Premium works for you both."
+          "answer": "Yes - the basic plan is free forever and needs no credit card. Day-to-day budgeting has no limits: add as many expenses as you want and split them between you. The free plan only caps custom categories, history length, bank imports (1 per month) and receipt scans (5 per month). AI analysis and bank integration are part of Premium - 36.99 PLN per month or 369.99 PLN per year. That price covers both of you, which is 18.50 PLN a month per person: one of you pays, and Premium works for you both."
         },
         {
           "question": "How does expense splitting work?",
@@ -416,11 +417,11 @@
         },
         {
           "question": "Does the app work on iOS and Android?",
-          "answer": "OurMoney is a Progressive Web App (PWA) - it works on any device through the browser. You can add it to your home screen just like a native app. One account, access everywhere!"
+          "answer": "Yes. On iPhone, get OurMoney from the App Store. On Android and on your computer it runs in the browser as a web app (PWA) that you can add to your home screen like a regular app. One account, access everywhere!"
         },
         {
           "question": "How do I install OurMoney on my phone?",
-          "answer": "OurMoney is a PWA - you install it straight from your browser, no App Store or Google Play needed. On iPhone: open app.ourmoney.pl in Safari, tap the share icon and choose 'Add to Home Screen'. On Android: open the site in Chrome and pick 'Install app' from the menu. Once installed, OurMoney works like a regular app - with its own icon and offline support."
+          "answer": "On iPhone: get OurMoney from the App Store. On Android: open app.ourmoney.pl in Chrome and pick 'Install app' from the menu - once installed, OurMoney works like a regular app, with its own icon and offline support."
         },
         {
           "question": "Will our data be secure?",

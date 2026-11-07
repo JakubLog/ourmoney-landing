@@ -185,7 +185,8 @@ Dynamiczna (`force-dynamic`), `noindex`, poza sitemapą i poza layoutem Header/F
 | Element | Opis |
 |---------|------|
 | Detekcja platformy | Serwer czyta `user-agent` (render bez migotania), klient doprecyzowuje `detectPlatformClient()` — łapie iPadOS 13+ podszywający się pod Maca |
-| Targety | `APP_TARGETS` w `src/lib/appLinks.ts` — iOS / Android / web. Dziś wszystkie → `https://app.ourmoney.pl/`; flagi `STORE_AVAILABLE` sterują komunikatem "już wkrótce" |
+| Targety | `APP_TARGETS` w `src/lib/appLinks.ts` — iOS / Android / web. iOS → App Store (`https://apps.apple.com/app/id<APP_STORE_ID>`), gdy stała `APP_STORE_ID` jest wypełniona; pusta = iOS na PWA jak przed publikacją. Android i web → `https://app.ourmoney.pl/`. `STORE_AVAILABLE.ios` wynika z `APP_STORE_ID` i steruje komunikatem "już wkrótce" oraz etykietą przycisku (`manualCtaAppStore`) |
+| Atrybucja App Store | Link do App Store dostaje token kampanii App Store Connect: `ct` = `utm_campaign`, potem `utm_source`, bez UTM-ów `landing` (max 40 znaków), `pt` = `APP_STORE_PROVIDER_TOKEN` (gdy wypełniony), `mt=8`. Bez `plan`, `locale` i pozostałych UTM-ów — App Store ich nie czyta (`buildAppStoreUrl()`) |
 | Plan | `?plan=premium` tylko z CTA Premium w cenniku; przenoszony dalej na URL aplikacji. Pozostałe CTA bez parametru |
 | Język | `?locale=pl|en` doklejane do **każdego** URL-a aplikacji przez `withAppLocale()`. Wartość z locale landingu, nie z `navigator.language`. Zawsze lowercase, zawsze w query (przed `#` — aplikacja trzyma w hashu tokeny auth) |
 | Atrybucja | `utm_*`, `ref`, `gclid`, `fbclid`, `msclkid` z URL-a `/start` przenoszone na aplikację (`pickForwardedParams()`) — redirect nie gubi kampanii |

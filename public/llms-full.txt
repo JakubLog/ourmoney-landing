@@ -4,7 +4,8 @@
 
 ## Czym jest OurMoney?
 
-OurMoney to Progressive Web App (PWA) umożliwiająca parom wspólne zarządzanie finansami.
+OurMoney to aplikacja na iPhone'a (App Store), a na Androidzie i komputerze aplikacja
+webowa (PWA), umożliwiająca parom wspólne zarządzanie finansami.
 Aplikacja łączy prostotę arkusza kalkulacyjnego z inteligentnymi funkcjami partnerskimi.
 
 ## Problem który rozwiązujemy
@@ -33,8 +34,8 @@ Wspólne oszczędzanie na wakacje, remont, wkład własny na mieszkanie.
 Automatyczne kategoryzowanie wydatków.
 Miesięczne podsumowania i trendy.
 
-### PWA - działa jak natywna aplikacja
-Instalacja na telefonie bez App Store / Google Play.
+### iPhone z App Store, Android i komputer przez przeglądarkę
+Na iPhonie aplikacja z App Store. Na Androidzie i komputerze PWA instalowana z przeglądarki.
 Działa offline, szybka, responsywna.
 
 ## Dla kogo jest OurMoney?
@@ -50,14 +51,14 @@ Działa offline, szybka, responsywna.
 Bez karty kredytowej, bez okresu próbnego, nie wygasa.
 Zawiera: wspólny budżet dla dwóch osób, nielimitowane wydatki i przychody,
 podział po równo / proporcjonalnie do dochodów / moje-twoje-nasze,
-wspólne cele i koperty, aplikację PWA na telefon.
+wspólne cele i koperty, aplikację na iPhone'a (App Store) i Androida (PWA).
 Limity: ograniczona liczba własnych kategorii, skrócona historia transakcji,
 1 import wyciągu bankowego miesięcznie, do 5 skanów paragonu miesięcznie,
 bez analizy AI i bez automatycznej integracji z bankiem.
 
-### Premium - 29,99 zł miesięcznie albo 299,99 zł rocznie
+### Premium - 36,99 zł miesięcznie albo 369,99 zł rocznie
 Cena obejmuje oboje partnerów: płaci jedna osoba, Premium działa u obojga,
-czyli 15 zł miesięcznie na osobę. Rozliczenie roczne oznacza 2 miesiące gratis.
+czyli 18,50 zł miesięcznie na osobę. Rozliczenie roczne oznacza 2 miesiące gratis.
 Ceny brutto, w złotówkach.
 Premium to ten sam zakres co plan darmowy, tylko bez limitów, plus:
 nielimitowane własne kategorie, pełna historia transakcji, miesięczna analiza AI
@@ -80,9 +81,8 @@ Do wyboru: po równo (50/50), proporcjonalnie do dochodów (np. 60/40), własne 
 albo samo śledzenie wydatków bez rozliczania. OurMoney liczy udziały automatycznie.
 
 **Czy aplikacja działa na iOS i Android?**
-Tak. OurMoney to PWA - instaluje się prosto z przeglądarki, bez App Store i Google Play.
-Na iPhonie przez Safari ("Do ekranu początkowego"), na Androidzie przez Chrome
-("Zainstaluj aplikację").
+Tak. Na iPhonie OurMoney pobiera się z App Store. Na Androidzie instaluje się
+prosto z przeglądarki Chrome ("Zainstaluj aplikację").
 
 **Czy dane są bezpieczne?**
 Połączenie z aplikacją jest szyfrowane protokołem TLS. Dane nie są sprzedawane,
