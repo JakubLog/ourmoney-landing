@@ -186,7 +186,6 @@ export default async function BlogPage({ params }: Props) {
                         mainImageUrl={post.mainImageUrl}
                         mainImageAlt={post.mainImageAlt}
                         mainImageBlur={post.mainImageBlur}
-                        author={post.authorName}
                         locale={locale}
                         readingTimeLabel={t('readingTime', { minutes: readingTime(post.estimatedWordCount) })}
                       />

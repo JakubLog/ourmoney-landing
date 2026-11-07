@@ -79,7 +79,6 @@ type Post = {
   mainImageUrl?: string;
   mainImageAlt?: string;
   mainImageBlur?: string;
-  authorName?: string;
   estimatedWordCount: number;
 };
 
@@ -220,7 +219,6 @@ export default async function CategoryPage({ params }: Props) {
                     mainImageUrl={post.mainImageUrl}
                     mainImageAlt={post.mainImageAlt}
                     mainImageBlur={post.mainImageBlur}
-                    author={post.authorName}
                     locale={locale}
                     readingTimeLabel={tBlog('readingTime', {
                       minutes: readingTime(post.estimatedWordCount),

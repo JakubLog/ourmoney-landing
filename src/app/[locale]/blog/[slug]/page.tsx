@@ -56,7 +56,6 @@ type RelatedPost = {
   mainImageUrl?: string;
   mainImageAlt?: string;
   mainImageBlur?: string;
-  authorName?: string;
   category?: Category;
   estimatedWordCount?: number;
 };
@@ -657,7 +656,6 @@ export default async function BlogPostPage({ params }: Props) {
                     mainImageUrl={related.mainImageUrl}
                     mainImageAlt={related.mainImageAlt}
                     mainImageBlur={related.mainImageBlur}
-                    author={related.authorName}
                     locale={locale}
                     readingTimeLabel={t('readingTime', {
                       minutes: readingTime(related.estimatedWordCount),

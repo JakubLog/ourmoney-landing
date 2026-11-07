@@ -40,7 +40,6 @@ export const RELATED_POSTS_QUERY = groq`
     "mainImageUrl": mainImage.asset->url,
     "mainImageAlt": mainImage.alt,
     "mainImageBlur": mainImage.asset->metadata.lqip,
-    "authorName": author->name,
     category->{ title, "slug": slug.current },
     "estimatedWordCount": length(pt::text(body)),
   }
@@ -158,7 +157,6 @@ export const CATEGORY_POSTS_QUERY = groq`
     "mainImageUrl": mainImage.asset->url,
     "mainImageAlt": mainImage.alt,
     "mainImageBlur": mainImage.asset->metadata.lqip,
-    "authorName": author->name,
     "estimatedWordCount": length(pt::text(body)),
   }
 `;

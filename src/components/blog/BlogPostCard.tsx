@@ -11,12 +11,12 @@ type PostCardProps = {
   mainImageUrl?: string;
   mainImageAlt?: string;
   mainImageBlur?: string;
-  author?: string;
   locale: string;
   readingTimeLabel: string;
 };
 
 type FeaturedPostCardProps = PostCardProps & {
+  author?: string;
   featuredLabel: string;
   readMoreLabel: string;
 };
@@ -63,7 +63,6 @@ export function BlogPostCard({
   mainImageUrl,
   mainImageAlt,
   mainImageBlur,
-  author,
   locale,
   readingTimeLabel,
 }: PostCardProps) {
@@ -99,14 +98,13 @@ export function BlogPostCard({
           <h3 className="font-display text-xl text-white leading-snug line-clamp-2 group-hover:text-accent transition-colors duration-300">
             {title}
           </h3>
-          <p className="text-sm text-white/50 leading-relaxed line-clamp-3 flex-1">
+          <p className="text-sm text-white/50 leading-relaxed line-clamp-2 flex-1">
             {excerpt}
           </p>
           <footer className="flex items-center justify-between pt-4 border-t border-white/8 mt-auto">
             <time dateTime={publishedAt} className="text-xs text-white/50">
               {formatDate(publishedAt, locale)}
             </time>
-            {author && <span className="text-xs text-white/50"> · {author}</span>}
             <div className="flex items-center gap-2">
               <span className="text-xs text-accent/70">
                 {readingTimeLabel}
