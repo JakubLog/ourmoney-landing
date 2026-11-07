@@ -1,8 +1,9 @@
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
-import { ShoppingBasket, Fuel } from 'lucide-react';
+import { ShoppingBasket, Fuel, Heart } from 'lucide-react';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SectionLead } from '@/components/ui/SectionLead';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { AiImageLabel } from '@/components/ui/AiImageLabel';
 
 type Props = { locale: string };
@@ -14,7 +15,7 @@ export async function BrandPromiseSection({ locale }: Props) {
     <section className="bg-white py-20 md:py-28 px-6">
       <div className="max-w-4xl mx-auto text-center">
         <ScrollReveal>
-          <p className="mb-4 text-xs uppercase tracking-[0.2em] text-dark/60">{t('eyebrow')}</p>
+          <SectionEyebrow icon={Heart}>{t('eyebrow')}</SectionEyebrow>
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-dark leading-tight mb-6">
             {t('title')}
           </h2>
@@ -39,22 +40,23 @@ export async function BrandPromiseSection({ locale }: Props) {
             </div>
           </div>
 
-          {/* Cards: absolute on desktop; below the image on mobile - stacked under sm,
-              because two cards side by side need ~370px and overflow narrow phones */}
-          <div className="flex flex-col gap-3 mt-4 sm:flex-row md:block md:mt-0">
+          {/* Cards: absolute on desktop, staggered diagonally (left low, right high).
+              Below md they sit under the image, offset left/right and overlapping
+              its bottom edge, so they still read as floating instead of two equal rows */}
+          <div className="flex flex-col gap-3 md:block">
 
             {/* Card: Biedronka */}
-            <div className="float-a glass-light flex-1 md:flex-none relative md:absolute md:bottom-10 md:left-6 rounded-2xl px-3 py-2 md:px-4 md:py-3 flex items-center gap-2 md:gap-3 z-10">
-              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-red-50 flex items-center justify-center shrink-0" aria-hidden="true">
-                <ShoppingBasket className="w-4 h-4 md:w-5 md:h-5 text-red-400" />
+            <div className="float-a glass-light relative z-10 -mt-8 mr-auto w-[86%] max-w-xs rounded-2xl px-4 py-3.5 flex items-center gap-3 md:absolute md:mt-0 md:w-auto md:max-w-none md:bottom-[12%] md:left-6 md:px-5 md:py-4">
+              <div className="w-10 h-10 md:w-11 md:h-11 rounded-full bg-red-50 flex items-center justify-center shrink-0" aria-hidden="true">
+                <ShoppingBasket className="w-5 h-5 text-red-400" />
               </div>
               <div className="text-left min-w-0">
-                <p className="text-xs md:text-sm font-semibold text-dark">Biedronka</p>
+                <p className="text-sm font-semibold text-dark">Biedronka</p>
                 <p className="text-xs text-dark/60">Zakupy spożywcze</p>
               </div>
-              <div className="text-right ml-auto md:ml-4 shrink-0">
-                <p className="text-xs md:text-sm font-semibold text-dark">129,89 zł</p>
-                <p className="hidden md:block text-xs text-dark/60">23.02.2026</p>
+              <div className="text-right ml-auto md:ml-6 shrink-0">
+                <p className="text-sm font-semibold text-dark">129,89 zł</p>
+                <p className="text-xs text-dark/60">23.02.2026</p>
               </div>
               <span className="absolute -top-2 -right-2 bg-accent text-xs font-semibold text-dark px-2 py-1 rounded-full">
                 Agnieszka
@@ -62,17 +64,17 @@ export async function BrandPromiseSection({ locale }: Props) {
             </div>
 
             {/* Card: Paliwo */}
-            <div className="float-b glass-light flex-1 md:flex-none relative md:absolute md:bottom-28 md:right-6 rounded-2xl px-3 py-2 md:px-4 md:py-3 flex items-center gap-2 md:gap-3 z-10">
-              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-green-50 flex items-center justify-center shrink-0" aria-hidden="true">
-                <Fuel className="w-4 h-4 md:w-5 md:h-5 text-green-500" />
+            <div className="float-b glass-light relative z-10 ml-auto w-[86%] max-w-xs rounded-2xl px-4 py-3.5 flex items-center gap-3 md:absolute md:w-auto md:max-w-none md:top-[22%] md:right-6 md:px-5 md:py-4">
+              <div className="w-10 h-10 md:w-11 md:h-11 rounded-full bg-green-50 flex items-center justify-center shrink-0" aria-hidden="true">
+                <Fuel className="w-5 h-5 text-green-500" />
               </div>
               <div className="text-left min-w-0">
-                <p className="text-xs md:text-sm font-semibold text-dark">Paliwo</p>
+                <p className="text-sm font-semibold text-dark">Paliwo</p>
                 <p className="text-xs text-dark/60">Samochód</p>
               </div>
-              <div className="text-right ml-auto md:ml-4 shrink-0">
-                <p className="text-xs md:text-sm font-semibold text-dark">312,23 zł</p>
-                <p className="hidden md:block text-xs text-dark/60">28.02.2026</p>
+              <div className="text-right ml-auto md:ml-6 shrink-0">
+                <p className="text-sm font-semibold text-dark">312,23 zł</p>
+                <p className="text-xs text-dark/60">28.02.2026</p>
               </div>
               <span className="absolute -top-2 -right-2 bg-accent text-xs font-semibold text-dark px-2 py-1 rounded-full">
                 Rafał

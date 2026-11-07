@@ -1,7 +1,10 @@
 import { getTranslations } from 'next-intl/server';
+import { Footprints, Timer } from 'lucide-react';
+import { CreditCardOffIcon } from '@/components/ui/CreditCardOffIcon';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { ScribbleWord } from '@/components/ui/ScribbleWord';
 import { SectionLead } from '@/components/ui/SectionLead';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { InvertDotButton } from '@/components/ui/InvertDotButton';
 import { HowItWorksStepper, type HowItWorksStep } from '@/components/ui/HowItWorksStepper';
 import { startHref } from '@/lib/appLinks';
@@ -21,7 +24,7 @@ export async function HowItWorksSection({ locale }: Props) {
     >
       <div className="mx-auto max-w-6xl">
         <ScrollReveal className="mb-12 text-center md:mb-16">
-          <p className="mb-4 text-xs uppercase tracking-[0.2em] text-dark/60">{t('eyebrow')}</p>
+          <SectionEyebrow icon={Footprints}>{t('eyebrow')}</SectionEyebrow>
           <h2 id="howitworks-title" className="font-display text-4xl leading-tight text-dark md:text-5xl lg:text-6xl">
             {t('title')} <ScribbleWord>{t('titleHighlight')}</ScribbleWord>
           </h2>
@@ -39,7 +42,16 @@ export async function HowItWorksSection({ locale }: Props) {
           >
             {t('cta')}
           </InvertDotButton>
-          <p className="mt-4 text-sm text-dark/60">{t('ctaNote')}</p>
+          <p className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-sm text-dark/60">
+            <span className="inline-flex items-center gap-1.5">
+              <CreditCardOffIcon className="h-4 w-4 shrink-0 opacity-70" strokeWidth={1.75} />
+              {t('ctaNoteCard')}
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <Timer className="h-4 w-4 shrink-0 opacity-70" strokeWidth={1.75} aria-hidden="true" />
+              {t('ctaNoteTime')}
+            </span>
+          </p>
         </ScrollReveal>
       </div>
     </section>

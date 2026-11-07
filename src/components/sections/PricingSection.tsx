@@ -1,10 +1,36 @@
 import { getTranslations } from 'next-intl/server';
-import { Check, Coffee, Minus, Users } from 'lucide-react';
+import {
+  Check,
+  Coffee,
+  FileUp,
+  History,
+  Landmark,
+  Layers,
+  Minus,
+  Receipt,
+  Sparkles,
+  Tags,
+  Users,
+  Wallet,
+  type LucideIcon,
+} from 'lucide-react';
 import { InvertDotButton } from '@/components/ui/InvertDotButton';
 import { startHref } from '@/lib/appLinks';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 
 type Props = { locale: string };
+
+// Kolejnosc = kolejnosc plans.premium.features w messages (PL i EN)
+const PREMIUM_META: { icon: LucideIcon; emphasis?: boolean; soon?: boolean }[] = [
+  { icon: Layers, emphasis: true }, // Wszystko z planu darmowego
+  { icon: Tags },
+  { icon: History },
+  { icon: Sparkles },
+  { icon: FileUp },
+  { icon: Receipt },
+  { icon: Landmark, soon: true }, // Integracja z bankiem - jeszcze niedostepna
+];
 
 // Bez przelacznika mies./rok - obie ceny sa widoczne naraz, dzieki czemu cala
 // sekcja zostaje server-only. Jedyny client JS to CTA (tracking GA4).
@@ -19,7 +45,7 @@ export async function PricingSection({ locale }: Props) {
     <section id="cennik" data-section-view="pricing" className="overflow-x-clip bg-surface px-6 py-20 md:py-28">
       <div className="mx-auto max-w-4xl">
         <ScrollReveal className="mb-12 text-center md:mb-16">
-          <p className="mb-4 text-xs uppercase tracking-[0.2em] text-dark/60">{t('eyebrow')}</p>
+          <SectionEyebrow icon={Wallet}>{t('eyebrow')}</SectionEyebrow>
           <h2 className="font-display mx-auto max-w-2xl text-4xl leading-tight text-dark md:text-5xl">
             {t('title')}
           </h2>
@@ -45,10 +71,7 @@ export async function PricingSection({ locale }: Props) {
                 {t('plans.free.description')}
               </p>
 
-              <p className="mt-8 text-xs font-semibold uppercase tracking-widest text-dark/60">
-                {t('includedLabel')}
-              </p>
-              <ul className="mt-4 list-none space-y-3 p-0 text-sm text-dark/70">
+              <ul className="mt-8 flex list-none flex-col gap-3 p-0 text-sm text-dark/70">
                 {freeFeatures.map((feature) => (
                   <li key={feature} className="flex items-start gap-3">
                     <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-deep/12">
@@ -59,10 +82,8 @@ export async function PricingSection({ locale }: Props) {
                 ))}
               </ul>
 
-              <p className="mt-8 text-xs font-semibold uppercase tracking-widest text-dark/60">
-                {t('limitsLabel')}
-              </p>
-              <ul className="mt-4 list-none space-y-3 p-0 text-sm text-dark/45">
+              {/* Bez etykiety - limity odroznia ikona minusa i wyszarzony tekst */}
+              <ul className="mt-6 flex list-none flex-col gap-3 p-0 text-sm text-dark/45">
                 {freeLimits.map((limit) => (
                   <li key={limit} className="flex items-start gap-3">
                     <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-dark/8">
@@ -127,22 +148,33 @@ export async function PricingSection({ locale }: Props) {
                     {t('plans.premium.perPerson')}
                   </span>
                 </p>
-                <p className="mt-4 text-sm leading-relaxed text-white/60">
-                  {t('plans.premium.description')}
-                </p>
-
-                <p className="mt-8 text-xs font-semibold uppercase tracking-widest text-white/50">
-                  {t('includedLabel')}
-                </p>
-                <ul className="mt-4 list-none space-y-3 p-0 text-sm text-white/80">
-                  {premiumFeatures.map((feature) => (
-                    <li key={feature} className="flex items-start gap-3">
-                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent/15">
-                        <Check className="h-3 w-3 text-accent" strokeWidth={2.5} aria-hidden="true" />
-                      </span>
-                      {feature}
-                    </li>
-                  ))}
+                <ul className="mt-8 flex list-none flex-col gap-3 p-0 text-sm text-white/80">
+                  {premiumFeatures.map((feature, i) => {
+                    const { icon: Icon = Check, emphasis, soon } = PREMIUM_META[i] ?? {};
+                    return (
+                      <li
+                        key={feature}
+                        className={`flex items-center gap-3 ${emphasis ? 'font-semibold text-white' : ''} ${soon ? 'text-white/40' : ''}`}
+                      >
+                        <span
+                          className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg ${soon ? 'bg-white/5' : 'bg-accent/15'}`}
+                        >
+                          <Icon className={`h-4 w-4 ${soon ? 'text-white/40' : 'text-accent'}`} strokeWidth={2} aria-hidden="true" />
+                        </span>
+                        <span>
+                          {feature}
+                          {soon && (
+                            <>
+                              {' '}
+                              <span className="ml-1 inline-block rounded-full border border-white/20 px-2 py-0.5 align-middle text-[10px] font-semibold uppercase tracking-wider text-white/60">
+                                {t('soon')}
+                              </span>
+                            </>
+                          )}
+                        </span>
+                      </li>
+                    );
+                  })}
                 </ul>
 
                 <div className="mt-auto pt-10">

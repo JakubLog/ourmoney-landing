@@ -2,12 +2,13 @@
 
 import { useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
-import { ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight, LayoutGrid } from 'lucide-react';
 import Image from 'next/image';
 import { InvertDotButton } from '@/components/ui/InvertDotButton';
 import { startHref } from '@/lib/appLinks';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SectionLead } from '@/components/ui/SectionLead';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 
 type Feature = { title: string; description: string };
 type Props = { locale: string };
@@ -65,91 +66,28 @@ export function FeaturesSection({ locale }: Props) {
   return (
     <section data-section-view="features" className="group/features bg-white py-20 md:py-28 px-6">
       <div className="max-w-6xl mx-auto">
-        {/* Two-column: accordion + image */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-          {/* Left: header + accordion */}
-          <div>
-            <ScrollReveal className="mb-12 md:mb-16">
-              <p className="mb-4 text-xs uppercase tracking-[0.2em] text-dark/60">{t('eyebrow')}</p>
-              <h2 className="font-display text-4xl md:text-5xl text-dark leading-tight mb-6">
-                {t('title')}
-              </h2>
-              <SectionLead align="left">{t('subtitle')}</SectionLead>
-            </ScrollReveal>
-            <ol className="list-none p-0 m-0">
-              {items.map((item, i) => (
-                <li key={item.title} className="relative">
-                  {/* Border top */}
-                  <div className="h-px bg-dark/10" />
-                  {/* Progress bar - only on active item, dopoki trwa autocykl */}
-                  {open === i && autoplay && (
-                    <div
-                      key={animKey}
-                      className="absolute top-0 left-0 h-px bg-accent origin-left group-hover/features:[animation-play-state:paused]"
-                      style={{
-                        animation: `progressFill ${CYCLE_DURATION}ms linear forwards`,
-                        width: '100%',
-                      }}
-                      onAnimationEnd={goToNext}
-                    />
-                  )}
-                  {open === i && !autoplay && (
-                    <div className="absolute top-0 left-0 h-px w-full bg-accent" />
-                  )}
-                  {/* h3 opakowuje przycisk, a nie odwrotnie - <button> przyjmuje
-                      tylko tresc frazowa, wiec naglowek w srodku bylby niepoprawny */}
-                  <h3>
-                    <button
-                      className="w-full flex items-center gap-4 py-6 text-left group cursor-pointer"
-                      onClick={() => handleClick(i)}
-                      aria-expanded={open === i}
-                    >
-                      <span
-                        aria-hidden="true"
-                        className="text-dark/60 text-sm font-medium tabular-nums w-8 shrink-0"
-                      >
-                        {String(i + 1).padStart(2, '0')}.
-                      </span>
-                      <span className={`font-medium text-base flex-1 transition-colors ${open === i ? 'text-dark' : 'text-dark/60'}`}>
-                        {item.title}
-                      </span>
-                      {open === i && (
-                        <ArrowRight size={18} className="shrink-0 text-dark" />
-                      )}
-                    </button>
-                  </h3>
-                  <div
-                    style={{
-                      display: 'grid',
-                      gridTemplateRows: open === i ? '1fr' : '0fr',
-                      transition: 'grid-template-rows 0.25s ease-out',
-                    }}
-                  >
-                    <div style={{ overflow: 'hidden' }}>
-                      <p className="pb-6 pl-12 text-sm text-dark/60 leading-relaxed max-w-md">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </ol>
-            <div className="h-px bg-dark/10" />
-            <div className="mt-8">
-              <InvertDotButton
-                href={startHref(locale)}
-                className="inline-block bg-accent text-black font-semibold px-8 py-4 rounded-full text-sm"
-                location="features"
-                locale={locale}
-              >
-                {t('cta')}
-              </InvertDotButton>
-            </div>
-          </div>
+        {/* Naglowek wysrodkowany nad trescia, jak w pozostalych sekcjach */}
+        <ScrollReveal className="text-center mb-12 md:mb-16">
+          <SectionEyebrow icon={LayoutGrid}>{t('eyebrow')}</SectionEyebrow>
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-dark leading-tight mb-6">
+            {t('title')}
+          </h2>
+          <SectionLead>{t('subtitle')}</SectionLead>
+        </ScrollReveal>
 
+        {/* Ponizej lg: makieta z nawigacja pod spodem, potem CTA, zeby podglad
+            zmienial sie na oczach, a nie 5 pozycji listy nizej. Od lg: akordeon
+            z CTA w lewej kolumnie, makieta z prawej, wysrodkowane w pionie */}
+        <div className="grid grid-cols-1 items-center lg:grid-cols-2 lg:gap-x-16">
           {/* App screenshot in iPhone 17 Pro Max frame */}
-          <ScrollReveal animation="slide-right" className="flex justify-center overflow-x-clip">
-            <div className="relative w-full max-w-[280px] sm:max-w-[310px]">
+          <ScrollReveal
+            animation="slide-right"
+            className="flex justify-center overflow-x-clip lg:col-start-2 lg:row-start-1"
+          >
+            {/* Ponizej lg szerokosc liczona od wysokosci ekranu (makieta ~2.45x
+                wyzsza niz szersza), zeby razem z nawigacja pod nia miescila sie
+                w jednym widoku */}
+            <div className="relative w-[clamp(200px,calc((100svh_-_12rem)/2.45),280px)] sm:w-[clamp(200px,calc((100svh_-_12rem)/2.45),310px)] lg:w-full lg:max-w-[310px]">
               {/* Side buttons */}
               <div className="absolute -left-[2px] top-[15%] w-[3px] h-6 bg-neutral-700 rounded-l-sm" />
               <div className="absolute -left-[2px] top-[22%] w-[3px] h-11 bg-neutral-700 rounded-l-sm" />
@@ -228,6 +166,150 @@ export function FeaturesSection({ locale }: Props) {
               </div>
             </div>
           </ScrollReveal>
+
+          {/* Ponizej lg zamiast akordeonu: postep/skok do funkcji, strzalki i opis
+              aktywnej funkcji tuz pod makieta. Akordeon ma display:none, wiec jego
+              pasek postepu nie odpala animationend - autocykl napedza pasek tutaj */}
+          <div className="mx-auto mt-4 w-full max-w-md text-center lg:hidden">
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() => handleClick((open - 1 + items.length) % items.length)}
+                aria-label={t('prev')}
+                className="flex size-11 shrink-0 items-center justify-center rounded-full border border-dark/15 text-dark cursor-pointer"
+              >
+                <ArrowLeft size={18} />
+              </button>
+              <div className="flex flex-1 gap-1.5">
+                {items.map((item, i) => (
+                  <button
+                    key={item.title}
+                    type="button"
+                    onClick={() => handleClick(i)}
+                    aria-label={item.title}
+                    aria-current={open === i ? 'true' : undefined}
+                    className="flex-1 py-4 cursor-pointer"
+                  >
+                    <span className="block h-0.5 overflow-hidden rounded-full bg-dark/10">
+                      {open === i && autoplay && (
+                        <span
+                          key={animKey}
+                          className="block h-full bg-accent origin-left"
+                          style={{ animation: `progressFill ${CYCLE_DURATION}ms linear forwards` }}
+                          onAnimationEnd={goToNext}
+                        />
+                      )}
+                      {open === i && !autoplay && <span className="block h-full bg-accent" />}
+                    </span>
+                  </button>
+                ))}
+              </div>
+              <button
+                type="button"
+                onClick={() => handleClick((open + 1) % items.length)}
+                aria-label={t('next')}
+                className="flex size-11 shrink-0 items-center justify-center rounded-full border border-dark/15 text-dark cursor-pointer"
+              >
+                <ArrowRight size={18} />
+              </button>
+            </div>
+            {/* Wszystkie tytuly i opisy aktywnej/nieaktywnych funkcji w jednej
+                komorce siatki - wysokosc bierze najdluzszy, wiec CTA nie skacze */}
+            <div className="mt-2 grid" aria-live={autoplay ? 'off' : 'polite'}>
+              {items.map((item, i) => (
+                <div
+                  key={item.title}
+                  className={`[grid-area:1/1] transition-opacity duration-300 ${open === i ? 'opacity-100' : 'invisible opacity-0'}`}
+                >
+                  <p className="font-medium text-dark">
+                    <span className="text-dark/60 tabular-nums">{String(i + 1).padStart(2, '0')}.</span>{' '}
+                    {item.title}
+                  </p>
+                  <p className="mt-1 text-sm text-dark/60 leading-relaxed">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Lewa kolumna (lg+): akordeon i CTA pod nim. Ponizej lg akordeon jest
+              ukryty, wiec zostaje samo CTA - wysrodkowane pod nawigacja makiety */}
+          <div className="lg:col-start-1 lg:row-start-1">
+            {/* Stala wysokosc: wysrodkowana jest kolumna, nie lista - inaczej przy
+                opisach 2 vs 3 linie (435 vs 457px) cala lista i CTA skakaly o ~11px
+                przy kazdej zmianie funkcji. Lista rosnie w dol wewnatrz */}
+            <div className="hidden lg:block lg:h-[29rem]">
+              <ol className="list-none p-0 m-0">
+                {items.map((item, i) => (
+                  <li key={item.title} className="relative">
+                    {/* Border top */}
+                    <div className="h-px bg-dark/10" />
+                    {/* Progress bar - only on active item, dopoki trwa autocykl */}
+                    {open === i && autoplay && (
+                      <div
+                        key={animKey}
+                        className="absolute top-0 left-0 h-px bg-accent origin-left group-hover/features:[animation-play-state:paused]"
+                        style={{
+                          animation: `progressFill ${CYCLE_DURATION}ms linear forwards`,
+                          width: '100%',
+                        }}
+                        onAnimationEnd={goToNext}
+                      />
+                    )}
+                    {open === i && !autoplay && (
+                      <div className="absolute top-0 left-0 h-px w-full bg-accent" />
+                    )}
+                    {/* h3 opakowuje przycisk, a nie odwrotnie - <button> przyjmuje
+                        tylko tresc frazowa, wiec naglowek w srodku bylby niepoprawny */}
+                    <h3>
+                      <button
+                        className="w-full flex items-center gap-4 py-6 text-left group cursor-pointer"
+                        onClick={() => handleClick(i)}
+                        aria-expanded={open === i}
+                      >
+                        <span
+                          aria-hidden="true"
+                          className="text-dark/60 text-sm font-medium tabular-nums w-8 shrink-0"
+                        >
+                          {String(i + 1).padStart(2, '0')}.
+                        </span>
+                        <span className={`font-medium text-base flex-1 transition-colors ${open === i ? 'text-dark' : 'text-dark/60'}`}>
+                          {item.title}
+                        </span>
+                        {open === i && (
+                          <ArrowRight size={18} className="shrink-0 text-dark" />
+                        )}
+                      </button>
+                    </h3>
+                    <div
+                      style={{
+                        display: 'grid',
+                        gridTemplateRows: open === i ? '1fr' : '0fr',
+                        transition: 'grid-template-rows 0.25s ease-out',
+                      }}
+                    >
+                      <div style={{ overflow: 'hidden' }}>
+                        <p className="pb-6 pl-12 text-sm text-dark/60 leading-relaxed max-w-md">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+              <div className="h-px bg-dark/10" />
+            </div>
+
+            <div className="mt-12 text-center lg:mt-6 lg:text-left">
+              <InvertDotButton
+                href={startHref(locale)}
+                className="inline-block bg-accent text-black font-semibold px-8 py-4 rounded-full text-sm"
+                location="features"
+                locale={locale}
+              >
+                {t('cta')}
+              </InvertDotButton>
+            </div>
+          </div>
         </div>
       </div>
     </section>

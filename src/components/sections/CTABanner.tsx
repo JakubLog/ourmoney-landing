@@ -1,8 +1,10 @@
 import { getTranslations } from 'next-intl/server';
+import { Rocket } from 'lucide-react';
 import { InvertDotButton } from '@/components/ui/InvertDotButton';
 import { startHref } from '@/lib/appLinks';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SectionLead } from '@/components/ui/SectionLead';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 
 type Props = { locale: string };
 
@@ -25,7 +27,7 @@ export async function CTABanner({ locale }: Props) {
             }}
           />
           <div className="relative glass rounded-hero px-8 py-14 md:px-14 md:py-16 text-center">
-            <p className="mb-4 text-xs uppercase tracking-[0.2em] text-white/50">{t('eyebrow')}</p>
+            <SectionEyebrow icon={Rocket} className="text-white/50">{t('eyebrow')}</SectionEyebrow>
             <h2 className="font-display text-3xl md:text-4xl text-white leading-snug mb-6">
               {t('text')}
             </h2>

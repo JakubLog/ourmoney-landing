@@ -1,7 +1,9 @@
 import { getTranslations } from 'next-intl/server';
+import { Sparkles } from 'lucide-react';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { AiReportCard } from '@/components/ui/AiReportCard';
 import { SectionLead } from '@/components/ui/SectionLead';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 
 type Props = { locale: string };
 
@@ -16,7 +18,7 @@ export async function AiReportSection({ locale }: Props) {
     <section className="bg-dark px-6 py-20 md:py-28">
       <div className="mx-auto max-w-5xl">
         <ScrollReveal className="mb-12 text-center md:mb-16">
-          <p className="mb-4 text-xs uppercase tracking-[0.2em] text-white/50">{t('eyebrow')}</p>
+          <SectionEyebrow icon={Sparkles} className="text-white/50">{t('eyebrow')}</SectionEyebrow>
           <h2 className="font-display mx-auto max-w-3xl text-4xl leading-tight text-white md:text-5xl lg:text-6xl">
             {t('title')}
           </h2>

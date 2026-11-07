@@ -60,6 +60,7 @@
       "headlinePost": "in your relationship?",
       "headlineWords": "TABOO,STRESSFUL,COMPLICATED,DIFFICULT,IGNORED",
       "subheadline": "The first financial app built specifically for couples. A shared household budget, fair expense splitting and joint goals - with privacy where you want it.",
+      "subheadlineShort": "A shared household budget, fair expense splitting and joint goals - with privacy where you want it.",
       "cta": "Start together - for free",
       "socialProof": "Join 150+ people who already mastered their finances",
       "socialProofShort": "Join 150+ people",
@@ -128,6 +129,8 @@
       "title": "How OurMoney solves your problems",
       "subtitle": "Not another Excel spreadsheet. A shared household budget app with expense splitting, envelopes and bank import - built specifically for couples.",
       "cta": "Start on your own - add your partner later",
+      "prev": "Previous feature",
+      "next": "Next feature",
       "items": [
         {
           "title": "Everything in one place",
@@ -256,7 +259,8 @@
         }
       ],
       "cta": "Take the first step - for free",
-      "ctaNote": "No credit card · Account ready in 30 seconds"
+      "ctaNoteCard": "No credit card",
+      "ctaNoteTime": "Account ready in 30 seconds"
     },
     "beforeAfter": {
       "title": "Finances",
@@ -365,8 +369,7 @@
       "title": "Start for free. Go Premium whenever you want.",
       "subtitle": "Day-to-day budgeting costs nothing and has no limits - on your own or together with your partner. You only pay for full history, AI analysis and transactions pulled straight from your bank.",
       "badge": "Full power",
-      "includedLabel": "In this plan:",
-      "limitsLabel": "What is not included:",
+      "soon": "Soon",
       "note": "Prices in PLN, VAT included. The free plan needs no card and never expires. You buy Premium in the iPhone app, and it works for both of you, on Android and in the browser too.",
       "plans": {
         "free": {
@@ -376,19 +379,14 @@
           "description": "Everything you need day to day. No card, no trial period.",
           "cta": "Start for free",
           "features": [
-            "Shared budget for two people",
-            "Unlimited expenses and income",
+            "Shared budget for two - unlimited expenses and income",
             "Equal, income-proportional or mine/yours/ours split",
-            "Shared goals and envelopes",
-            "iPhone app (App Store), Android (PWA) and dashboard overview"
+            "Shared goals and envelopes"
           ],
           "limits": [
-            "Limited number of custom categories",
-            "Shortened transaction history",
+            "Fewer custom categories and shortened history",
             "No AI analysis or recommendations",
-            "1 bank import per month",
-            "Up to 5 receipt scans per month",
-            "No bank integration"
+            "1 bank import and up to 5 receipt scans per month"
           ]
         },
         "premium": {
@@ -399,7 +397,6 @@
           "yearly": "or 299.99 PLN per year - 2 months free",
           "perPersonHighlight": "15 PLN a month per person",
           "perPerson": "- only one of you pays, and you both get Premium.",
-          "description": "The same as the free plan, only without any limits.",
           "cta": "Get Premium",
           "trial": "14 days free when you buy on the App Store",
           "features": [

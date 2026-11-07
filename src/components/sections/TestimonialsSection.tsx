@@ -1,9 +1,11 @@
 import { getTranslations } from 'next-intl/server';
+import { Quote } from 'lucide-react';
 import { client } from '@/sanity/lib/client';
 import { TESTIMONIALS_QUERY } from '@/sanity/lib/queries';
 import { TestimonialsCarousel } from './TestimonialsCarousel';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SectionLead } from '@/components/ui/SectionLead';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 
 type Props = { locale: string };
 
@@ -32,7 +34,7 @@ export async function TestimonialsSection({ locale }: Props) {
   return (
     <section className="bg-sand py-20 md:py-28 overflow-hidden">
       <ScrollReveal className="px-6">
-        <p className="mb-4 text-center text-xs uppercase tracking-[0.2em] text-dark/60">{t('eyebrow')}</p>
+        <SectionEyebrow icon={Quote}>{t('eyebrow')}</SectionEyebrow>
         <h2 className="font-display text-4xl md:text-5xl text-dark text-center leading-tight mb-6">
           {t('title')}
         </h2>

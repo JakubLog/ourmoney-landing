@@ -1,9 +1,10 @@
 import { getTranslations } from 'next-intl/server';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Calculator } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { CalculatorAnimationShowcase } from '@/components/sections/CalculatorAnimationShowcase';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SectionLead } from '@/components/ui/SectionLead';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 
 type Props = { locale: string };
 
@@ -15,7 +16,7 @@ export async function CalculatorTeaserSection({ locale }: Props) {
   return (
     <section id="kalkulator" data-section-view="calculator_teaser" className="bg-dark px-6 py-20 md:py-28">
       <ScrollReveal className="mx-auto max-w-3xl text-center">
-        <p className="mb-4 text-xs uppercase tracking-[0.2em] text-white/40">{t('eyebrow')}</p>
+        <SectionEyebrow icon={Calculator} className="text-white/40">{t('eyebrow')}</SectionEyebrow>
         <h2 className="font-display mx-auto max-w-3xl text-4xl leading-tight text-white md:text-5xl lg:text-6xl">
           {t('title')}
         </h2>

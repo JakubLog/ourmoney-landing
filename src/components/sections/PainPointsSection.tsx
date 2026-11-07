@@ -1,7 +1,8 @@
 import { getTranslations } from 'next-intl/server';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, MessagesSquare } from 'lucide-react';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SectionLead } from '@/components/ui/SectionLead';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { ChatDialogue } from '@/components/ui/ChatDialogue';
 import { PainPointIllustration } from '@/components/ui/PainPointIllustration';
 import { PainPointCard } from '@/components/ui/PainPointCard';
@@ -29,7 +30,7 @@ export async function PainPointsSection({ locale }: Props) {
       <div className="max-w-6xl mx-auto">
         {/* Heading */}
         <ScrollReveal className="text-center mb-12 md:mb-16">
-          <p className="text-xs uppercase tracking-[0.2em] text-dark/60 mb-4">{t('eyebrow')}</p>
+          <SectionEyebrow icon={MessagesSquare}>{t('eyebrow')}</SectionEyebrow>
           <h2 id="painpoints-title" className="font-display text-4xl md:text-5xl lg:text-6xl text-dark leading-tight">
             {t('title')}
           </h2>

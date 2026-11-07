@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import { ShieldCheck, Lock, Eye, Server } from 'lucide-react';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SectionLead } from '@/components/ui/SectionLead';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 
 type Props = { locale: string };
 
@@ -15,7 +16,7 @@ export async function TrustSection({ locale }: Props) {
     <section className="bg-dark py-20 md:py-28 px-6">
       <div className="max-w-6xl mx-auto">
         <ScrollReveal className="text-center mb-12 md:mb-16">
-          <p className="mb-4 text-xs uppercase tracking-[0.2em] text-white/50">{t('eyebrow')}</p>
+          <SectionEyebrow icon={ShieldCheck} className="text-white/50">{t('eyebrow')}</SectionEyebrow>
           <h2 className="font-display text-4xl md:text-5xl text-white leading-tight mb-6">
             {t('title')}
           </h2>

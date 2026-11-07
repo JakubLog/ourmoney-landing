@@ -1,7 +1,8 @@
 import { getTranslations } from 'next-intl/server';
-import { Check, X, Minus } from 'lucide-react';
+import { Check, X, Minus, Scale } from 'lucide-react';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SectionLead } from '@/components/ui/SectionLead';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { ScribbleWord } from '@/components/ui/ScribbleWord';
 import { BeforeAfterCards } from '@/components/ui/BeforeAfterCards';
 
@@ -61,7 +62,7 @@ export async function ComparisonSection({ locale }: Props) {
     <section className="bg-surface py-20 md:py-28 px-6">
       <div className="max-w-5xl mx-auto">
         <ScrollReveal className="text-center mb-12 md:mb-16">
-          <p className="mb-4 text-xs uppercase tracking-[0.2em] text-dark/60">{t('eyebrow')}</p>
+          <SectionEyebrow icon={Scale}>{t('eyebrow')}</SectionEyebrow>
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-dark leading-tight mb-6">
             {tBa('title')} <ScribbleWord>{tBa('titleHighlight')}</ScribbleWord>{' '}
             {tBa('titleEnd')}
@@ -96,12 +97,15 @@ export async function ComparisonSection({ locale }: Props) {
                     <th
                       key={name}
                       scope="col"
-                      className={`w-[17%] px-3 pb-4 pt-3 text-center align-bottom ${
+                      // Przy min-w 640px kolumna ma ~109px, a pigulka z px-4 ~100px
+                      // wystawala poza pasmo. Ponizej sm ciasniejsze paddingi komorki
+                      // i pigulki (tylko w poziomie), zeby miescila sie w srodku
+                      className={`w-[17%] px-1.5 pb-4 pt-3 text-center align-bottom sm:px-3 ${
                         i === 0 ? `${ownColumn} rounded-t-card` : ''
                       }`}
                     >
                       {i === 0 ? (
-                        <span className="inline-block whitespace-nowrap rounded-full bg-dark px-4 py-1.5 text-sm font-semibold text-accent">
+                        <span className="inline-block whitespace-nowrap rounded-full bg-dark px-3 py-1.5 text-sm font-semibold text-accent sm:px-4">
                           {name}
                         </span>
                       ) : (

@@ -1,10 +1,13 @@
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
+import { HeartHandshake } from 'lucide-react';
+import { CreditCardOffIcon } from '@/components/ui/CreditCardOffIcon';
 import { InvertDotButton } from '@/components/ui/InvertDotButton';
 import { AiImageLabel } from '@/components/ui/AiImageLabel';
 import { AppStoreBadge } from '@/components/ui/AppStoreBadge';
 import { startHref } from '@/lib/appLinks';
 import { AnimatedWord } from '@/components/ui/AnimatedWord';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { client } from '@/sanity/lib/client';
 import { TESTIMONIALS_QUERY } from '@/sanity/lib/queries';
 
@@ -56,9 +59,9 @@ export async function HeroSection({ locale }: Props) {
       <div className="hero-stagger relative z-10 max-w-6xl mx-auto px-6 text-center py-24 md:py-32">
         {/* Eyebrow niesie fraze kluczowa - H1 zostaje hookiem emocjonalnym,
             ale nazwa kategorii produktu stoi nad nim, nad linia zgiecia */}
-        <p className="text-xs text-white/60 uppercase tracking-[0.2em] mb-4">
+        <SectionEyebrow icon={HeartHandshake} className="text-white/60">
           {t('eyebrow')}
-        </p>
+        </SectionEyebrow>
         <h1 className="font-display text-5xl md:text-7xl lg:text-[5.25rem] text-white leading-[1.05] tracking-tight mb-6">
           {t('headlineL1')}
           <br />
@@ -71,7 +74,10 @@ export async function HeroSection({ locale }: Props) {
         {/* h2, nie p - to zdanie niesie fraze "wspolny budzet domowy" i jest
             jedynym tekstem opisowym w hero */}
         <h2 className="text-base md:text-lg text-white/80 max-w-xl mx-auto mb-8 leading-relaxed">
-          {t('subheadline')}
+          {/* Pelne zdanie jest za dlugie na mobile - krotsza wersja < sm,
+              bez "pierwszej aplikacji dla par" (to "dla par" niesie juz eyebrow nad H1) */}
+          <span className="sm:hidden">{t('subheadlineShort')}</span>
+          <span className="hidden sm:inline">{t('subheadline')}</span>
         </h2>
 
         {/* Social proof with avatars */}
@@ -109,7 +115,10 @@ export async function HeroSection({ locale }: Props) {
         </InvertDotButton>
         {/* Notka i odznaka w jednym wezle - hero-stagger animuje kolejne dzieci */}
         <div className="mt-3">
-          <p className="text-xs text-white/50">{t('noCreditCard')}</p>
+          <p className="flex items-center justify-center gap-1.5 text-xs text-white/50">
+            <CreditCardOffIcon className="h-3.5 w-3.5 shrink-0 opacity-80" strokeWidth={1.75} />
+            {t('noCreditCard')}
+          </p>
           <AppStoreBadge location="hero_app_store" className="mt-6 inline-block" />
         </div>
       </div>

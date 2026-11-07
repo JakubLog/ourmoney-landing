@@ -60,6 +60,7 @@
       "headlinePost": "w Waszym związku?",
       "headlineWords": "TABU,STRESU,KONFLIKTÓW,PROBLEMÓW,NAPIĘCIA",
       "subheadline": "Pierwsza aplikacja finansowa stworzona specjalnie dla par. Wspólny budżet domowy, sprawiedliwy podział wydatków, wspólne cele - z zachowaniem prywatności.",
+      "subheadlineShort": "Wspólny budżet domowy, sprawiedliwy podział wydatków i wspólne cele - z zachowaniem prywatności.",
       "cta": "Zacznijcie razem - za darmo",
       "socialProof": "Dołącz do 150+ osób, które już opanowały finanse",
       "socialProofShort": "Dołącz do 150+ osób",
@@ -128,6 +129,8 @@
       "title": "Jak OurMoney rozwiązuje Wasze problemy",
       "subtitle": "Nie kolejny arkusz Excel. Aplikacja do wspólnego budżetu domowego z podziałem wydatków, kopertami i importem z banku - stworzona specjalnie dla par.",
       "cta": "Zacznij od siebie - dodaj partnera później",
+      "prev": "Poprzednia funkcja",
+      "next": "Następna funkcja",
       "items": [
         {
           "title": "Wszystko w jednym miejscu",
@@ -256,7 +259,8 @@
         }
       ],
       "cta": "Zróbcie pierwszy krok - za darmo",
-      "ctaNote": "Bez karty kredytowej · Konto gotowe w 30 sekund"
+      "ctaNoteCard": "Bez karty kredytowej",
+      "ctaNoteTime": "Konto gotowe w 30 sekund"
     },
     "beforeAfter": {
       "title": "Finanse",
@@ -365,8 +369,7 @@
       "title": "Zacznijcie za darmo. Premium wtedy, kiedy zechcecie.",
       "subtitle": "Codzienne prowadzenie budżetu nic nie kosztuje i nie ma limitów - samemu albo razem z partnerem. Płacicie dopiero za pełną historię, analizę AI i automatyczne pobieranie transakcji z banku.",
       "badge": "Pełna moc",
-      "includedLabel": "W tym planie:",
-      "limitsLabel": "Czego tu nie ma:",
+      "soon": "Wkrótce",
       "note": "Ceny w złotówkach, brutto. Plan darmowy nie wymaga karty i nie wygasa. Premium kupujecie w aplikacji na iPhone'a, a działa u Was obojga, także na Androidzie i w przeglądarce.",
       "plans": {
         "free": {
@@ -376,19 +379,14 @@
           "description": "Wszystko, czego potrzebujecie na co dzień. Bez karty, bez okresu próbnego.",
           "cta": "Zacznijcie za darmo",
           "features": [
-            "Wspólny budżet dla dwóch osób",
-            "Nielimitowane wydatki i przychody",
+            "Wspólny budżet dla dwojga - bez limitu wydatków i przychodów",
             "Podział po równo, proporcjonalnie albo moje/twoje/nasze",
-            "Wspólne cele i koperty",
-            "Aplikacja na iPhone'a (App Store), Androida (PWA) i pulpit z podsumowaniem"
+            "Wspólne cele i koperty"
           ],
           "limits": [
-            "Ograniczona liczba własnych kategorii",
-            "Skrócona historia transakcji",
+            "Mniej własnych kategorii i skrócona historia",
             "Bez analizy AI i rekomendacji",
-            "1 import z banku miesięcznie",
-            "Do 5 skanów paragonu miesięcznie",
-            "Bez integracji z bankiem"
+            "1 import z banku i do 5 skanów paragonu miesięcznie"
           ]
         },
         "premium": {
@@ -399,7 +397,6 @@
           "yearly": "albo 299,99 zł rocznie - 2 miesiące gratis",
           "perPersonHighlight": "15 zł miesięcznie na osobę",
           "perPerson": "- płaci tylko jedno z Was, a Premium macie oboje.",
-          "description": "To samo co w planie darmowym, tylko bez żadnych limitów.",
           "cta": "Wybierzcie Premium",
           "trial": "14 dni za darmo przy zakupie w App Store",
           "features": [
